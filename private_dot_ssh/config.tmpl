@@ -1,0 +1,21 @@
+Host sing 
+  HostName sing.stanford.edu
+
+Host subversion.assembla.com 
+  User svn
+  SendEnv REPO_NAME
+
+Host watchog
+  HostName watchog.stanford.edu
+  ForwardAgent yes
+  RemoteForward /run/user/1000/gnupg/S.gpg-agent /run/user/1000/gnupg/S.gpg-agent.extra
+  ExitOnForwardFailure yes
+
+Host raiders4
+  HostName raiders4.stanford.edu
+  ForwardAgent yes
+  LocalForward 8890 127.0.0.1:8890
+
+Host pihole
+  HostName 192.168.1.213
+  User pi

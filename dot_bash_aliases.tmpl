@@ -1,0 +1,39 @@
+##### ea - alias for editing aliases
+#
+#When setting up a new aliases file, or having creating a new file.. About
+#every time after editing an aliases file, I source it. This alias makes
+#editing alias a bit easier and they are useful right away. Note if the source
+#failed, it will not echo "aliases sourced".
+#
+alias ea='vim ~/.bash_aliases; source ~/.bash_aliases && source $HOME/.bash_aliases && echo "aliases sourced  --ok."'
+
+alias cat="bat"
+alias svnlog="svn log -l 5 -v"
+alias count='ls -1 | wc -l'
+alias count_r='find . -type f | wc -l'
+alias df='df -h'
+alias rg='rg -S'
+alias open="xdg-open &>/dev/null"
+alias gpg='gpg2'
+alias copy="xsel -ib"
+alias xclip="xclip -selection clipboard"
+alias ping="prettyping --nolegend"
+
+alias pdfrotate="pdfjam --angle 90 --fitpaper true --outfile rotated.pdf"
+alias pdfcombine="pdfjam --landscape --paper letter --nup 2x1 --outfile combined.pdf"
+pdfembed() { gs -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -dPDFSETTINGS=/prepress -dEmbedAllFonts=true -sOutputFile="$2" -f "$1"; }
+pdfgray() { gs -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -sColorConversionStrategy=Gray -dProcessColorModel=/DeviceGray -dCompatibilityLevel=1.5 -dAutoRotatePages=/None -sOutputFile="$2" -f "$1"; }
+
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+
+#-------------------------------------------------------------
+# The 'ls' family (this assumes you use a recent GNU ls).
+#-------------------------------------------------------------
+alias ls="exa"
+
+# The ubiquitous 'll': directories first, with alphanumeric sorting:
+alias ll="ls -l --group-directories-first"
+alias la='ll -a'           #  Show hidden files.
+alias tree='ls -T'    #  Nice alternative to 'recursive ls' ...

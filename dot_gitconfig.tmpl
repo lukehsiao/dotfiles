@@ -1,0 +1,66 @@
+[user]
+  name = Luke Hsiao
+  email = {{ .email }} 
+{{- if eq .email "lwhsiao@stanford.edu" }}
+  signingkey = 0xBE92A2933EB7CA99
+{{- end }}
+
+[core]
+  editor = vim
+
+[commit]
+  gpgsign = false
+
+[alias]
+  find = log --pretty=\"format:%Cgreen%H %Cblue%s\" --name-status --grep
+  co = checkout
+  ec = config --global -e
+  up = !git pull --rebase --prune $@ && git submodule update --init --recursive
+  cob = checkout -b
+  undo = reset HEAD~1 --mixed
+  amend = commit -a --amend
+  wipe = !git add -A && git commit -qm 'WIPE SAVEPOINT' && git reset HEAD~1 --hard
+  save = !git add -A && git commit -m 'SAVEPOINT'
+  wip = !git add -u && git commit -m "WIP"
+  bclean = "!f() { git branch --merged ${1-master} | grep -v " ${1-master}$" | xargs -r git branch -d; }; f"
+  bdone = "!f() { git checkout ${1-master} && git up && git bclean ${1-master}; }; f"
+  glog = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
+  di = diff --color-words
+  dic = diff --color-words=.
+  stats = shortlog -sn --no-merges
+  dlog = log --graph --all --decorate --stat --date=iso
+  tlog = tag -l -n10
+  pf = push --force-with-lease
+
+[merge]
+  ff = only
+
+[push]
+  default = simple
+  followTags = true
+
+[credential]
+  helper = cache --timeout=7200
+
+[rebase]
+  autostash = true
+
+[pager]
+  diff = diff-so-fancy | less --tabs=1,5 -RFX
+  show = diff-so-fancy | less --tabs=1,5 -RFX
+
+[color "status"]
+  added = green
+  changed = yellow bold
+  untracked = red bold
+
+[gpg]
+  program = gpg2
+
+{{- if eq .email "lwhsiao@stanford.edu" }}
+[sendemail]
+  smtpserver = smtp-roam.stanford.edu
+  smtpuser = lwhsiao@stanford.edu
+  smtpencryption = tls
+  smtpserverport = 587
+{{- end }}
