@@ -4,7 +4,7 @@ Host sing
 Host subversion.assembla.com 
   User svn
   SendEnv REPO_NAME
-{{ if eq .chezmoi.hostname "squirtle" -}}
+{{ if eq .chezmoi.hostname "squirtle" }}
 Host raiders4
   HostName raiders4.stanford.edu
   ForwardAgent yes
