@@ -16,6 +16,8 @@ Host raiders4
   ForwardAgent yes
   LocalForward 8890 127.0.0.1:8890
 
+{{ if eq .chezmoi.hostname "squirtle" -}}
 Host pihole
   HostName 192.168.1.213
   User pi
+{{- end }}
