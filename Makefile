@@ -74,6 +74,11 @@ ubuntu-install-mendeley:
 	sudo dpkg -i mendeley.deb
 	rm mendeley.deb
 
+ubuntu-install-alacritty:
+	curl -sSL https://github.com/jwilm/alacritty/releases/download/v0.3.2/Alacritty-v0.3.2-ubuntu_18_04_amd64.deb -o alacritty.deb
+	sudo dpkg -i alacritty.deb
+	rm alacritty.deb
+
 ubuntu-install-google-chrome:
 	wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
 	sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
