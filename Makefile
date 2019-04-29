@@ -43,10 +43,10 @@ ubuntu-install-prettyping:
 	mv prettyping ~/.local/bin/
 
 ubuntu-install-zola:
-	curl -sSLO https://github.com/getzola/zola/releases/download/v0.6.0/zola-v0.6.0-x86_64-unknown-linux-gnu.tar.gz
-	tar xf zola-v0.6.0-x86_64-unknown-linux-gnu.tar.gz
+	curl -sSLO https://github.com/getzola/zola/releases/download/v0.7.0/zola-v0.7.0-x86_64-unknown-linux-gnu.tar.gz
+	tar xf zola-v0.7.0-x86_64-unknown-linux-gnu.tar.gz
 	mv zola ~/.cargo/bin/
-	rm zola-v0.6.0-x86_64-unknown-linux-gnu.tar.gz
+	rm zola-v0.7.0-x86_64-unknown-linux-gnu.tar.gz
 
 ubuntu-install-latex:
 	sudo apt-get install -y texlive-full latexmk
