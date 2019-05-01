@@ -34,6 +34,13 @@ ubuntu-install-diff-so-fancy:
 	chmod +x diff-so-fancy
 	mv diff-so-fancy ~/.local/bin/
 
+ubuntu-install-keybase:
+	curl --remote-name https://prerelease.keybase.io/keybase_amd64.deb
+	# if you see an error about missing `libappindicator1` from the next
+	# command, you can ignore it, as the subsequent command corrects it
+	sudo dpkg -i keybase_amd64.deb
+	sudo apt-get install -f
+
 ubuntu-install-plug.vim:
 	curl -s -L https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim > $$(chezmoi source-path ~/.vim/autoload/plug.vim)
 
