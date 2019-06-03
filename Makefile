@@ -55,6 +55,12 @@ ubuntu-install-zola:
 	mv zola ~/.cargo/bin/
 	rm zola-v0.7.0-x86_64-unknown-linux-gnu.tar.gz
 
+ubuntu-install-git-sizer:
+	curl -sSLO https://github.com/github/git-sizer/releases/download/v1.3.0/git-sizer-1.3.0-linux-amd64.zip
+	unzip -o git-sizer-1.3.0-linux-amd64.zip -d tmp-git-sizer
+	mv tmp-git-sizer/git-sizer ~/.local/bin/
+	rm -r git-sizer-1.3.0-linux-amd64.zip tmp-git-sizer
+
 ubuntu-install-latex:
 	sudo apt-get install -y texlive-full latexmk
 
