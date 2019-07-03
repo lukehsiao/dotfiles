@@ -7,31 +7,44 @@
 call plug#begin('~/.vim/plugged')
 
 " Make sure you use single quotes
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
-Plug 'vimwiki/vimwiki'
-Plug 'scrooloose/syntastic'
-Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
 Plug 'altercation/vim-colors-solarized'
 Plug 'bling/vim-airline'
-Plug 'tpope/vim-surround'
-Plug 'junegunn/vim-easy-align'
-Plug 'scrooloose/nerdtree'
-Plug 'scrooloose/nerdcommenter'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'lervag/vimtex'
 Plug 'cespare/vim-toml'
-Plug 'tpope/vim-unimpaired'
-Plug 'tpope/vim-abolish'
-Plug 'rust-lang/rust.vim'
-Plug 'airblade/vim-gitgutter'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+Plug 'junegunn/vim-easy-align'
 Plug 'kchmck/vim-coffee-script', {'for': ['coffee']}
+Plug 'lervag/vimtex'
+Plug 'prabirshrestha/async.vim'
+Plug 'prabirshrestha/asyncomplete.vim'
+Plug 'prabirshrestha/asyncomplete-lsp.vim'
+Plug 'prabirshrestha/vim-lsp'
 Plug 'prettier/vim-prettier', {
   \ 'do': 'npm install',
   \ 'for': ['typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown'] }
+Plug 'rust-lang/rust.vim'
+Plug 'scrooloose/nerdcommenter'
+Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/syntastic'
+Plug 'tpope/vim-abolish'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-unimpaired'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'vimwiki/vimwiki'
 
 " Initialize plugin system
 call plug#end()
+
+" Setup rust language server
+if executable('rls')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'rls',
+        \ 'cmd': {server_info->['rustup', 'run', 'nightly', 'rls']},
+        \ 'whitelist': ['rust'],
+        \ })
+endif 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
