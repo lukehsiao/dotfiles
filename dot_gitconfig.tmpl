@@ -24,13 +24,16 @@
   wip = !git add -u && git commit -m "WIP"
   bclean = "!f() { git branch --merged ${1-master} | grep -v " ${1-master}$" | xargs -r git branch -d; }; f"
   bdone = "!f() { git checkout ${1-master} && git up && git bclean ${1-master}; }; f"
-  glog = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
+  glog = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%aN>%Creset'
   di = diff --color-words
   dic = diff --color-words=.
-  stats = shortlog -sn --no-merges
-  dlog = log --graph --all --decorate --stat --date=iso
+  stats = shortlog -sen --no-merges
+  dlog = log --graph --decorate --stat --date=iso
   tlog = tag -l -n10
   pf = push --force-with-lease
+
+[log]
+  mailmap = true
 
 [merge]
   ff = only
