@@ -50,10 +50,10 @@ ubuntu-install-prettyping:
 	mv prettyping ~/.local/bin/
 
 ubuntu-install-zola:
-	curl -sSLO https://github.com/getzola/zola/releases/download/v0.8.0/zola-v0.8.0-x86_64-unknown-linux-gnu.tar.gz
-	tar xf zola-v0.8.0-x86_64-unknown-linux-gnu.tar.gz
+	curl -sSLO https://github.com/getzola/zola/releases/download/v0.9.0/zola-v0.9.0-x86_64-unknown-linux-gnu.tar.gz
+	tar xf zola-v0.9.0-x86_64-unknown-linux-gnu.tar.gz
 	mv zola ~/.cargo/bin/
-	rm zola-v0.8.0-x86_64-unknown-linux-gnu.tar.gz
+	rm zola-v0.9.0-x86_64-unknown-linux-gnu.tar.gz
 
 ubuntu-install-git-sizer:
 	curl -sSLO https://github.com/github/git-sizer/releases/download/v1.3.0/git-sizer-1.3.0-linux-amd64.zip
