@@ -2,4 +2,7 @@ README.md
 Makefile
 {{- if ne .chezmoi.hostname "squirtle" }}
 .config/alacritty/alacritty.yml
+.pandoc/
+.gnupg/
+.ssh/
 {{- end }}
