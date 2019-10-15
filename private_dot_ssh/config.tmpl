@@ -9,13 +9,18 @@ Host subversion.assembla.com
 Host raiders4
   HostName raiders4.stanford.edu
   ForwardAgent yes
-  LocalForward 8890 127.0.0.1:8890
+
+Host raiders2
+  HostName raiders2.stanford.edu
+  ForwardAgent yes
+
+Host raiders3
+  HostName raiders3.stanford.edu
+  ForwardAgent yes
 
 Host watchog
   HostName watchog.stanford.edu
   ForwardAgent yes
-  RemoteForward /run/user/1000/gnupg/S.gpg-agent /run/user/1000/gnupg/S.gpg-agent.extra
-  ExitOnForwardFailure yes
 
 Host pihole
   HostName 192.168.1.213
