@@ -1,0 +1,17 @@
+{{- if (index . "aerc") -}}
+[Personal]
+source   = imaps://luke.w.hsiao%40gmail.com:{{ .aerc.gmail }}@imap.gmail.com
+outgoing = smtps+plain://luke.w.hsiao%40gmail.com:{{ .aerc.gmail }}@smtp.gmail.com
+default  = INBOX
+from     = Luke Hsiao <luke.w.hsiao@gmail.com>
+folders  = INBOX,[Gmail]/All Mail,[Gmail]/Sent Mail,[Gmail]/Spam,[Gmail]/Trash
+archive  = [Gmail]/All Mail
+
+[Stanford]
+source   = `imaps://lwhsiao%40stanford.edu:{{ .aerc.stanford }}@outlook.office365.com`
+outgoing = `smtps+plain://lwhsiao%40stanford.edu:{{ .aerc.stanford }}@smtp.stanford.edu`
+default  = INBOX
+from     = Luke Hsiao <lwhsiao@stanford.edu>
+copy-to  = Sent Items
+folders  = INBOX,Deleted Items,Archive,Drafts,Sent Items
+{{- end -}}
