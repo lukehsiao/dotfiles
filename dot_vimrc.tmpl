@@ -230,7 +230,9 @@ set wm=0
 
 set ai "Auto indent
 set wrap "Wrap lines
-set autoindent
+
+" Enable automatic word wrapping for these filetypes
+autocmd FileType vimwiki,mail,rst,text,md,markdown,gitcommit setlocal fo+=lt
 
 augroup ft_vim_anywhere
   au!
