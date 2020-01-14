@@ -333,7 +333,7 @@ map <leader>nf :NERDTreeFind<cr>
 
 let g:NERDTreeWinPos="left"
 let NERDTreeShowHidden=0
-let NERDTreeIgnore = ['\.pyc$']
+let NERDTreeIgnore = ['\.pyc$', '\.o$']
 
 """"""""""""""""""""""""""""""
 " => Status line / Airline
@@ -403,7 +403,7 @@ func! DeleteTrailingWS()
   %s/\s\+$//ge
   exe "normal `z"
 endfunc
-autocmd BufWrite *.rs,*.coffee,*.yaml,*.yml,*.ini,*.rst,*.py,*.c,*.h,*.cpp,*.md,*.txt,*.tex :call DeleteTrailingWS()
+autocmd BufWrite *.ino,*.rs,*.coffee,*.yaml,*.yml,*.ini,*.rst,*.py,*.c,*.h,*.cpp,*.md,*.txt,*.tex :call DeleteTrailingWS()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Spell checking
