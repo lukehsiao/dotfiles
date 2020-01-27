@@ -80,6 +80,15 @@ ubuntu-install-rust-utilities:
 		bat \
 		cargo-bloat \
 		cargo-update \
+		cargo-audit \
+		cargo-geiger \
+		cargo-edit \
+		eva \
+		svgcleaner \
+		ruplacer \
+		titlecase \
+		du-dust \
+		tectonic \
 		hyperfine
 
 ubuntu-install-mendeley:
