@@ -41,28 +41,29 @@ ubuntu-install-diff-so-fancy:
 	rm diff-so-fancy
 
 ubuntu-install-keybase:
-	curl --remote-name https://prerelease.keybase.io/keybase_amd64.deb
+	curl --proto '=https' --tlsv1.2 -sSO https://prerelease.keybase.io/keybase_amd64.deb
 	# if you see an error about missing `libappindicator1` from the next
 	# command, you can ignore it, as the subsequent command corrects it
 	sudo dpkg -i keybase_amd64.deb
 	sudo apt-get install -f
+	rm keybase_amd64.deb	
 
 ubuntu-install-plug.vim:
-	curl -s -L https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim > $$(chezmoi source-path ~/.vim/autoload/plug.vim)
+	curl --proto '=https' --tlsv1.2 -sSLf https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim > $$(chezmoi source-path ~/.vim/autoload/plug.vim)
 
 ubuntu-install-prettyping:
-	curl -sSO https://raw.githubusercontent.com/denilsonsa/prettyping/master/prettyping	
+	curl --proto '=https' --tlsv1.2 -sSO https://raw.githubusercontent.com/denilsonsa/prettyping/master/prettyping	
 	install	-m755 prettyping ~/.local/bin/
 	rm prettyping
 
 ubuntu-install-zola:
-	curl -sSLO https://github.com/getzola/zola/releases/download/v0.9.0/zola-v0.9.0-x86_64-unknown-linux-gnu.tar.gz
+	curl --proto '=https' --tlsv1.2 -sSLO https://github.com/getzola/zola/releases/download/v0.9.0/zola-v0.9.0-x86_64-unknown-linux-gnu.tar.gz
 	tar xf zola-v0.9.0-x86_64-unknown-linux-gnu.tar.gz
 	install -m755 zola ~/.cargo/bin
 	rm zola-v0.9.0-x86_64-unknown-linux-gnu.tar.gz zola
 
 ubuntu-install-git-sizer:
-	curl -sSLO https://github.com/github/git-sizer/releases/download/v1.3.0/git-sizer-1.3.0-linux-amd64.zip
+	curl --proto '=https' --tlsv1.2 -sSLO https://github.com/github/git-sizer/releases/download/v1.3.0/git-sizer-1.3.0-linux-amd64.zip
 	unzip -o git-sizer-1.3.0-linux-amd64.zip -d tmp-git-sizer
 	install -m755 tmp-git-sizer/git-sizer ~/.local/bin/
 	rm -r git-sizer-1.3.0-linux-amd64.zip tmp-git-sizer
@@ -71,7 +72,7 @@ ubuntu-install-latex:
 	sudo apt-get install -y texlive-full latexmk
 
 ubuntu-install-gdb-dashboard:
-	curl -sSL git.io/.gdbinit -o ~/.gdbinit
+	curl --proto '=https' --tlsv1.2 -sSLf https://raw.githubusercontent.com/cyrus-and/gdb-dashboard/master/.gdbinit -o ~/.gdbinit
 
 ubuntu-install-rust-utilities:
 	cargo install \
@@ -98,12 +99,12 @@ ubuntu-install-rust-utilities:
 		hyperfine
 
 ubuntu-install-mendeley:
-	curl -sSL https://www.mendeley.com/repositories/ubuntu/stable/amd64/mendeleydesktop-latest -o mendeley.deb
+	curl --proto '=https' --tlsv1.2 -sSL https://www.mendeley.com/repositories/ubuntu/stable/amd64/mendeleydesktop-latest -o mendeley.deb
 	sudo dpkg -i mendeley.deb
 	rm mendeley.deb
 
 ubuntu-install-alacritty:
-	curl -sSL https://github.com/jwilm/alacritty/releases/download/v0.4.1/Alacritty-v0.4.1-ubuntu_18_04_amd64.deb -o alacritty.deb
+	curl --proto '=https' --tlsv1.2 -sSL https://github.com/jwilm/alacritty/releases/download/v0.4.1/Alacritty-v0.4.1-ubuntu_18_04_amd64.deb -o alacritty.deb
 	sudo dpkg -i alacritty.deb
 	rm alacritty.deb
 
