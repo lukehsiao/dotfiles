@@ -25,6 +25,12 @@ ubuntu-install-packages:
 		htop \
 		gnupg2
 
+ubuntu-install-chezmoi:
+	curl --proto '=https' --tlsv1.2 -sSLO https://github.com/twpayne/chezmoi/releases/download/v1.7.12/chezmoi_1.7.12_linux_amd64.deb
+	sudo dpkg -i chezmoi_1.7.12_linux_amd64.deb
+	sudo apt-get install -f
+	rm chezmoi_1.7.12_linux_amd64.deb
+
 ubuntu-install-rust:
 	curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 	source $$HOME/.cargo/env
