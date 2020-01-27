@@ -31,8 +31,8 @@ ubuntu-install-rust:
 
 ubuntu-install-diff-so-fancy:
 	curl -sSO https://raw.githubusercontent.com/so-fancy/diff-so-fancy/master/third_party/build_fatpack/diff-so-fancy	
-	chmod +x diff-so-fancy
-	mv diff-so-fancy ~/.local/bin/
+	install	-m755 diff-so-fancy ~/.local/bin/
+	rm diff-so-fancy
 
 ubuntu-install-keybase:
 	curl --remote-name https://prerelease.keybase.io/keybase_amd64.deb
@@ -46,19 +46,19 @@ ubuntu-install-plug.vim:
 
 ubuntu-install-prettyping:
 	curl -sSO https://raw.githubusercontent.com/denilsonsa/prettyping/master/prettyping	
-	chmod +x prettyping
-	mv prettyping ~/.local/bin/
+	install	-m755 prettyping ~/.local/bin/
+	rm prettyping
 
 ubuntu-install-zola:
 	curl -sSLO https://github.com/getzola/zola/releases/download/v0.9.0/zola-v0.9.0-x86_64-unknown-linux-gnu.tar.gz
 	tar xf zola-v0.9.0-x86_64-unknown-linux-gnu.tar.gz
-	mv zola ~/.cargo/bin/
-	rm zola-v0.9.0-x86_64-unknown-linux-gnu.tar.gz
+	install -m755 zola ~/.cargo/bin
+	rm zola-v0.9.0-x86_64-unknown-linux-gnu.tar.gz zola
 
 ubuntu-install-git-sizer:
 	curl -sSLO https://github.com/github/git-sizer/releases/download/v1.3.0/git-sizer-1.3.0-linux-amd64.zip
 	unzip -o git-sizer-1.3.0-linux-amd64.zip -d tmp-git-sizer
-	mv tmp-git-sizer/git-sizer ~/.local/bin/
+	install -m755 tmp-git-sizer/git-sizer ~/.local/bin/
 	rm -r git-sizer-1.3.0-linux-amd64.zip tmp-git-sizer
 
 ubuntu-install-latex:
