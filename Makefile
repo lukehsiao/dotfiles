@@ -92,7 +92,6 @@ ubuntu-install-rust-utilities:
 		cargo-edit \
 		eva \
 		svgcleaner \
-		ruplacer \
 		titlecase \
 		du-dust \
 		tectonic \
