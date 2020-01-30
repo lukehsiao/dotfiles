@@ -454,6 +454,9 @@ map <leader>pp :setlocal paste!<cr>
 nmap <leader>sw :set list!<cr>
 set listchars=tab:▸\ ,eol:¬
 
+" Switch smart quotes for ASCII
+map <leader>qq :%s/[“”]/"/g<cr>:%s/[‘’]/'/g<cr>
+
 let g:tex_flavor='latex'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
