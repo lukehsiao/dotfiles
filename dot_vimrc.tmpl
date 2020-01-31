@@ -455,7 +455,7 @@ nmap <leader>sw :set list!<cr>
 set listchars=tab:▸\ ,eol:¬
 
 " Switch smart quotes for ASCII
-map <leader>qq :%s/[“”]/"/g<cr>:%s/[‘’]/'/g<cr>
+map <leader>qq :%s/[“”]/"/ge <bar> :%s/[‘’]/'/ge<cr>
 
 let g:tex_flavor='latex'
 
