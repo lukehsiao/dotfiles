@@ -112,3 +112,10 @@ ubuntu-install-google-chrome:
 	sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
 	sudo apt-get update
 	sudo apt-get install google-chrome-stable
+
+ubuntu-install-eisvogel:
+	curl --proto '=https' --tlsv1.2 -sSL https://github.com/Wandmalfarbe/pandoc-latex-template/releases/download/v1.4.0/Eisvogel-1.4.0.tar.gz -o /tmp/eisvogel.tar.gz
+	mkdir -p /tmp/eisvogel
+	tar xf /tmp/eisvogel.tar.gz -C /tmp/eisvogel
+	install -m644 /tmp/eisvogel/eisvogel.tex ~/.pandoc/templates/eisvogel.latex
+	rm -rf /tmp/eisvogel /tmp/eisvogel.tar.gz
