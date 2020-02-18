@@ -26,10 +26,10 @@ ubuntu-install-packages:
 		gnupg2
 
 ubuntu-install-chezmoi:
-	curl --proto '=https' --tlsv1.2 -sSLO https://github.com/twpayne/chezmoi/releases/download/v1.7.12/chezmoi_1.7.12_linux_amd64.deb
-	sudo dpkg -i chezmoi_1.7.12_linux_amd64.deb
+	curl --proto '=https' --tlsv1.2 -sSLO https://github.com/twpayne/chezmoi/releases/download/v1.7.13/chezmoi_1.7.13_linux_amd64.deb
+	sudo dpkg -i chezmoi_1.7.13_linux_amd64.deb
 	sudo apt-get install -f
-	rm chezmoi_1.7.12_linux_amd64.deb
+	rm chezmoi_1.7.13_linux_amd64.deb
 
 ubuntu-install-rust:
 	curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
@@ -57,10 +57,10 @@ ubuntu-install-prettyping:
 	rm prettyping
 
 ubuntu-install-zola:
-	curl --proto '=https' --tlsv1.2 -sSLO https://github.com/getzola/zola/releases/download/v0.9.0/zola-v0.9.0-x86_64-unknown-linux-gnu.tar.gz
-	tar xf zola-v0.9.0-x86_64-unknown-linux-gnu.tar.gz
+	curl --proto '=https' --tlsv1.2 -sSLO https://github.com/getzola/zola/releases/download/v0.10.0/zola-v0.10.0-x86_64-unknown-linux-gnu.tar.gz
+	tar xf zola-v0.10.0-x86_64-unknown-linux-gnu.tar.gz
 	install -m755 zola ~/.cargo/bin
-	rm zola-v0.9.0-x86_64-unknown-linux-gnu.tar.gz zola
+	rm zola-v0.10.0-x86_64-unknown-linux-gnu.tar.gz zola
 
 ubuntu-install-git-sizer:
 	curl --proto '=https' --tlsv1.2 -sSLO https://github.com/github/git-sizer/releases/download/v1.3.0/git-sizer-1.3.0-linux-amd64.zip
