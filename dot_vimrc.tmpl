@@ -17,10 +17,7 @@ Plug 'junegunn/vim-easy-align'
 Plug 'kchmck/vim-coffee-script', {'for': ['coffee']}
 Plug 'lervag/vimtex'
 Plug 'majutsushi/tagbar'
-Plug 'prabirshrestha/async.vim'
-Plug 'prabirshrestha/asyncomplete.vim'
-Plug 'prabirshrestha/asyncomplete-lsp.vim'
-Plug 'prabirshrestha/vim-lsp'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'prettier/vim-prettier', {
   \ 'do': 'npm install',
   \ 'for': ['typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown'] }
@@ -37,15 +34,6 @@ Plug 'vimwiki/vimwiki'
 
 " Initialize plugin system
 call plug#end()
-
-" Setup rust language server
-if executable('rls')
-    au User lsp_setup call lsp#register_server({
-        \ 'name': 'rls',
-        \ 'cmd': {server_info->['rustup', 'run', 'nightly', 'rls']},
-        \ 'whitelist': ['rust'],
-        \ })
-endif 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
