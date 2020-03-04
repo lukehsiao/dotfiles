@@ -13,6 +13,9 @@ set $mod Mod1
 
 exec --no-startup-id xsetroot -solid "#333333"
 
+# Lock Shortcut Windows + L
+bindsym Mod4+l exec --no-startup-id i3lock -c 333333 && sleep 1
+
 # Pulse Audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
