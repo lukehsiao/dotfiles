@@ -11,7 +11,25 @@
 
 set $mod Mod1
 
+# Set desktop background
 exec --no-startup-id xsetroot -solid "#333333"
+
+## Manual management of external displays
+# Set the shortcuts and what they do
+set $mode_display Ext Screen (d) DP ON, (h) HDMI ON, (x) DP OFF, (y) HDMI OFF
+mode "$mode_display" {
+    bindsym d exec --no-startup-id xrandr --output DP1 --auto --right-of eDP1, mode "default"
+    bindsym h exec --no-startup-id xrandr --output HDMI1 --auto --right-of eDP1, mode "default"
+    bindsym x exec --no-startup-id xrandr --output DP1 --auto --off, mode "default"
+    bindsym y exec --no-startup-id xrandr --output HDMI1 --auto --off, mode "default"
+    bindsym y exec --no-startup-id xrandr --output HDMI1 --auto --off, mode "default"
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+# Declare here the shortcut to bring the display selection menu
+bindsym $mod+x mode "$mode_display"
 
 # Lock Shortcut Windows + L
 bindsym Mod4+l exec --no-startup-id i3lock -c 333333 && sleep 1
