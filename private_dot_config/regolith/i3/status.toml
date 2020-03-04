@@ -19,11 +19,11 @@ format_swap = "{SUp}%"
 
 [[block]]
 block = "cpu"
-interval = 1
+interval = 3
 
 [[block]]
 block = "load"
-interval = 1
+interval = 5 
 format = "{1m}"
 
 [[block]]
@@ -54,10 +54,6 @@ interval = 10
 format = "{percentage}% {time}"
 device = "DisplayDevice"
 driver = "upower"
-
-[[block]]
-block = "xrandr"
-icons = true
 
 [[block]]
 block = "time"
