@@ -103,7 +103,7 @@ ubuntu-install-mendeley:
 	rm mendeley.deb
 
 ubuntu-install-alacritty:
-	curl --proto '=https' --tlsv1.2 -sSL https://github.com/jwilm/alacritty/releases/download/v0.4.1/Alacritty-v0.4.1-ubuntu_18_04_amd64.deb -o alacritty.deb
+	curl --proto '=https' --tlsv1.2 -sSL https://github.com/jwilm/alacritty/releases/download/v0.4.2/Alacritty-v0.4.2-ubuntu_18_04_amd64.deb -o alacritty.deb
 	sudo dpkg -i alacritty.deb
 	rm alacritty.deb
 
