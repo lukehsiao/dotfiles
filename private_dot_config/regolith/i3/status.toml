@@ -58,4 +58,4 @@ driver = "upower"
 [[block]]
 block = "time"
 interval = 60
-format = "%a %d/%m %R"
+format = "%a %m-%d %R"
