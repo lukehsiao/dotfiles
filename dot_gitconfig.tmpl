@@ -1,7 +1,7 @@
 [user]
-  name = Luke Hsiao
-  email = {{ .email }} 
-{{- if eq .email "lwhsiao@stanford.edu" }}
+  name = {{ .name }}
+  email = {{ .email }}
+{{ if eq .chezmoi.hostname "squirtle" -}}
   signingkey = 0xBE92A2933EB7CA99
 {{- end }}
 
@@ -66,10 +66,10 @@
 [gpg]
   program = gpg2
 
-{{- if eq .email "lwhsiao@stanford.edu" }}
+{{ if eq .chezmoi.hostname "squirtle" -}}
 [sendemail]
   smtpserver = smtp-roam.stanford.edu
-  smtpuser = lwhsiao@stanford.edu
+  smtpuser = {{ .email }}
   smtpencryption = tls
   smtpserverport = 587
 {{- end }}
