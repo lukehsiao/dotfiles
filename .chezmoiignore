@@ -5,4 +5,6 @@ Makefile
 .pandoc/
 .gnupg/
 .ssh/
+.config/aerc/
+.config/regolith/
 {{- end }}
