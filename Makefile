@@ -35,11 +35,6 @@ ubuntu-install-rust:
 	curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 	source $$HOME/.cargo/env
 
-ubuntu-install-diff-so-fancy:
-	curl -sSO https://raw.githubusercontent.com/so-fancy/diff-so-fancy/master/third_party/build_fatpack/diff-so-fancy	
-	install	-m755 diff-so-fancy ~/.local/bin/
-	rm diff-so-fancy
-
 ubuntu-install-keybase:
 	curl --proto '=https' --tlsv1.2 -sSO https://prerelease.keybase.io/keybase_amd64.deb
 	# if you see an error about missing `libappindicator1` from the next
@@ -76,26 +71,27 @@ ubuntu-install-gdb-dashboard:
 
 ubuntu-install-rust-utilities:
 	cargo install \
-		ripgrep \
+		bat \
+		cargo-audit \
+		cargo-bloat \
+		cargo-edit \
+		cargo-geiger \
+		cargo-update \
+		du-dust \
+		eva \
 		exa \
 		fd-find \
-		hexyl \
-		tealdeer \
-		tokei \
-		xsv \
 		flamegraph \
-		bat \
-		cargo-bloat \
-		cargo-update \
-		cargo-audit \
-		cargo-geiger \
-		cargo-edit \
-		eva \
+		git-delta \
+		hexyl \
+		hyperfine \
+		ripgrep \
 		svgcleaner \
-		titlecase \
-		du-dust \
+		tealdeer \
 		tectonic \
-		hyperfine
+		titlecase \
+		tokei \
+		xsv 
 
 ubuntu-install-mendeley:
 	curl --proto '=https' --tlsv1.2 -sSL https://www.mendeley.com/repositories/ubuntu/stable/amd64/mendeleydesktop-latest -o mendeley.deb

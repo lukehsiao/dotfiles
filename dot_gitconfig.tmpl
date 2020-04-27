@@ -1,75 +1,75 @@
 [user]
-  name = {{ .name }}
-  email = {{ .email }}
+    name = {{ .name }}
+    email = {{ .email }}
 {{- if eq .chezmoi.hostname "squirtle" }}
-  signingkey = 0xBE92A2933EB7CA99
+    signingkey = 0xBE92A2933EB7CA99
 {{- end }}
 
 [core]
-  editor = vim
+    editor = vim
+    pager = delta --dark --theme='Solarized (dark)'
+
+[interactive]
+    diffFilter = delta --color-only
 
 [commit]
-  gpgsign = false
-  template = ~/.config/git/.git-commit-template
+    gpgsign = false
+    template = ~/.config/git/.git-commit-template
 
 [alias]
-  find = log --pretty=\"format:%Cgreen%H %Cblue%s\" --name-status --grep
-  co = checkout
-  ec = config --global -e
-  up = !git pull --rebase --prune $@ && git submodule update --init --recursive
-  cob = checkout -b
-  undo = reset HEAD~1 --mixed
-  amend = commit -a --amend
-  wipe = !git add -A && git commit -qm 'WIPE SAVEPOINT' && git reset HEAD~1 --hard
-  save = !git add -A && git commit -m 'SAVEPOINT'
-  wip = !git add -u && git commit -m "WIP"
-  bclean = "!f() { git branch --merged ${1-master} | grep -v " ${1-master}$" | xargs -r git branch -d; }; f"
-  bdone = "!f() { git checkout ${1-master} && git up && git bclean ${1-master}; }; f"
-  glog = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%aN>%Creset'
-  di = diff --color-words
-  dic = diff --color-words=.
-  stats = shortlog -sen --no-merges
-  dlog = log --graph --decorate --stat --date=iso --format=fuller
-  ddlog = log --graph --decorate --stat --date=iso --format=fuller -p
-  tlog = tag -l -n10
-  hist = log --follow -p
-  pf = push --force-with-lease
-  sba = "!f() { git subtree add --prefix $1 $2 master --squash; }; f"
-  sbu = "!f() { git subtree pull --prefix $1 $2 master --squash; }; f"
-  sbp = "!f() { git subtree push --prefix $1 $2 $3; }; f"
+    find = log --pretty=\"format:%Cgreen%H %Cblue%s\" --name-status --grep
+    co = checkout
+    ec = config --global -e
+    up = !git pull --rebase --prune $@ && git submodule update --init --recursive
+    cob = checkout -b
+    undo = reset HEAD~1 --mixed
+    amend = commit -a --amend
+    wipe = !git add -A && git commit -qm 'WIPE SAVEPOINT' && git reset HEAD~1 --hard
+    save = !git add -A && git commit -m 'SAVEPOINT'
+    wip = !git add -u && git commit -m "WIP"
+    bclean = "!f() { git branch --merged ${1-master} | grep -v " ${1-master}$" | xargs -r git branch -d; }; f"
+    bdone = "!f() { git checkout ${1-master} && git up && git bclean ${1-master}; }; f"
+    glog = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%aN>%Creset'
+    di = diff --color-words
+    dic = diff --color-words=.
+    stats = shortlog -sen --no-merges
+    dlog = log --graph --decorate --stat --date=iso --format=fuller
+    ddlog = log --graph --decorate --stat --date=iso --format=fuller -p
+    tlog = tag -l -n10
+    hist = log --follow -p
+    pf = push --force-with-lease
+    sba = "!f() { git subtree add --prefix $1 $2 master --squash; }; f"
+    sbu = "!f() { git subtree pull --prefix $1 $2 master --squash; }; f"
+    sbp = "!f() { git subtree push --prefix $1 $2 $3; }; f"
 
 [log]
-  mailmap = true
+    mailmap = true
 
 [merge]
-  ff = only
+    ff = only
 
 [push]
-  default = simple
-  followTags = true
+    default = simple
+    followTags = true
 
 [credential]
-  helper = cache --timeout=7200
+    helper = cache --timeout=7200
 
 [rebase]
-  autostash = true
-
-[pager]
-  diff = diff-so-fancy | less --tabs=1,5 -RFX
-  show = diff-so-fancy | less --tabs=1,5 -RFX
+    autostash = true
 
 [color "status"]
-  added = green
-  changed = yellow bold
-  untracked = red bold
+    added = green
+    changed = yellow bold
+    untracked = red bold
 
 [gpg]
-  program = gpg2
+    program = gpg2
 
 {{ if eq .chezmoi.hostname "squirtle" -}}
 [sendemail]
-  smtpserver = smtp-roam.stanford.edu
-  smtpuser = {{ .email }}
-  smtpencryption = tls
-  smtpserverport = 587
+    smtpserver = smtp-roam.stanford.edu
+    smtpuser = {{ .email }}
+    smtpencryption = tls
+    smtpserverport = 587
 {{- end }}
