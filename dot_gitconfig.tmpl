@@ -1,7 +1,7 @@
 [user]
   name = {{ .name }}
   email = {{ .email }}
-{{ if eq .chezmoi.hostname "squirtle" -}}
+{{- if eq .chezmoi.hostname "squirtle" }}
   signingkey = 0xBE92A2933EB7CA99
 {{- end }}
 
