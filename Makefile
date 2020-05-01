@@ -18,7 +18,7 @@ ubuntu-install-packages:
 		git-lfs \
 		unattended-upgrades \
 		units \
-		vim-gnome \
+		vim-gtk3 \
 		pass \
 		mosh \
 		tmux \
