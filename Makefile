@@ -52,10 +52,10 @@ ubuntu-install-prettyping:
 	rm prettyping
 
 ubuntu-install-zola:
-	curl --proto '=https' --tlsv1.2 -sSLO https://github.com/getzola/zola/releases/download/v0.10.1/zola-v0.10.1-x86_64-unknown-linux-gnu.tar.gz
-	tar xf zola-v0.10.1-x86_64-unknown-linux-gnu.tar.gz
+	curl --proto '=https' --tlsv1.2 -sSLO https://github.com/getzola/zola/releases/download/v0.11.0/zola-v0.11.0-x86_64-unknown-linux-gnu.tar.gz
+	tar xf zola-v0.11.0-x86_64-unknown-linux-gnu.tar.gz
 	install -m755 zola ~/.cargo/bin
-	rm zola-v0.10.1-x86_64-unknown-linux-gnu.tar.gz zola
+	rm zola-v0.11.0-x86_64-unknown-linux-gnu.tar.gz zola
 
 ubuntu-install-git-sizer:
 	curl --proto '=https' --tlsv1.2 -sSLO https://github.com/github/git-sizer/releases/download/v1.3.0/git-sizer-1.3.0-linux-amd64.zip
@@ -99,7 +99,7 @@ ubuntu-install-mendeley:
 	rm mendeley.deb
 
 ubuntu-install-alacritty:
-	curl --proto '=https' --tlsv1.2 -sSL https://github.com/jwilm/alacritty/releases/download/v0.4.2/Alacritty-v0.4.2-ubuntu_18_04_amd64.deb -o alacritty.deb
+	curl --proto '=https' --tlsv1.2 -sSL https://github.com/jwilm/alacritty/releases/download/v0.4.3/Alacritty-v0.4.3-ubuntu_18_04_amd64.deb -o alacritty.deb
 	sudo dpkg -i alacritty.deb
 	rm alacritty.deb
 
