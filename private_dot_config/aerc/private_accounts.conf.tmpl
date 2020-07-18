@@ -16,13 +16,4 @@ from           = Luke Hsiao <lwhsiao@stanford.edu>
 copy-to        = Sent Items
 folders        = INBOX,Deleted Items,Archive,Drafts,Sent Items
 signature-file = ~/.config/aerc/stanford.txt
-
-[LAE]
-source         = imaps://hellolosangelesenglish%40gmail.com:{{ .aerc.lae }}@imap.gmail.com
-outgoing       = smtps+plain://hellolosangelesenglish%40gmail.com:{{ .aerc.lae }}@smtp.gmail.com
-default        = INBOX
-from           = Los Angeles English <hellolosangelesenglish@gmail.com>
-folders        = INBOX,[Gmail]/All Mail,[Gmail]/Sent Mail,[Gmail]/Spam,[Gmail]/Trash
-archive        = [Gmail]/All Mail
-signature-file = ~/.config/aerc/lae.txt
 {{- end -}}
