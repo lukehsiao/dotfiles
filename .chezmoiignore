@@ -1,6 +1,6 @@
 README.md
 Makefile
-{{- if ne .chezmoi.hostname "squirtle" }}
+{{- if ne .chezmoi.hostname "panda" }}
 .config/alacritty/alacritty.yml
 .pandoc/
 .gnupg/
