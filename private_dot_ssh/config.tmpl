@@ -1,27 +1,41 @@
 Host sing 
   HostName sing.stanford.edu
   ForwardAgent yes
+  User lwhsiao
 
 {{ if eq .chezmoi.hostname "panda" -}}
+Host squirtle
+  HostName 100.100.218.38
+  User lwhsiao
+
+Host pikachu
+  HostName 100.88.197.32
+  ForwardAgent yes
+  User snr
+
 Host raiders4
   HostName raiders4.stanford.edu
   ForwardAgent yes
-  ProxyJump sing
+  # ProxyJump sing
+  User lwhsiao
 
 Host raiders2
   HostName raiders2.stanford.edu
   ForwardAgent yes
-  ProxyJump sing
+  # ProxyJump sing
+  User lwhsiao
 
 Host raiders3
   HostName raiders3.stanford.edu
   ForwardAgent yes
-  ProxyJump sing
+  # ProxyJump sing
+  User lwhsiao
 
 Host watchog
   HostName watchog.stanford.edu
   ForwardAgent yes
-  ProxyJump sing
+  # ProxyJump sing
+  User lwhsiao
 
 Host pihole
   HostName 192.168.1.213
