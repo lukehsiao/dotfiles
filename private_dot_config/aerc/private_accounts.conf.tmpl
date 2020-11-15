@@ -1,5 +1,5 @@
 {{- if (index . "aerc") -}}
-[Personal]
+[Gmail]
 source         = imaps://luke.w.hsiao%40gmail.com:{{ .aerc.gmail }}@imap.gmail.com
 outgoing       = smtps+plain://luke.w.hsiao%40gmail.com:{{ .aerc.gmail }}@smtp.gmail.com
 default        = INBOX
@@ -16,4 +16,13 @@ from           = Luke Hsiao <lwhsiao@stanford.edu>
 copy-to        = Sent Items
 folders        = INBOX,Deleted Items,Archive,Drafts,Sent Items
 signature-file = ~/.config/aerc/stanford.txt
-{{- end -}}
+
+[Personal]
+source         = imaps://luke%40hsiao.dev:{{ .aerc.fastmail }}@imap.fastmail.com:993
+outgoing       = smtps+plain://luke%40hsiao.dev:{{ .aerc.fastmail }}@smtp.fastmail.com:465
+default        = INBOX
+from           = Luke Hsiao <luke@hsiao.dev>
+copy-to        = Sent
+folders        = INBOX,Archive,Sent,Spam,Trash
+signature-file = ~/.config/aerc/gmail.txt
+{{ end }}
