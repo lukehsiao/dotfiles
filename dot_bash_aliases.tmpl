@@ -22,7 +22,7 @@ alias ping="prettyping --nolegend"
 alias fix-chmod="chmod -R a=r,u+w,a+X"
 alias rsync="rsync -P"
 alias bcp="rsync -avzuhP"
-alias lofi="mpv 'https://www.youtube.com/watch?v=5qap5aO4i9A' --no-video"
+alias lofi="mpv 'https://www.youtube.com/watch?v=5qap5aO4i9A' --no-video &> /dev/null"
 dsf() { diff -u "$@" | delta; }
 
 alias pdfrotate="pdfjam --angle 90 --fitpaper true --outfile rotated.pdf"
