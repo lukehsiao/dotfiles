@@ -35,3 +35,5 @@ if [ -d "/usr/local/go/bin" ] ; then
 fi
 
 xmodmap ~/.xmodmap
+
+export PATH="$HOME/.poetry/bin:$PATH"
