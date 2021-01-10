@@ -61,7 +61,8 @@ nmap <leader>w :w!<cr>
 
 " Show marker line at 80 chars
 set colorcolumn=80
-au BufRead,BufNewFile *.tex,*.txt,*.md setlocal textwidth=80
+au BufRead,BufNewFile *.tex,*.txt,*.md setlocal textwidth=100
+au BufRead,BufNewFile *.tex,*.txt,*.md setlocal colorcolumn=100
 au BufRead,BufNewFile *.rs setlocal textwidth=100
 au BufRead,BufNewFile *.rs setlocal colorcolumn=100
 
