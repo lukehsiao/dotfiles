@@ -6,7 +6,7 @@
 [core]
     editor = vim
     pager = delta --line-numbers --dark --theme='Solarized (dark)'
-	attributesfile = ~/.gitattributes
+    attributesfile = ~/.gitattributes
 
 [interactive]
     diffFilter = delta --color-only
@@ -68,7 +68,7 @@
 
 {{ if eq .chezmoi.hostname "panda" -}}
 [credential "smtp://luke%40hsiao.dev@smtp.fastmail.com%3a587"]
-	helper = !pass fastmail.com/{{ .email }}/git
+    helper = !pass fastmail.com/{{ .email }}/git
 
 [sendemail]
     smtpserver = smtp.fastmail.com
