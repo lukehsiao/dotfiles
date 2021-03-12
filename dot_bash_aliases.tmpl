@@ -29,7 +29,17 @@ alias pdfrotate="pdfjam --angle 90 --fitpaper true --outfile rotated.pdf"
 alias pdfcombine="pdfjam --landscape --paper letter --nup 2x1 --outfile combined.pdf"
 pdfembed() { pdftocairo -pdf "$1" "emb_$1"; echo "Embedded output to: emb_$1"; }
 pdfgray() { gs -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -sColorConversionStrategy=Gray -dProcessColorModel=/DeviceGray -dCompatibilityLevel=1.5 -dAutoRotatePages=/None -sOutputFile="$2" -f "$1"; }
-
+flattenpdf() {
+  if [[ $# -ne 2 ]]
+  then
+    echo "Usage: flattenpdf input.pdf output.pdf"
+    return 1
+  fi
+  temp=$(mktemp)
+  pdftk "$1" generate_fdf output ${temp} 
+  pdftk "$1" fill_form ${temp} output "$2" flatten
+  rm ${temp}
+}
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
