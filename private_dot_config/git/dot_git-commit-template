@@ -10,19 +10,20 @@
 
 # --- COMMIT END ---
 # Type can be 
-#    feat     (new feature)
-#    fix      (bug fix)
+#    feat     (new feature, correlates with MINOR)
+#    fix      (bug fix, correlates with PATCH)
 #    refactor (refactoring production code)
 #    style    (formatting, missing semi colons, etc; no code change)
 #    docs     (changes to documentation)
+#    perf     (a code change that improves performance)
 #    test     (adding or refactoring tests; no production code change)
 #    chore    (updating grunt tasks etc; no production code change)
 #    build    (relating to dependencies or CD/CI)
 # --------------------
 # Remember to
-#    Capitalize the subject line
 #    Use the imperative mood in the subject line
 #    Do not end the subject line with a period
 #    Separate subject from body with a blank line
 #    Use the body to explain what and why vs. how
 #    Can use multiple lines with "-" for bullet points in body
+#    BREAKING CHANGE: to correlate with MAJOR
