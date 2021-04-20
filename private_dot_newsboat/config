@@ -1,0 +1,25 @@
+# general settings
+auto-reload yes
+reload-threads 8
+max-items 50
+browser "firefox --new-tab %u"
+player mpv
+feed-sort-order unreadarticlecount-asc
+
+# vim keybindings
+bind-key j next
+bind-key k prev
+bind-key J next-feed
+bind-key K prev-feed
+bind-key j down article
+bind-key k up article
+bind-key J next article
+bind-key K prev article
+bind-key j down
+bind-key k up
+bind-key d pagedown
+bind-key u pageup
+bind-key G end
+
+# color scheme
+include /usr/share/doc/newsboat/contrib/colorschemes/solarized-dark
