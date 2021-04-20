@@ -5,6 +5,7 @@ max-items 50
 browser "firefox --new-tab %u"
 player mpv
 feed-sort-order unreadarticlecount-asc
+macro y set browser "mpv %u" ; open-in-browser ; set browser "firefox --new-tab %u"
 
 # vim keybindings
 bind-key j next
