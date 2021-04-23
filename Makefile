@@ -58,10 +58,10 @@ zola:
 	rm zola-v0.13.0-x86_64-unknown-linux-gnu.tar.gz zola
 
 git-sizer:
-	curl --proto '=https' --tlsv1.2 -sSLO https://github.com/github/git-sizer/releases/download/v1.3.0/git-sizer-1.3.0-linux-amd64.zip
-	unzip -o git-sizer-1.3.0-linux-amd64.zip -d tmp-git-sizer
+	curl --proto '=https' --tlsv1.2 -sSLO https://github.com/github/git-sizer/releases/download/v1.4.0/git-sizer-1.4.0-linux-amd64.zip
+	unzip -o git-sizer-1.4.0-linux-amd64.zip -d tmp-git-sizer
 	install -m755 tmp-git-sizer/git-sizer ~/.local/bin/
-	rm -r git-sizer-1.3.0-linux-amd64.zip tmp-git-sizer
+	rm -r git-sizer-1.4.0-linux-amd64.zip tmp-git-sizer
 
 latex:
 	sudo apt-get install -y texlive-full latexmk
