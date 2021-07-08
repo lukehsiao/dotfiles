@@ -10,7 +10,7 @@ if subprocess.run(["git", "branch", "--show-current"], stdout=subprocess.PIPE
 subprocess.run(["git", "pull", "--rebase"])
 p = subprocess.run(["git", "describe", "--abbrev=0"], stdout=subprocess.PIPE)
 describe = p.stdout.decode().strip()
-old_version = describe.split("-")[0].split(".")
+old_version = describe[1:].split("-")[0].split(".")
 if len(old_version) == 2:
     [major, minor] = old_version
     [major, minor] = map(int, [major, minor])
@@ -38,9 +38,9 @@ else:
 
 if new_version is None:
     if len(old_version) == 2 and patch == 0:
-        new_version = f"{major}.{minor}"
+        new_version = f"v{major}.{minor}"
     else:
-        new_version = f"{major}.{minor}.{patch}"
+        new_version = f"v{major}.{minor}.{patch}"
 
 p = None
 if os.path.exists("contrib/_incr_version"):
