@@ -15,6 +15,9 @@
     gpgsign = false
     template = ~/.config/git/.git-commit-template
 
+[rerere]
+	enabled = true
+
 [alias]
     find = log --pretty=\"format:%Cgreen%H %Cblue%s\" --name-status --grep
     dfind = log --graph --decorate --stat --date=iso --format=fuller --name-status --grep
