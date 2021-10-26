@@ -1,7 +1,6 @@
 README.md
 Makefile
 {{- if ne .chezmoi.hostname "panda" }}
-.config/alacritty/alacritty.yml
 .pandoc/
 .gnupg/
 .ssh/

@@ -1,0 +1,20 @@
+! display DPI
+Xft.dpi: 96
+
+! text autohinting
+Xft.autohint: 0
+
+! one of: lcddefault, lcdlight, lcdlegacy, lcdnone
+Xft.lcdfilter: lcddefault
+
+! text hinting style, one of: hintnone, hintslight, hintmedium, hintfull
+Xft.hintstyle: hintfull
+
+! text hinting
+Xft.hinting: 1
+
+! text antialiasing
+Xft.antialias: 1
+
+! text subpixel rendering, one of: none, rgb, bgr, vrgb, vbgr
+Xft.rgba: rgb
