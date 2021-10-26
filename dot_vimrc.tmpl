@@ -11,15 +11,13 @@ Plug 'airblade/vim-gitgutter'
 Plug 'altercation/vim-colors-solarized'
 Plug 'bling/vim-airline'
 Plug 'cespare/vim-toml'
+Plug 'editorconfig/editorconfig-vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'lervag/vimtex'
 Plug 'preservim/tagbar'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'prettier/vim-prettier', {
-  \ 'do': 'npm install',
-  \ 'for': ['typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown'] }
 Plug 'rust-lang/rust.vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
@@ -215,7 +213,7 @@ set tabstop=4
 
 " Linebreak on 500 characters
 set lbr
-set tw=0
+set tw=80
 set fo=cq
 set wm=0
 
@@ -229,6 +227,14 @@ augroup ft_vim_anywhere
   au!
   au BufNewFile,BufRead **/vim-anywhere/doc-** setl ft=markdown
 augroup END
+
+""""""""""""""""""""""""""""""
+" => EditorConfig
+""""""""""""""""""""""""""""""
+let g:EditorConfig_exclude_patterns = ['fugitive://.*']
+
+" Disable for gotcommit
+au FileType gitcommit let b:EditorConfig_disable = 1
 
 """"""""""""""""""""""""""""""
 " => Visual mode related
@@ -340,7 +346,7 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts=1
 
 """"""""""""""""""""""""""""""
-" => Rust 
+" => Rust
 """"""""""""""""""""""""""""""
 let g:rustfmt_autosave = 1
 
@@ -379,15 +385,15 @@ nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
 """"""""""""""""""""""""""""""
-" => FZF 
+" => FZF
 """"""""""""""""""""""""""""""
 nnoremap <C-f> :Files<cr>
 
 """"""""""""""""""""""""""""""
-" => Syntastic 
+" => Syntastic
 """"""""""""""""""""""""""""""
 let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_python_checkers = ['flake8', 'python3'] 
+let g:syntastic_python_checkers = ['flake8', 'python3']
 
 """"""""""""""""""""""""""""""
 " => Prettier
@@ -434,12 +440,12 @@ if has("mac") || has("macunix")
 endif
 
 " Delete trailing white space on save, useful for Python and CoffeeScript ;)
-func! DeleteTrailingWS()
-  exe "normal mz"
-  %s/\s\+$//ge
-  exe "normal `z"
-endfunc
-autocmd BufWrite *.ino,*.rs,*.coffee,*.yaml,*.yml,*.ini,*.rst,*.py,*.c,*.h,*.cpp,*.md,*.txt,*.tex :call DeleteTrailingWS()
+" func! DeleteTrailingWS()
+"   exe "normal mz"
+"   %s/\s\+$//ge
+"   exe "normal `z"
+" endfunc
+" autocmd BufWrite *.ino,*.rs,*.coffee,*.yaml,*.yml,*.ini,*.rst,*.py,*.c,*.h,*.cpp,*.md,*.txt,*.tex :call DeleteTrailingWS()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Spell checking

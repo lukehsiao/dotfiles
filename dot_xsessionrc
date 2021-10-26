@@ -1,0 +1,19 @@
+#!/bin/sh
+
+# Setup screen resolution
+xrandr --output HDMI-1 --mode 3840x1600 --rate 30
+
+# load Xresources
+xrdb -merge ~/.Xresources
+
+# Desktop background color.
+xsetroot -solid "#333333"
+
+## Uncomment if you use urxvt terminal emulator.
+## Start urxvtd
+#urxvtd -q -f -o
+#export TERMINAL=urxvtc
+
+# Prevents having multiple ssh-agent processes
+pkill ssh-agent
+eval $(ssh-agent -s)

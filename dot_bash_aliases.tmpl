@@ -36,7 +36,7 @@ flattenpdf() {
     return 1
   fi
   temp=$(mktemp)
-  pdftk "$1" generate_fdf output ${temp} 
+  pdftk "$1" generate_fdf output ${temp}
   pdftk "$1" fill_form ${temp} output "$2" flatten
   rm ${temp}
 }
