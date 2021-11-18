@@ -41,13 +41,13 @@ keybase:
 	# command, you can ignore it, as the subsequent command corrects it
 	sudo dpkg -i keybase_amd64.deb
 	sudo apt-get install -f
-	rm keybase_amd64.deb	
+	rm keybase_amd64.deb
 
 plug.vim:
 	curl --proto '=https' --tlsv1.2 -sSLf https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim > $$(chezmoi source-path ~/.vim/autoload/plug.vim)
 
 prettyping:
-	curl --proto '=https' --tlsv1.2 -sSO https://raw.githubusercontent.com/denilsonsa/prettyping/master/prettyping	
+	curl --proto '=https' --tlsv1.2 -sSO https://raw.githubusercontent.com/denilsonsa/prettyping/master/prettyping
 	install	-m755 prettyping ~/.local/bin/
 	rm prettyping
 
@@ -91,7 +91,7 @@ rust-utilities:
 		tectonic \
 		titlecase \
 		tokei \
-		xsv 
+		xsv
 
 alacritty:
 	curl --proto '=https' --tlsv1.2 -sSL https://github.com/jwilm/alacritty/releases/download/v0.4.3/Alacritty-v0.4.3-ubuntu_18_04_amd64.deb -o alacritty.deb
