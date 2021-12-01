@@ -90,12 +90,12 @@
     program = gpg2
 
 {{ if eq .chezmoi.hostname "panda" -}}
-[credential "smtp://luke%40hsiao.dev@smtp.fastmail.com%3a587"]
-    helper = !pass fastmail.com/{{ .email }}/git
+[credential "smtp://luke%40hsiao.dev@smtp.migadu.com%3a465"]
+    helper = !pass migadu.com/{{ .email }}/git
 
 [sendemail]
-    smtpserver = smtp.fastmail.com
+    smtpserver = smtp.migadu.com
     smtpuser = {{ .email }}
     smtpencryption = tls
-    smtpserverport = 587
+    smtpserverport = 465
 {{- end }}
