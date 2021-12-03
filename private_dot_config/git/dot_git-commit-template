@@ -21,7 +21,7 @@
 #   test:     adding or refactoring tests; no production code change
 #
 # Follow the type(scope) with an '!' to indicate a breaking change.
-# Example: refactor(api)!: remove the accident_prone delete_all button
+# Example: refactor(api)!: remove the accident-prone delete_all button
 # --------------------
 # Remember to
 #    Use the imperative mood in the subject line
