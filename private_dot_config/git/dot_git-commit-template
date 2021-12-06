@@ -17,6 +17,7 @@
 #   fix:      bug fix, correlates with PATCH
 #   perf:     a code change that improves performance
 #   refactor: refactoring production code; neither fixes a bug nor adds a feature
+#   revert:   for reverts, revert: <old subject>; state reverted hash in body
 #   style:    formatting, missing semi colons, etc; no code meaning change
 #   test:     adding or refactoring tests; no production code change
 #
