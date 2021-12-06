@@ -13,6 +13,11 @@ indent_style = tab
 indent_style = tab
 indent_size = 8
 
+[*.py]
+max_line_length = 88
+indent_size = 4
+indent_style = space
+
 [*.{c,h}]
 indent_style = tab
 indent_size = 8
