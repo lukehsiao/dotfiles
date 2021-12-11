@@ -7,6 +7,7 @@
     editor = vim
     attributesfile = ~/.gitattributes
     commitGraph = true
+    abbrev = 12
 
 [rerere]
     enabled = true
@@ -16,6 +17,9 @@
     log = delta
     reflog = delta
     show = delta
+
+[pretty]
+    fixes = Fixes: %h (\"%s\")
 
 [delta]
     line-numbers = true
