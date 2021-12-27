@@ -7,6 +7,10 @@ function ea
     source ~/.config/fish/config.fish && echo "aliases sourced --ok."
 end
 
+function sc-pin
+    gpg-connect-agent 'scd checkpin (gpg-connect-agent 'scd serialno' /bye | awk '{print $3}')' /bye
+end
+
 alias cat="bat"
 alias df="df -h"
 alias rg="rg -S -p"
