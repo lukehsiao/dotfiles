@@ -1,6 +1,10 @@
 # Initialize starship
 starship init fish | source
 
+# Setup pyenv
+status is-login; and pyenv init --path | source
+status is-interactive; and pyenv init - | source
+
 # Aliases
 function ea
     vim ~/.config/fish/config.fish
