@@ -11,8 +11,8 @@
 # --- COMMIT END ---
 # Type can be
 #   build:    changes that affect the build system or external dependencies
-#   ci:       changes to our ci configuration files and scripts
 #   chore:    updating grunt tasks; no production code change
+#   ci:       changes to our ci configuration files and scripts
 #   docs:     changes to documentation
 #   feat:     new feature, correlates with MINOR
 #   fix:      bug fix, correlates with PATCH
