@@ -93,7 +93,6 @@
 
 [gpg]
     program = gpg2
-
 {{ if eq .chezmoi.hostname "panda" -}}
 [credential "smtp://luke%40hsiao.dev@smtp.migadu.com%3a465"]
     helper = !pass migadu.com/{{ .email }}/git
@@ -103,4 +102,4 @@
     smtpuser = {{ .email }}
     smtpencryption = tls
     smtpserverport = 465
-{{- end }}
+{{- end -}}
