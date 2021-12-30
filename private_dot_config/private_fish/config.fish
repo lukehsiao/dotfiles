@@ -12,7 +12,8 @@ function ea
 end
 
 function sc-pin
-    gpg-connect-agent 'scd checkpin (gpg-connect-agent 'scd serialno' /bye | awk '{print $3}')' /bye
+    set -l serial (gpg-connect-agent 'scd serialno' /bye | awk '{printf "%s",$3}')
+    gpg-connect-agent "scd checkpin $serial" /bye
 end
 
 alias cat="bat"
