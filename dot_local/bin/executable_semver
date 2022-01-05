@@ -4,8 +4,8 @@ import subprocess
 import sys
 import tempfile
 if subprocess.run(["git", "branch", "--show-current"], stdout=subprocess.PIPE
-        ).stdout.decode().strip() != "master":
-    print("WARNING! Not on the master branch.")
+        ).stdout.decode().strip() != "main":
+    print("WARNING! Not on the main branch.")
 
 subprocess.run(["git", "pull", "--rebase"])
 p = subprocess.run(["git", "describe", "--abbrev=0"], stdout=subprocess.PIPE)
@@ -19,7 +19,7 @@ else:
     [major, minor, patch] = old_version
     [major, minor, patch] = map(int, [major, minor, patch])
 
-p = subprocess.run(["git", "shortlog", "--no-merges", f"{describe}..HEAD"],
+p = subprocess.run(["git", "shortlog", "-e", "--no-merges", f"{describe}..HEAD"],
         stdout=subprocess.PIPE)
 shortlog = p.stdout.decode()
 
