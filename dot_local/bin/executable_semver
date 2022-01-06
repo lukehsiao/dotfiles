@@ -65,7 +65,9 @@ if p and p.returncode != 0:
     print("Error: _incr_version returned nonzero exit code")
     sys.exit(1)
 
-p = subprocess.run(["git-cliff", "--unreleased"], stdout=subprocess.PIPE)
+p = subprocess.run(
+    ["git-cliff", "--unreleased", "--tag", new_version[1:]], stdout=subprocess.PIPE
+)
 changelog = p.stdout.decode()
 
 with tempfile.NamedTemporaryFile() as f:
