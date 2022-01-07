@@ -19,7 +19,7 @@
     show = delta
 
 [pretty]
-    fixes = Fixes: %h (\"%s\")
+    fixes = Fixes: %Cred%h%Creset (\"%s\")
 
 [delta]
     line-numbers = true
@@ -49,6 +49,7 @@
     wip = !git add -u && git commit -m "WIP"
     bclean = "!f() { git branch --merged ${1-master} | grep -v " ${1-master}$" | xargs -r git branch -d; }; f"
     bdone = "!f() { git checkout ${1-master} && git up && git bclean ${1-master}; }; f"
+    flog = log --graph --pretty=fixes
     glog = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%aN>%Creset'
     di = diff --color-words
     dic = diff --color-words=.
