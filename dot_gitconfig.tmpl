@@ -35,35 +35,36 @@
     template = ~/.config/git/.git-commit-template
 
 [alias]
-    find = log --pretty=\"format:%Cgreen%H %Cblue%s\" --name-status --grep
-    dfind = log --decorate --stat --date=iso --format=fuller --name-status --grep
-    ddfind = log --decorate --stat --date=iso --format=fuller --patch --grep
-    co = checkout
-    ec = config --global -e
-    up = "!f() { git pull --rebase --prune $@ && git submodule update --init --recursive; }; f"
-    sc = switch -c
-    undo = reset HEAD~1 --mixed
     amend = commit -a --amend
-    wipe = !git add -A && git commit -qm 'WIPE SAVEPOINT' && git reset HEAD~1 --hard
-    save = !git add -A && git commit -m 'SAVEPOINT'
-    wip = !git add -u && git commit -m "WIP"
-    bclean = "!f() { git branch --merged ${1-master} | grep -v " ${1-master}$" | xargs -r git branch -d; }; f"
-    bdone = "!f() { git checkout ${1-master} && git up && git bclean ${1-master}; }; f"
-    flog = log --graph --pretty=fixes
-    glog = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%aN>%Creset'
+    bclean = "!f() { DEFAULT=$(git default); git branch --merged ${1-DEFAULT} | grep -v " ${1-DEFAULT}$" | xargs -r git branch -d; }; f"
+    bdone = "!f() { DEFAULT=$(git default); git switch ${1-$DEFAULT} && git up && git bclean ${1-$DEFAULT}; }; f"
+    co = checkout
+    ddfind = log --decorate --stat --date=iso --format=fuller --patch --grep
+    ddlog = log --decorate --stat --date=iso --format=fuller -p
+    default = !git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@'
+    dfind = log --decorate --stat --date=iso --format=fuller --name-status --grep
     di = diff --color-words
     dic = diff --color-words=.
-    stats = shortlog -sen --no-merges
-    slog = shortlog -ne --no-merges
-    plog = log -1 --pretty=%B
     dlog = log --decorate --stat --date=iso --format=fuller
-    ddlog = log --decorate --stat --date=iso --format=fuller -p
-    tlog = tag -l -n99
+    ec = config --global -e
+    find = log --pretty=\"format:%Cgreen%H %Cblue%s\" --name-status --grep
+    flog = log --graph --pretty=fixes
+    glog = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%aN>%Creset'
     hist = log --follow -p
     pf = push --force-with-lease
+    plog = log -1 --pretty=%B
+    save = !git add -A && git commit -m 'SAVEPOINT'
     sba = "!f() { git subtree add --prefix $1 $2 master --squash; }; f"
-    sbu = "!f() { git subtree pull --prefix $1 $2 master --squash; }; f"
     sbp = "!f() { git subtree push --prefix $1 $2 $3; }; f"
+    sbu = "!f() { git subtree pull --prefix $1 $2 master --squash; }; f"
+    sc = switch -c
+    slog = shortlog -ne --no-merges
+    stats = shortlog -sen --no-merges
+    tlog = tag -l -n99
+    undo = reset HEAD~1 --mixed
+    up = "!f() { git pull --rebase --prune $@ && git submodule update --init --recursive; }; f"
+    wip = !git add -u && git commit -m "WIP"
+    wipe = !git add -A && git commit -qm 'WIPE SAVEPOINT' && git reset HEAD~1 --hard
 
 [log]
     mailmap = true
