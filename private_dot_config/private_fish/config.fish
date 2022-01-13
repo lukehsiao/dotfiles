@@ -27,6 +27,7 @@ alias bcp="rsync -avzuhP"
 alias lofi="mpv \"https://www.youtube.com/watch?v=5qap5aO4i9A\" --volume=50 --no-video &> /dev/null"
 alias cal="ncal -bS"
 alias xclip="xclip -selection c"
+alias ls-users="cat /etc/passwd | grep '/home' | cut -d':' -f1"
 
 alias ls="exa"
 alias ll="ls -l --group-directories-first"
