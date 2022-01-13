@@ -1,6 +1,8 @@
 # Initialize starship
 starship init fish | source
 
+set -gx EDITOR nvim
+
 # Setup pyenv
 status is-login; and pyenv init --path | source
 status is-interactive; and pyenv init - | source
@@ -16,6 +18,7 @@ function sc-pin
     gpg-connect-agent "scd checkpin $serial" /bye
 end
 
+alias vim="nvim"
 alias cat="bat"
 alias df="df -h"
 alias rg="rg -S -p"
