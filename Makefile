@@ -71,6 +71,7 @@ gdb-dashboard:
 
 rust-utilities:
 	cargo install \
+		alacritty \
 		bat \
 		cargo-audit \
 		cargo-bloat \
@@ -92,11 +93,6 @@ rust-utilities:
 		titlecase \
 		tokei \
 		xsv
-
-alacritty:
-	curl --proto '=https' --tlsv1.2 -sSL https://github.com/jwilm/alacritty/releases/download/v0.4.3/Alacritty-v0.4.3-ubuntu_18_04_amd64.deb -o alacritty.deb
-	sudo dpkg -i alacritty.deb
-	rm alacritty.deb
 
 google-chrome:
 	wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
