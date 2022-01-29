@@ -19,6 +19,7 @@ Plug 'lervag/vimtex'
 Plug 'neovim/nvim-lspconfig'
 Plug 'scrooloose/nerdcommenter'
 Plug 'preservim/tagbar'
+Plug 'psf/black', { 'branch': 'stable' }
 Plug 'rust-lang/rust.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/syntastic'
@@ -463,6 +464,11 @@ map <leader>sp [s
 map <leader>sa zg
 map <leader>s? z=
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Black
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Format on save
+autocmd BufWritePre *.py execute ':Black'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Misc
