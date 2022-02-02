@@ -60,7 +60,7 @@
     sbp = "!f() { git subtree push --prefix $1 $2 $3; }; f"
     sbu = "!f() { git subtree pull --prefix $1 $2 master --squash; }; f"
     sc = switch -c
-    slog = shortlog -ne --no-merges
+    slog = shortlog -e --no-merges
     stats = shortlog -sen --no-merges
     tlog = tag --sort=-taggerdate -l --format='%(color:red)%(refname:strip=2)%(color:reset) - %(color:yellow)%(contents:subject)%(color:reset)\n\n%(contents:body)'
     undo = reset HEAD~1 --mixed
