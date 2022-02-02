@@ -1,6 +1,9 @@
 # Initialize starship
 starship init fish | source
 
+# Environment Variables
+set -gx AWS_ACCESS_KEY_ID {{ .aws_access_key_id }}
+set -gx AWS_SECRET_ACCESS_KEY {{ .aws_secret_access_key }}
 set -gx EDITOR nvim
 
 # Setup pyenv
