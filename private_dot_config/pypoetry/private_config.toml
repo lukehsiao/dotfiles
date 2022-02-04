@@ -1,0 +1,6 @@
+[virtualenvs]
+in-project = true
+
+[repositories]
+[repositories.ns]
+url = "https://pypi.numbersstation.ai/"
