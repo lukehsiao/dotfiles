@@ -8,15 +8,13 @@
     attributesfile = ~/.gitattributes
     commitGraph = true
     abbrev = 12
+    pager = delta
 
 [rerere]
     enabled = true
 
-[pager]
-    diff = delta
-    log = delta
-    reflog = delta
-    show = delta
+[diff]
+    colorMoved = default
 
 [pretty]
     fixes = Fixes: %Cred%h%Creset (\"%s\")
@@ -79,6 +77,7 @@
 
 [merge]
     ff = only
+    conflictstyle = diff3
 
 [push]
     default = simple
