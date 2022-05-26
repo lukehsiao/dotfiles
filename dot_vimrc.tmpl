@@ -1,6 +1,14 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Plugins via vim-plug
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Auto-install vim-plug
+let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
 " Specify a directory for plugins
 " - For Neovim: ~/.local/share/nvim/plugged
 " - Avoid using standard Vim directory names like 'plugin'
@@ -9,7 +17,6 @@ call plug#begin('~/.vim/plugged')
 " Make sure you use single quotes
 Plug 'airblade/vim-gitgutter'
 Plug 'altercation/vim-colors-solarized'
-Plug 'vim-airline/vim-airline'
 Plug 'cespare/vim-toml'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -17,10 +24,10 @@ Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'lervag/vimtex'
 Plug 'neovim/nvim-lspconfig'
-Plug 'scrooloose/nerdcommenter'
 Plug 'preservim/tagbar'
 Plug 'psf/black', { 'branch': 'main' }
 Plug 'rust-lang/rust.vim'
+Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/syntastic'
 Plug 'simrat39/rust-tools.nvim'
@@ -29,6 +36,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
+Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'vimwiki/vimwiki'
 
