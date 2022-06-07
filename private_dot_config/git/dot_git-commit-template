@@ -1,4 +1,4 @@
-# <type>: (If applied, this commit will...) <subject> (Max 50 char)
+# <type>(<scope>): (If applied, this commit will...) <subject> (Max 50 char)
 # |<----  Try to Limit to a Max of 50 char  ---->|
 
 
@@ -21,6 +21,8 @@
 #   revert:   for reverts, revert: <old subject>; state reverted hash in body
 #   style:    formatting, missing semi colons, etc; no code meaning change
 #   test:     adding or refactoring tests; no production code change
+#
+# Scope refers to the file, directory, or system that is being modified.
 #
 # Follow the type(scope) with an '!' to indicate a breaking change.
 # Example: refactor(api)!: remove the accident-prone delete_all button
