@@ -16,13 +16,13 @@ call plug#begin('~/.vim/plugged')
 
 " Make sure you use single quotes
 Plug 'airblade/vim-gitgutter'
-Plug 'altercation/vim-colors-solarized'
 Plug 'cespare/vim-toml'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'lervag/vimtex'
+Plug 'lifepillar/vim-solarized8'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'pappasam/coc-jedi', { 'do': 'yarn install --frozen-lockfile && yarn build', 'branch': 'main' }
 Plug 'preservim/tagbar'
@@ -162,19 +162,11 @@ set nojoinspaces
 " Enable syntax highlighting
 syntax enable
 
-" Fix the undercurl bug
-" https://github.com/altercation/vim-colors-solarized/issues/195
-set t_Cs=
-
-" Enable 256 colors palette in Gnome Terminal
-if $COLORTERM == 'gnome-terminal'
-    set t_Co=256
-endif
-
+set termguicolors
 set background=dark
 
 try
-    colorscheme solarized
+    colorscheme solarized8
 catch
 endtry
 
