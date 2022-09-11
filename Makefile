@@ -25,6 +25,12 @@ basic:
 		htop \
 		gnupg2
 
+iosevka:
+	curl -s https://api.github.com/repos/be5invis/Iosevka/releases/latest | rg -N "browser_download_url" | rg -N --color never "super-ttc-iosevka-\d+\.\d+\.\d+\.zip" | sd '"' '' | choose 1 | xargs -I % xh -F -o /tmp/iosevka.zip  GET '%'
+	unzip /tmp/iosevka.zip -d ~/.fonts/
+	rm /tmp/iosevka.zip
+	sudo fc-cache -f -v
+
 chezmoi:
 	curl --proto '=https' --tlsv1.2 -sSLO https://github.com/twpayne/chezmoi/releases/download/v1.7.15/chezmoi_1.7.15_linux_amd64.deb
 	sudo dpkg -i chezmoi_1.7.15_linux_amd64.deb
@@ -108,4 +114,4 @@ eisvogel:
 	rm -rf /tmp/eisvogel /tmp/eisvogel.tar.gz
 
 
-.PHONY: alacritty basic chezmoi eisvogel gdb-dashboard git-sizer google-chrome keybase latex plug.vim prettyping rust rust-utilities update zola
+.PHONY: alacritty basic chezmoi eisvogel gdb-dashboard git-sizer google-chrome iosevka keybase latex plug.vim prettyping rust rust-utilities update zola
