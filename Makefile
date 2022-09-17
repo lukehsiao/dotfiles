@@ -26,10 +26,15 @@ basic:
 		gnupg2
 
 iosevka:
-	curl -s https://api.github.com/repos/be5invis/Iosevka/releases/latest | rg -N "browser_download_url" | rg -N --color never "super-ttc-iosevka-\d+\.\d+\.\d+\.zip" | sd '"' '' | choose 1 | xargs -I % xh -F -o /tmp/iosevka.zip  GET '%'
+	curl -s https://api.github.com/repos/be5invis/Iosevka/releases/latest | rg -N "browser_download_url" | rg -N --color never "super-ttc-iosevka-\d+\.\d+\.\d+\.zip" | sd '"' "'" | choose 1 | xargs -I % xh -F -o /tmp/iosevka.zip GET %
 	unzip /tmp/iosevka.zip -d ~/.fonts/
 	rm /tmp/iosevka.zip
 	sudo fc-cache -f -v
+
+wezterm:
+	curl -s https://api.github.com/repos/wez/wezterm/releases/latest | rg -N "browser_download_url" | rg -N --color never 'Ubuntu22.04.deb"' | sd '"' "'" | choose 1 | xargs -I % xh -F -o /tmp/wezterm.deb GET %
+	sudo apt-get install -y /tmp/wezterm.deb
+	rm /tmp/wezterm.deb
 
 chezmoi:
 	curl --proto '=https' --tlsv1.2 -sSLO https://github.com/twpayne/chezmoi/releases/download/v1.7.15/chezmoi_1.7.15_linux_amd64.deb
