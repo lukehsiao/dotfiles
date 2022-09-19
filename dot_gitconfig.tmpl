@@ -51,6 +51,7 @@
     ec = config --global -e
     find = log --pretty=\"format:%Cgreen%H %Cblue%s\" --name-status --grep
     flog = log --graph --pretty=fixes
+    format-patch-repo = !git format-patch --subject-prefix=\"PATCH $(basename $(git rev-parse --show-toplevel))\"
     glog = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%aN>%Creset'
     hist = log --follow -p
     pf = push --force-with-lease
@@ -61,6 +62,7 @@
     sbp = "!f() { git subtree push --prefix $1 $2 $3; }; f"
     sbu = "!f() { git subtree pull --prefix $1 $2 master --squash; }; f"
     sc = switch -c
+    send-email-repo = !git send-email --subject-prefix=\"PATCH $(basename $(git rev-parse --show-toplevel))\"
     slog = shortlog -e --no-merges
     stats = shortlog -sen --no-merges
     tlog = tag --sort=-taggerdate -l --format='%(color:red)%(refname:strip=2)%(color:reset) - %(color:yellow)%(contents:subject)%(color:reset) by %(taggername) on %(taggerdate:human)\n\n%(contents:body)'
@@ -105,6 +107,6 @@
     smtpuser = {{ .email }}
     smtpencryption = ssl
     smtpserverport = 465
-	confirm = auto
+	confirm = always
     suppresscc = self
 {{- end }}
