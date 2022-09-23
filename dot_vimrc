@@ -69,6 +69,8 @@ nmap <leader>w :w!<cr>
 
 " Show marker line at 80 chars
 set colorcolumn=80
+au FileType gitcommit setlocal textwidth=72
+au FileType gitcommit setlocal colorcolumn=50,72
 au BufRead,BufNewFile *.eml setlocal textwidth=72
 au BufRead,BufNewFile *.eml setlocal colorcolumn=72
 au BufRead,BufNewFile *.tex,*.txt,*.md setlocal textwidth=100
@@ -237,7 +239,7 @@ augroup END
 """"""""""""""""""""""""""""""
 let g:EditorConfig_exclude_patterns = ['fugitive://.*']
 
-" Disable for gotcommit
+" Disable for gitcommit
 au FileType gitcommit let b:EditorConfig_disable = 1
 
 """"""""""""""""""""""""""""""
