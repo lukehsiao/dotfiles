@@ -26,7 +26,7 @@
     tabs = 4
 
 [init]
-	defaultBranch = main
+    defaultBranch = main
 
 [interactive]
     diffFilter = delta --color-only
@@ -38,7 +38,7 @@
 [alias]
     amend = commit -a --amend
     bmerged = "!f() { DEFAULT=$(git default); git branch --merged ${1-DEFAULT} | grep -v \"${1-DEFAULT}$\" | xargs -r git branch -d; }; f"
-	brebased = "!f() { DEFAULT=$(git default); for b in $(git branch --format=\"%(refname:short)\" | grep -vE \"(${1-DEFAULT}|$DEFAULT)\"); do if [ -z \"$(git cherry ${1-$DEFAULT} $b | grep \"^+\")\" ]; then git branch -D $b; fi; done; }; f"
+    brebased = "!f() { DEFAULT=$(git default); for b in $(git branch --format=\"%(refname:short)\" | grep -vE \"(${1-DEFAULT}|$DEFAULT)\"); do if [ -z \"$(git cherry ${1-$DEFAULT} $b | grep \"^+\")\" ]; then git branch -D $b; fi; done; }; f"
     bdone = "!f() { DEFAULT=$(git default); git switch ${1-$DEFAULT} && git up && git brebased ${1-$DEFAULT}; }; f"
     co = checkout
     ddfind = log --decorate --stat --date=iso --format=fuller --patch --grep
@@ -107,7 +107,7 @@
     smtpuser = {{ .email }}
     smtpencryption = ssl
     smtpserverport = 465
-	confirm = always
+    confirm = always
     suppresscc = self
     annotate = yes
 {{- end }}
