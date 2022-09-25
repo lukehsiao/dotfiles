@@ -82,7 +82,6 @@ gdb-dashboard:
 
 rust-utilities:
 	cargo install \
-		alacritty \
 		bat \
 		cargo-audit \
 		cargo-bloat \
@@ -104,6 +103,7 @@ rust-utilities:
 		titlecase \
 		tokei \
 		xsv
+	cargo install --git https://github.com/lukehsiao/tool.git
 
 google-chrome:
 	wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
