@@ -18,7 +18,7 @@ basic:
 		git-lfs \
 		unattended-upgrades \
 		units \
-		vim-gtk3 \
+		vim-nox \
 		pass \
 		mosh \
 		tmux \
