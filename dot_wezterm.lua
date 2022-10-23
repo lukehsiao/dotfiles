@@ -1,9 +1,23 @@
 local wezterm = require 'wezterm'
 
+-- A helper function for my fallback fonts
+function font_with_fallback(name, params)
+  local names = { name, 'Noto Color Emoji', 'JetBrains Mono' }
+  return wezterm.font_with_fallback(names, params)
+end
+
 return {
     color_scheme = "Solarized Dark (base16)",
-    font = wezterm.font_with_fallback {
-        { family = "Iosevka Term", stretch = "Normal", weight = "Regular" },
+    font = font_with_fallback "Iosevka Term",
+    font_size = 14.0,
+    -- Make regular bold text a different color to make it stand out even more
+    font_rules = {
+        {
+            intensity = 'Bold',
+            font = font_with_fallback(
+              'Iosevka Term Heavy'
+            ),
+        },
     },
     font_size = 11.0,
     check_for_updates = true,
