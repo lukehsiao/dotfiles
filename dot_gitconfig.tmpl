@@ -64,7 +64,6 @@
     sc = switch -c
     send-email-repo = !git send-email --subject-prefix=\"PATCH $(basename $(git rev-parse --show-toplevel))\"
     slog = shortlog -e --no-merges
-    stats = shortlog -sen --no-merges
     tlog = tag --sort=-taggerdate -l --format='%(color:red)%(refname:strip=2)%(color:reset) - %(color:yellow)%(contents:subject)%(color:reset) by %(taggername) on %(taggerdate:human)\n\n%(contents:body)'
     undo = reset HEAD~1 --mixed
     up = "!f() { git pull --rebase --prune $@ && git submodule update --init --recursive; }; f"
