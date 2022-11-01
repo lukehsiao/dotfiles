@@ -8,6 +8,7 @@ set -gx AWS_DEFAULT_REGION us-west-1
 set -gx EDITOR nvim
 set -gx COLORTERM 24bit
 set -gx GRAB_HOME ~/repos
+set -gx GITHUB_TOKEN $(cat ~/.githubtoken)
 
 # Setup pyenv
 status is-login; and pyenv init --path | source
