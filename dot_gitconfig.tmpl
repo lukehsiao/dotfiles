@@ -70,6 +70,7 @@
     up = "!f() { git pull --rebase --prune $@ && git submodule update --init --recursive; }; f"
     wip = !git add -u && git commit -m "WIP"
     wipe = !git add -A && git commit -qm 'WIPE SAVEPOINT' && git reset HEAD~1 --hard
+    wt = worktree
 
 [log]
     mailmap = true
