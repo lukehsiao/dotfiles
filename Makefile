@@ -63,10 +63,11 @@ prettyping:
 	rm prettyping
 
 zola:
-	curl --proto '=https' --tlsv1.2 -sSLO https://github.com/getzola/zola/releases/download/v0.16.1/zola-v0.16.1-x86_64-unknown-linux-gnu.tar.gz
-	tar xf zola-v0.16.1-x86_64-unknown-linux-gnu.tar.gz
-	install -m755 zola ~/.cargo/bin
-	rm zola-v0.16.1-x86_64-unknown-linux-gnu.tar.gz zola
+	curl -s https://api.github.com/repos/getzola/zola/releases/latest | rg -N "browser_download_url" | rg -N --color never "zola.*linux-gnu.tar.gz" | sd '"' "'" | choose 1 | xargs -I % xh -F -o /tmp/zola.tar.gz GET %
+	mkdir -p /tmp/zola
+	tar xf /tmp/zola.tar.gz -C /tmp/zola
+	install -m755 /tmp/zola/zola ~/.cargo/bin
+	rm -rf /tmp/zola /tmp/zola.tar.gz
 
 git-sizer:
 	curl --proto '=https' --tlsv1.2 -sSLO https://github.com/github/git-sizer/releases/download/v1.5.0/git-sizer-1.5.0-linux-amd64.zip
