@@ -7,3 +7,12 @@ args = ["run", "stable", "rust-analyzer"]
 
 [language.config.check]
 command = "clippy"
+
+[[language]]
+name = "email"
+scope = "text.email"
+roots = []
+file-types = ["eml", "email"]
+rulers = [72]
+language-server = { command = "ltex-ls" }
+text-width = 72
