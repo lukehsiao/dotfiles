@@ -1,0 +1,9 @@
+[[language]]
+name = "rust"
+
+[language.language-server]
+command = "rustup"
+args = ["run", "stable", "rust-analyzer"]
+
+[language.config.check]
+command = "clippy"
