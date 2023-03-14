@@ -16,3 +16,10 @@ file-types = ["eml", "email"]
 rulers = [72]
 language-server = { command = "ltex-ls" }
 text-width = 72
+
+[[language]]
+name = "python"
+rulers = [100]
+text-width = 100
+formatter = { command = "black", args = ["--quiet", "-"] }
+auto-format = true
