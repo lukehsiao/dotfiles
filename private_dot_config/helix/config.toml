@@ -1,5 +1,11 @@
 theme = "solarized_dark"
 
+[editor.soft-wrap]
+enable = true
+
+[editor.lsp]
+display-inlay-hints = true
+
 [editor.cursor-shape]
 insert = "bar"
 normal = "block"
