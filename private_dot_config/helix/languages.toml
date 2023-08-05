@@ -23,3 +23,7 @@ rulers = [100]
 text-width = 100
 formatter = { command = "black", args = ["--quiet", "-"] }
 auto-format = true
+
+[[language]]
+name = "markdown"
+language-server = { command = "ltex-ls" }
