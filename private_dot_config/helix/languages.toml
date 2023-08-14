@@ -28,3 +28,4 @@ auto-format = true
 name = "markdown"
 language-server = { command = "ltex-ls" }
 formatter = { command = "git", args = ["stripspace"] }
+auto-format = true
