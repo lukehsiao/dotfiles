@@ -4,7 +4,6 @@ set-window-option -g mode-keys vi
 set-option -sg escape-time 5
 
 # 256 color terminal
-set -g default-terminal "tmux-256color"
 set -g history-limit 8192
 
 # Split keeping current directory
@@ -13,3 +12,8 @@ bind-key '"' split-window -v -c "#{pane_current_path}"
 
 # Support 24-bit color
 set -ga terminal-overrides ",*256col*:Tc"
+
+# Ms modifies OSC 52 clipboard handling to work with mosh, see
+# https://gist.github.com/yudai/95b20e3da66df1b066531997f982b57b
+set -ag terminal-overrides "vte*:XT:Ms=\\E]52;c;%p2%s\\7,xterm*:XT:Ms=\\E]52;c;%p2%s\\7"
+set -s set-clipboard on
