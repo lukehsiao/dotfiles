@@ -16,3 +16,4 @@ hidden = false
 
 [keys.normal.g]
 q = ":reflow"
+B = ":pipe-to tmux split-window -v helix-git-blame"
