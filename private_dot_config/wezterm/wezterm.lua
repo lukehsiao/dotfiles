@@ -7,7 +7,7 @@ function font_with_fallback(name, params)
 end
 
 return {
-    color_scheme = "Solarized (dark) (terminal.sexy)",
+    color_scheme = "Selenized Dark",
     font = font_with_fallback "Iosevka Term",
     font_size = 14.0,
     -- Make regular bold text a different color to make it stand out even more
