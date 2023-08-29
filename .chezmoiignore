@@ -1,5 +1,5 @@
 README.md
-Makefile
+justfile
 {{- if ne .chezmoi.hostname "panda" }}
 .pandoc/
 .gnupg/
