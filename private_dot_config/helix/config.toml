@@ -1,4 +1,4 @@
-theme = "solarized_dark"
+theme = "selenized_dark"
 
 [editor.soft-wrap]
 enable = true
