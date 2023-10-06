@@ -91,7 +91,7 @@ rust-utilities:
 		cargo-update \
 		du-dust \
 		eva \
-		exa \
+		eza \
 		fd-find \
 		flamegraph \
 		git-delta \
