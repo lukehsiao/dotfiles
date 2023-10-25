@@ -1,20 +1,10 @@
 [[language]]
-name = "rust"
-
-[language.language-server]
-command = "rustup"
-args = ["run", "stable", "rust-analyzer"]
-
-[language.config.check]
-command = "clippy"
-
-[[language]]
 name = "email"
 scope = "text.email"
 roots = []
 file-types = ["eml", "email"]
 rulers = [72]
-language-server = { command = "ltex-ls" }
+language-servers = [ "ltex-ls" ]
 text-width = 72
 
 [[language]]
@@ -26,12 +16,12 @@ auto-format = true
 
 [[language]]
 name = "markdown"
-language-server = { command = "ltex-ls" }
+language-servers = [ "ltex-ls" ]
 formatter = { command = "git", args = ["stripspace"] }
 auto-format = true
 
 [[language]]
 name = "git-commit"
-language-server = { command = "ltex-ls" }
+language-servers = [ "ltex-ls" ]
 formatter = { command = "git", args = ["stripspace"] }
 auto-format = true
