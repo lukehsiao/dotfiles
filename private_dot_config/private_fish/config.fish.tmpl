@@ -9,6 +9,7 @@ set -gx EDITOR hx
 set -gx COLORTERM 24bit
 set -gx GRAB_HOME ~/repos
 set -gx GITHUB_TOKEN $(cat ~/.githubtoken)
+set -gx CARGO_INSTALL_OPTS --locked
 
 # Setup pyenv
 status is-login; and pyenv init --path | source
