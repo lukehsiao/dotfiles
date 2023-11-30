@@ -3,26 +3,6 @@
 _default:
 	@just --list
 	
-# Install apt basics
-basic:
-	sudo apt-get update && sudo apt-get install -y \
-		curl \
-		build-essential \
-		automake \
-		autoconf \
-		checkinstall \
-		cmake \
-		git \
-		git-lfs \
-		unattended-upgrades \
-		units \
-		vim-nox \
-		pass \
-		mosh \
-		tmux \
-		htop \
-		gnupg2
-
 # Install Iosevka font via GitHub release
 iosevka:
 	#!/usr/bin/env bash
@@ -31,23 +11,6 @@ iosevka:
 	unzip /tmp/iosevka.zip -d ~/.fonts/
 	rm /tmp/iosevka.zip
 	sudo fc-cache -f -v
-
-# Install wezterm via GitHub release
-wezterm:
-	#!/usr/bin/env bash
-	set -euxo pipefail
-	curl -s https://api.github.com/repos/wez/wezterm/releases/latest | rg -N "browser_download_url" | rg -N --color never 'Ubuntu22.04.deb"' | sd '"' "'" | choose 1 | xargs -I % xh -F -o /tmp/wezterm.deb GET %
-	sudo apt-get install -y /tmp/wezterm.deb
-	rm /tmp/wezterm.deb
-
-# Install chezmoi via GitHub release
-chezmoi:
-	#!/usr/bin/env bash
-	set -euxo pipefail
-	curl --proto '=https' --tlsv1.2 -sSLO https://github.com/twpayne/chezmoi/releases/download/v1.7.15/chezmoi_1.7.15_linux_amd64.deb
-	sudo dpkg -i chezmoi_1.7.15_linux_amd64.deb
-	sudo apt-get install -f
-	rm chezmoi_1.7.15_linux_amd64.deb
 
 # Install rust toolchain
 rust:
@@ -72,10 +35,6 @@ git-sizer:
 	install -m755 tmp-git-sizer/git-sizer ~/.local/bin/
 	rm -r git-sizer-1.5.0-linux-amd64.zip tmp-git-sizer
 
-# Install latex
-latex:
-	sudo apt-get install -y texlive-full latexmk
-
 # Install GDB Dashboard
 gdb-dashboard:
 	curl --proto '=https' --tlsv1.2 -sSLf https://raw.githubusercontent.com/cyrus-and/gdb-dashboard/master/.gdbinit -o ~/.gdbinit
@@ -89,6 +48,7 @@ rust-utilities:
 		cargo-edit \
 		cargo-geiger \
 		cargo-update \
+		choose \
 		du-dust \
 		eva \
 		eza \
@@ -98,19 +58,15 @@ rust-utilities:
 		hexyl \
 		hyperfine \
 		ripgrep \
-		svgcleaner \
+		sd \
+		starship \
 		tealdeer \
 		tectonic \
 		titlecase \
 		tokei \
+		xh \
 		xsv
 	cargo install --git https://github.com/lukehsiao/tool.git
-
-google-chrome:
-	wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-	sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
-	sudo apt-get update
-	sudo apt-get install google-chrome-stable
 
 # Install eisvogel pandoc template
 eisvogel:
