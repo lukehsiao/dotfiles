@@ -7,7 +7,7 @@ _default:
 iosevka:
 	#!/usr/bin/env bash
 	set -euxo pipefail
-	curl -s https://api.github.com/repos/be5invis/Iosevka/releases/latest | rg -N "browser_download_url" | rg -N --color never "super-ttc-iosevka-\d+\.\d+\.\d+\.zip" | sd '"' "'" | choose 1 | xargs -I % xh -F -o /tmp/iosevka.zip GET %
+	curl -s https://api.github.com/repos/be5invis/Iosevka/releases/latest | rg -N "browser_download_url" | rg -N --color never "SuperTTC-Iosevka-\d+\.\d+\.\d+\.zip" | sd '"' "'" | choose 1 | xargs -I % xh -F -o /tmp/iosevka.zip GET %
 	unzip /tmp/iosevka.zip -d ~/.fonts/
 	rm /tmp/iosevka.zip
 	sudo fc-cache -f -v
