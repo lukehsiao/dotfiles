@@ -1,5 +1,6 @@
 # Initialize starship
 starship init fish | source
+zoxide init --cmd cd fish | source
 
 # Environment Variables
 set -gx EDITOR hx
@@ -32,7 +33,7 @@ alias vim="nvim"
 alias cat="bat"
 alias df="df -h"
 alias rg="rg -S"
-alias ping="prettyping --nolegend"
+alias ping="gping"
 alias bcp="rsync -avzuhP"
 alias lofi="mpv \"https://www.youtube.com/watch?v=jfKfPfyJRdk\" --volume=70 --no-video &> /dev/null"
 alias ghibli="mpv \"https://www.youtube.com/watch?v=3jWRrafhO7M\" --volume=70 --no-video &> /dev/null"
