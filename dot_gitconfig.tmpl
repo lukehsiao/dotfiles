@@ -15,6 +15,7 @@
 
 [diff]
     colorMoved = default
+    algorithm = histogram
 
 [pretty]
     fixes = Fixes: %Cred%h%Creset (\"%s\")
@@ -25,6 +26,9 @@
     syntax-theme = Solarized (dark)
     tabs = 4
     hyperlinks = true
+
+[branch]
+    sort = -committerdate
 
 [init]
     defaultBranch = main
@@ -82,7 +86,7 @@
 
 [merge]
     ff = only
-    conflictstyle = diff3
+    conflictstyle = zdiff3
 
 [push]
     default = simple
@@ -94,6 +98,7 @@
 
 [rebase]
     autostash = true
+    autosquash = true
 
 [color "status"]
     added = green
