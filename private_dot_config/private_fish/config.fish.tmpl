@@ -1,16 +1,33 @@
-# Initialize starship
-starship init fish | source
-zoxide init --cmd cd fish | source
-
 # Environment Variables
+set -gx FZF_DEFAULT_COMMAND 'fd --type f --hidden --follow --exclude .git'
+set -gx FZF_CTRL_T_COMMAND "$FZF_DEFAULT_COMMAND"
+set -gx BAT_THEME "Solarized (dark)"
 set -gx EDITOR hx
 set -gx COLORTERM 24bit
 set -gx GRAB_HOME ~/repos
 set -gx CARGO_INSTALL_OPTS --locked
+set -gx GITHUB_TOKEN $(cat ~/.githubtoken)
 
-# Setup pyenv
-status is-login; and pyenv init --path | source
-status is-interactive; and pyenv init - | source
+# Path updates
+fish_add_path $HOME/.local/bin
+fish_add_path $HOME/.cargo/bin
+fish_add_path /usr/local/go/bin
+fish_add_path $HOME/.poetry/bin
+
+# Configurations
+if status --is-interactive
+    set -x GPG_TTY (tty)
+    set -x SSH_AUTH_SOCK (gpgconf --list-dirs agent-ssh-socket)
+    gpgconf --launch gpg-agent
+
+    set -Ux PYENV_ROOT $HOME/.pyenv
+    fish_add_path $PYENV_ROOT/bin
+    pyenv init - | source
+
+    starship init fish | source
+    zoxide init --cmd cd fish | source
+end
+
 
 # Aliases
 function ea
@@ -21,12 +38,6 @@ end
 function sc-pin
     set -l serial (gpg-connect-agent 'scd serialno' /bye | awk '{printf "%s",$3}')
     gpg-connect-agent "scd checkpin $serial" /bye
-end
-
-if status is-interactive
-    set -x GPG_TTY (tty)
-    set -x SSH_AUTH_SOCK (gpgconf --list-dirs agent-ssh-socket)
-    gpgconf --launch gpg-agent
 end
 
 alias vim="nvim"
