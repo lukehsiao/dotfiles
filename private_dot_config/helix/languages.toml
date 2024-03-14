@@ -16,12 +16,12 @@ auto-format = true
 
 [[language]]
 name = "markdown"
-language-servers = [ "ltex-ls" ]
-formatter = { command = "git", args = ["stripspace"] }
+language-servers = [ "marksman", "ltex-ls" ]
+formatter = { command = "sed", args = ["s/[ \t]*$//"] }
 auto-format = true
 
 [[language]]
 name = "git-commit"
 language-servers = [ "ltex-ls" ]
-formatter = { command = "git", args = ["stripspace"] }
+formatter = { command = "sed", args = ["s/[ \t]*$//"] }
 auto-format = true
