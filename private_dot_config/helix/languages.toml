@@ -25,3 +25,17 @@ name = "git-commit"
 language-servers = [ "ltex-ls" ]
 formatter = { command = "sed", args = ["s/[ \t]*$//"] }
 auto-format = true
+
+[[language]]
+name = "scss"
+indent = { tab-width = 2, unit = " " }
+
+[[language]]
+name = "rust"
+
+[language-server.rust-analyzer]
+config = { procMacro = { ignored = { leptos_macro = [
+	# Optional:
+	# "component",
+	"server"
+] } } }
