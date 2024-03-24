@@ -42,30 +42,59 @@ gdb-dashboard:
 # Install nice rust utilities
 rust-utilities:
 	cargo install \
+		atuin \
 		bat \
+		bottom \
+		bunyan \
 		cargo-audit \
 		cargo-bloat \
+		cargo-deny \
 		cargo-edit \
 		cargo-geiger \
+		cargo-nextest \
+		cargo-semver-checks \
 		cargo-update \
+		cargo-watch \
 		choose \
+		difftastic \
+		dircnt \
 		du-dust \
 		eva \
 		eza \
 		fd-find \
 		flamegraph \
+		git-cliff \
 		git-delta \
+		git-grab \
+		git-stats \
+		gping \
 		hexyl \
 		hyperfine \
+		jaq \
+		jless \
+		lychee \
+		oha \
+		onefetch \
+		openring \
+		pastel \
+		pgen \
+		ren-find \
+		rep-grep \
+		rimage \
 		ripgrep \
+		samply \
 		sd \
 		starship \
+		talk-timer \
 		tealdeer \
 		tectonic \
 		titlecase \
+		titlecase \
+		tokei \
 		tokei \
 		xh \
-		xsv
+		xsv \
+		zoxide
 	cargo install --git https://github.com/lukehsiao/tool.git
 
 # Install eisvogel pandoc template
