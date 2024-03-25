@@ -62,7 +62,7 @@
     flog = log --pretty=fixes
     format-patch-repo = !git format-patch --subject-prefix=\"PATCH $(basename $(git rev-parse --show-toplevel))\"
     glog = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%aN>%Creset'
-    hist = log --follow -p
+    hist = log --follow --decorate --stat --date=iso --format=fuller -p
     pf = push --force-with-lease
     plog = log -1 --pretty=%B
     rba = "!f() { DEFAULT=$(git default); git rebase -i --autosquash ${1-$DEFAULT}; }; f"
