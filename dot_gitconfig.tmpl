@@ -49,7 +49,7 @@
     clog = log --pretty=%C(yellow)%s%n%Creset%n%b%n---
     ddfind = log --decorate --stat --date=iso --format=fuller --patch --grep
     ddlog = log --decorate --stat --date=iso --format=fuller -p
-    ddtlog = "!f() { cd ${GIT_PREFIX:-.}; GIT_EXTERNAL_DIFF='difft --display=inline' git log --decorate --stat --date=iso --format=fuller -p --ext-diff $@; }; f"
+    dtlog = "!f() { cd ${GIT_PREFIX:-.}; GIT_EXTERNAL_DIFF='difft --display=inline' git log --decorate --stat --date=iso --format=fuller -p --ext-diff $@; }; f"
     default = !git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@'
     dfind = log --decorate --stat --date=iso --format=fuller --name-status --grep
     files = diff --name-only
