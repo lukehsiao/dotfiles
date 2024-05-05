@@ -47,6 +47,7 @@ rust-utilities:
 		bottom \
 		bunyan \
 		cargo-audit \
+		cargo-binstall \
 		cargo-bloat \
 		cargo-deny \
 		cargo-edit \
