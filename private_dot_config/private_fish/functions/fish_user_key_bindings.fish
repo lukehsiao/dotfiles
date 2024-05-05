@@ -1,5 +1,5 @@
 function fish_user_key_bindings
-    fzf_key_bindings
+    fzf --fish | source
 
     # Let Atuin control Ctrl+R
     set -gx ATUIN_NOBIND "true"
