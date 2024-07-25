@@ -1,15 +1,15 @@
 local wezterm = require 'wezterm'
 
--- A helper function for my fallback fonts
-function font_with_fallback(name, params)
-  local names = { name, 'Noto Color Emoji', 'JetBrains Mono' }
-  return wezterm.font_with_fallback(names, params)
-end
-
 return {
     color_scheme = "Selenized Dark",
-    font = font_with_fallback "Berkeley Mono",
+    font = wezterm.font_with_fallback {
+        "Berkeley Mono",
+        "Iosevka Term",
+        "Fira Code"
+    },
     font_size = 12.0,
+    line_height = 0.9,
+    cell_width = 0.9,
     check_for_updates = true,
     window_padding = {
         left = 0,
