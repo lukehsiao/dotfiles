@@ -21,6 +21,10 @@ formatter = { command = "sed", args = ["s/[ \t]*$//"] }
 auto-format = true
 
 [[language]]
+name = "latex"
+language-servers = [ "texlab", "ltex-ls" ]
+
+[[language]]
 name = "git-commit"
 language-servers = [ "ltex-ls" ]
 formatter = { command = "sed", args = ["s/[ \t]*$//"] }
