@@ -1,6 +1,27 @@
 local wezterm = require 'wezterm'
 
 return {
+
+    -- Slightly transparent and blurred background
+    window_background_opacity = 0.9,
+    macos_window_background_blur = 30,
+    -- Removes the title bar, leaving only the tab bar. Keeps
+    -- the ability to resize by dragging the window's edges.
+    -- On macOS, 'RESIZE|INTEGRATED_BUTTONS' also looks nice if
+    -- you want to keep the window controls visible and integrate
+    -- them into the tab bar.
+    window_decorations = 'RESIZE',
+    -- Sets the font for the window frame (tab bar)
+    window_frame = {
+        -- Berkeley Mono for me again, though an idea could be to try a
+        -- serif font here instead of monospace for a nicer look?
+        font = wezterm.font {
+            family = "Iosevka Term",
+            weight = "Bold"
+        },
+        font_size = 11.0,
+    },
+
     color_scheme = "Selenized Dark",
     font = wezterm.font_with_fallback {
         "Berkeley Mono",
