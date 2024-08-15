@@ -38,7 +38,7 @@
 "diff.minus" = { fg = "red" }
 
 # 背景
-"ui.background" = { bg = "bg_0" }
+"ui.background" = {}
 
 "ui.virtual.whitespace" = { fg = "dim_0" }
 
