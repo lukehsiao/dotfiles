@@ -59,6 +59,7 @@
     dlog = log --decorate --stat --date=iso --format=fuller
     ec = config --global -e
     find = log --pretty=\"format:%Cgreen%H %Cblue%s\" --name-status --grep
+    fix-head = remote set-head origin --auto
     flog = log --pretty=fixes
     format-patch-repo = !git format-patch --subject-prefix=\"PATCH $(basename $(git rev-parse --show-toplevel))\"
     glog = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%aN>%Creset'
