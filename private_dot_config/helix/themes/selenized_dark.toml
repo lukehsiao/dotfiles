@@ -43,11 +43,11 @@
 "ui.virtual.whitespace" = { fg = "dim_0" }
 
 # 行号栏
-"ui.linenr" = { fg = "dim_0", bg = "bg_0" }
+"ui.linenr" = { fg = "dim_0", bg = {} }
 # 当前行号栏
 "ui.linenr.selected" = { fg = "blue", modifiers = ["bold"] }
 #cursorline
-"ui.cursorline" = { bg = "bg_0" }
+"ui.cursorline" = { bg = {} }
 
 # 状态栏
 "ui.statusline" = { fg = "bg_0", bg = "dim_0" }
@@ -59,10 +59,10 @@
 "ui.statusline.inactive" = { fg = "fg_0", bg = "dim_0" }
 
 # 补全窗口, preview窗口
-"ui.popup" = { bg = "bg_0" }
+"ui.popup" = { bg = {} }
 # 影响 补全选中 cmd弹出信息选中
 "ui.menu.selected" = { fg = "bg_0", bg = "fg_1"}
-"ui.menu" = { fg = "dim_0", bg = "bg_0" }
+"ui.menu" = { fg = "dim_0", bg = {} }
 # ??
 "ui.window" = { fg = "fg_1" }
 # 命令行 补全的帮助信息
@@ -83,7 +83,7 @@
 # 主光标/selectio
 "ui.cursor.primary" = { fg = "bg_0", bg = "fg_0" }
 "ui.cursor.select" = { fg = "bg_0", bg = "cyan" }
-"ui.cursorline.primary" = { bg = "bg_0" }
+"ui.cursorline.primary" = { bg = {} }
 "ui.cursorline.secondary" = { bg = "bg_05" }
 
 "ui.selection" = { bg = "bg_1" }
