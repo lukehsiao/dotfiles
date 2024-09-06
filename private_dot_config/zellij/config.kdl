@@ -228,7 +228,7 @@ plugins {
 //   - true (default)
 //   - false
 //
-// pane_frames true
+pane_frames false
 
 // Toggle between having Zellij lay out panes according to a predefined set of layouts whenever possible
 // Options:
@@ -254,32 +254,45 @@ plugins {
 // defaults to the scrollback size. If this number is higher than the scrollback size, it will
 // also default to the scrollback size. This does nothing if `serialize_pane_viewport` is not true.
 //
-// scrollback_lines_to_serialize 10000
+scrollback_lines_to_serialize 100000
 
 // Define color themes for Zellij
 // For more examples, see: https://github.com/zellij-org/zellij/tree/main/example/themes
 // Once these themes are defined, one of them should to be selected in the "theme" section of this file
 //
-// themes {
-//     dracula {
-//         fg 248 248 242
-//         bg 40 42 54
-//         red 255 85 85
-//         green 80 250 123
-//         yellow 241 250 140
-//         blue 98 114 164
-//         magenta 255 121 198
-//         orange 255 184 108
-//         cyan 139 233 253
-//         black 0 0 0
-//         white 255 255 255
-//     }
-// }
+themes {
+    // selenized-dark {
+    //     fg "#adbcbc"
+    //     bg "#103c48"
+    //     black "#184956"
+    //     red "#fa5750"
+    //     green "#75b938"
+    //     yellow "#dbb32d"
+    //     blue "#4695f7"
+    //     magenta "#f275be"
+    //     cyan "#41c7b9"
+    //     white "#72898f"
+    //     orange "#ed8649"
+    // }
+    selenized-dark {
+        fg "#9faeae"
+        bg "#112e38"
+        black "#163945"
+        red "#f13c3e"
+        green "#69ad21"
+        yellow "#d1a416"
+        blue "#3a82f8"
+        magenta "#e75bb3"
+        cyan "#42bdaa"
+        white "#61777c"
+        orange "#e26f35"
+    }
+}
 
 // Choose the theme that is specified in the themes section.
 // Default: default
 //
-theme "solarized-dark"
+theme "selenized-dark"
 
 // The name of the default layout to load on startup
 // Default: "default"
