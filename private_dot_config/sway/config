@@ -222,10 +222,10 @@ bindsym $mod+r mode "resize"
 # Super+Alt+p Current output
 # Super+Ctrl+p Select a window
 
-bindsym Mod4+p       exec grimshot save active
-bindsym Mod4+Shift+p exec grimshot save area
-bindsym Mod4+Mod1+p  exec grimshot save output
-bindsym Mod4+Ctrl+p  exec grimshot save window
+bindsym Mod4+p       exec grimshot savecopy active
+bindsym Mod4+Shift+p exec grimshot savecopy area
+bindsym Mod4+Mod1+p  exec grimshot savecopy output
+bindsym Mod4+Ctrl+p  exec grimshot savecopy window
 
 # Include configs from 3 locations:
 #  - /usr/share/sway/config.d
