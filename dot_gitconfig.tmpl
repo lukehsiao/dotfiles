@@ -46,13 +46,13 @@
     bmerged = "!f() { DEFAULT=$(git default); git branch --merged ${1-DEFAULT} | grep -v \"${1-DEFAULT}$\" | xargs -r git branch -d; }; f"
     brebased = "!f() { DEFAULT=$(git default); for b in $(git branch --format=\"%(refname:short)\" | grep -vE \"(${1-DEFAULT}|$DEFAULT)\"); do if [ -z \"$(git cherry ${1-$DEFAULT} $b | grep \"^+\")\" ]; then git branch -D $b; fi; done; }; f"
     clog = log --pretty=%C(yellow)%s%n%Creset%n%b%n---
-    ddfind = log --decorate --stat --date=iso --format=fuller --patch --grep
-    ddlog = log --decorate --stat --date=iso --format=fuller -p
+    ddfind = log --decorate --stat --date=auto:human-local --format=fuller --patch --grep
+    ddlog = log --decorate --stat --date=auto:human-local --format=fuller -p
     default = !git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@'
-    dfind = log --decorate --stat --date=iso --format=fuller --name-status --grep
+    dfind = log --decorate --stat --date=auto:human-local --format=fuller --name-status --grep
     dic = diff --color-words=.
     di = diff --color-words
-    dlog = log --decorate --stat --date=iso --format=fuller
+    dlog = log --decorate --stat --date=auto:human-local --format=fuller
     dt = "!f() { cd ${GIT_PREFIX:-.}; GIT_EXTERNAL_DIFF='difft --display=inline' git diff $@; }; f"
     dtlog = "!f() { cd ${GIT_PREFIX:-.}; GIT_EXTERNAL_DIFF='difft --display=inline' git ddlog --ext-diff $@; }; f"
     ec = config --global -e
@@ -61,8 +61,8 @@
     fix-head = remote set-head origin --auto
     flog = log --pretty=fixes
     format-patch-repo = !git format-patch --subject-prefix=\"PATCH $(basename $(git rev-parse --show-toplevel))\"
-    glog = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%aN>%Creset'
-    hist = log --follow --decorate --stat --date=iso --format=fuller -p
+    glog = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ch) %C(bold blue)<%aN>%Creset'
+    hist = log --follow --decorate --stat --date=auto:human-local --format=fuller -p
     ignore = update-index --skip-worktree
     no-ignore = update-index --no-skip-worktree
     pf = push --force-with-lease
