@@ -43,3 +43,10 @@ config = { procMacro = { ignored = { leptos_macro = [
 	# "component",
 	"server"
 ] } } }
+
+[language-server.tinymist]
+command = "tinymist"
+
+[[language]]
+name = "typst"
+language-servers = ["tinymist"]
