@@ -3,6 +3,10 @@
 _default:
     @just --list
 
+# Enter dev distrobox
+devbox:
+    distrobox-enter dev-toolbox -- fish -l
+
 # Install Iosevka font via GitHub release
 iosevka:
     #!/usr/bin/env bash
@@ -148,6 +152,6 @@ rust-core: rustup
 
 # Install all core tools
 install-core: rust-core iosevka zola git-sizer gdb-dashboard eisvogel
-    echo "Installed all core tools."    
+    echo "Installed all core tools."
 
-    
+
