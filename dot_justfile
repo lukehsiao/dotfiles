@@ -148,7 +148,7 @@ rust-core: rustup
 
     cargo install --git https://github.com/lukehsiao/tool.git --locked
     cargo install --git https://github.com/Myriad-Dreamin/tinymist --locked tinymist
-    cargo install --git https://github.com/tectonic-typesetting/tectonic.git --locked
+    cargo install --git https://github.com/tectonic-typesetting/tectonic.git --locked tectonic
 
 # Install all core tools
 install-core: rust-core iosevka zola git-sizer gdb-dashboard eisvogel
