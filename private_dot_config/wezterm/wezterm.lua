@@ -2,6 +2,8 @@ local wezterm = require 'wezterm'
 
 local config = wezterm.config_builder()
 
+-- Spawn a fish shell in login mode
+config.default_prog = { 'fish', '-l' }
 -- Slightly transparent and blurred background
 config.window_background_opacity = 0.9
 config.macos_window_background_blur = 30
