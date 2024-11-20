@@ -19,7 +19,7 @@ config.window_frame = {
         family = "Iosevka Term",
         weight = "Bold"
     },
-
+}
 config.color_scheme = "Selenized Dark"
 config.font = wezterm.font_with_fallback {
     "Berkeley Mono",
