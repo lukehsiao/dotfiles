@@ -1,13 +1,7 @@
 {{- $email := promptStringOnce . "email" "Email address" -}}
-{{- $name := promptStringOnce . "name" "Full Name" -}}
-{{- $aws_access_key_id := promptStringOnce . "aws_access_key_id" "AWS Access Key ID" -}}
-{{- $aws_secret_access_key := promptStringOnce . "aws_secret_access_key" "AWS Secret Access Key" -}}
 
 [data]
     email = {{ $email | quote }}
-    name = {{ $name | quote }}
-    aws_access_key_id = {{ $aws_access_key_id | quote }}
-    aws_secret_access_key = {{ $aws_secret_access_key | quote }}
 
 [edit]
     command = "hx"
