@@ -45,6 +45,7 @@ eisvogel:
     set -euxo pipefail
     curl -s https://api.github.com/repos/Wandmalfarbe/pandoc-latex-template/releases/latest | rg -N "browser_download_url" | rg -N --color never "Eisvogel.tar.gz" | sd '"' "'" | choose 1 | xargs -I % xh -F -o /tmp/eisvogel.tar.gz GET %
     mkdir -p /tmp/eisvogel
+    mkdir -p $HOME/.pandoc/templates
     tar xf /tmp/eisvogel.tar.gz -C /tmp/eisvogel
     install -m644 /tmp/eisvogel/eisvogel.latex $HOME/.pandoc/templates/eisvogel.latex
     rm -rf /tmp/eisvogel /tmp/eisvogel.tar.gz
