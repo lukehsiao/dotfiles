@@ -9,7 +9,7 @@ Environment=SHELL=%s
 Environment=HOME=%h
 Environment=container=podman
 Exec=--verbose --name %u --user %U --group %G --home %h --init "0" --nvidia "1" -- " "
-Image=ghcr.io/ublue-os/fedora-toolbox:latest
+Image=ghcr.io/lukehsiao/blingbox:latest
 HostName=dev.%l
 Label=manager=distrobox
 Network=host
