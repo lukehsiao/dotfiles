@@ -12,10 +12,6 @@ iosevka:
 	rm /tmp/iosevka.zip
 	fc-cache -f -v
 
-# Install rust toolchain
-rust:
-	curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
-
 # Install Zola from GitHub release
 zola:
 	#!/usr/bin/env bash
@@ -39,65 +35,6 @@ git-sizer:
 gdb-dashboard:
 	curl --proto '=https' --tlsv1.2 -sSLf https://raw.githubusercontent.com/cyrus-and/gdb-dashboard/master/.gdbinit -o ~/.gdbinit
 
-# Install nice rust utilities
-rust-utilities:
-	cargo install \
-		atuin \
-		bat \
-		bottom \
-		bunyan \
-		cargo-audit \
-		cargo-binstall \
-		cargo-bloat \
-		cargo-deny \
-		cargo-edit \
-		cargo-geiger \
-		cargo-nextest \
-		cargo-semver-checks \
-		cargo-update \
-		cargo-watch \
-		choose \
-		difftastic \
-		dircnt \
-		du-dust \
-		eva \
-		eza \
-		fd-find \
-		flamegraph \
-		git-cliff \
-		git-delta \
-		git-grab \
-		git-stats \
-		gping \
-		hexyl \
-		hyperfine \
-		jaq \
-		jless \
-		lychee \
-		oha \
-		onefetch \
-		openring \
-		pastel \
-		pgen \
-		ren-find \
-		rep-grep \
-		rimage \
-		ripgrep \
-		samply \
-		sd \
-		starship \
-		talk-timer \
-		tealdeer \
-		tectonic \
-		titlecase \
-		titlecase \
-		tokei \
-		tokei \
-		xh \
-		xsv \
-		zoxide
-	cargo install --git https://github.com/lukehsiao/tool.git
-
 # Install eisvogel pandoc template
 eisvogel:
 	#!/usr/bin/env bash
@@ -107,4 +44,3 @@ eisvogel:
 	tar xf /tmp/eisvogel.tar.gz -C /tmp/eisvogel
 	install -m644 /tmp/eisvogel/eisvogel.latex ~/.pandoc/templates/eisvogel.latex
 	rm -rf /tmp/eisvogel /tmp/eisvogel.tar.gz
-
