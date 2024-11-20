@@ -153,5 +153,3 @@ rust-core: rustup
 # Install all core tools
 install-core: rust-core iosevka zola git-sizer gdb-dashboard eisvogel
     echo "Installed all core tools."
-
-
