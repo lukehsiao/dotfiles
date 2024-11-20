@@ -1,46 +1,153 @@
 # just manual: https://github.com/casey/just
 
 _default:
-	@just --list
-	
+    @just --list
+
 # Install Iosevka font via GitHub release
 iosevka:
-	#!/usr/bin/env bash
-	set -euxo pipefail
-	curl -s https://api.github.com/repos/be5invis/Iosevka/releases/latest | rg -N "browser_download_url" | rg -N --color never "SuperTTC-Iosevka-\d+\.\d+\.\d+\.zip" | sd '"' "'" | choose 1 | xargs -I % xh -F -o /tmp/iosevka.zip GET %
-	unzip -o /tmp/iosevka.zip -d ~/.fonts/
-	rm /tmp/iosevka.zip
-	fc-cache -f -v
+    #!/usr/bin/env bash
+    set -euxo pipefail
+    curl -s https://api.github.com/repos/be5invis/Iosevka/releases/latest | rg -N "browser_download_url" | rg -N --color never "SuperTTC-Iosevka-\d+\.\d+\.\d+\.zip" | sd '"' "'" | choose 1 | xargs -I % xh -F -o /tmp/iosevka.zip GET %
+    unzip -o /tmp/iosevka.zip -d $HOME/.fonts/
+    rm /tmp/iosevka.zip
+    fc-cache -f -v
 
 # Install Zola from GitHub release
 zola:
-	#!/usr/bin/env bash
-	set -euxo pipefail
-	curl -s https://api.github.com/repos/getzola/zola/releases/latest | rg -N "browser_download_url" | rg -N --color never "zola.*linux-gnu.tar.gz" | sd '"' "'" | choose 1 | xargs -I % xh -F -o /tmp/zola.tar.gz GET %
-	mkdir -p /tmp/zola
-	tar xf /tmp/zola.tar.gz -C /tmp/zola
-	install -m755 /tmp/zola/zola ~/.cargo/bin
-	rm -rf /tmp/zola /tmp/zola.tar.gz
+    #!/usr/bin/env bash
+    set -euxo pipefail
+    curl -s https://api.github.com/repos/getzola/zola/releases/latest | rg -N "browser_download_url" | rg -N --color never "zola.*linux-gnu.tar.gz" | sd '"' "'" | choose 1 | xargs -I % xh -F -o /tmp/zola.tar.gz GET %
+    mkdir -p /tmp/zola
+    tar xf /tmp/zola.tar.gz -C /tmp/zola
+    install -m755 /tmp/zola/zola $HOME/.cargo/bin
+    rm -rf /tmp/zola /tmp/zola.tar.gz
 
 # Install git-sizer from GitHub release
 git-sizer:
-	#!/usr/bin/env bash
-	set -euxo pipefail
-	curl --proto '=https' --tlsv1.2 -sSLO https://github.com/github/git-sizer/releases/download/v1.5.0/git-sizer-1.5.0-linux-amd64.zip
-	unzip -o git-sizer-1.5.0-linux-amd64.zip -d tmp-git-sizer
-	install -m755 tmp-git-sizer/git-sizer ~/.local/bin/
-	rm -r git-sizer-1.5.0-linux-amd64.zip tmp-git-sizer
+    #!/usr/bin/env bash
+    set -euxo pipefail
+    curl --proto '=https' --tlsv1.2 -sSLO https://github.com/github/git-sizer/releases/download/v1.5.0/git-sizer-1.5.0-linux-amd64.zip
+    unzip -o git-sizer-1.5.0-linux-amd64.zip -d tmp-git-sizer
+    install -m755 tmp-git-sizer/git-sizer $HOME/.local/bin/
+    rm -r git-sizer-1.5.0-linux-amd64.zip tmp-git-sizer
 
 # Install GDB Dashboard
 gdb-dashboard:
-	curl --proto '=https' --tlsv1.2 -sSLf https://raw.githubusercontent.com/cyrus-and/gdb-dashboard/master/.gdbinit -o ~/.gdbinit
+    curl --proto '=https' --tlsv1.2 -sSLf https://raw.githubusercontent.com/cyrus-and/gdb-dashboard/master/.gdbinit -o $HOME/.gdbinit
 
 # Install eisvogel pandoc template
 eisvogel:
-	#!/usr/bin/env bash
-	set -euxo pipefail
-	curl -s https://api.github.com/repos/Wandmalfarbe/pandoc-latex-template/releases/latest | rg -N "browser_download_url" | rg -N --color never "Eisvogel.tar.gz" | sd '"' "'" | choose 1 | xargs -I % xh -F -o /tmp/eisvogel.tar.gz GET %
-	mkdir -p /tmp/eisvogel
-	tar xf /tmp/eisvogel.tar.gz -C /tmp/eisvogel
-	install -m644 /tmp/eisvogel/eisvogel.latex ~/.pandoc/templates/eisvogel.latex
-	rm -rf /tmp/eisvogel /tmp/eisvogel.tar.gz
+    #!/usr/bin/env bash
+    set -euxo pipefail
+    curl -s https://api.github.com/repos/Wandmalfarbe/pandoc-latex-template/releases/latest | rg -N "browser_download_url" | rg -N --color never "Eisvogel.tar.gz" | sd '"' "'" | choose 1 | xargs -I % xh -F -o /tmp/eisvogel.tar.gz GET %
+    mkdir -p /tmp/eisvogel
+    tar xf /tmp/eisvogel.tar.gz -C /tmp/eisvogel
+    install -m644 /tmp/eisvogel/eisvogel.latex $HOME/.pandoc/templates/eisvogel.latex
+    rm -rf /tmp/eisvogel /tmp/eisvogel.tar.gz
+
+# Install Rust
+rustup:
+    #!/usr/bin/env bash
+    set -euxo pipefail
+
+    if ! command -v rustup >/dev/null; then
+        # Install rustup and Rust stable
+        curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+        source "$HOME/.cargo/env"
+        rustup default stable
+        rustup update
+        echo "Installed Rust"
+    else
+        echo "Rust is already installed."
+    fi
+
+# Install Rust core tooling
+rust-core: rustup
+    #!/usr/bin/env bash
+    set -euxo pipefail
+
+    # Install binstall first
+    curl -L --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/cargo-bins/cargo-binstall/main/install-from-binstall-release.sh | bash
+
+    cargo binstall --locked \
+        atuin \
+        b3sum \
+        bat \
+        bottom \
+        bunyan \
+        cargo-audit \
+        cargo-bloat \
+        cargo-deny \
+        cargo-edit \
+        cargo-leptos \
+        cargo-nextest \
+        cargo-semver-checks \
+        cargo-update \
+        cargo-watch \
+        choose \
+        difftastic \
+        dircnt \
+        du-dust \
+        eva \
+        eza \
+        fd-find \
+        ffsend \
+        flamegraph \
+        git-absorb \
+        git-cliff \
+        git-delta \
+        git-grab \
+        git-stats \
+        gping \
+        hexyl \
+        hyperfine \
+        jaq \
+        jless \
+        just \
+        leptosfmt \
+        lychee \
+        mise \
+        numbat-cli \
+        oha \
+        onefetch \
+        openring \
+        oxipng \
+        pastel \
+        pgen \
+        poetry-udeps \
+        ren-find \
+        rep-grep \
+        rimage \
+        ripgrep \
+        samply \
+        sd \
+        sqlx-cli \
+        sshx \
+        star-history \
+        starship \
+        svgcleaner \
+        tailspin \
+        talk-timer \
+        tealdeer \
+        tectonic \
+        titlecase \
+        tokei \
+        toml-fmt \
+        trippy \
+        typeracer \
+        typst-cli \
+        wasm-bindgen-cli \
+        watchexec-cli \
+        xh \
+        xsv \
+        zellij \
+        zoxide
+
+    cargo install --git https://github.com/lukehsiao/tool.git --locked
+    cargo install --git https://github.com/Myriad-Dreamin/tinymist --locked tinymist
+
+# Install all core tools
+install-core: rust-core iosevka zola git-sizer gdb-dashboard eisvogel
+    echo "Installed all core tools."    
+
+    
