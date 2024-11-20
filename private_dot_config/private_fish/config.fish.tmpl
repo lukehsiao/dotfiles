@@ -20,10 +20,6 @@ if status --is-interactive
     set -x SSH_AUTH_SOCK (gpgconf --list-dirs agent-ssh-socket)
     gpgconf --launch gpg-agent
 
-    set -Ux PYENV_ROOT $HOME/.pyenv
-    fish_add_path $PYENV_ROOT/bin
-    pyenv init - | source
-
     fzf --fish | source
     starship init fish | source
     zoxide init --cmd cd fish | source
