@@ -39,3 +39,6 @@ Volume=/var/home/%u:/var/home/%u:shared
 Volume=%t:%t:rslave
 Volume=/etc/hosts:/etc/hosts:ro
 Volume=/etc/resolv.conf:/etc/resolv.conf:ro
+
+[Install]
+WantedBy=default.target
