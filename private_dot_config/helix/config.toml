@@ -2,6 +2,7 @@ theme = "selenized_dark"
 
 [editor]
 completion-timeout = 25
+end-of-line-diagnostics = "hint"
 
 [editor.soft-wrap]
 enable = true
@@ -14,12 +15,19 @@ insert = "bar"
 normal = "block"
 select = "underline"
 
+
+[editor.inline-diagnostics]
+cursor-line = "error"
+
 [editor.file-picker]
 hidden = false
 
 [keys.normal.g]
 q = ":reflow"
+# Replace smart quotes with normal
 "\"" = ":pipe sd \"’\" \"'\" | sd '(“|”)' '\"'"
+# Replace with em dash and en dash
+"-" = ":pipe sd '---' '—' | sd '--' '–'"
 
 [keys.normal.space]
 x = ":toggle whitespace.render all none"
