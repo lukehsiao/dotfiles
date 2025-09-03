@@ -1,8 +1,12 @@
-theme = "selenized_dark"
+theme = "catppuccin_mocha"
 
 [editor]
 completion-timeout = 25
 end-of-line-diagnostics = "hint"
+color-modes = true
+
+[editor.indent-guides]
+render = true
 
 [editor.soft-wrap]
 enable = true
@@ -15,19 +19,21 @@ insert = "bar"
 normal = "block"
 select = "underline"
 
+[editor.file-picker]
+hidden = false
 
 [editor.inline-diagnostics]
 cursor-line = "error"
-
-[editor.file-picker]
-hidden = false
 
 [keys.normal.g]
 q = ":reflow"
 # Replace smart quotes with normal
 "\"" = ":pipe sd \"’\" \"'\" | sd '(“|”)' '\"'"
 # Replace with em dash and en dash
-"-" = ":pipe sd '---' '—' | sd '--' '–'"
+"-" = ":pipe sd -- '---' '—' | sd -- '--' '–'"
+# Git blame in the editor (requires nightly, atm)
+# Ref: https://github.com/helix-editor/helix/discussions/6421#discussioncomment-12486943
+B = ":sh git log -n 5 --no-patch --pretty=format:'%%h -%%d %%s (%%cr) <%%aN>' -L%{cursor_line},+1:%{buffer_name}"
 
 [keys.normal.space]
 x = ":toggle whitespace.render all none"

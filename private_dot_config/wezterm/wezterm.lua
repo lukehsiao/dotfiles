@@ -20,15 +20,14 @@ config.window_frame = {
         weight = "Bold"
     },
 }
-config.color_scheme = "Selenized Dark"
+config.color_scheme = "Catppuccin Mocha"
 config.font = wezterm.font_with_fallback {
-    "Berkeley Mono",
+    -- "Berkeley Mono SemiCondensed",
     "Iosevka Term",
     "Fira Code"
 }
 config.font_size = 12.0
 config.line_height = 0.9
-config.cell_width = 0.9
 config.check_for_updates = true
 config.window_padding = {
     left = 0,
@@ -37,23 +36,8 @@ config.window_padding = {
     bottom = 0,
 }
 config.enable_tab_bar = true
+config.adjust_window_size_when_changing_font_size = false
 
 config.hyperlink_rules = wezterm.default_hyperlink_rules()
-
--- Make task numbers clickable
--- The first matched regex group is captured in $1.
-table.insert(config.hyperlink_rules, {
-    regex = [[\bHSI-(\d+)\b]],
-    format = 'https://linear.app/hsiao/issue/$0',
-})
-
--- make username/project paths clickable. this implies paths like the following are for github.
--- ( "nvim-treesitter/nvim-treesitter" | wbthomason/packer.nvim | wez/wezterm | "wez/wezterm.git" )
--- as long as a full url hyperlink regex exists above this it should not match a full url to
--- github or gitlab / bitbucket (i.e. https://gitlab.com/user/project.git is still a whole clickable url)
-table.insert(config.hyperlink_rules, {
-  regex = [[["]?([\w\d]{1}[-\w\d]+)(/){1}([-\w\d\.]+)["]?]],
-  format = 'https://www.github.com/$1/$3',
-})
 
 return config
