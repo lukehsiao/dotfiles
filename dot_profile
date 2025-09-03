@@ -35,3 +35,4 @@ if [ -d "/usr/local/go/bin" ] ; then
 fi
 
 export PATH="$HOME/.poetry/bin:$PATH"
+. "$HOME/.cargo/env"

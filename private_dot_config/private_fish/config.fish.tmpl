@@ -5,13 +5,15 @@ set -gx BAT_THEME "Solarized (dark)"
 set -gx EDITOR hx
 set -gx COLORTERM 24bit
 set -gx GRAB_HOME ~/repos
-set -gx CARGO_INSTALL_OPTS --locked
-set -gx GITHUB_TOKEN $(cat ~/.githubtoken)
+set -gx ZSTD_CLEVEL 19
+set -gx ZSTD_NBTHREADS (math (nproc)/2)
+
+# clear fish greeting
+set -g fish_greeting
 
 # Path updates
 fish_add_path $HOME/.local/bin
 fish_add_path $HOME/.cargo/bin
-fish_add_path /usr/local/go/bin
 fish_add_path $HOME/.poetry/bin
 
 # Configurations
@@ -23,6 +25,7 @@ if status --is-interactive
     fzf --fish | source
     starship init fish | source
     zoxide init --cmd cd fish | source
+    mise activate fish | source
 
     set -gx ATUIN_NOBIND true
     atuin init fish | source
@@ -33,7 +36,6 @@ if status --is-interactive
 
     bind \cE edit_command_buffer
 end
-
 
 # Aliases
 function ea
@@ -53,12 +55,7 @@ alias df="df -h"
 alias rg="rg -S"
 alias ping="gping"
 alias bcp="rsync -avzuhP"
-alias lofi="mpv \"https://www.youtube.com/watch?v=jfKfPfyJRdk\" --volume=70 --no-video &> /dev/null"
-alias ghibli="mpv \"https://www.youtube.com/watch?v=3jWRrafhO7M\" --volume=70 --no-video &> /dev/null"
-alias xclip="xclip -selection c"
-alias ls-users="cat /etc/passwd | grep '/home' | cut -d':' -f1"
 
-alias ls="eza"
 alias ll="ls -l --group-directories-first"
 alias la="ll -a"
 alias tree="ls -T"
