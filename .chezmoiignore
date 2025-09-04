@@ -1,9 +1,2 @@
 README.md
 justfile
-{{- if ne .chezmoi.hostname "panda" }}
-.pandoc/
-.gnupg/
-.ssh/
-.config/aerc/
-.config/regolith/
-{{- end }}
