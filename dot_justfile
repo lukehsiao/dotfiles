@@ -96,6 +96,17 @@ _rust-core: _rustup
     # Install rust-analyzer
     rustup component add rust-analyzer
 
+# Remove unused Omarchy Apps
+_cleanup-omarchy:
+    omarchy-webapp-remove \
+        Basecamp \
+        Discord \
+        HEY \
+        WhatsApp \
+        X \
+        Zoom
+
+
 # Install all core tools
 [group('install')]
 install-core: 
@@ -242,9 +253,12 @@ install-core:
     just _zulip
     just _tailscale
 
+    # Use fish as default
     chsh -s /usr/bin/fish
 
     @echo "Installed all core tools."
+
+    just _cleanup-omarchy
 
 # Import my public GPG key
 [group('install')]
