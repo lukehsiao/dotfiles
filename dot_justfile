@@ -102,8 +102,10 @@ install-core:
     yay -Rns tldr
     yay -S --noconfirm --needed \
         aerc \
+        ardour \
         asciinema \
         atuin \
+        audacity \
         b3sum \
         bacon \
         base-devel \
