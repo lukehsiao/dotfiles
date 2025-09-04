@@ -221,3 +221,8 @@ install-core:
     just _tailscale
 
     @echo "Installed all core tools."
+
+# Import my public GPG key
+[group('install')]
+import-gpg:
+    curl --proto '=https' --tlsv1.2 -sSf https://luke.hsiao.dev/publickey.txt | gpg --import
