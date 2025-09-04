@@ -6,16 +6,23 @@
 [core]
     editor = hx
     attributesfile = ~/.config/git/attributes
+    excludesfile = ~/.config/git/ignore
     commitGraph = true
     abbrev = 12
     pager = delta
 
+[column]
+    ui = auto
+
 [rerere]
     enabled = true
+    autoupdate = true
 
 [diff]
     colorMoved = default
     algorithm = histogram
+    mneumonicPrefix = true
+    renames = true
 
 [pretty]
     fixes = Fixes: %Cred%h%Creset (\"%s\")
@@ -31,6 +38,12 @@
 [branch]
     sort = -committerdate
 
+[tag]
+    sort = version:refname
+
+[pull]
+    rebase = true
+
 [init]
     defaultBranch = main
 
@@ -39,13 +52,56 @@
 
 [commit]
     gpgsign = false
-    template = ~/.config/git/.git-commit-template
+    template = ~/.config/git/commit-template
+    verbose = true
+
+[log]
+    mailmap = true
+
+[remote "origin"]
+    fetch = +refs/notes/*:refs/notes/*
+
+[notes]
+    displayRef = refs/notes/*
+
+[gc]
+    writeCommitGraph = true
+
+[merge]
+    ff = only
+    conflictstyle = zdiff3
+
+[push]
+    default = simple
+    followTags = true
+    autoSetupRemote = true
+
+[fetch]
+    prune = true
+    pruneTags = true
+    all = true
+
+[help]
+    autocorrect = prompt
+
+[credential]
+    helper = cache --timeout=7200
+
+[rebase]
+    autostash = true
+    autosquash = true
+    updateRefs = true
+
+[color "status"]
+    added = green
+    changed = yellow bold
+    untracked = red bold
 
 [alias]
     bdone = "!f() { DEFAULT=$(git default); git switch ${1-$DEFAULT} && git up && git brebased ${1-$DEFAULT}; }; f"
     bmerged = "!f() { DEFAULT=$(git default); git branch --merged ${1-DEFAULT} | grep -v \"${1-DEFAULT}$\" | xargs -r git branch -d; }; f"
     brebased = "!f() { DEFAULT=$(git default); for b in $(git branch --format=\"%(refname:short)\" | grep -vE \"(${1-DEFAULT}|$DEFAULT)\"); do if [ -z \"$(git cherry ${1-$DEFAULT} $b | grep \"^+\")\" ]; then git branch -D $b; fi; done; }; f"
-    clog = log --pretty=%C(yellow)%s%n%Creset%n%b%n---
+    clog = log --reverse --pretty=%C(yellow)%s%n%Creset%n%b%n---
     ddfind = log --decorate --stat --date=auto:human-local --format=fuller --patch --grep
     ddlog = log --decorate --stat --date=auto:human-local --format=fuller -p
     default = !git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@'
@@ -61,13 +117,14 @@
     fix-head = remote set-head origin --auto
     flog = log --pretty=fixes
     format-patch-repo = !git format-patch --subject-prefix=\"PATCH $(basename $(git rev-parse --show-toplevel))\"
-    glog = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cd) %C(bold blue)<%aN>%Creset'
+    glog = log --date=auto:human-local --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cd) %C(bold blue)<%aN>%Creset'
     hist = log --follow --decorate --stat --date=auto:human-local --format=fuller -p
     ignore = update-index --skip-worktree
     no-ignore = update-index --no-skip-worktree
     pf = push --force-with-lease
     plog = log -1 --pretty=%B
     rba = "!f() { DEFAULT=$(git default); git rebase -i --autosquash ${1-$DEFAULT}; }; f"
+    rlog = reflog --date=auto:human-local
     save = !git add -A && git commit -m 'SAVEPOINT'
     sba = "!f() { git subtree add --prefix $1 $2 master --squash; }; f"
     sbp = "!f() { git subtree push --prefix $1 $2 $3; }; f"
@@ -81,37 +138,7 @@
     wipe = !git add -A && git commit -qm 'WIPE SAVEPOINT' && git reset HEAD~1 --hard
     wip = !git add -u && git commit -m "WIP"
     wt = worktree
-
-[log]
-    mailmap = true
-
-[gc]
-    writeCommitGraph = true
-
-[merge]
-    ff = only
-    conflictstyle = zdiff3
-
-[push]
-    default = simple
-    followTags = true
-    autoSetupRemote = true
-
-[credential]
-    helper = cache --timeout=7200
-
-[rebase]
-    autostash = true
-    autosquash = true
-
-[color "status"]
-    added = green
-    changed = yellow bold
-    untracked = red bold
-
-[gpg]
-    program = gpg2
-{{ if eq .chezmoi.hostname "panda" }}
+    
 [credential "smtp://luke%40hsiao.dev@smtp.migadu.com%3a465"]
     helper = !pass migadu.com/{{ .email }}/git
 
@@ -123,4 +150,3 @@
     confirm = always
     suppresscc = self
     annotate = yes
-{{- end }}
