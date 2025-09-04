@@ -182,6 +182,7 @@ install-core:
         presenterm \
         prettier \
         ripgrep \
+        rsync \
         samply \
         sccache \
         sd \
