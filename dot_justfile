@@ -28,6 +28,21 @@ _rustup:
         echo "Rust is already installed."
     fi
 
+# Install Zulip (AppImage)
+_zulip:
+    #!/usr/bin/env bash
+    set -euxo pipefail
+
+    if ! command -v zulip >/dev/null; then
+        # Install zulip
+        xh --download https://zulip.com/apps/download/linux --output zulip
+        chmod +x zulip
+        sudo install zulip /usr/bin/zulip
+        echo "Installed Zulip"
+    else
+        echo "Zulip is already installed."
+    fi
+
 # Install d2
 _d2:
     curl -fsSL https://d2lang.com/install.sh | sh -s --
@@ -219,6 +234,7 @@ install-core:
     just _rust-core
     just _iosevka
     just _d2
+    just _zulip
     just _tailscale
 
     chsh -s /usr/bin/fish
