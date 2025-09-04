@@ -117,6 +117,7 @@ install-core:
         fish \
         fzf \
         gdb \
+        ghostty \
         git \
         git-absorb \
         git-cliff \
