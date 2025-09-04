@@ -1,0 +1,4 @@
+theme = catppuccin-mocha.conf
+font-family = Berkeley Mono SemiCondensed
+# Fix Ctrl+[ in helix
+keybind = ctrl+left_bracket=text:\x1b
