@@ -176,6 +176,7 @@ install-core:
         pcsclite \
         pipewire \
         pipewire-audio \
+        pinentry \
         podman \
         postgresql \
         presenterm \
