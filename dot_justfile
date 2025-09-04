@@ -98,6 +98,7 @@ _rust-core: _rustup
 
 # Remove unused Omarchy Apps
 _cleanup-omarchy:
+    # Remove unused webapps
     omarchy-webapp-remove \
         Basecamp \
         Discord \
@@ -105,6 +106,9 @@ _cleanup-omarchy:
         WhatsApp \
         X \
         Zoom
+
+    # Remove unused packages
+    yay -Rns obsidian
 
 
 # Install all core tools
