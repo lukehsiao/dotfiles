@@ -220,6 +220,8 @@ install-core:
     just _d2
     just _tailscale
 
+    chsh -s /usr/bin/fish
+
     @echo "Installed all core tools."
 
 # Import my public GPG key
