@@ -260,6 +260,9 @@ install-core:
     # Use fish as default
     chsh -s /usr/bin/fish
 
+    # Install webapps
+    omarchy-webapp-install DuckAI https://duck.ai https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/duckduckgo.png
+
     @echo "Installed all core tools."
 
     just _cleanup-omarchy
