@@ -186,6 +186,7 @@ install-core:
         sd \
         shellcheck \
         shfmt \
+        slack-desktop-wayland \
         slurp \
         speedtest-cli \
         sqlite \
