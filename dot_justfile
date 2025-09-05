@@ -263,6 +263,7 @@ install-core:
     # Install webapps
     omarchy-webapp-install DuckAI https://duck.ai https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/duckduckgo.png
     omarchy-webapp-install "Google Voice" https://voice.google.com https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/google-voice.png
+    omarchy-webapp-install "Google Calendar" https://calendar.google.com https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/google-calendar.png
 
     @echo "Installed all core tools."
 
