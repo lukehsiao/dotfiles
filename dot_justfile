@@ -273,3 +273,46 @@ install-core:
 [group('install')]
 import-gpg:
     curl --proto '=https' --tlsv1.2 -sSf https://luke.hsiao.dev/publickey.txt | gpg --import
+
+# Set TCP congestion control to BBR
+[group('install')]
+use-bbr:
+    #!/usr/bin/env bash
+    set -euo pipefail
+
+    # config files
+    MODULES_FILE="/etc/modules-load.d/bbr.conf"
+    SYSCTL_FILE="/etc/sysctl.d/99-bbr.conf"
+
+    if [[ ! -f "$MODULES_FILE" ]]; then
+        echo "Creating $MODULES_FILE"
+        echo "tcp_bbr" | sudo tee "$MODULES_FILE" >/dev/null
+    else
+        echo "$MODULES_FILE already exists, skipping."
+    fi
+
+    if [[ ! -f "$SYSCTL_FILE" ]]; then
+        echo "Creating $SYSCTL_FILE"
+        sudo tee "$SYSCTL_FILE" >/dev/null <<EOF
+    net.core.default_qdisc=cake
+    net.ipv4.tcp_congestion_control=bbr
+    EOF
+    else
+        echo "$SYSCTL_FILE already exists, skipping."
+    fi
+
+    # Load modules if not already loaded
+    if ! lsmod | awk '{print $1}' | grep -qx "tcp_bbr"; then
+        echo "Loading tcp_bbr"
+        sudo modprobe tcp_bbr
+    else
+        echo "tcp_bbr module already loaded"
+    fi
+    sudo sysctl --system >/dev/null
+
+    echo -n "Available CC: "
+    sysctl -n net.ipv4.tcp_available_congestion_control
+    echo -n "CC: "
+    sysctl -n net.ipv4.tcp_congestion_control
+    echo -n "qdisc: "
+    sysctl -n net.core.default_qdisc
