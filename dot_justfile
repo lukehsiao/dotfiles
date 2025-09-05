@@ -188,6 +188,7 @@ install-core:
         oxipng \
         pandoc \
         parallel \
+        paru-bin \
         pass \
         pastel \
         pcsclite \
