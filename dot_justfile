@@ -209,7 +209,6 @@ install-core:
         slurp \
         speedtest-cli \
         sqlite \
-        sqlite \
         sshx \
         starship \
         strace \
