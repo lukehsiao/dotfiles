@@ -104,8 +104,7 @@ _cleanup-omarchy:
         Discord \
         HEY \
         WhatsApp \
-        X \
-        Zoom
+        X
 
     # Remove unused packages
     yay -Rns obsidian
