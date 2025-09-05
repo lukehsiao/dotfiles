@@ -59,7 +59,7 @@
   "cpu": {
     "interval": 5,
     "format": "󰍛",
-    "on-click": "ghostty -e btm"
+    "on-click": "ghostty --class=TUI.float -e btm"
   },
   "clock": {
     "format": "{:%A %H:%M}",
@@ -84,7 +84,7 @@
     "tooltip-format-disconnected": "Disconnected",
     "interval": 3,
     "spacing": 1,
-    "on-click": "ghostty --class=Impala -e impala"
+    "on-click": "ghostty --class=TUI.float -e impala"
   },
   "battery": {
     "format": "{capacity}% {icon}",
@@ -136,7 +136,7 @@
   },
   "pulseaudio": {
     "format": "{icon}",
-    "on-click": "ghostty --class=Wiremix -e wiremix",
+    "on-click": "ghostty --class=TUI.float -e wiremix",
     "on-click-right": "pamixer -t",
     "tooltip-format": "Playing at {volume}%",
     "scroll-step": 5,
