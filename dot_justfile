@@ -119,14 +119,7 @@ _cleanup-omarchy:
 # Install all core tools
 [group('install')]
 install-core: 
-    # ensure cargo is sourced
-    if ! command -v rustup >/dev/null; then
-        source "$HOME/.cargo/env"
-    fi
-
-    if yay -Q tldr &> /dev/null; then
-        yay -Rns tldr
-    fi
+    yay -Rns tldr || true
 
     yay -S --noconfirm --needed \
         aerc \
