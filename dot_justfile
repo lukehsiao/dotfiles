@@ -254,14 +254,15 @@ install-core:
 
     # allow Mosh
     sudo ufw allow 60000:61000/udp comment "Mosh"
-    # allow tailscale
-    sudo ufw allow in on tailscale0
 
     just _rust-core
     just _iosevka
     just _d2
     just _zulip
     just _tailscale
+
+    # allow tailscale
+    sudo ufw allow in on tailscale0
 
     # Use fish as default
     chsh -s /usr/bin/fish
