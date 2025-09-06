@@ -58,6 +58,11 @@ _rust-core: _rustup
     #!/usr/bin/env bash
     set -euxo pipefail
 
+    # ensure cargo is sourced
+    if ! command -v rustup >/dev/null; then
+        source "$HOME/.cargo/env"
+    fi
+
     # Install binstall first
     curl -L --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/cargo-bins/cargo-binstall/main/install-from-binstall-release.sh | bash
 
@@ -114,6 +119,11 @@ _cleanup-omarchy:
 # Install all core tools
 [group('install')]
 install-core: 
+    # ensure cargo is sourced
+    if ! command -v rustup >/dev/null; then
+        source "$HOME/.cargo/env"
+    fi
+
     yay -Rns tldr
     yay -S --noconfirm --needed \
         aerc \
