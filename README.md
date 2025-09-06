@@ -10,6 +10,7 @@ Install from fresh with:
 yay -S chezmoi just
 chezmoi init https://github.com/lukehsiao/dotfiles.git
 chezmoi apply
-just install-core
 just import-gpg
+just install-core
+just use-bbr
 ```
