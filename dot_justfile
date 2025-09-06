@@ -124,7 +124,10 @@ install-core:
         source "$HOME/.cargo/env"
     fi
 
-    yay -Rns tldr
+    if yay -Q tldr &> /dev/null; then
+        yay -Rns tldr
+    fi
+
     yay -S --noconfirm --needed \
         aerc \
         ardour \
