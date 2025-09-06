@@ -254,6 +254,8 @@ install-core:
 
     # allow Mosh
     sudo ufw allow 60000:61000/udp comment "Mosh"
+    # allow tailscale
+    sudo ufw allow in on tailscale0
 
     just _rust-core
     just _iosevka
