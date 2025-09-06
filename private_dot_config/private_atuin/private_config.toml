@@ -18,6 +18,7 @@ history_filter = [
   "^mosh",
   "^mv",
   "^pass",
+  "^paru",
   "^poetry",
   "^rg",
   "^rm",
@@ -28,6 +29,7 @@ history_filter = [
   "^zellij",
   "^systemctl poweroff$",
   "^systemctl reboot$",
+  "^yay",
 ]
 
 enter_accept = true
