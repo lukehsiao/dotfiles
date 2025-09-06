@@ -248,6 +248,9 @@ install-core:
         zoxide \
         zstd 
 
+    # hx as helix
+    sudo ln -s (which helix) /usr/bin/hx
+
     # allow Mosh
     sudo ufw allow 60000:61000/udp comment "Mosh"
 
