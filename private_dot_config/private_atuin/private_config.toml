@@ -15,6 +15,7 @@ history_filter = [
   "^just",
   "^la",
   "^ls",
+  "^mkdir",
   "^mosh",
   "^mv",
   "^paru",
