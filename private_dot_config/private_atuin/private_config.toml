@@ -18,6 +18,7 @@ history_filter = [
   "^mkdir",
   "^mosh",
   "^mv",
+  "^numbat",
   "^paru",
   "^pass",
   "^poetry",
