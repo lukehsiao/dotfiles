@@ -52,8 +52,7 @@ _d2:
 
 # Install tailscale
 _tailscale:
-    yay -S --noconfirm --needed tailscale
-    sudo systemctl enable --now tailscaled
+    omarchy-install-tailscale
 
 # Install Rust core tooling
 _rust-core: _rustup
