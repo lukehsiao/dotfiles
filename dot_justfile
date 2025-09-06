@@ -240,6 +240,7 @@ install-core:
         vim \
         vscode-langservers-extracted \
         watchexec \
+        wireshark-qt \
         wget \
         wl-clipboard \
         xh \
