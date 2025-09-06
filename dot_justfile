@@ -38,6 +38,7 @@ _zulip:
         xh --download https://zulip.com/apps/download/linux --output zulip
         chmod +x zulip
         sudo install zulip /usr/bin/zulip
+        rm zulip
         echo "Installed Zulip"
     else
         echo "Zulip is already installed."
