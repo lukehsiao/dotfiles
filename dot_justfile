@@ -1,5 +1,7 @@
 # just manual: https://github.com/casey/just
 
+whoami := env('USER')
+
 _default:
     @just --list
 
@@ -255,6 +257,9 @@ install-core:
         zola \
         zoxide \
         zstd 
+
+    # add to wireshark group to use wireshark
+    sudo usermod -aG {{whoami}} wireshark 
 
     # hx as helix
     sudo ln -s (which helix) /usr/bin/hx
