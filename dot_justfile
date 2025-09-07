@@ -106,7 +106,7 @@ _rust-core: _rustup
 # Install dictd and offline dictionaries
 _install-dictd:
     sudo pacman -S dictd
-    paru -S dict-gcide wordnet-dictd dict-mody-thesaurus
+    paru -S dict-gcide wordnet-dictd dict-moby-thesaurus
     sudo systemctl enable --now dictd.service
 
 # Remove unused Omarchy Apps
