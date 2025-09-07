@@ -103,6 +103,12 @@ _rust-core: _rustup
     # Install rust-analyzer
     rustup component add rust-analyzer
 
+# Install dictd and offline dictionaries
+_install-dictd:
+    sudo pacman -S dictd
+    paru -S dict-gcide wordnet-dictd dict-mody-thesaurus
+    sudo systemctl enable --now dictd.service
+
 # Remove unused Omarchy Apps
 _cleanup-omarchy:
     # Remove unused webapps
@@ -115,7 +121,6 @@ _cleanup-omarchy:
 
     # Remove unused packages
     yay -Rns obsidian
-
 
 # Install all core tools
 [group('install')]
@@ -270,6 +275,7 @@ install-core:
     just _iosevka
     just _d2
     just _zulip
+    just _install-dictd
     just _tailscale
 
     # allow tailscale
