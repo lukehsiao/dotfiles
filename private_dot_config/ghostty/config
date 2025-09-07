@@ -1,6 +1,24 @@
 theme = catppuccin-mocha.conf
 
-font-family = "Berkeley Mono SemiCondensed"
+font-family = "Berkeley Mono Variable"
+# SemiCondensed
+font-variation = wdth=90
+font-variation = wght=400
+# otfinfo -f ~/.local/share/fonts/Berkeley\ Mono\ Variable.otf
+# aalt    Access All Alternates
+# calt    Contextual Alternates
+# ccmp    Glyph Composition/Decomposition
+# mark    Mark Positioning
+# mkmk    Mark to Mark Positioning
+# salt    Stylistic Alternates
+# ss01    Stylistic Set 1 <- slashed 0
+# ss02    Stylistic Set 2 <- dotted 0
+# ss03    Stylistic Set 3 <- gap 0
+# ss04    Stylistic Set 4 <- slashed 0, slash 7
+# ss05    Stylistic Set 5 <- dotted 0, slash 7
+# ss06    Stylistic Set 6 <- gap 0, slash 7
+font-feature = +calt
+font-feature = +ss02
 font-size = 13
 adjust-cell-height = -2%
 
