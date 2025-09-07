@@ -258,9 +258,13 @@ install-core:
         zathura \
         zathura-pdf-poppler \
         zellij \
+        zen-browser-bin \
         zola \
         zoxide \
         zstd 
+
+    # use Zen browser as default
+    xdg-settings set default-web-browser zen.desktop
 
     # add to wireshark group to use wireshark
     sudo usermod -aG {{whoami}} wireshark 
