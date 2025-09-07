@@ -22,8 +22,8 @@ font-feature = +ss02
 font-size = 16
 adjust-cell-height = -2%
 
-window-padding-x = 8
-window-padding-y = 8
+window-padding-x = 14
+window-padding-y = 14
 
 # Fix Ctrl+[ in helix
 keybind = ctrl+left_bracket=text:\x1b
