@@ -267,7 +267,7 @@ install-core:
     xdg-settings set default-web-browser zen.desktop
 
     # add to wireshark group to use wireshark
-    sudo usermod -aG {{whoami}} wireshark 
+    sudo usermod -aG wireshark {{whoami}}
 
     # hx as helix
     sudo ln -s (which helix) /usr/bin/hx
