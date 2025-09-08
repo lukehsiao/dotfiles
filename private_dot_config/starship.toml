@@ -1,6 +1,6 @@
 add_newline = true
 command_timeout = 200
-format = "[$directory$git_branch$git_status]($style)($time)$character"
+format = "[$directory$git_branch$git_status$python$time]($style)$character"
 
 [character]
 error_symbol = "[✗](bold cyan)"
@@ -33,3 +33,7 @@ deleted    = ""
 
 [time]
 disabled = false
+
+[python]
+format = '[(\($virtualenv\) )]($style)'
+style = "bold yellow"
