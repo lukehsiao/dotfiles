@@ -152,6 +152,7 @@ install-core:
         croc \
         curl \
         difftastic \
+        dmidecode \
         dog \
         dust \
         eza \
