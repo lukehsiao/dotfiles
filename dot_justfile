@@ -302,6 +302,8 @@ install-core:
 [group('install')]
 import-gpg:
     curl --proto '=https' --tlsv1.2 -sSf https://luke.hsiao.dev/publickey.txt | gpg --import
+    @echo "Now, remember to edit the key with trust."
+
 
 # Set TCP congestion control to BBR
 [group('install')]
