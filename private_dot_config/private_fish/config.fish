@@ -4,7 +4,7 @@ set -gx FZF_CTRL_T_COMMAND "$FZF_DEFAULT_COMMAND"
 set -gx BAT_THEME "Solarized (dark)"
 set -gx EDITOR hx
 set -gx COLORTERM 24bit
-set -gx GRAB_HOME ~/repos
+set -gx GRAB_HOME ~/Work
 set -gx ZSTD_CLEVEL 19
 set -gx ZSTD_NBTHREADS (math (nproc)/2)
 
