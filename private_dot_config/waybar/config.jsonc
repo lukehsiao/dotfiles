@@ -61,7 +61,7 @@
   "cpu": {
     "interval": 5,
     "format": "󰍛",
-    "on-click": "$TERMINAL -e btop"
+    "on-click": "$TERMINAL --class=TUI.float -e btm"
   },
   "clock": {
     "format": "{:%A %d %b %H:%M}",
@@ -138,7 +138,7 @@
   },
   "pulseaudio": {
     "format": "{icon}",
-    "on-click": "$TERMINAL --class=Wiremix -e wiremix",
+    "on-click": "$TERMINAL --class=TUI.float -e wiremix",
     "on-click-right": "pamixer -t",
     "tooltip-format": "Playing at {volume}%",
     "scroll-step": 5,
