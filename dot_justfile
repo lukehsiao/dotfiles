@@ -276,6 +276,9 @@ install-core:
     # allow Mosh
     sudo ufw allow 60000:61000/udp comment "Mosh"
 
+    # enable sshd
+    sudo systemctl enable sshd
+
     just _rust-core
     just _iosevka
     just _d2
