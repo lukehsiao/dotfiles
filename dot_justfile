@@ -154,6 +154,7 @@ install-core:
         difftastic \
         dmidecode \
         dog \
+        duf \
         dust \
         eza \
         fastfetch \
