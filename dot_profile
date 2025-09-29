@@ -36,3 +36,5 @@ fi
 
 export PATH="$HOME/.poetry/bin:$PATH"
 . "$HOME/.cargo/env"
+
+. "$HOME/.local/share/../bin/env"
