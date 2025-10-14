@@ -12,9 +12,11 @@ size = 16
 [window]
 padding.x = 14
 padding.y = 14
-decorations = "None"
+decorations = "none"
 
 [keyboard]
 bindings = [
-{ key = "F11", action = "ToggleFullscreen" }
+{ key = "F11", action = "ToggleFullscreen" },
+{ key = "Insert", mods = "Shift", action = "Paste" },
+{ key = "Insert", mods = "Control", action = "Copy" }
 ]
