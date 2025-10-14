@@ -2,6 +2,7 @@ words = [
     "bcdboot",
     "btrfs",
     "chezmoi",
+    "cpus",
     "diskpart",
     "distrobox",
     "efi",
