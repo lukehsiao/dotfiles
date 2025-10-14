@@ -27,3 +27,7 @@ window-padding-y = 14
 
 # Fix Ctrl+[ in helix
 keybind = ctrl+left_bracket=text:\x1b
+
+# Don't toggle fullscreen on Ctrl+Enter
+# Remove if/when https://github.com/basecamp/omarchy/pull/2432 merges
+keybind = control+enter=unbind
