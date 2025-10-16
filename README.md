@@ -27,4 +27,7 @@ just use-bbr  # optional
 # Configure styles for zen browser
 # Grab pass
 git clone git@github.com:lukehsiao/pass.git ~/.password-store
+# Fix remote
+chezmoi cd
+git remote set-url origin git@github.com:lukehsiao/dotfiles.git
 ```
