@@ -1,3 +1,4 @@
+default_shell "fish"
 keybinds clear-defaults=true {
     locked {
         bind "Ctrl g" { SwitchToMode "normal"; }
