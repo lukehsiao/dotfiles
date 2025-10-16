@@ -5,15 +5,6 @@ completion-timeout = 25
 end-of-line-diagnostics = "hint"
 color-modes = true
 
-[editor.indent-guides]
-render = true
-
-[editor.soft-wrap]
-enable = true
-
-[editor.lsp]
-display-inlay-hints = true
-
 [editor.cursor-shape]
 insert = "bar"
 normal = "block"
@@ -22,8 +13,28 @@ select = "underline"
 [editor.file-picker]
 hidden = false
 
+[editor.indent-guides]
+render = true
+
 [editor.inline-diagnostics]
 cursor-line = "error"
+
+[editor.lsp]
+display-inlay-hints = true
+
+[editor.soft-wrap]
+enable = true
+
+[editor.statusline]
+right = [
+  "diagnostics",
+  "file-type",
+  "primary-selection-length",
+  "selections",
+  "register",
+  "position",
+  "file-encoding"
+]
 
 [keys.normal.g]
 q = ":reflow"
