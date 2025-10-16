@@ -1,5 +1,5 @@
 theme = catppuccin-mocha.conf
-
+command = /usr/bin/fish --login --interactive
 font-family = "Berkeley Mono Variable"
 # SemiCondensed
 font-variation = wdth=90
