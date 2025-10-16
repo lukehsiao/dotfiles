@@ -29,6 +29,6 @@ git clone git@github.com:lukehsiao/pass.git ~/.password-store
 # Fix remote
 chezmoi cd
 git remote set-url origin git@github.com:lukehsiao/dotfiles.git
-cd ..
+exit
 atuin login
 ```
