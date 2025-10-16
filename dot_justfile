@@ -258,6 +258,9 @@ install-core:
     # add to wireshark group to use wireshark
     sudo usermod -aG wireshark {{whoami}}
 
+    # add to uucp group for nanokvm-usb
+    sudo usermod -aG uucp {{whoami}}
+
     # hx as helix
     sudo ln -sf $(which helix) /usr/bin/hx
 
