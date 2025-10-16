@@ -18,6 +18,8 @@ _rustup:
         rustup update
         echo "Installed Rust"
     else
+        rustup default stable
+        rustup update
         echo "Rust is already installed."
     fi
 
