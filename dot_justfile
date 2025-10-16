@@ -267,6 +267,7 @@ install-core:
     sudo ln -sf $(which helix) /usr/bin/hx
 
     # allow Mosh
+    sudo systemctl enable --now ufw.service
     sudo ufw enable
     sudo ufw allow 60000:61000/udp comment "Mosh"
 
