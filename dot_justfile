@@ -5,15 +5,6 @@ whoami := env('USER')
 _default:
     @just --list
 
-# Install Iosevka font via GitHub release
-_iosevka:
-    #!/usr/bin/env bash
-    set -euxo pipefail
-    curl -s https://api.github.com/repos/be5invis/Iosevka/releases/latest | rg -N "browser_download_url" | rg -N --color never "SuperTTC-Iosevka-\d+\.\d+\.\d+\.zip" | sd '"' "'" | choose 1 | xargs -I % xh -F -o /tmp/iosevka.zip GET %
-    unzip -o /tmp/iosevka.zip -d $HOME/.local/share/fonts/
-    rm /tmp/iosevka.zip
-    fc-cache -f -v
-
 # Install Rust
 _rustup:
     #!/usr/bin/env bash
@@ -282,7 +273,6 @@ install-core:
     sudo systemctl enable sshd
 
     just _rust-core
-    just _iosevka
     just _d2
     just _zulip
     just _install-dictd
