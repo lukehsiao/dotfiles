@@ -25,4 +25,6 @@ just import-gpg
 just install-core
 just use-bbr  # optional
 # Configure styles for zen browser
+# Grab pass
+git clone git@github.com:lukehsiao/pass.git ~/.password-store
 ```
