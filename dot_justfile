@@ -237,6 +237,7 @@ install-core:
         typstyle \
         units \
         unzip \
+        usbutils \
         valgrind \
         vim \
         vscode-langservers-extracted \
