@@ -113,7 +113,7 @@ _cleanup-omarchy:
         X
 
     # Remove unused packages
-    yay -Rns obsidian typora
+    yay -Rns aether obsidian typora || true
 
 # Install all core tools
 [group('install')]
