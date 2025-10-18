@@ -1,4 +1,5 @@
 words = [
+    "asus",
     "bcdboot",
     "btrfs",
     "chezmoi",
@@ -10,8 +11,10 @@ words = [
     "ghostty's",
     "gpt",
     "hsiao",
+    "hyprctl",
     "limine",
     "luks",
+    "macbook",
     "ntfs",
     "nvme",
     "omakase",
