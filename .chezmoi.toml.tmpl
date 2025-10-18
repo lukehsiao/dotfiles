@@ -1,11 +1,19 @@
 {{- $email := promptStringOnce . "email" "Email address" -}}
 
+{{- $dpichoices := list "retina" "mid" "low" -}}
+{{- $dpi := promptChoiceOnce . "dpi" "What is the resolution if your display" $dpichoices -}}
+
+{{- $mousedpichoices := list "high" "low" -}}
+{{- $mousedpi := promptChoiceOnce . "mousedpi" "What is the dpi of your mouse" $mousedpichoices -}}
+
 [data]
-    email = {{ $email | quote }}
+email = {{ $email | quote }}
+dpi = {{ $dpi | quote }}
+mousedpi = {{ $mousedpi | quote }}
 
 [edit]
-    command = "hx"
+command = "hx"
 
 [merge]
-    command = "nvim"
-    args = ["-d", "{{`{{ .Destination }}`}}", "{{`{{ .Source }}`}}", "{{`{{ .Target }}`}}"]
+command = "nvim"
+args = ["-d", "{{`{{ .Destination }}`}}", "{{`{{ .Source }}`}}", "{{`{{ .Target }}`}}"]
