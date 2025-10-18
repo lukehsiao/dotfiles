@@ -48,6 +48,10 @@ function sc-pin
     gpg-connect-agent "scd checkpin $serial" /bye
 end
 
+function chezmoi-cd
+    cd (chezmoi source-path)
+end
+
 alias vim="nvim"
 alias vi="nvim"
 alias cat="bat"
