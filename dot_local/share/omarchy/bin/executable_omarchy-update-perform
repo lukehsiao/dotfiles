@@ -6,4 +6,5 @@ omarchy-update-available-reset
 omarchy-update-system-pkgs
 cargo install-update -a -g
 omarchy-migrate
+omarchy-hook post-update
 omarchy-update-restart
