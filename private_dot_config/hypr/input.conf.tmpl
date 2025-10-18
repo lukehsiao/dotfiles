@@ -14,7 +14,11 @@ input {
   numlock_by_default = true
 
   # Increase sensitity for mouse/trackpack (default: 0)
+  {{ if eq .mousedpi "high" -}}
+  sensitivity = -0.9
+  {{- else }}
   # sensitivity = 0.35
+  {{- end }}
   accel_profile = flat
 
   touchpad {
