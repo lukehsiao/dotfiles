@@ -108,9 +108,10 @@ _cleanup-omarchy:
     omarchy-webapp-remove \
         Basecamp \
         Discord \
+        Figma \
         HEY \
         WhatsApp \
-        X
+        X || true
 
     # Remove unused packages
     yay -Rns obsidian typora || true
