@@ -7,8 +7,60 @@ email = {{ .email }}
 [git]
 auto-local-bookmark = true
 
+[template-aliases]
+commit_template = '''"JJ: <type>(<scope>): (If applied, this commit will...) <subject> (Max 50 char)
+JJ: |<---  Try to Limit to a Max of 50 char  --->|
+
+JJ: Explain why this change is being made
+JJ: |<---   Try To Limit Each Line to a Maximum Of 72 Characters   --->|
+
+JJ: Provide links or keys to any relevant tickets, articles or other resources
+JJ: Example: Github issue #23, BREAKING CHANGE: <description>, Ref: 5119ae
+
+JJ: --- COMMIT END ---
+JJ: Type can be
+JJ:   build:    changes that affect the build system or external dependencies
+JJ:   chore:    updating grunt tasks; no production code change
+JJ:   ci:       changes to our ci configuration files and scripts
+JJ:   docs:     changes to documentation
+JJ:   feat:     new feature, correlates with MINOR
+JJ:   fix:      bug fix, correlates with PATCH
+JJ:   perf:     a code change that improves performance
+JJ:   refactor: refactoring production code; neither fixes a bug nor adds a feature
+JJ:   revert:   for reverts, revert: <old subject>; state reverted hash in body
+JJ:   style:    formatting, missing semi colons, etc; no code meaning change
+JJ:   test:     adding or refactoring tests; no production code change
+JJ:
+JJ: Scope refers to the file, directory, or system that is being modified.
+JJ:
+JJ: Follow the type(scope) with an '!' to indicate a breaking change.
+JJ: Example: refactor(api)!: remove the accident-prone delete_all button
+JJ: --------------------
+JJ: Remember to
+JJ:    Use the imperative mood in the subject line
+JJ:    Do not end the subject line with a period
+JJ:    Separate subject from body with a blank line
+JJ:    Use the body to explain what and why vs. how
+JJ:    Can use multiple lines with '-' for bullet points in body
+JJ:    BREAKING CHANGE: to correlate with MAJOR
+JJ:
+JJ: See: https://www.conventionalcommits.org/en/v1.0.0/)"
+'''
+
+
 [templates]
 git_push_bookmark = '"lwh/" ++ change_id.short()'
+draft_commit_description ='''
+    concat(
+      coalesce(description, commit_template, "\n"),
+      surround(
+        "\nJJ: This commit contains the following changes:\n", "",
+        indent("JJ:     ", diff.stat(72)),
+      ),
+      "\nJJ: ignore-rest\n",
+      diff.git(),
+    )
+'''
 
 [ui]
 editor = "hx"
