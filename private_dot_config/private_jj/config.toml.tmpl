@@ -75,4 +75,5 @@ draft_commit_description ='''
 
 [aliases]
 l = ["log", "-r", "@ | ancestors(trunk()..(visible_heads() & mine()), 2) | trunk()"]
+la = ["log", "-r", "all()"]
 tug = ["bookmark", "move", "--from", "heads(::@- & bookmarks())", "--to", "@-"]
