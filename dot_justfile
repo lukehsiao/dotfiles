@@ -176,6 +176,7 @@ install-core:
         imagemagick \
         jaq \
         jless \
+        jujutsu \
         just \
         k9s \
         kubectl \
