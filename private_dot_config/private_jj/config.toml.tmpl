@@ -7,6 +7,18 @@ email = "{{ .email }}"
 [git]
 auto-local-bookmark = true
 
+[ui]
+editor = "hx"
+pager=["delta", "--pager", "less -FRX"] # Keeps output from the terminal after closing the pager
+diff-formatter = ":git" # required by `delta`
+
+# These options allow for `jj diff` and `jj show` to clear the output from the terminal after closing the pager.
+[[--scope]]
+--when.commands = ["diff", "show"]
+
+[--scope.ui]
+pager = "delta"
+
 [template-aliases]
 commit_template = '''"JJ: <type>(<scope>): (If applied, this commit will...) <subject> (Max 50 char)
 JJ: |<---  Try to Limit to a Max of 50 char  --->|
@@ -47,7 +59,6 @@ JJ:
 JJ: See: https://www.conventionalcommits.org/en/v1.0.0/)"
 '''
 
-
 [templates]
 git_push_bookmark = '"lwh/" ++ change_id.short()'
 draft_commit_description ='''
@@ -62,11 +73,5 @@ draft_commit_description ='''
     )
 '''
 
-[ui]
-editor = "hx"
-pager = "delta"
-diff-formatter = ":git"
-
 [aliases]
 l = ["log", "-r", "@ | ancestors(trunk()..(visible_heads() & mine()), 2) | trunk()"]
-la = ["log", "-r", "::"]
