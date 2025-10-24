@@ -74,7 +74,7 @@ draft_commit_description ='''
 '''
 
 [aliases]
-clog = ["log", "-r", "trunk()..@", "--reversed", "-T", "description ++ '\n---\n\n'", "--no-graph", "--no-pager"]
+cl = ["log", "-r", "trunk()..@", "--reversed", "-T", "description ++ '\n---\n\n'", "--no-graph", "--no-pager"]
 l = ["log", "-r", "@ | ancestors(trunk()..(visible_heads() & mine()), 2) | trunk()"]
 la = ["log", "-r", "all()"]
 tug = ["bookmark", "move", "--from", "heads(::@- & bookmarks())", "--to", "@-"]
