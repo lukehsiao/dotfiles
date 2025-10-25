@@ -21,13 +21,13 @@ pager = "delta"
 
 [template-aliases]
 commit_template = '''"JJ: <type>(<scope>): (If applied, this commit will...) <subject> (Max 50 char)
-JJ: |<---  Try to Limit to a Max of 50 char  --->|
+JJ: |<---- Try to limit to a max of 50 char ---->|
 
 JJ: Explain why this change is being made
-JJ: |<---   Try To Limit Each Line to a Maximum Of 72 Characters   --->|
+JJ: |<----- Try to limit each line to a maximum of 72 characters ----->|
 
 JJ: Provide links or keys to any relevant tickets, articles or other resources
-JJ: Example: Github issue #23, BREAKING CHANGE: <description>, Ref: 5119ae
+JJ: Example: GitHub issue #23, BREAKING CHANGE: <description>, Ref: 5119ae
 
 JJ: --- COMMIT END ---
 JJ: Type can be
@@ -40,7 +40,7 @@ JJ:   fix:      bug fix, correlates with PATCH
 JJ:   perf:     a code change that improves performance
 JJ:   refactor: refactoring production code; neither fixes a bug nor adds a feature
 JJ:   revert:   for reverts, revert: <old subject>; state reverted hash in body
-JJ:   style:    formatting, missing semi colons, etc; no code meaning change
+JJ:   style:    formatting, missing semicolons, etc; no change in code behavior
 JJ:   test:     adding or refactoring tests; no production code change
 JJ:
 JJ: Scope refers to the file, directory, or system that is being modified.
