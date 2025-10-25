@@ -13,6 +13,7 @@ history_filter = [
   "^fg",
   "^git",
   "^hx",
+  "^jj",
   "^just",
   "^la",
   "^ls",
