@@ -23,22 +23,6 @@ _rustup:
         echo "Rust is already installed."
     fi
 
-# Install Zulip (AppImage)
-_zulip:
-    #!/usr/bin/env bash
-    set -euxo pipefail
-
-    if ! command -v zulip >/dev/null; then
-        # Install zulip
-        xh --download https://zulip.com/apps/download/linux --output zulip
-        chmod +x zulip
-        sudo install zulip /usr/bin/zulip
-        rm zulip
-        echo "Installed Zulip"
-    else
-        echo "Zulip is already installed."
-    fi
-
 # Install d2
 _d2:
     curl -fsSL https://d2lang.com/install.sh | sh -s --
@@ -259,6 +243,7 @@ install-core:
         zen-browser-bin \
         zola \
         zoxide \
+        zulip-desktop-bin \
         zstd 
 
     # use Zen browser as default
@@ -283,7 +268,6 @@ install-core:
 
     just _rust-core
     just _d2
-    just _zulip
     just _install-dictd
     just _tailscale
 
