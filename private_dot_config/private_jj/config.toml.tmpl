@@ -6,6 +6,8 @@ email = "{{ .email }}"
 
 [git]
 auto-local-bookmark = true
+# Prevent pushing work in progress or anything explicitly labeled "private"
+private-commits = "description(glob:'wip:*') | description(glob:'private:*')"
 
 [ui]
 editor = "hx"
