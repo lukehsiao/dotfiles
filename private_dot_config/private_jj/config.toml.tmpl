@@ -79,5 +79,6 @@ draft_commit_description ='''
 cl = ["log", "-r", "trunk()..@-", "--reversed", "-T", "description ++ '\n---\n\n'", "--no-graph", "--no-pager"]
 l = ["log", "-r", "@ | ancestors(trunk()..(visible_heads() & mine()), 2) | trunk()"]
 la = ["log", "-r", "all()"]
+pba = ["git", "push", "-b", "glob:lwh/*"]
 rba = ["rebase", "-s", "all:roots(mutable())", "-d", "trunk()"]
 tug = ["bookmark", "move", "--from", "heads(::@- & bookmarks())", "--to", "@-"]
