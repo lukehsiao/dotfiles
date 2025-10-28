@@ -80,5 +80,5 @@ cl = ["log", "-r", "trunk()..@-", "--reversed", "-T", "description ++ '\n---\n\n
 l = ["log", "-r", "@ | ancestors(trunk()..(visible_heads() & mine()), 2) | trunk()"]
 la = ["log", "-r", "all()"]
 pba = ["git", "push", "-b", "glob:lwh/*"]
-rba = ["rebase", "-s", "all:roots(mutable())", "-d", "trunk()"]
+rba = ["rebase", "-s", "all:roots(mutable() & mine())", "-d", "trunk()"]
 tug = ["bookmark", "move", "--from", "heads(::@- & bookmarks())", "--to", "@-"]
