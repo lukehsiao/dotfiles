@@ -119,7 +119,7 @@ install-core:
         bc \
         bottom \
         btop \
-        caligula-bin \
+        caligula \
         ccid \
         clang \
         clang-tools-extra \
