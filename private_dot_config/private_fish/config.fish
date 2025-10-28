@@ -61,5 +61,6 @@ alias ping="gping"
 alias bcp="rsync -avzuhP"
 
 alias ls="eza -lh --group-directories-first --icons=auto"
-alias la="ls -a"
-alias tree="eza --tree --level=2 --long --icons --git"
+alias lsa="ls -a"
+alias lt="eza --tree --level=2 --long --icons --git"
+alias lta="lt -a"
