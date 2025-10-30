@@ -77,6 +77,8 @@ draft_commit_description ='''
 
 [aliases]
 cl = ["log", "-r", "trunk()..@-", "--reversed", "-T", "description ++ '\n---\n\n'", "--no-graph", "--no-pager"]
+dl = ["log", "-r", "@ | ancestors(trunk()..(visible_heads() & mine()), 2) | trunk()", "-T", "builtin_log_detailed"]
+dla = ["log", "-r", "ancestors(@)", "-T", "builtin_log_detailed"]
 l = ["log", "-r", "@ | ancestors(trunk()..(visible_heads() & mine()), 2) | trunk()"]
 la = ["log", "-r", "all()"]
 pba = ["git", "push", "-b", "glob:lwh/*"]
