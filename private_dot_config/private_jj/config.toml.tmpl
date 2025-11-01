@@ -74,6 +74,13 @@ draft_commit_description ='''
       diff.git(),
     )
 '''
+revert_description = '''
+concat(
+  'revert: ' ++ description.first_line() ++ "\n",
+  "\n",
+  "This reverts commit " ++ commit_id ++ ".\n",
+)
+'''
 
 [aliases]
 cl = ["log", "-r", "trunk()..@-", "--reversed", "-T", "description ++ '\n---\n\n'", "--no-graph", "--no-pager"]
