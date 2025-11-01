@@ -86,7 +86,7 @@ concat(
 cl = ["log", "-r", "trunk()..@-", "--reversed", "-T", "description ++ '\n---\n\n'", "--no-graph", "--no-pager"]
 dl = ["log", "-r", "@ | ancestors(trunk()..(visible_heads() & mine()), 2) | trunk()", "-T", "builtin_log_detailed"]
 dla = ["log", "-r", "ancestors(@)", "-T", "builtin_log_detailed"]
-fl = ["log", "--no-graph", "-T", '"Fixes: " ++ commit_id.shortest(12) ++ " \"" ++ description.first_line() ++ "\""']
+fl = ["log", "--no-graph", "-T", '"Fixes: " ++ commit_id.shortest(12) ++ " (\"" ++ description.first_line() ++ "\")"']
 l = ["log", "-r", "@ | ancestors(trunk()..(visible_heads() & mine()), 2) | trunk()"]
 la = ["log", "-r", "ancestors(@)"]
 pba = ["git", "push", "-b", "glob:lwh/*"]
