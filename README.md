@@ -19,9 +19,9 @@ Install from fresh with:
 ```
 # Install Berkeley Mono Variable (and probably Berkeley Mono SemiCondensed) manually.
 yay -S chezmoi just
+just import-gpg
 chezmoi init https://github.com/lukehsiao/dotfiles.git
 chezmoi apply
-just import-gpg
 just install-core
 just use-bbr  # optional
 # Configure styles for zen browser
