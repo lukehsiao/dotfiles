@@ -6,6 +6,11 @@
 {{- $mousedpichoices := list "high" "low" -}}
 {{- $mousedpi := promptChoiceOnce . "mousedpi" "What is the dpi of your mouse" $mousedpichoices -}}
 
+encryption = "gpg"
+[gpg]
+args = ["--quiet"]
+recipient = "0xBE92A2933EB7CA99"
+
 [data]
 email = {{ $email | quote }}
 dpi = {{ $dpi | quote }}
