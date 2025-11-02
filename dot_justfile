@@ -193,6 +193,7 @@ install-core:
         postgresql \
         presenterm \
         prettier \
+        rage-encryption \
         ripgrep \
         rsync \
         samply \
