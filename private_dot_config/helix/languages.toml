@@ -47,6 +47,13 @@ auto-format = true
 indent = { tab-width = 2, unit = "  " }
 
 [[language]]
+name = "jjdescription"
+language-servers = [ "typos", "codebook" ]
+formatter = { command = "sed", args = ["s/[ \t]*$//"] }
+auto-format = true
+indent = { tab-width = 2, unit = "  " }
+
+[[language]]
 name = "scss"
 indent = { tab-width = 2, unit = "  " }
 
