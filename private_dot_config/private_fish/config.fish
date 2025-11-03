@@ -40,11 +40,6 @@ function ea
     source ~/.config/fish/config.fish && echo "aliases sourced --ok."
 end
 
-function sc-pin
-    set -l serial (gpg-connect-agent 'scd serialno' /bye | awk '{printf "%s",$3}')
-    gpg-connect-agent "scd checkpin $serial" /bye
-end
-
 function chezmoi-cd
     cd (chezmoi source-path)
 end
