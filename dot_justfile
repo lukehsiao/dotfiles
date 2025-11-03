@@ -107,6 +107,7 @@ install-core:
 
     yay -S --noconfirm --needed \
         aerc \
+        age-plugin-yubikey \
         ardour \
         asciinema \
         atuin \
@@ -183,12 +184,12 @@ install-core:
         pandoc \
         parallel \
         paru-bin \
-        pass \
         pastel \
         pcsclite \
+        pcsc-tools \
+        pinentry \
         pipewire \
         pipewire-audio \
-        pinentry \
         podman \
         postgresql \
         presenterm \
@@ -217,6 +218,7 @@ install-core:
         tinymist \
         tokei \
         tombi \
+        tree \
         trippy \
         typos \
         typos-lsp \
@@ -229,8 +231,8 @@ install-core:
         vim \
         vscode-langservers-extracted \
         watchexec \
-        wireshark-qt \
         wget \
+        wireshark-qt \
         wl-clipboard \
         xh \
         xsv \
@@ -286,13 +288,6 @@ install-core:
     @echo "Installed all core tools."
 
     just _cleanup-omarchy
-
-# Import my public GPG key
-[group('install')]
-import-gpg:
-    curl --proto '=https' --tlsv1.2 -sSf https://luke.hsiao.dev/publickey.txt | gpg --import
-    @echo "Now, remember to edit the key with trust."
-
 
 # Set TCP congestion control to BBR
 [group('install')]

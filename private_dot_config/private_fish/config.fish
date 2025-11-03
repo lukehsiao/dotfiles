@@ -1,10 +1,11 @@
 # Environment Variables
-set -gx FZF_DEFAULT_COMMAND 'fd --type f --hidden --follow --exclude .git'
-set -gx FZF_CTRL_T_COMMAND "$FZF_DEFAULT_COMMAND"
 set -gx BAT_THEME "Catppuccin Mocha"
-set -gx EDITOR hx
 set -gx COLORTERM 24bit
+set -gx EDITOR hx
+set -gx FZF_CTRL_T_COMMAND "$FZF_DEFAULT_COMMAND"
+set -gx FZF_DEFAULT_COMMAND 'fd --type f --hidden --follow --exclude .git'
 set -gx GRAB_HOME ~/Work
+set -gx PASSAGE_AGE rage
 set -gx ZSTD_CLEVEL 19
 set -gx ZSTD_NBTHREADS (math (nproc)/2)
 
@@ -18,10 +19,6 @@ fish_add_path $HOME/.poetry/bin
 
 # Configurations
 if status --is-interactive
-    set -x GPG_TTY (tty)
-    set -x SSH_AUTH_SOCK (gpgconf --list-dirs agent-ssh-socket)
-    gpgconf --launch gpg-agent
-
     fzf --fish | source
     starship init fish | source
     zoxide init --cmd cd fish | source
