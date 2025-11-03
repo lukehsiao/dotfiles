@@ -57,16 +57,16 @@
     "on-click": "omarchy-launch-floating-terminal-with-presentation omarchy-update",
     "tooltip-format": "Omarchy update available",
     "signal": 7,
-    "interval": 3600
+    "interval": 21600
   },
   "cpu": {
     "interval": 5,
     "format": "󰍛",
-    "on-click": "$TERMINAL --class=TUI.float -e btm"
+    "on-click": "xdg-terminal-exec --app-id=TUI.float -e btm"
   },
   "clock": {
-    "format": "{:%A %d %b %H:%M}",
-    "format-alt": "{:%d %B W%V %Y}",
+    "format": "{:L%A %H:%M}",
+    "format-alt": "{:L%d %B W%V %Y}",
     "tooltip": false,
     "on-click-right": "omarchy-launch-floating-terminal-with-presentation omarchy-tz-select"
   },
@@ -139,7 +139,7 @@
   },
   "pulseaudio": {
     "format": "{icon}",
-    "on-click": "$TERMINAL --class=TUI.float -e wiremix",
+    "on-click": "xdg-terminal-exec --app-id=com.omarchy.Wiremix -e wiremix",
     "on-click-right": "pamixer -t",
     "tooltip-format": "Playing at {volume}%",
     "scroll-step": 5,
@@ -164,7 +164,7 @@
     ]
   },
   "custom/expand-icon": {
-    "format": " ",
+    "format": "",
     "tooltip": false
   },
   "custom/screenrecording-indicator": {
@@ -175,6 +175,6 @@
   },
   "tray": {
     "icon-size": 12,
-    "spacing": 12
+    "spacing": 17
   }
 }
