@@ -6,10 +6,11 @@
 {{- $mousedpichoices := list "high" "low" -}}
 {{- $mousedpi := promptChoiceOnce . "mousedpi" "What is the dpi of your mouse" $mousedpichoices -}}
 
-encryption = "gpg"
-[gpg]
-args = ["--quiet"]
-recipient = "0xBE92A2933EB7CA99"
+encryption = "age"
+[age]
+command = "rage"
+identity = "~/.config/chezmoi/key.txt"
+recipient = "age14w82e7tlynju9t64mf6vdms528jw20ngya3rdckleeq0uj88uyrqpfw375"
 
 [data]
 email = {{ $email | quote }}

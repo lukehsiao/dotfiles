@@ -17,19 +17,16 @@ Intended to get a fresh install of Omarchy fully configured quickly.
 Install from fresh with:
 
 ```
-# Install Berkeley Mono Variable (and probably Berkeley Mono SemiCondensed) manually.
-yay -S chezmoi just
-just import-gpg
-chezmoi init https://github.com/lukehsiao/dotfiles.git
+# Make an SSH key and add to GitHub
+ssh-keygen -t ed25519 -C "luke@$(hostname)"
+# Grab pass
+yay -S chezmoi just rage-encryption age-plugin-yubikey
+git clone git@github.com:lukehsiao/passage.git ~/.passage/store
+age-plugin-yubikey --identity >> $HOME/.passage/identities
+chezmoi init git@github.com:lukehsiao/dotfiles.git
 chezmoi apply
 just install-core
 just use-bbr  # optional
-# Configure styles for zen browser
-# Grab pass
-git clone git@github.com:lukehsiao/pass.git ~/.password-store
-# Fix remote
-chezmoi cd
-git remote set-url origin git@github.com:lukehsiao/dotfiles.git
-exit
+# [optional] Configure styles for zen browser
 atuin login
 ```
