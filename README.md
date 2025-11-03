@@ -23,10 +23,11 @@ ssh-keygen -t ed25519 -C "luke@$(hostname)"
 yay -S chezmoi just rage-encryption age-plugin-yubikey
 git clone git@github.com:lukehsiao/passage.git ~/.passage/store
 age-plugin-yubikey --identity >> $HOME/.passage/identities
+# Awkwardly requires bootstrapping from a configured computer for passphrase...
 chezmoi init git@github.com:lukehsiao/dotfiles.git
 chezmoi apply
 just install-core
 just use-bbr  # optional
-# [optional] Configure styles for zen browser
 atuin login
+# [optional] Configure styles for zen browser
 ```
