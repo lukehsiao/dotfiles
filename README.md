@@ -18,7 +18,7 @@ Install from fresh with:
 
 ```
 # Make an SSH key and add to GitHub
-ssh-keygen -t ed25519 -C "luke@$(hostname)"
+ssh-keygen -t ed25519 -C "$(whoami)@$(hostname)"
 # Grab pass
 yay -S chezmoi just rage-encryption age-plugin-yubikey
 git clone git@github.com:lukehsiao/passage.git ~/.passage/store
