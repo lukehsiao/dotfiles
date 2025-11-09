@@ -65,7 +65,7 @@
     "on-click": "xdg-terminal-exec --app-id=TUI.float -e btm"
   },
   "clock": {
-    "format": "{:L%d %B %A %H:%M}",
+    "format": "{:L%d %b %A %H:%M}",
     "format-alt": "{:L%d %B W%V %Y}",
     "tooltip": false,
     "on-click-right": "omarchy-launch-floating-terminal-with-presentation omarchy-tz-select"
