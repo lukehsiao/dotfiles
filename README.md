@@ -20,7 +20,16 @@ Install from fresh with:
 # Make an SSH key and add to GitHub
 ssh-keygen -t ed25519 -C "$(whoami)@$(hostname)"
 # Grab pass
-yay -S chezmoi just rage-encryption age-plugin-yubikey
+yay -S \
+    age-plugin-yubikey \
+    chezmoi \
+    just \
+    pcsclite \
+    pcsc-tools \
+    rage-encryption \
+    yubikey-manager
+sudo systemctl enable pcscd
+sudo systemctl start pcscd
 git clone git@github.com:lukehsiao/passage.git ~/.passage/store
 age-plugin-yubikey --identity >> $HOME/.passage/identities
 # Awkwardly requires bootstrapping from a configured computer for passphrase...
