@@ -14,6 +14,8 @@ words = [
     "hyprctl",
     "kvm",
     "limine",
+    "lossily",
+    "lossy",
     "luks",
     "macbook",
     "ntfs",
