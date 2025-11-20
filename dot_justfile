@@ -45,7 +45,6 @@ _rust-core: _rustup
     curl -L --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/cargo-bins/cargo-binstall/main/install-from-binstall-release.sh | bash
 
     cargo binstall -y --locked \
-        bunyan \
         cargo-audit \
         cargo-bloat \
         cargo-deny \
@@ -156,6 +155,7 @@ install-core:
         helix \
         helm \
         hexyl \
+        hl \
         htop \
         hyperfine \
         imagemagick \
