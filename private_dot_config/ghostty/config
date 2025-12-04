@@ -38,3 +38,8 @@ quit-after-last-window-closed=false
 
 # Slowdown mouse scrolling
 mouse-scroll-multiplier = 0.95
+
+# cursor warp
+custom-shader = ./shaders/cursor_warp.glsl
+# custom-shader = ./shaders/tft.glsl
+# custom-shader = ./shaders/bettercrt.glsl
