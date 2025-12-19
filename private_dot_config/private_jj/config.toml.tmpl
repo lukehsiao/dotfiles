@@ -92,6 +92,6 @@ l = ["log", "-r", "@ | ancestors(trunk()..(visible_heads() & mine()), 2) | trunk
 la = ["log", "-r", "ancestors(@)"]
 n = ["new"]
 pba = ["git", "push", "-b", "glob:lwh/*"]
-rba = ["rebase", "-s", "all:roots(mutable() & mine())", "-d", "trunk()"]
+rba = ["rebase", "-s", "roots(mutable() & mine())", "-d", "trunk()"]
 tug = ["bookmark", "move", "--from", "heads(::@- & bookmarks())", "--to", "@-"]
 xl = ["log", "--no-graph", "-T", '"Ref: " ++ coalesce(repo_path() ++ "@", "") ++ commit_id.shortest(12) ++ " (\"" ++ description.first_line() ++ "\")"']
