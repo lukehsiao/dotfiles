@@ -22,6 +22,7 @@ history_filter = [
   "^mv",
   "^numbat",
   "^nvim",
+  "^open",
   "^paru",
   "^pass",
   "^poetry",
@@ -37,6 +38,7 @@ history_filter = [
   "^units",
   "^vim",
   "^yay",
+  "^zathura",
   "^zellij",
 ]
 
