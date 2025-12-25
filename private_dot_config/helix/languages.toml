@@ -67,7 +67,7 @@ language-servers = [ "rust-analyzer", "typos", "codebook" ]
 
 [[language]]
 name = "typst"
-language-servers = [ "tinymist", "typos" ]
+language-servers = [ "tinymist", "typos", "codebook" ]
 
 [[language]]
 name = "python"
