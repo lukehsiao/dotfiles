@@ -63,7 +63,8 @@
   "cpu": {
     "interval": 5,
     "format": "󰍛",
-    "on-click": "omarchy-launch-or-focus-tui btm"
+    "on-click": "omarchy-launch-or-focus-tui btm",
+    "on-click-right": "ghostty"
   },
   "clock": {
     "format": "{:L%d %b %A %H:%M}",
@@ -134,7 +135,6 @@
   "bluetooth": {
     "format": "",
     "format-disabled": "󰂲",
-    "format-off": "󰂲",
     "format-connected": "󰂱",
     "format-no-controller": "",
     "tooltip-format": "Devices connected: {num_connections}",
