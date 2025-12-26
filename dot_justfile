@@ -183,7 +183,7 @@ install-core:
         oxipng \
         pandoc \
         parallel \
-        paru-bin \
+        paru \
         pastel \
         pcsclite \
         pcsc-tools \
