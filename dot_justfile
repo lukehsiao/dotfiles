@@ -107,6 +107,7 @@ install-core:
     yay -S --noconfirm --needed \
         aerc \
         age-plugin-yubikey \
+        anki-bin \
         ardour \
         asciinema \
         atuin \
