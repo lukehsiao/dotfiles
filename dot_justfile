@@ -133,6 +133,7 @@ install-core:
         difftastic \
         dmidecode \
         dog \
+        drawio \
         duf \
         dust \
         eza \
@@ -144,6 +145,7 @@ install-core:
         fzf \
         gdb \
         ghostty \
+        gimp \
         git \
         git-absorb \
         git-cliff \
@@ -160,6 +162,7 @@ install-core:
         htop \
         hyperfine \
         imagemagick \
+        inkscape \
         jaq \
         jless \
         jujutsu \
@@ -190,6 +193,7 @@ install-core:
         pcsc-tools \
         pdfcpu-bin \
         pinentry \
+        pinta \
         pipewire \
         pipewire-audio \
         podman \
