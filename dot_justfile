@@ -193,7 +193,6 @@ install-core:
         pcsc-tools \
         pdfcpu-bin \
         pinentry \
-        pinta \
         pipewire \
         pipewire-audio \
         podman \
