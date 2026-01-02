@@ -24,16 +24,22 @@ should-sign-off = true
 pager = "delta"
 
 [template-aliases]
-commit_template = '''"JJ: <type>(<scope>): (If applied, this commit will...) <subject> (Max 50 char)
+commit_template = '''
+    concat(
+      "JJ: <type>(<scope>): (If applied, this commit will...) <subject> (Max 50 char)
 JJ: |<---- Try to limit to a max of 50 char ---->|
 
 JJ: Explain why this change is being made
 JJ: |<----- Try to limit each line to a maximum of 72 characters ----->|
 
-JJ: Provide links or keys to any relevant tickets, articles or other resources
-JJ: Example: GitHub issue #23, BREAKING CHANGE: <description>, Ref: 5119ae
-
-JJ: --- COMMIT END ---
+JJ: Provide links or keys to any relevant tickets, articles or other trailers
+JJ: Example: GitHub issue #23, BREAKING CHANGE: <description>, Ref: 5119ae, Signed-off-by: name <email>",
+      if(
+        config("ui.should-sign-off").as_boolean() && !description.contains("Signed-off-by: " ++ author.name()),
+        "\nSigned-off-by: " ++ author.name() ++ " <" ++ author.email() ++ ">",
+        "\nJJ: Signed-off-by: " ++ author.name() ++ " <" ++ author.email() ++ ">\n",
+      ),
+      "\nJJ: --- COMMIT END ---
 JJ: Type can be
 JJ:   build:    changes that affect the build system or external dependencies
 JJ:   chore:    updating grunt tasks; no production code change
@@ -61,6 +67,7 @@ JJ:    Can use multiple lines with '-' for bullet points in body
 JJ:    BREAKING CHANGE: to correlate with MAJOR
 JJ:
 JJ: See: https://www.conventionalcommits.org/en/v1.0.0/)"
+    )
 '''
 
 [templates]
@@ -68,10 +75,6 @@ git_push_bookmark = '"lwh/" ++ change_id.short()'
 draft_commit_description ='''
     concat(
       coalesce(description, commit_template, "\n"),
-      if(
-        config("ui.should-sign-off").as_boolean() && !description.contains("Signed-off-by: " ++ author.name()),
-        "\nSigned-off-by: " ++ author.name() ++ " <" ++ author.email() ++ ">",
-      ),
       surround(
         "\nJJ: This commit contains the following changes:\n", "",
         indent("JJ:     ", diff.stat(72)),
