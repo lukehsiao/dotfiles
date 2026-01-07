@@ -2,6 +2,10 @@
 
 set -e
 
+# Ensure screensaver/sleep doesn't set in during updates
+hyprctl dispatch tagwindow +noidle &> /dev/null || true
+
+# Perform all update steps
 omarchy-update-time
 omarchy-update-keyring
 omarchy-update-available-reset
@@ -10,3 +14,6 @@ cargo install-update -a -g
 omarchy-migrate
 omarchy-hook post-update
 omarchy-update-restart
+
+# Re-enable screensaver/sleep after updates
+hyprctl dispatch tagwindow -- -noidle &> /dev/null || true
