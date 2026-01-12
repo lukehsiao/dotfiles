@@ -6,7 +6,11 @@ command = /usr/bin/fish --login --interactive
 
 # Font
 font-family = "Berkeley Mono Variable"
-# SemiCondensed
+#  60: UltraCondensed
+#  70: ExtraCondensed
+#  80: Condensed
+#  90: SemiCondensed
+# 100: Normal
 font-variation = wdth=90
 font-variation = wght=400
 # otfinfo -f ~/.local/share/fonts/Berkeley\ Mono\ Variable.otf
