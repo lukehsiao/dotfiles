@@ -38,5 +38,6 @@ chezmoi apply
 just install-core
 just use-bbr  # optional
 atuin login
+sudo ln -s $HOME/.local/bin/pass /usr/bin/pass
 # [optional] Configure styles for zen browser
 ```
