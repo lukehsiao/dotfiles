@@ -228,7 +228,6 @@ install-core:
         typos \
         typos-lsp \
         typst \
-        typstyle \
         units \
         unzip \
         usbutils \
