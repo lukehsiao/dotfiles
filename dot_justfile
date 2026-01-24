@@ -104,6 +104,10 @@ _cleanup-omarchy:
 install-core: 
     yay -Rns tldr || true
 
+    # zulip and slack conflict when installed simultaneously
+    yay -S --no-confirm --needed  zulip-desktop-bin
+    yay -Rns --no-confirm zulip-desktop-bin-debug
+
     yay -S --noconfirm --needed \
         aerc \
         age-plugin-yubikey \
@@ -250,7 +254,6 @@ install-core:
         zen-browser-bin \
         zola \
         zoxide \
-        zulip-desktop-bin \
         zstd 
 
     # use Zen browser as default
