@@ -32,12 +32,11 @@ sudo systemctl enable pcscd
 sudo systemctl start pcscd
 git clone git@github.com:lukehsiao/passage.git ~/.passage/store
 age-plugin-yubikey --identity >> $HOME/.passage/identities
-# Awkwardly requires bootstrapping from a configured computer for passphrase...
 chezmoi init git@github.com:lukehsiao/dotfiles.git
+# Awkwardly requires bootstrapping from a configured computer for passphrase...
 chezmoi apply
 just install-core
 just use-bbr  # optional
 atuin login
-sudo ln -s $HOME/.local/bin/pass /usr/bin/pass
 # [optional] Configure styles for zen browser
 ```
