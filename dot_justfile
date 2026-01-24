@@ -265,6 +265,9 @@ install-core:
     # hx as helix
     sudo ln -sf $(which helix) /usr/bin/hx
 
+    # passage as pass
+    sudo ln -sf $HOME/.local/bin/pass /usr/bin/pass
+
     # allow Mosh
     sudo systemctl enable --now ufw.service
     sudo ufw enable
