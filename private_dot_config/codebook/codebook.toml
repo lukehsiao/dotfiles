@@ -1,5 +1,6 @@
 words = [
     "alation",
+    "alnum",
     "asus",
     "bcdboot",
     "btrfs",
@@ -7,6 +8,7 @@ words = [
     "catppuccin",
     "chezmoi",
     "cpus",
+    "dashmap",
     "diskpart",
     "distrobox",
     "edc",
@@ -51,6 +53,7 @@ words = [
     "tonari",
     "ultrawide",
     "unintuitive",
+    "url's",
     "vannevar",
     "vannevar's",
     "vfat",
