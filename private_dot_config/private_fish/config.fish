@@ -7,7 +7,9 @@ set -gx FZF_CTRL_T_COMMAND "$FZF_DEFAULT_COMMAND"
 set -gx GRAB_HOME ~/Work
 set -gx PASSAGE_AGE rage
 set -gx ZSTD_CLEVEL 19
-set -gx ZSTD_NBTHREADS (math (nproc)/2)
+set -gx ZSTD_NBTHREADS (math (sysctl -n hw.logicalcpu)/2)
+set -gx CR_TOKEN (cat ~/.github_token)
+set -gx XDG_CONFIG_HOME $HOME/.config
 
 # clear fish greeting
 set -g fish_greeting
@@ -51,6 +53,7 @@ alias df="df -h"
 alias rg="rg -S"
 alias ping="gping"
 alias bcp="rsync -avzuhP"
+alias sort="gsort"
 
 alias ls="eza -lh --group-directories-first --icons=auto"
 alias lsa="ls -a"
