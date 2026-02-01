@@ -47,7 +47,7 @@ _rust-core: _rustup
     cargo binstall -y --locked \
         cargo-audit \
         cargo-bloat \
-        cargo-cargo-llvm-cov \
+        cargo-llvm-cov \
         cargo-deny \
         cargo-edit \
         cargo-leptos \
