@@ -8,11 +8,16 @@ email = "{{ .email }}"
 auto-local-bookmark = false
 # Prevent pushing work in progress or anything explicitly labeled "private"
 private-commits = "description(glob:'wip:*') | description(glob:'private:*')"
+sign-on-push = true
+
+[signing]
+backend = "ssh"
+key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIE/2/iNUlRdSDlVH7rfEds+lzsWYOW3JhVzmBAfNymsy lhsiao@agrippaindustries.com"
 
 [ui]
 default-command = "status"
 editor = "hx"
-should-sign-off = true
+should-sign-off = false
 
 [colors]
 "diff added" = { fg = "blue" }
