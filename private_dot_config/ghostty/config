@@ -1,8 +1,7 @@
-# Dynamic theme colors
-config-file = ?"~/.config/omarchy/current/theme/ghostty.conf"
+theme = Catppuccin Mocha
 
 # Command
-command = /usr/bin/fish --login --interactive
+command = /opt/homebrew/bin/fish --login --interactive
 
 # Font
 font-family = "Berkeley Mono Variable"
@@ -28,7 +27,7 @@ font-variation = wght=400
 # ss06    Stylistic Set 6 <- gap 0, slash 7
 font-feature = +calt
 font-feature = +ss02
-font-size = 16
+font-size = 18
 adjust-cell-height = -2%
 
 # Window

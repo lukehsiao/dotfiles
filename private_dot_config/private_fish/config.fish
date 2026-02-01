@@ -1,14 +1,16 @@
 # Environment Variables
 set -gx BAT_THEME "Catppuccin Mocha"
 set -gx COLORTERM 24bit
+set -gx CR_TOKEN (cat ~/.github_token)
 set -gx EDITOR hx
-set -gx FZF_DEFAULT_COMMAND 'fd --type f --hidden --follow --exclude .git'
 set -gx FZF_CTRL_T_COMMAND "$FZF_DEFAULT_COMMAND"
+set -gx FZF_DEFAULT_COMMAND 'fd --type f --hidden --follow --exclude .git'
+set -gx GITHUB_TOKEN (cat ~/.github_token)
 set -gx GRAB_HOME ~/Work
 set -gx PASSAGE_AGE rage
+set -gx XDG_CONFIG_HOME $HOME/.config
 set -gx ZSTD_CLEVEL 19
-set -gx ZSTD_NBTHREADS (math (nproc)/2)
-set -gx GITHUB_TOKEN (cat ~/.github_token)
+set -gx ZSTD_NBTHREADS (math (sysctl -n hw.logicalcpu)/2)
 
 # clear fish greeting
 set -g fish_greeting
@@ -52,6 +54,7 @@ alias df="df -h"
 alias rg="rg -S"
 alias ping="gping"
 alias bcp="rsync -avzuhP"
+alias sort="gsort"
 
 alias ls="eza -lh --group-directories-first --icons=auto"
 alias lsa="ls -a"

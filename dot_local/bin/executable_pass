@@ -201,7 +201,7 @@ tmpdir() {
 	fi
 
 }
-GETOPT="getopt"
+GETOPT="/opt/homebrew/opt/gnu-getopt/bin/getopt"
 SHRED="shred -f -z"
 BASE64="base64"
 
