@@ -27,10 +27,6 @@ _rustup:
 _d2:
     curl -fsSL https://d2lang.com/install.sh | sh -s --
 
-# Install tailscale
-_tailscale:
-    omarchy-install-tailscale
-
 # Install Rust core tooling
 _rust-core: _rustup
     #!/usr/bin/env bash
@@ -45,6 +41,7 @@ _rust-core: _rustup
     curl -L --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/cargo-bins/cargo-binstall/main/install-from-binstall-release.sh | bash
 
     cargo binstall -y --locked \
+        bacon \
         cargo-audit \
         cargo-bloat \
         cargo-llvm-cov \
@@ -81,77 +78,31 @@ _rust-core: _rustup
     # Install rust-analyzer
     rustup component add rust-analyzer
 
-# Install dictd and offline dictionaries
-_install-dictd:
-    sudo pacman -S dictd
-    paru -S dict-gcide wordnet-dictd dict-moby-thesaurus
-    sudo systemctl enable --now dictd.service
-
-# Remove unused Omarchy Apps
-_cleanup-omarchy:
-    # Remove unused webapps
-    omarchy-webapp-remove \
-        Basecamp \
-        Discord \
-        Figma \
-        HEY \
-        WhatsApp \
-        X || true
-
-    # Remove unused packages
-    yay -Rns obsidian typora rust || true
-
 # Install all core tools
 [group('install')]
 install-core: 
-    yay -Rns tldr || true
-
-    # zulip and slack conflict when installed simultaneously
-    yay -S --no-confirm --needed  zulip-desktop-bin
-    yay -Rns --no-confirm zulip-desktop-bin-debug
-
-    yay -S --noconfirm --needed \
+    brew install \
         aerc \
-        age-plugin-yubikey \
-        anki-bin \
-        ardour \
         asciinema \
         atuin \
-        audacity \
         b3sum \
-        bacon \
-        base-devel \
-        bash-language-server \
         bat \
-        bc \
+        blackhole-2ch \
         bottom \
-        btop \
-        caligula \
-        ccid \
-        clang \
-        clang-tools-extra \
-        cmake \
         codebook-lsp \
+        colima \
         coreutils \
-        cppcheck \
         croc \
-        curl \
         difftastic \
-        dmidecode \
-        dog \
-        drawio \
         duf \
         dust \
         eza \
         fastfetch \
         fd \
         ffmpeg \
-        findutils \
         fish \
         fzf \
-        gdb \
         ghostty \
-        gimp \
         git \
         git-absorb \
         git-cliff \
@@ -160,187 +111,66 @@ install-core:
         git-grab \
         git-lfs \
         git-sizer \
+        glow \
         gping \
         helix \
-        helm \
         hexyl \
         hl \
-        htop \
         hyperfine \
-        imagemagick \
-        inkscape \
         jaq \
+        jj \
         jless \
-        jujutsu \
-        just \
-        k9s \
-        kubectl \
-        less \
-        libusb-compat \
+        jq \
+        keycastr \
+        llvm \
         lychee \
-        magic-wormhole \
-        marksman \
-        mat2 \
         mise \
-        mold \
         mosh \
         mpv \
-        neovim \
-        ninja \
         numbat \
         oha \
         onefetch \
         oxipng \
         pandoc \
-        parallel \
-        paru \
         pastel \
-        pcsclite \
-        pcsc-tools \
-        pdfcpu-bin \
-        pinentry \
-        pipewire \
-        pipewire-audio \
-        podman \
+        pdfcpu \
         postgresql \
         presenterm \
         prettier \
-        rage-encryption \
+        rage \
         ripgrep \
         rsync \
+        ruff \
         samply \
-        sccache \
         sd \
         shellcheck \
         shfmt \
-        slack-desktop-wayland \
-        slurp \
-        speedtest-cli \
         sqlite \
         sshx \
         starship \
-        strace \
-        svgcleaner \
-        tailspin \
-        taplo-cli \
-        tcpdump \
+        svgo \
         tealdeer \
         tectonic \
-        tinymist \
         tokei \
-        tombi \
-        tree \
-        trippy \
-        typos \
+        typos-cli \
         typos-lsp \
         typst \
-        units \
-        unzip \
-        usbutils \
-        valgrind \
-        vim \
         vscode-langservers-extracted \
         watchexec \
-        wget \
-        wireshark-qt \
-        wl-clipboard \
         xh \
         xsv \
-        xz \
-        yaml-language-server \
         yt-dlp \
-        yubikey-manager \
-        zathura \
-        zathura-pdf-poppler \
         zellij \
-        zen-browser-bin \
         zola \
         zoxide \
-        zstd 
+        zstd
 
-    # use Zen browser as default
-    xdg-settings set default-web-browser zen.desktop
-
-    # add to wireshark group to use wireshark
-    sudo usermod -aG wireshark {{whoami}}
-
-    # add to uucp group for nanokvm-usb
-    sudo usermod -aG uucp {{whoami}}
-
-    # hx as helix
-    sudo ln -sf $(which helix) /usr/bin/hx
-
-    # passage as pass
-    sudo ln -sf $HOME/.local/bin/pass /usr/bin/pass
-
-    # allow Mosh
-    sudo systemctl enable --now ufw.service
-    sudo ufw enable
-    sudo ufw allow 60000:61000/udp comment "Mosh"
-
-    # enable sshd
-    sudo systemctl enable sshd
+    brew install --cask flameshot
 
     just _rust-core
     just _d2
-    just _install-dictd
-    just _tailscale
-
-    # allow tailscale
-    sudo ufw allow in on tailscale0
 
     # build bat themes
     bat cache --build
 
-    # Install webapps
-    omarchy-webapp-install DuckAI https://duck.ai https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/duckduckgo.png
-    omarchy-webapp-install "Google Voice" https://voice.google.com https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/google-voice.png
-    omarchy-webapp-install "Google Calendar" https://calendar.google.com https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/google-calendar.png
-    omarchy-webapp-install "Google Tasks" https://tasks.google.com/tasks/ https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/google-tasks.png
-
     @echo "Installed all core tools."
-
-    just _cleanup-omarchy
-
-# Set TCP congestion control to BBR
-[group('install')]
-use-bbr:
-    #!/usr/bin/env bash
-    set -euo pipefail
-
-    # config files
-    MODULES_FILE="/etc/modules-load.d/bbr.conf"
-    SYSCTL_FILE="/etc/sysctl.d/99-bbr.conf"
-
-    if [[ ! -f "$MODULES_FILE" ]]; then
-        echo "Creating $MODULES_FILE"
-        echo "tcp_bbr" | sudo tee "$MODULES_FILE" >/dev/null
-    else
-        echo "$MODULES_FILE already exists, skipping."
-    fi
-
-    if [[ ! -f "$SYSCTL_FILE" ]]; then
-        echo "Creating $SYSCTL_FILE"
-        sudo tee "$SYSCTL_FILE" >/dev/null <<EOF
-    net.core.default_qdisc=cake
-    net.ipv4.tcp_congestion_control=bbr
-    EOF
-    else
-        echo "$SYSCTL_FILE already exists, skipping."
-    fi
-
-    # Load modules if not already loaded
-    if ! lsmod | awk '{print $1}' | grep -qx "tcp_bbr"; then
-        echo "Loading tcp_bbr"
-        sudo modprobe tcp_bbr
-    else
-        echo "tcp_bbr module already loaded"
-    fi
-    sudo sysctl --system >/dev/null
-
-    echo -n "Available CC: "
-    sysctl -n net.ipv4.tcp_available_congestion_control
-    echo -n "CC: "
-    sysctl -n net.ipv4.tcp_congestion_control
-    echo -n "qdisc: "
-    sysctl -n net.core.default_qdisc
