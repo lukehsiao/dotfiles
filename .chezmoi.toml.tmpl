@@ -1,3 +1,6 @@
+{{- $distrochoices := list "omarchy" "macos" -}}
+{{- $distro := promptChoiceOnce . "distro" "Which distro/environment" $distrochoices -}}
+
 {{- $email := promptStringOnce . "email" "Email address" -}}
 
 {{- $dpichoices := list "retina" "mid" "low" -}}
@@ -13,6 +16,7 @@ identity = "~/.config/chezmoi/key.txt"
 recipient = "age14w82e7tlynju9t64mf6vdms528jw20ngya3rdckleeq0uj88uyrqpfw375"
 
 [data]
+distro = {{ $distro | quote }}
 email = {{ $email | quote }}
 dpi = {{ $dpi | quote }}
 mousedpi = {{ $mousedpi | quote }}

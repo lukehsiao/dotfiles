@@ -1,7 +1,0 @@
-Host rsync
-    HostName usw-s007.rsync.net
-    User 57127
-
-Host do
-    HostName git.hsiao.dev
-    ForwardAgent yes

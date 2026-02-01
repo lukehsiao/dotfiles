@@ -4,13 +4,18 @@ set -gx COLORTERM 24bit
 set -gx EDITOR hx
 set -gx FZF_DEFAULT_COMMAND 'fd --type f --hidden --follow --exclude .git'
 set -gx FZF_CTRL_T_COMMAND "$FZF_DEFAULT_COMMAND"
-if test -f ~/.github_token
-    set -gx GITHUB_TOKEN (cat ~/.github_token)
-end
 set -gx GRAB_HOME ~/Work
 set -gx PASSAGE_AGE rage
 set -gx ZSTD_CLEVEL 19
-set -gx ZSTD_NBTHREADS (math (nproc)/2)
+{{ if eq .chezmoi.os "darwin" -}}
+set -gx ZSTD_NBTHREADS (math (sysctl -n hw.logicalcpu) / 2)
+{{- else -}}
+set -gx ZSTD_NBTHREADS (math (nproc) / 2)
+{{- end }}
+if test -f ~/.github_token
+    set -gx GITHUB_TOKEN (cat ~/.github_token)
+end
+set -gx XDG_CONFIG_HOME $HOME/.config
 
 # clear fish greeting
 set -g fish_greeting
@@ -22,7 +27,9 @@ fish_add_path $HOME/.poetry/bin
 
 # Configurations
 if status --is-interactive
-    fzf --fish | source
+    if type -q fzf; and fzf --fish &>/dev/null
+        fzf --fish | source
+    end
     starship init fish | source
     zoxide init --cmd cd fish | source
     mise activate fish | source
@@ -47,13 +54,18 @@ function chezmoi-cd
     cd (chezmoi source-path)
 end
 
-alias vim="nvim"
-alias vi="nvim"
+alias bcp="rsync -avzuhP"
 alias cat="bat"
 alias df="df -h"
+if type -q gping
+    alias ping="gping"
+end
 alias rg="rg -S"
-alias ping="gping"
-alias bcp="rsync -avzuhP"
+if type -q gsort
+    alias sort="gsort"
+end
+alias vi="nvim"
+alias vim="nvim"
 
 alias ls="eza -lh --group-directories-first --icons=auto"
 alias lsa="ls -a"
