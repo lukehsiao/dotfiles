@@ -1,3 +1,23 @@
 justfile
 key.txt.age
 README.md
+
+{{- if ne .distro "macos" }}
+Library
+{{- end }}
+
+{{- if ne .chezmoi.os "linux" }}
+.config/systemd
+.local/share/applications
+.config/display-switch
+{{- end }}
+
+{{- if ne .distro "omarchy" }}
+.config/hypr
+.config/omarchy
+.config/uwsm
+.config/waybar
+.config/satty
+.config/zen
+.local/share/omarchy
+{{- end }}

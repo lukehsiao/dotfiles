@@ -1,7 +1,5 @@
 # just manual: https://github.com/casey/just
 
-whoami := env('USER')
-
 _default:
     @just --list
 
@@ -27,9 +25,32 @@ _rustup:
 _d2:
     curl -fsSL https://d2lang.com/install.sh | sh -s --
 
+{{- if eq .distro "omarchy" }}
+
 # Install tailscale
 _tailscale:
     omarchy-install-tailscale
+
+# Install dictd and offline dictionaries
+_install-dictd:
+    sudo pacman -S dictd
+    paru -S dict-gcide wordnet-dictd dict-moby-thesaurus
+    sudo systemctl enable --now dictd.service
+
+# Remove unused Omarchy Apps
+_cleanup-omarchy:
+    # Remove unused webapps
+    omarchy-webapp-remove \
+        Basecamp \
+        Discord \
+        Figma \
+        HEY \
+        WhatsApp \
+        X || true
+
+    # Remove unused packages
+    yay -Rns obsidian typora rust || true
+{{- end }}
 
 # Install Rust core tooling
 _rust-core: _rustup
@@ -45,6 +66,7 @@ _rust-core: _rustup
     curl -L --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/cargo-bins/cargo-binstall/main/install-from-binstall-release.sh | bash
 
     cargo binstall -y --locked \
+        bacon \
         cargo-audit \
         cargo-bloat \
         cargo-llvm-cov \
@@ -76,8 +98,10 @@ _rust-core: _rustup
 
     cargo install --git https://github.com/lukehsiao/tool.git --locked
 
+{{- if ne .distro "macos" }}
     # For display-switching at the desktop via USB switch
     cargo install --git https://github.com/haimgel/display-switch --locked
+{{- end }}
 
     # Install tooling for leptos
     rustup target add wasm32-unknown-unknown
@@ -85,33 +109,14 @@ _rust-core: _rustup
     # Install rust-analyzer
     rustup component add rust-analyzer
 
-# Install dictd and offline dictionaries
-_install-dictd:
-    sudo pacman -S dictd
-    paru -S dict-gcide wordnet-dictd dict-moby-thesaurus
-    sudo systemctl enable --now dictd.service
-
-# Remove unused Omarchy Apps
-_cleanup-omarchy:
-    # Remove unused webapps
-    omarchy-webapp-remove \
-        Basecamp \
-        Discord \
-        Figma \
-        HEY \
-        WhatsApp \
-        X || true
-
-    # Remove unused packages
-    yay -Rns obsidian typora rust || true
-
 # Install all core tools
 [group('install')]
-install-core: 
+install-core:
+{{- if eq .distro "omarchy" }}
     yay -Rns tldr || true
 
     # zulip and slack conflict when installed simultaneously
-    yay -S --no-confirm --needed  zulip-desktop-bin
+    yay -S --no-confirm --needed zulip-desktop-bin
     yay -Rns --no-confirm zulip-desktop-bin-debug
 
     yay -S --noconfirm --needed \
@@ -260,16 +265,16 @@ install-core:
         zen-browser-bin \
         zola \
         zoxide \
-        zstd 
+        zstd
 
     # use Zen browser as default
     xdg-settings set default-web-browser zen.desktop
 
     # add to wireshark group to use wireshark
-    sudo usermod -aG wireshark {{whoami}}
+    sudo usermod -aG wireshark $USER
 
     # add to uucp group for nanokvm-usb
-    sudo usermod -aG uucp {{whoami}}
+    sudo usermod -aG uucp $USER
 
     # hx as helix
     sudo ln -sf $(which helix) /usr/bin/hx
@@ -305,6 +310,104 @@ install-core:
     @echo "Installed all core tools."
 
     just _cleanup-omarchy
+{{- else if eq .distro "macos" }}
+    brew install \
+        aerc \
+        asciinema \
+        atuin \
+        b3sum \
+        bat \
+        blackhole-2ch \
+        bottom \
+        codebook-lsp \
+        colima \
+        coreutils \
+        croc \
+        difftastic \
+        duf \
+        dust \
+        eza \
+        fastfetch \
+        fd \
+        ffmpeg \
+        fish \
+        fzf \
+        ghostty \
+        git \
+        git-absorb \
+        git-cliff \
+        git-delta \
+        git-filter-repo \
+        git-grab \
+        git-lfs \
+        git-sizer \
+        glow \
+        gping \
+        haimgel/tools/display_switch \
+        helix \
+        hexyl \
+        hl \
+        hyperfine \
+        jaq \
+        jj \
+        jless \
+        jq \
+        keycastr \
+        llvm \
+        lychee \
+        mise \
+        mosh \
+        mpv \
+        numbat \
+        oha \
+        onefetch \
+        oxipng \
+        pandoc \
+        pastel \
+        pdfcpu \
+        postgresql \
+        presenterm \
+        prettier \
+        rage \
+        ripgrep \
+        rsync \
+        ruff \
+        samply \
+        sd \
+        shellcheck \
+        shfmt \
+        sqlite \
+        sshx \
+        starship \
+        svgo \
+        tealdeer \
+        tectonic \
+        tokei \
+        typos-cli \
+        typos-lsp \
+        typst \
+        vscode-langservers-extracted \
+        watchexec \
+        xh \
+        xsv \
+        yt-dlp \
+        zellij \
+        zola \
+        zoxide \
+        zstd
+
+    brew install --cask flameshot
+
+    just _rust-core
+    just _d2
+
+    # build bat themes
+    bat cache --build
+
+    @echo "Installed all core tools."
+{{- end }}
+
+{{- if eq .distro "omarchy" }}
 
 # Set TCP congestion control to BBR
 [group('install')]
@@ -348,3 +451,4 @@ use-bbr:
     sysctl -n net.ipv4.tcp_congestion_control
     echo -n "qdisc: "
     sysctl -n net.core.default_qdisc
+{{- end }}

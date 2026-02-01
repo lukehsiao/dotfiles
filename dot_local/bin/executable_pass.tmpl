@@ -201,7 +201,7 @@ tmpdir() {
 	fi
 
 }
-GETOPT="getopt"
+GETOPT={{ if eq .chezmoi.os "darwin" }}"/opt/homebrew/opt/gnu-getopt/bin/getopt"{{ else }}"getopt"{{ end }}
 SHRED="shred -f -z"
 BASE64="base64"
 
