@@ -1,0 +1,31 @@
+{{- if eq .distro "macos" }}
+# Added by OrbStack: 'orb' SSH host for Linux machines
+# This only works if it's at the top of ssh_config (before any Host blocks).
+Include ~/.orbstack/ssh/config
+
+{{ end -}}
+Host rsync
+    HostName usw-s007.rsync.net
+    User 57127
+
+Host do
+    HostName git.hsiao.dev
+    ForwardAgent yes
+
+Host aijet1
+    User aidev
+
+Host ai-rpi-1
+    HostName 192.168.26.125
+    User aidev
+    ProxyJump aijet1
+
+Host ai-rpi-2
+    HostName 192.168.26.126
+    User aidev
+    ProxyJump aijet1
+
+Host ai-rpi-5
+    HostName 192.168.26.130
+    User aidev
+    ProxyJump aijet1
