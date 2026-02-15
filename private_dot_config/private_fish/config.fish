@@ -8,6 +8,7 @@ set -gx GRAB_HOME ~/Work
 set -gx PASSAGE_AGE rage
 set -gx ZSTD_CLEVEL 19
 set -gx ZSTD_NBTHREADS (math (nproc)/2)
+set -gx GITHUB_TOKEN (cat ~/.github_token)
 
 # clear fish greeting
 set -g fish_greeting
