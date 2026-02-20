@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+name=$(jj config get user.name)
+email=$(jj config get user.email)
+echo "Co-authored-by: $name <$email>"
