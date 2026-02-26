@@ -34,9 +34,8 @@
 #battery,
 #pulseaudio,
 #custom-omarchy,
-#custom-screenrecording-indicator,
 #custom-update {
-  min-width: 12px;
+  min-width: 18px;
   margin: 0 7.5px;
 }
 
@@ -61,27 +60,36 @@ tooltip {
 }
 
 #custom-update {
-  font-size: 10px;
+  font-size: 16px;
 }
 
 #clock {
-  margin-left: 5px;
+  margin-left: 8.75px;
 }
 
 .hidden {
   opacity: 0;
 }
 
-#custom-screenrecording-indicator {
-  min-width: 12px;
+#custom-screenrecording-indicator,
+#custom-idle-indicator,
+#custom-notification-silencing-indicator {
+  min-width: 18px;
   margin-left: 5px;
-  font-size: 10px;
+  margin-right: 0;
+  font-size: 16px;
   padding-bottom: 1px;
 }
 
 #custom-screenrecording-indicator.active {
   color: #a55555;
 }
+
+#custom-idle-indicator.active,
+#custom-notification-silencing-indicator.active {
+  color: #a55555;
+}
+
 #custom-voxtype {
   min-width: 12px;
   margin: 0 0 0 7.5px;
