@@ -4,11 +4,13 @@ set -gx COLORTERM 24bit
 set -gx EDITOR hx
 set -gx FZF_DEFAULT_COMMAND 'fd --type f --hidden --follow --exclude .git'
 set -gx FZF_CTRL_T_COMMAND "$FZF_DEFAULT_COMMAND"
+if test -f ~/.github_token
+    set -gx GITHUB_TOKEN (cat ~/.github_token)
+end
 set -gx GRAB_HOME ~/Work
 set -gx PASSAGE_AGE rage
 set -gx ZSTD_CLEVEL 19
 set -gx ZSTD_NBTHREADS (math (nproc)/2)
-set -gx GITHUB_TOKEN (cat ~/.github_token)
 
 # clear fish greeting
 set -g fish_greeting
