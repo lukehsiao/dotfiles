@@ -91,6 +91,9 @@ concat(
 )
 '''
 
+[revsets]
+bookmark-advance-to = "@-"
+
 [aliases]
 cl = ["log", "-r", "trunk()..@-", "--reversed", "-T", "description ++ '\n---\n\n'", "--no-graph", "--no-pager"]
 dl = ["log", "-r", "@ | ancestors(trunk()..(visible_heads() & mine()), 2) | trunk()", "-T", "builtin_log_detailed"]
@@ -102,6 +105,5 @@ lr = ["log", "-r", "@ | ancestors(remote_bookmarks().., 2) | trunk()"]
 n = ["new"]
 pba = ["git", "push", "-b", "glob:lwh/*"]
 rba = ["rebase", "-s", "roots(mutable() & mine())", "-d", "trunk()"]
-tug = ["bookmark", "move", "--from", "heads(::@- & bookmarks())", "--to", "@-"]
 wu = ["workspace", "update-stale"]
 xl = ["log", "--no-graph", "-T", '"Ref: " ++ coalesce(repo_path() ++ "@", "") ++ commit_id.shortest(12) ++ " (\"" ++ description.first_line() ++ "\")"']
