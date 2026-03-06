@@ -1,6 +1,6 @@
 add_newline = true
 command_timeout = 200
-format = "[$hostname$directory$git_branch$git_status$python$time$jobs]($style)$character"
+format = "[$hostname$directory${custom.jj}$python$time$jobs]($style)\n$character"
 
 [character]
 error_symbol = "[✗](bold cyan)"
@@ -37,3 +37,11 @@ disabled = false
 [python]
 format = '[(\($virtualenv\) )]($style)'
 style = "bold yellow"
+
+[custom.jj]
+command = "prompt"
+format = "$output"
+ignore_timeout = true
+shell = ["starship-jj", "--ignore-working-copy", "starship"]
+use_stdin = false
+when = true

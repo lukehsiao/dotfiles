@@ -67,6 +67,7 @@ _rust-core: _rustup
         rimage \
         sqlx-cli \
         star-history \
+        starship-jj \
         talk-timer \
         titlecase \
         toml-fmt \

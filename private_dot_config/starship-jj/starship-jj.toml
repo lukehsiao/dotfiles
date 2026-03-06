@@ -1,0 +1,77 @@
+"$schema"="https://gitlab.com/lanastara_foss/starship-jj/-/raw/main/schema.json"
+# Text that will be printed between each Module.
+module_separator = " "
+# Controls whether colors are reset at the end of output.
+# Try this if your prompt displays a blank space at the end.
+# reset_color = true
+# Timeout after wich the process is teminated.
+# timeout = 1000
+ 
+# Note that you can change the order of the modules on your prompt
+# by changing their order in this config file.
+
+# Controls the behaviour of the bookmark finding algorithm.
+[bookmarks]
+# Exclude certain bookmarks from the search (supports globs); takes a list of strings.
+# Example: `exclude = ["feature branch"]`
+exclude = []
+# Controls how far we are looking back to find bookmarks.
+# search_depth = 0
+
+[[module]]
+# Prints the working copy's commit text.
+type = "Commit"
+# Maximum length the commit text will be truncated to.
+max_length = 24
+
+# color = "Green"
+
+# bg_color = "Yellow"
+
+# default text if the commit description is not set
+# empty_text = "(no description set)"
+
+# Surround the commit text with double-quotes
+# surround_with_quotes = true
+
+# Show the previous commits description in case current is empty
+# This will also print the previous_message_symbol
+show_previous_if_empty = true
+
+# A prefix that will be printed when the current commit is empty and the previous commit is shown
+previous_message_symbol="⇣"
+
+# Controls if and how the Change Id should be shown
+[module.change]
+# fg = "magenta"
+
+[[module]]
+# Prints the amount of changes in the working copy.
+type = "Metrics"
+# Hide the metrict module in case there are no changes [0 +0-0]
+# hide_if_empty = true
+color = "Magenta"
+# bg_color = "Yellow"
+# Controls how the changes are rendered. Use {added}, {removed} and {changed} to render the number of changes.
+template = "[{changed} {added}{removed}]"
+
+[module.changed_files]
+# Controls how the number of changed files is rendered.
+# suffix = ""
+# prefix = ""
+color = "Cyan"
+# bg_color = "Yellow"
+
+[module.added_lines]
+# Controls how the number of added lines is rendered.
+prefix = "+"
+# suffix = ""
+color = "Green"
+# bg_color = "Yellow"
+
+[module.removed_lines]
+# Controls how the number of removed lines is rendered.
+prefix = "-"
+# suffix = ""
+color = "Red"
+# bg_color = "Yellow"
