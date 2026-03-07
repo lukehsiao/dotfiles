@@ -23,6 +23,10 @@ should-sign-off = true
 [--scope.ui]
 pager = "delta"
 
+[merge-tools.patch]
+program = "{{ .chezmoi.homeDir }}/.local/bin/edit-patch"
+edit-args = ["$left", "$right"]
+
 [template-aliases]
 commit_template = '''
     concat(

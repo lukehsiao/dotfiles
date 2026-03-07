@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+# SPDX-License-Identifier: MIT
+# SPDX-FileCopyrightText: 2025 Katalin Rebhan <me@dblsaiko.net>
+
+set -e
+
+if (( $# != 2 )); then
+  echo "Usage: $0 LEFT RIGHT" >&2
+  exit 1
+fi
+
+: ${EDITOR:=nano}
+
+left="$1"
+right="$2"
+
+tmpdir="$(mktemp --directory)"
+
+echo "Working directory: ${tmpdir}"
+
+ln -s "$left" "$tmpdir"/a
+ln -s "$right" "$tmpdir"/b
+
+( cd "$tmpdir" && diff --new-file --text --unified --recursive a/ b/ ) \
+    > "$tmpdir"/current.patch || (( $? == 1 ))
+
+cp "$tmpdir"/current.patch "$tmpdir"/orig.patch
+
+"$EDITOR" "$tmpdir"/current.patch
+
+cp -r "$right" "$tmpdir"/result
+patch --reverse --directory="$tmpdir"/result --strip=1 \
+    < "$tmpdir"/orig.patch \
+    > /dev/null
+patch --directory="$tmpdir"/result --strip=1 \
+    < "$tmpdir"/current.patch
+
+mv "$right" "$tmpdir"/oldright
+mv "$tmpdir"/result "$right"
+
+rm -r "$tmpdir"
