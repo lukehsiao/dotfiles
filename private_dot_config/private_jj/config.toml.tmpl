@@ -22,7 +22,7 @@ should-sign-off = true
 "diff token" = { underline = false }
 
 [merge-tools.patch]
-program = "{{ .chezmoi.homeDir }}/.local/bin/edit-patch"
+program = "edit-patch"
 edit-args = ["$left", "$right"]
 
 [template-aliases]
