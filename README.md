@@ -40,3 +40,7 @@ just use-bbr  # optional
 atuin login
 # [optional] Configure styles for zen browser
 ```
+
+## Printer
+
+Note to self on printers on linux: [IPP Everywhere](https://wiki.archlinux.org/title/CUPS).
