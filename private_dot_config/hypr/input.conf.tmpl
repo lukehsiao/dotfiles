@@ -16,6 +16,8 @@ input {
   # Increase sensitivity for mouse/trackpad (default: 0)
   {{ if eq .mousedpi "high" -}}
   sensitivity = -0.9
+  {{- else if eq .mousedpi "mid" -}}
+  sensitivity = -0.7
   {{- else }}
   # sensitivity = 0.35
   {{- end }}
