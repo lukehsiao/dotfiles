@@ -25,4 +25,4 @@ omarchy-update-restart
 # Re-enable screensaver/sleep after updates
 hyprctl dispatch tagwindow -- -noidle &>/dev/null || true
 
-cargo install-update -a -g
+cargo install-update --all --git --locked
