@@ -407,6 +407,63 @@ install-core:
     @echo "Installed all core tools."
 {{- end }}
 
+{{- if eq .distro "macos" }}
+
+# Set up display-switch to run on startup
+[group('install')]
+setup-display-switch:
+    #!/usr/bin/env bash
+    set -euo pipefail
+
+    PLIST="$HOME/Library/LaunchAgents/dev.haim.display-switch.daemon.plist"
+    LABEL="dev.haim.display-switch.daemon"
+
+    if launchctl list "$LABEL" &>/dev/null; then
+        launchctl unload "$PLIST"
+    fi
+    launchctl load -w "$PLIST"
+    echo "display-switch loaded and enabled"
+{{- else if eq .distro "omarchy" }}
+
+# Set up display-switch to run on startup
+[group('install')]
+setup-display-switch:
+    #!/usr/bin/env bash
+    set -euo pipefail
+
+    UDEV_RULE='KERNEL=="i2c-[0-9]*", GROUP="i2c", MODE="0660"'
+    UDEV_FILE='/etc/udev/rules.d/10-i2c.rules'
+
+    # Create i2c group if it doesn't exist
+    if ! getent group i2c &>/dev/null; then
+        sudo groupadd --system i2c
+        echo "Created i2c group"
+    fi
+
+    # Write udev rule if not already present; triggers a reload if added
+    if ! grep -qsF "$UDEV_RULE" "$UDEV_FILE" 2>/dev/null; then
+        echo "$UDEV_RULE" | sudo tee "$UDEV_FILE" >/dev/null
+        sudo udevadm control --reload-rules
+        sudo udevadm trigger
+        echo "Installed i2c udev rule"
+    else
+        echo "i2c udev rule already present"
+    fi
+
+    # Add user to i2c group if not already a member (takes effect after re-login)
+    if ! id -nG "$USER" | grep -qw i2c; then
+        sudo usermod -aG i2c "$USER"
+        echo "Added $USER to i2c group (re-login required for effect)"
+    else
+        echo "$USER already in i2c group"
+    fi
+
+    systemctl --user daemon-reload
+    systemctl --user enable display-switch.service
+    systemctl --user restart display-switch.service
+    echo "display-switch enabled and started"
+{{- end }}
+
 {{- if eq .distro "omarchy" }}
 
 # Set TCP congestion control to BBR

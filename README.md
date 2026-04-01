@@ -45,6 +45,7 @@ atuin login
 
 # [optional] Configure styles for zen browser
 # [optional] set up display-switch
+just setup-display-switch
 ```
 
 ### Printer
@@ -74,6 +75,7 @@ just install-core
 atuin login
 
 # [optional] set up display-switch
+just setup-display-switch
 
 # copy fonts from ~/.local/share/fonts to FontBook
 
