@@ -1,0 +1,11 @@
+[Unit]
+Description=Display switch via USB switch
+
+[Service]
+ExecStart=/home/lukehsiao/.cargo/bin/display_switch
+Type=simple
+StandardOutput=journal
+Restart=always
+
+[Install]
+WantedBy=default.target
