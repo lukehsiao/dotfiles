@@ -39,6 +39,7 @@ just install-core
 just use-bbr  # optional
 atuin login
 # [optional] Configure styles for zen browser
+# [optional] set up display-switch
 ```
 
 ## Printer

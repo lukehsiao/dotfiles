@@ -76,6 +76,9 @@ _rust-core: _rustup
 
     cargo install --git https://github.com/lukehsiao/tool.git --locked
 
+    # For display-switching at the desktop via USB switch
+    cargo install --git https://github.com/haimgel/display-switch --locked
+
     # Install tooling for leptos
     rustup target add wasm32-unknown-unknown
 
