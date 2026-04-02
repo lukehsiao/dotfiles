@@ -7,11 +7,11 @@ set -gx FZF_CTRL_T_COMMAND "$FZF_DEFAULT_COMMAND"
 set -gx GRAB_HOME ~/Work
 set -gx PASSAGE_AGE rage
 set -gx ZSTD_CLEVEL 19
-{{ if eq .chezmoi.os "darwin" -}}
-set -gx ZSTD_NBTHREADS (math (sysctl -n hw.logicalcpu) / 2)
-{{- else -}}
-set -gx ZSTD_NBTHREADS (math (nproc) / 2)
-{{- end }}
+if test (uname) = Darwin
+    set -gx ZSTD_NBTHREADS (math (sysctl -n hw.logicalcpu) / 2)
+else
+    set -gx ZSTD_NBTHREADS (math (nproc) / 2)
+end
 if test -f ~/.github_token
     set -gx GITHUB_TOKEN (cat ~/.github_token)
 end
