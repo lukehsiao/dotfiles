@@ -82,7 +82,6 @@ _rust-core: _rustup
         flamegraph \
         git-stats \
         leptosfmt \
-        openring \
         pgen \
         ren-find \
         rep-grep \
@@ -199,6 +198,7 @@ install-core:
         numbat \
         oha \
         onefetch \
+        openring-rs-bin \
         oxipng \
         pandoc \
         parallel \
@@ -311,6 +311,8 @@ install-core:
 
     just _cleanup-omarchy
 {{- else if eq .distro "macos" }}
+    cargo binstall -y --locked openring
+    
     brew install \
         aerc \
         asciinema \
