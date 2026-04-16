@@ -1,6 +1,7 @@
 {
+    "name": "main",
     "AuxAudioDevice1": {
-        "prev_ver": 536870916,
+        "prev_ver": 536936449,
         "name": "Mic/Aux",
         "uuid": "85275374-df68-419b-b792-92bcd3dcacf3",
         "id": "coreaudio_input_capture",
@@ -33,7 +34,7 @@
         },
         "filters": [
             {
-                "prev_ver": 536870916,
+                "prev_ver": 536936449,
                 "name": "Expander",
                 "uuid": "5e4212e7-61e1-4639-8252-f5eaabae4e2d",
                 "id": "expander_filter",
@@ -60,7 +61,7 @@
                 "private_settings": {}
             },
             {
-                "prev_ver": 536870916,
+                "prev_ver": 536936449,
                 "name": "Compressor",
                 "uuid": "ead61771-4bce-4007-b733-59766b3e91fd",
                 "id": "compressor_filter",
@@ -88,7 +89,7 @@
                 "private_settings": {}
             },
             {
-                "prev_ver": 536870916,
+                "prev_ver": 536936449,
                 "name": "Limiter",
                 "uuid": "e284fe16-c770-490e-af33-50ad648343b9",
                 "id": "limiter_filter",
@@ -115,17 +116,40 @@
             }
         ]
     },
-    "current_scene": "Scene",
-    "current_program_scene": "Scene",
-    "scene_order": [
-        {
-            "name": "Scene"
-        }
-    ],
-    "name": "main",
     "sources": [
         {
-            "prev_ver": 536870916,
+            "prev_ver": 536936449,
+            "name": "macOS Screen Capture",
+            "uuid": "670065f9-fba6-4e64-80d5-347819d900e8",
+            "id": "screen_capture",
+            "versioned_id": "screen_capture",
+            "settings": {
+                "display_uuid": "87628868-A780-4F58-B8D4-538FED87F6B4"
+            },
+            "mixers": 255,
+            "sync": 0,
+            "flags": 0,
+            "volume": 1.0,
+            "balance": 0.5,
+            "enabled": true,
+            "muted": true,
+            "push-to-mute": false,
+            "push-to-mute-delay": 0,
+            "push-to-talk": false,
+            "push-to-talk-delay": 0,
+            "hotkeys": {
+                "libobs.mute": [],
+                "libobs.unmute": [],
+                "libobs.push-to-mute": [],
+                "libobs.push-to-talk": []
+            },
+            "deinterlace_mode": 0,
+            "deinterlace_field_order": 0,
+            "monitoring_type": 0,
+            "private_settings": {}
+        },
+        {
+            "prev_ver": 536936449,
             "name": "Scene",
             "uuid": "369b7ea6-089a-4523-bdfe-f53f259c28ae",
             "id": "scene",
@@ -269,38 +293,20 @@
             "monitoring_type": 0,
             "canvas_uuid": "6c69626f-6273-4c00-9d88-c5136d61696e",
             "private_settings": {}
-        },
-        {
-            "prev_ver": 536870916,
-            "name": "macOS Screen Capture",
-            "uuid": "670065f9-fba6-4e64-80d5-347819d900e8",
-            "id": "screen_capture",
-            "versioned_id": "screen_capture",
-            "settings": {},
-            "mixers": 255,
-            "sync": 0,
-            "flags": 0,
-            "volume": 1.0,
-            "balance": 0.5,
-            "enabled": true,
-            "muted": true,
-            "push-to-mute": false,
-            "push-to-mute-delay": 0,
-            "push-to-talk": false,
-            "push-to-talk-delay": 0,
-            "hotkeys": {
-                "libobs.mute": [],
-                "libobs.unmute": [],
-                "libobs.push-to-mute": [],
-                "libobs.push-to-talk": []
-            },
-            "deinterlace_mode": 0,
-            "deinterlace_field_order": 0,
-            "monitoring_type": 0,
-            "private_settings": {}
         }
     ],
     "groups": [],
+    "scene_order": [
+        {
+            "name": "Scene"
+        }
+    ],
+    "current_scene": "Scene",
+    "current_program_scene": "Scene",
+    "canvases": [],
+    "current_transition": "Fade",
+    "transition_duration": 300,
+    "transitions": [],
     "quick_transitions": [
         {
             "name": "Cut",
@@ -324,14 +330,10 @@
             "fade_to_black": true
         }
     ],
-    "transitions": [],
     "saved_projectors": [],
-    "canvases": [],
-    "current_transition": "Fade",
-    "transition_duration": 300,
     "preview_locked": false,
     "scaling_enabled": false,
-    "scaling_level": -3,
+    "scaling_level": -4,
     "scaling_off_x": 0.0,
     "scaling_off_y": 0.0,
     "virtual-camera": {
