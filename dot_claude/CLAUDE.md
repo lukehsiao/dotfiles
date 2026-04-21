@@ -15,6 +15,9 @@ Always run comments through the humanizer skill first; there should be no emdash
   - Fall back to `git` only for operations that `jj` does not support (e.g., when `jj` is not installed).
   - load the jujutsu skill as necessary for additional context
 
+Importantly, use the [squash workflow](https://steveklabnik.github.io/jujutsu-tutorial/real-world-workflows/the-squash-workflow.html).
+That is, we should always be sitting on a new commit, and squashing into the one we are editing.
+
 ## Git Commit Style
 
 Follow the Conventional Commits format:
@@ -70,6 +73,29 @@ Fixes: <sha> ("<subject>")
 Ref: <url>
 Closes: <issue url>
 Inspired-by: <url>
+```
+
+When AI tools contribute development, proper attribution helps track the evolving role of AI in the development process.
+Contributions should include an Assisted-by tag in the following format:
+
+```
+Assisted-by: AGENT_NAME:MODEL_VERSION [TOOL1] [TOOL2]
+```
+
+Where:
+
+`AGENT_NAME` is the name of the AI tool or framework
+
+`MODEL_VERSION` is the specific model version used
+
+`[TOOL1] [TOOL2]` are optional specialized analysis tools used (e.g., `coccinelle`, `sparse`, `smatch`, `clang-tidy`)
+
+Basic development tools (git, gcc, make, editors) should not be listed.
+
+Example:
+
+```
+Assisted-by: Claude:claude-3-opus coccinelle sparse
 ```
 
 ### Special prefixes
