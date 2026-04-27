@@ -7,6 +7,7 @@ These are just noise.
 Only add comments that provide useful context, communicate why, and clarify intention.
 Always comment with justification for magic numbers.
 Always run comments through the humanizer skill first; there should be no emdashes.
+Never add comments that are time-context dependent (e.g., referencing changes or code state that likely will not be there after we squash commits); comments should stand on their own.
 
 ## Version Control
 
