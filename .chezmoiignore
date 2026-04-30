@@ -20,5 +20,6 @@ Library
 .config/satty
 .config/zen
 .config/zellij/themes/omarchy.kdl
+.config/helix/themes/omarchy.toml
 .local/share/omarchy
 {{- end }}
