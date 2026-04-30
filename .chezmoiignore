@@ -19,5 +19,6 @@ Library
 .config/waybar
 .config/satty
 .config/zen
+.config/zellij/themes/omarchy.kdl
 .local/share/omarchy
 {{- end }}
