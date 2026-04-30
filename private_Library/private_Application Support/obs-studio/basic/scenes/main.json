@@ -1,7 +1,7 @@
 {
     "name": "main",
     "AuxAudioDevice1": {
-        "prev_ver": 536936449,
+        "prev_ver": 536936450,
         "name": "Mic/Aux",
         "uuid": "85275374-df68-419b-b792-92bcd3dcacf3",
         "id": "coreaudio_input_capture",
@@ -34,7 +34,7 @@
         },
         "filters": [
             {
-                "prev_ver": 536936449,
+                "prev_ver": 536936450,
                 "name": "Expander",
                 "uuid": "5e4212e7-61e1-4639-8252-f5eaabae4e2d",
                 "id": "expander_filter",
@@ -61,7 +61,7 @@
                 "private_settings": {}
             },
             {
-                "prev_ver": 536936449,
+                "prev_ver": 536936450,
                 "name": "Compressor",
                 "uuid": "ead61771-4bce-4007-b733-59766b3e91fd",
                 "id": "compressor_filter",
@@ -89,7 +89,7 @@
                 "private_settings": {}
             },
             {
-                "prev_ver": 536936449,
+                "prev_ver": 536936450,
                 "name": "Limiter",
                 "uuid": "e284fe16-c770-490e-af33-50ad648343b9",
                 "id": "limiter_filter",
@@ -118,13 +118,14 @@
     },
     "sources": [
         {
-            "prev_ver": 536936449,
+            "prev_ver": 536936450,
             "name": "macOS Screen Capture",
             "uuid": "670065f9-fba6-4e64-80d5-347819d900e8",
             "id": "screen_capture",
             "versioned_id": "screen_capture",
             "settings": {
-                "display_uuid": "87628868-A780-4F58-B8D4-538FED87F6B4"
+                "display_uuid": "87628868-A780-4F58-B8D4-538FED87F6B4",
+                "type": 0
             },
             "mixers": 255,
             "sync": 0,
@@ -149,20 +150,88 @@
             "private_settings": {}
         },
         {
-            "prev_ver": 536936449,
+            "prev_ver": 536936450,
+            "name": "Video Capture Device",
+            "uuid": "f252f097-db77-4904-81ce-55f1e3c99a1f",
+            "id": "macos-avcapture",
+            "versioned_id": "macos-avcapture",
+            "settings": {
+                "device_name": "HD Pro Webcam C920",
+                "device": "0x1143000046d0892",
+                "preset": "AVCaptureSessionPreset1920x1080"
+            },
+            "mixers": 255,
+            "sync": 0,
+            "flags": 0,
+            "volume": 1.0,
+            "balance": 0.5,
+            "enabled": true,
+            "muted": false,
+            "push-to-mute": false,
+            "push-to-mute-delay": 0,
+            "push-to-talk": false,
+            "push-to-talk-delay": 0,
+            "hotkeys": {
+                "libobs.mute": [],
+                "libobs.unmute": [],
+                "libobs.push-to-mute": [],
+                "libobs.push-to-talk": []
+            },
+            "deinterlace_mode": 0,
+            "deinterlace_field_order": 0,
+            "monitoring_type": 0,
+            "private_settings": {}
+        },
+        {
+            "prev_ver": 536936450,
+            "name": "name",
+            "uuid": "bb97022a-63bb-4df9-badd-18a5f5a36f69",
+            "id": "text_ft2_source",
+            "versioned_id": "text_ft2_source_v2",
+            "settings": {
+                "text": "@lukehsiao",
+                "font": {
+                    "face": "Berkeley Mono",
+                    "style": "SemiLight SemiCondensed",
+                    "size": 75,
+                    "flags": 0
+                },
+                "drop_shadow": true,
+                "color1": 4290676035,
+                "color2": 4290676035
+            },
+            "mixers": 0,
+            "sync": 0,
+            "flags": 0,
+            "volume": 1.0,
+            "balance": 0.5,
+            "enabled": true,
+            "muted": false,
+            "push-to-mute": false,
+            "push-to-mute-delay": 0,
+            "push-to-talk": false,
+            "push-to-talk-delay": 0,
+            "hotkeys": {},
+            "deinterlace_mode": 0,
+            "deinterlace_field_order": 0,
+            "monitoring_type": 0,
+            "private_settings": {}
+        },
+        {
+            "prev_ver": 536936450,
             "name": "Scene",
             "uuid": "369b7ea6-089a-4523-bdfe-f53f259c28ae",
             "id": "scene",
             "versioned_id": "scene",
             "settings": {
-                "id_counter": 6,
+                "id_counter": 9,
                 "custom_size": false,
                 "items": [
                     {
                         "name": "macOS Screen Capture",
                         "source_uuid": "670065f9-fba6-4e64-80d5-347819d900e8",
                         "visible": true,
-                        "locked": false,
+                        "locked": true,
                         "rot": 0.0,
                         "scale_ref": {
                             "x": 6016.0,
@@ -217,7 +286,7 @@
                         "name": "Mic/Aux",
                         "source_uuid": "85275374-df68-419b-b792-92bcd3dcacf3",
                         "visible": true,
-                        "locked": false,
+                        "locked": true,
                         "rot": 0.0,
                         "scale_ref": {
                             "x": 6016.0,
@@ -267,6 +336,116 @@
                             "duration": 0
                         },
                         "private_settings": {}
+                    },
+                    {
+                        "name": "Video Capture Device",
+                        "source_uuid": "f252f097-db77-4904-81ce-55f1e3c99a1f",
+                        "visible": true,
+                        "locked": true,
+                        "rot": 0.0,
+                        "scale_ref": {
+                            "x": 6016.0,
+                            "y": 3384.0
+                        },
+                        "align": 5,
+                        "bounds_type": 0,
+                        "bounds_align": 0,
+                        "bounds_crop": false,
+                        "crop_left": 403,
+                        "crop_top": 0,
+                        "crop_right": 326,
+                        "crop_bottom": 0,
+                        "id": 7,
+                        "group_item_backup": false,
+                        "pos": {
+                            "x": 5428.0,
+                            "y": 2316.0
+                        },
+                        "pos_rel": {
+                            "x": 1.4302268028259277,
+                            "y": 0.368794322013855
+                        },
+                        "scale": {
+                            "x": 0.4937500059604645,
+                            "y": 0.49351853132247925
+                        },
+                        "scale_rel": {
+                            "x": 0.4937500059604645,
+                            "y": 0.49351853132247925
+                        },
+                        "bounds": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "bounds_rel": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "scale_filter": "disable",
+                        "blend_method": "default",
+                        "blend_type": "normal",
+                        "show_transition": {
+                            "duration": 300
+                        },
+                        "hide_transition": {
+                            "duration": 300
+                        },
+                        "private_settings": {}
+                    },
+                    {
+                        "name": "name",
+                        "source_uuid": "bb97022a-63bb-4df9-badd-18a5f5a36f69",
+                        "visible": true,
+                        "locked": true,
+                        "rot": 0.0,
+                        "scale_ref": {
+                            "x": 6016.0,
+                            "y": 3384.0
+                        },
+                        "align": 5,
+                        "bounds_type": 0,
+                        "bounds_align": 0,
+                        "bounds_crop": false,
+                        "crop_left": 0,
+                        "crop_top": 0,
+                        "crop_right": 0,
+                        "crop_bottom": 0,
+                        "id": 8,
+                        "group_item_backup": false,
+                        "pos": {
+                            "x": 5528.0,
+                            "y": 2758.0
+                        },
+                        "pos_rel": {
+                            "x": 1.4893616437911987,
+                            "y": 0.6300235986709595
+                        },
+                        "scale": {
+                            "x": 1.0,
+                            "y": 1.0
+                        },
+                        "scale_rel": {
+                            "x": 1.0,
+                            "y": 1.0
+                        },
+                        "bounds": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "bounds_rel": {
+                            "x": 0.0,
+                            "y": 0.0
+                        },
+                        "scale_filter": "disable",
+                        "blend_method": "default",
+                        "blend_type": "normal",
+                        "show_transition": {
+                            "duration": 300
+                        },
+                        "hide_transition": {
+                            "duration": 300
+                        },
+                        "private_settings": {}
                     }
                 ]
             },
@@ -286,7 +465,11 @@
                 "libobs.show_scene_item.1": [],
                 "libobs.hide_scene_item.1": [],
                 "libobs.show_scene_item.5": [],
-                "libobs.hide_scene_item.5": []
+                "libobs.hide_scene_item.5": [],
+                "libobs.show_scene_item.7": [],
+                "libobs.hide_scene_item.7": [],
+                "libobs.show_scene_item.8": [],
+                "libobs.hide_scene_item.8": []
             },
             "deinterlace_mode": 0,
             "deinterlace_field_order": 0,
