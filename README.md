@@ -43,7 +43,6 @@ just use-bbr  # optional
 
 atuin login
 
-# [optional] Configure styles for zen browser
 # [optional] set up display-switch
 just setup-display-switch
 ```
