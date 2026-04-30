@@ -1,3 +1,4 @@
+# chezmoi:template:left-delimiter="[[" right-delimiter="]]"
 #
 # aerc main configuration
 [ui]
@@ -7,7 +8,7 @@ column-name = {{index (.From | names) 0}}
 column-subject = {{.ThreadPrefix}}{{.Subject}}
 border-char-vertical="│"
 border-char-horizontal="─"
-styleset-name=catppuccin-mocha
+styleset-name=[[ if eq .distro "omarchy" ]]omarchy[[ else ]]catppuccin-mocha[[ end ]]
 
 #
 # See time.Time#Format at https://godoc.org/time#Time.Format
