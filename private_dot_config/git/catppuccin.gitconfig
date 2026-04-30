@@ -121,3 +121,18 @@
 		bold yellow => syntax "#544f4e"
 	# Should match the name of the bat theme
 	syntax-theme = Catppuccin Mocha
+
+# Tracks the terminal palette via syntax-theme = ansi (8-color, which works
+# uniformly on light and dark Omarchy themes). Avoids the "8" (bright black)
+# and "7" (white) ANSI slots since flexoki-light maps both to fg/bg, which
+# would collide with text. Selected by [delta] features = omarchy in
+# config.tmpl when distro == "omarchy".
+[delta "omarchy"]
+	syntax-theme = ansi
+	line-numbers-minus-style = bold red
+	line-numbers-plus-style = bold green
+	minus-emph-style = syntax bold
+	minus-style = syntax
+	plus-emph-style = syntax bold
+	plus-style = syntax
+	zero-style = syntax

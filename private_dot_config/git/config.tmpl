@@ -31,7 +31,7 @@
     path = ~/.config/git/catppuccin.gitconfig
 
 [delta]
-    features = catppuccin-mocha
+    features = {{ if eq .distro "omarchy" }}omarchy{{ else }}catppuccin-mocha{{ end }}
     line-numbers = true
     navigate = true
     tabs = 4
