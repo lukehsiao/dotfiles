@@ -21,5 +21,6 @@ Library
 .config/zen
 .config/zellij/themes/omarchy.kdl
 .config/helix/themes/omarchy.toml
+.config/aerc/stylesets/omarchy
 .local/share/omarchy
 {{- end }}
