@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# Reload Zellij configuration (used by the Omarchy theme switching).
+
+if pgrep -x zellij >/dev/null; then
+  touch "${XDG_CONFIG_HOME:-$HOME/.config}/zellij/config.kdl"
+fi

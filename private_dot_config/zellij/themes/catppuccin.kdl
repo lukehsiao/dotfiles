@@ -42,16 +42,16 @@ themes {
   }
 
   catppuccin-mocha {
-    bg "#585b70" // Surface2
+    bg "#1e1e2e" // Base
     fg "#cdd6f4" // Text
     red "#f38ba8"
     green "#a6e3a1"
     blue "#89b4fa"
     yellow "#f9e2af"
     magenta "#f5c2e7" // Pink
-    orange "#fab387" // Peach
-    cyan "#89dceb" // Sky
-    black "#181825" // Mantle
-    white "#cdd6f4" // Text
+    orange "#f9e2af" // Yellow (no Peach in Omarchy palette)
+    cyan "#94e2d5" // Teal
+    black "#1e1e2e" // = bg, so ribbons render as inverted highlights with readable contrast
+    white "#cdd6f4" // = fg
   }
 }
