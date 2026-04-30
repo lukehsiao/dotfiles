@@ -1,5 +1,9 @@
 # Environment Variables
-set -gx BAT_THEME "Catppuccin Mocha"
+if test (uname) = Darwin
+    set -gx BAT_THEME "Catppuccin Mocha"
+else
+    set -gx BAT_THEME ansi
+end
 set -gx COLORTERM 24bit
 set -gx EDITOR hx
 set -gx FZF_DEFAULT_COMMAND 'fd --type f --hidden --follow --exclude .git'
