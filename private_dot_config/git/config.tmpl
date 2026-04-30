@@ -36,7 +36,9 @@
     navigate = true
     tabs = 4
     hyperlinks = true
+{{- if ne .distro "omarchy" }}
     dark = true
+{{- end }}
 
 [branch]
     sort = -committerdate
