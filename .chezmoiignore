@@ -22,5 +22,6 @@ Library
 .config/zellij/themes/omarchy.kdl
 .config/helix/themes/omarchy.toml
 .config/aerc/stylesets/omarchy
+.config/k9s/skins/omarchy.yaml
 .local/share/omarchy
 {{- end }}
