@@ -22,7 +22,7 @@ dpi = {{ $dpi | quote }}
 mousedpi = {{ $mousedpi | quote }}
 
 [edit]
-command = "hx"
+command = {{ if eq $distro "omarchy" }}"helix"{{ else }}"hx"{{ end }}
 
 [merge]
 command = "nvim"

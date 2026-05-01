@@ -5,7 +5,12 @@ else
     set -gx BAT_THEME ansi
 end
 set -gx COLORTERM 24bit
-set -gx EDITOR hx
+if type -q helix
+    set -gx EDITOR helix
+    alias hx="helix"
+else
+    set -gx EDITOR hx
+end
 set -gx FZF_DEFAULT_COMMAND 'fd --type f --hidden --follow --exclude .git'
 set -gx FZF_CTRL_T_COMMAND "$FZF_DEFAULT_COMMAND"
 set -gx GRAB_HOME ~/Work
@@ -50,7 +55,7 @@ end
 
 # Aliases
 function ea
-    hx ~/.config/fish/config.fish
+    $EDITOR ~/.config/fish/config.fish
     source ~/.config/fish/config.fish && echo "aliases sourced --ok."
 end
 
