@@ -11,7 +11,7 @@ private-commits = "description(glob:'wip:*') | description(glob:'private:*') | d
 
 [ui]
 default-command = "status"
-editor = "hx"
+editor = {{ if eq .distro "omarchy" }}"helix"{{ else }}"hx"{{ end }}
 should-sign-off = {{ if eq .distro "omarchy" }}true{{ else }}false{{ end }}
 
 [colors]
