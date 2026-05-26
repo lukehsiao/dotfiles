@@ -114,10 +114,6 @@ install-core:
 {{- if eq .distro "omarchy" }}
     yay -Rns tldr || true
 
-    # zulip and slack conflict when installed simultaneously
-    yay -S --no-confirm --needed zulip-desktop-bin
-    yay -Rns --no-confirm zulip-desktop-bin-debug
-
     yay -S --noconfirm --needed \
         aerc \
         age-plugin-yubikey \
