@@ -1,5 +1,5 @@
 {
-  "model": "opus[1m]",
+  "model": "claude-fable-5[1m]",
   "hooks": {
     "PostToolUse": [
       {
@@ -38,6 +38,6 @@
   "enabledPlugins": {
     "rust-analyzer-lsp@claude-plugins-official": true
   },
-  "effortLevel": "high",
+  "effortLevel": "xhigh",
   "skipAutoPermissionPrompt": true
 }
