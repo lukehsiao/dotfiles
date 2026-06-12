@@ -16,6 +16,10 @@ config.diagnosticSeverity = "Info"
 command = "ruff"
 args = ["server"]
 
+[language-server.ty]
+command = "ty"
+args = ["server"]
+
 [language-server.codebook]
 command = "codebook-lsp"
 args = ["serve"]
@@ -73,5 +77,5 @@ language-servers = [ "tinymist", "typos", "codebook" ]
 name = "python"
 rulers = [100]
 text-width = 100
-language-servers = [ "ruff", "typos", "codebook" ]
+language-servers = [ "ty", "ruff", "typos", "codebook" ]
 auto-format = true
