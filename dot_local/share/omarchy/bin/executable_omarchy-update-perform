@@ -25,3 +25,4 @@ omarchy-update-restart
 hyprctl dispatch tagwindow -- -noidle &>/dev/null || true
 
 cargo install-update --all --git --locked
+mise up
