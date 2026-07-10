@@ -6,6 +6,12 @@
     <strong>Personal configs for my computers.</strong>
 </div>
 <br>
+<div align="center">
+  <a href="https://github.com/lukehsiao/dotfiles/blob/main/LICENSE.md">
+    <img src="https://img.shields.io/badge/license-Blue--Oak--1.0.0-blue" alt="License">
+  </a>
+</div>
+<br>
 
 This is my opinionated developer setup.
 This is not intended for general use; many things are hardcoded for me, specifically.
