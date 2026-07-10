@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Modified from Omarchy: https://github.com/basecamp/omarchy
+# Copyright (c) David Heinemeier Hansson, MIT License
+
 # omarchy:summary=Apply an Omarchy theme
 # omarchy:args=<theme-name>
 # omarchy:examples=omarchy theme list | omarchy theme set "Tokyo Night"

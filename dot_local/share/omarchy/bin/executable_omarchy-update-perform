@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Modified from Omarchy: https://github.com/basecamp/omarchy
+# Copyright (c) David Heinemeier Hansson, MIT License
+
 # omarchy:summary=Run the full Omarchy update pipeline
 # omarchy:requires-sudo=true
 

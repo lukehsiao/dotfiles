@@ -1,5 +1,7 @@
 justfile
 key.txt.age
+LICENSE.md
+LICENSES
 README.md
 
 {{- if ne .distro "macos" }}

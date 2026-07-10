@@ -108,3 +108,26 @@ just setup-display-switch
 
 # Enable Slack/Chrome/Ghostty notifications in MacOS settings
 ```
+
+## Licensing
+
+Original content in this repository is licensed under the [Blue Oak Model License 1.0.0](LICENSE.md).
+Vendored third-party content is not covered by that license; it retains its upstream license, and where that license requires it, a copy of the license text lives in the vendored directory.
+
+| Path | Upstream | License |
+| --- | --- | --- |
+| `dot_claude/skills/a-philosophy-of-software-design-skills/` | [markduan/a-philosophy-of-software-design-skills](https://github.com/markduan/a-philosophy-of-software-design-skills) | MIT per SKILL.md frontmatter; no LICENSE file upstream |
+| `dot_claude/skills/code-reviewer/` | [google-gemini/gemini-cli](https://github.com/google-gemini/gemini-cli) | Apache-2.0 |
+| `dot_claude/skills/hegel/` | [hegeldev/hegel-skill](https://github.com/hegeldev/hegel-skill) | MIT |
+| `dot_claude/skills/jujutsu/` | [factorial-io/skills](https://github.com/factorial-io/skills) | none granted |
+| `dot_claude/skills/just/` | [seckatie/katies-ai-skills](https://github.com/seckatie/katies-ai-skills) | CC0-1.0 (bundled `just` docs); repo itself unlicensed |
+| `dot_claude/skills/nullables/` | [lexler/skill-factory](https://github.com/lexler/skill-factory) | Apache-2.0 |
+| `dot_claude/skills/property-based-testing/` | [trailofbits/skills](https://github.com/trailofbits/skills) | CC-BY-SA-4.0 |
+| `dot_claude/skills/ripgrep/` | [ratacat/claude-skills](https://github.com/ratacat/claude-skills) | none granted |
+| `dot_claude/skills/rust-best-practices/` | [apollographql/skills](https://github.com/apollographql/skills) | MIT |
+| `dot_claude/skills/wide-events-logging/` | [jonmumm/skills](https://github.com/jonmumm/skills) | none granted |
+| `dot_claude/skills/writing-documentation-with-diataxis/` | [sammcj/agentic-coding](https://github.com/sammcj/agentic-coding) | Apache-2.0 |
+| `dot_local/share/omarchy/` (modified scripts and hyprland config) | [basecamp/omarchy](https://github.com/basecamp/omarchy) | [MIT](LICENSES/omarchy-MIT.txt) |
+
+"None granted" means the upstream repo publishes no license, so the default of all rights reserved applies; those copies are kept here with attribution only.
+The property-based-testing skill is CC-BY-SA-4.0, so that directory stays share-alike rather than Blue Oak.
