@@ -1,157 +1,95 @@
-# Migrating from Mocks to Nullables
+# Migrating an Existing Codebase to Nullables
 
-Strategies for converting existing mock-based codebases to Nullables.
+Converting an existing codebase incrementally — replacing mock-based tests, or making untested code testable. The conversion orders below apply either way. Mocks and Nullables coexist in the same suite and even the same test, so every step ships green — no big-bang rewrite. Convert where testing hurts; skip code that's already easy to maintain.
 
 ## Contents
 
-- [Descend the Ladder](#descend-the-ladder)
-- [Climb the Ladder](#climb-the-ladder)
-- [Replace Mocks with Nullables](#replace-mocks-with-nullables)
-- [Throwaway Stubs](#throwaway-stubs)
+- Replace mocks in one test
+- Choose a conversion order
+- Throwaway stubs
+- Checklist
 
-## Descend the Ladder
+## Replace mocks in one test
 
-Convert incrementally from top down. Make direct dependencies Nullable while leaving deeper dependencies unconverted.
+Substitute one double at a time; run tests after each swap.
 
-```
-Before:
-  App → Service → Repository → Database
-  (all mocked in tests)
+Order within a test: doubles that are only *configured* first, the ones you `verify()` against last.
 
-Step 1: Make Service Nullable
-  App (tests use Service.createNull())
-    → Service → Repository → Database
-
-Step 2: Make Repository Nullable
-  App → Service (tests use Repository.createNull())
-         → Repository → Database
-
-Step 3: Make Database wrapper Nullable
-  App → Service → Repository (tests use Database.createNull())
-                    → Database wrapper
-```
-
-**When to use:** Large codebases where converting everything at once is impractical.
-
-**Process:**
-1. Pick the highest-level class with mocked dependencies
-2. Create `createNull()` factory for that class
-3. Update its tests to use `createNull()` instead of mocks
-4. Repeat for the next level down
-
-## Climb the Ladder
-
-For simpler dependency trees, convert the entire tree at once using post-order depth-first traversal (leaves first, then parents).
-
-```
-Dependency tree:
-  App
-  ├── UserService
-  │   └── Database
-  └── EmailService
-      └── SmtpClient
-
-Conversion order:
-1. Database (leaf)
-2. SmtpClient (leaf)
-3. UserService (depends on Database)
-4. EmailService (depends on SmtpClient)
-5. App (depends on both services)
-```
-
-**When to use:** Smaller codebases, new features, or when you want complete conversion.
-
-## Replace Mocks with Nullables
-
-Substitute test doubles one at a time:
-
-**Before (with mocks):**
-```javascript
-it("sends welcome email", async () => {
-  const mockEmailer = mock(Emailer);
-  when(mockEmailer.send).thenResolve({ sent: true });
-
-  const service = new UserService(mockEmailer);
-  await service.createUser({ email: "test@example.com" });
-
-  verify(mockEmailer.send).calledWith({
-    to: "test@example.com",
-    subject: "Welcome"
-  });
-});
-```
-
-**After (with Nullables):**
-```javascript
-it("sends welcome email", async () => {
-  const emailer = Emailer.createNull();
-  const emails = emailer.trackOutput();
-
-  const service = new UserService(emailer);
-  await service.createUser({ email: "test@example.com" });
-
-  assert.deepEqual(emails.data[0], {
-    to: "test@example.com",
-    subject: "Welcome"
-  });
-});
-```
-
-**Key changes:**
-- `mock()` → `createNull()`
-- `when().thenResolve()` → Configurable Responses
-- `verify().calledWith()` → Output Tracking assertions
-
-## Throwaway Stubs
-
-During migration, you may need temporary stubs for unconverted dependencies.
+1. Replace the double with a nulled real instance.
+2. Its `when().thenReturn()` configuration becomes `createNull(...)` arguments (Configurable Responses).
+3. Its event-emission setup becomes `simulateX()` calls (Behavior Simulation).
+4. Its `verify(...)` assertions become tracker assertions (Output Tracking).
 
 ```javascript
-class UserService {
-  static create() {
-    return new UserService(Database.create(), Emailer.create());
-  }
+// Before
+const emailer = mock(Emailer);
+when(emailer.send).thenResolve({ sent: true });
+const service = new UserService(emailer);
+await service.createUser({ email: "test@example.com" });
+verify(emailer.send).calledWith({ to: "test@example.com", subject: "Welcome" });
 
-  static createNull({
-    users = [],
-    // Throwaway stub config - will be replaced when Database becomes Nullable
-    dbStub = new ThrowawayDatabaseStub()
-  } = {}) {
-    return new UserService(dbStub, Emailer.createNull());
-  }
-}
-
-// Temporary - delete when Database gets proper Nullable support
-class ThrowawayDatabaseStub {
-  constructor() {
-    this._users = new Map();
-  }
-  async getUser(id) {
-    return this._users.get(id);
-  }
-  async saveUser(user) {
-    this._users.set(user.id, user);
-  }
-}
+// After
+const emailer = Emailer.createNull();
+const emails = emailer.trackOutput();
+const service = new UserService(emailer);
+await service.createUser({ email: "test@example.com" });
+assert.deepEqual(emails.data, [{ to: "test@example.com", subject: "Welcome" }]);
 ```
 
-**Rules for Throwaway Stubs:**
-- Mark clearly as temporary (comment, naming)
-- Keep minimal - only what current tests need
-- Delete as soon as the real dependency becomes Nullable
-- Don't let them grow into permanent fixtures
+Each replacement requires the dependency to *be* Nullable — that's the conversion-order question.
 
-## Migration Checklist
+## Choose a conversion order
 
-- [ ] Identify all mock usages in test files (`grep -r "mock\|jest.fn\|sinon"`)
-- [ ] Map dependency tree
-- [ ] Choose strategy: Descend (large) or Climb (small)
-- [ ] For each class:
-  - [ ] Add `create()` factory method
-  - [ ] Add `createNull()` factory method
-  - [ ] Add Output Tracking where needed
-  - [ ] Add Configurable Responses where needed
-  - [ ] Update tests to use Nullables
-  - [ ] Remove mock imports
-- [ ] Delete throwaway stubs when no longer needed
-- [ ] Remove mock library from dependencies
+"Converting" names a class, never a branch or the whole app: converting X means X's tests become sociable and nulled, which requires X's *direct* dependencies to have `createNull()` — nothing deeper. Every conversion leaves tests green and the codebase shippable, so the tree converts one class-sized increment at a time, and the purpose of the work decides how many increments to do.
+
+```
+                    App
+         ┌───────────┼───────────┐
+    ReportClient   Emailer      Cli
+         │             │          │
+    HttpClient    SmtpClient   stdout      ← three technologies, three edges
+```
+
+Converting App gives its three direct dependencies `createNull()` (throwaway stubs if the branches below aren't ready) and rewrites App's tests. The branches stay untouched. Converting ReportClient later descends one branch; the console branch can wait forever if testing never hurts there.
+
+Map the dependency tree first. Each class falls into one of three cases:
+
+- **No infrastructure anywhere below** → nothing to convert; plain tests.
+- **Low-level wrapper on third-party infrastructure** → narrow integration tests + embedded stub (see the building-low-level-wrappers file for your language).
+- **Everything else** → make its direct dependencies Nullable, then compose (see building-high-level-wrappers.md).
+
+**Climb the ladder** (small tree): convert the whole tree bottom-up — leaves first, then each parent by composition, converting tests as you go. No temporary work.
+
+```
+1. HttpClient      — embedded stub + narrow integration tests
+2. Auth0Client     — createNull() by composition; replace mocks in its tests
+3. LoginController — createNull() by composition; replace mocks in its tests
+4. Router          — same
+```
+
+**Descend the ladder** (large tree): convert one class and its *direct* dependencies only, top-down; dependencies that aren't Nullable yet get throwaway stubs. Every rung leaves tests green and the codebase shippable, so the conversion can stop at any rung — at the cost that the sociable chain stays broken below each remaining throwaway stub. When the goal is converting the whole tree anyway, climb instead; throwaway stubs are pure waste then.
+
+```
+1. Router first: give LoginController a throwaway stub, make Router Nullable,
+   replace mocks in Router's tests.
+2. Later, LoginController: its dependency Auth0Client gets converted (or stubbed),
+   LoginController's throwaway stub is replaced by real composition.
+3. Repeat downward as far as the task's scope requires.
+```
+
+## Throwaway stubs
+
+A temporary embedded stub for a dependency you aren't ready to convert. It breaks the sociable chain (changes in the stubbed dependency no longer reach these tests), so:
+
+- Mark it clearly as temporary; keep it minimal — only what current tests need.
+- It stays an implementation detail: callers still see only `create()`/`createNull()`, never a stub parameter.
+- Replace it with real composition as soon as the dependency becomes Nullable; delete it.
+
+## Checklist
+
+- [ ] Find mock usage: `grep -rE "mock|jest\.fn|sinon|Mockito|td\.instance" test/`
+- [ ] Map the dependency tree; pick climb (small) or descend (large)
+- [ ] Per class: `create()` + `createNull()`, output tracking and configurable responses as its tests demand
+- [ ] Per test: replace doubles one at a time, configured ones first, verified ones last; green after each
+- [ ] Replace throwaway stubs as their dependencies become Nullable
+- [ ] When a package is mock-free, drop the mocking library from it
