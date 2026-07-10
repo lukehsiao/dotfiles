@@ -2,6 +2,7 @@
 name: jujutsu
 description: This document instructs Claude Code to use `jj` (Jujutsu) instead of `git` for version control operations. jj is a Git-compatible VCS that provides a simpler mental model and powerful history editing.
 ---
+
 # Jujutsu (jj) Usage Guide for Claude Code
 
 This document instructs Claude Code to use `jj` (Jujutsu) instead of `git` for version control operations. jj is a Git-compatible VCS that provides a simpler mental model and powerful history editing.
@@ -19,7 +20,7 @@ This document instructs Claude Code to use `jj` (Jujutsu) instead of `git` for v
 ### Terminology Mapping
 
 | Git | jj |
-|-----|-----|
+| --- | --- |
 | `branch` | `bookmark` |
 | `HEAD` | `@` (working copy) |
 | `checkout` | `edit` or `new` |
@@ -31,7 +32,7 @@ This document instructs Claude Code to use `jj` (Jujutsu) instead of `git` for v
 
 ### Viewing State
 
-```bash
+```
 # Show current status (like git status)
 jj status
 jj st              # short form
@@ -52,7 +53,7 @@ jj show <commit>
 
 ### Creating Commits
 
-```bash
+```
 # Describe the current working copy commit
 jj describe -m "feat: add new feature"
 jj desc -m "feat: add new feature"  # short form
@@ -68,7 +69,7 @@ jj new main        # new commit based on main
 
 ### Editing History
 
-```bash
+```
 # Edit an existing commit (moves @ to that commit)
 jj edit <commit>
 
@@ -78,8 +79,14 @@ jj squash -m "combined message"
 # Squash specific commit into its parent
 jj squash -r <commit> -m "combined message"
 
-# Split a commit interactively
-jj split
+# Squash specific paths from one commit into another (no editor)
+jj squash --from <src> --into <dst> <paths>
+
+# Restore specific paths to the state at another commit
+jj restore --from <rev> <paths>
+
+# Split a commit by file paths (no editor, see "Avoiding Interactive Editors")
+jj split <path>...
 
 # Absorb changes into appropriate ancestor commits
 jj absorb
@@ -92,34 +99,34 @@ jj rebase -b <commit> -d <destination>      # whole branch
 
 ### Working with Bookmarks (Branches)
 
-```bash
+```
 # List bookmarks
 jj bookmark list
 
 # Create a bookmark at current commit
-jj bookmark create <name>
-jj bookmark create <name> -r <commit>  # at specific commit
+jj bookmark create <n>
+jj bookmark create <n> -r <commit>  # at specific commit
 
 # Move a bookmark to current commit
-jj bookmark set <name>
+jj bookmark set <n>
 
 # Delete a bookmark
-jj bookmark delete <name>
+jj bookmark delete <n>
 
 # Track a remote bookmark
-jj bookmark track <name>@origin
+jj bookmark track <n>@origin
 ```
 
 ### Remote Operations
 
-```bash
+```
 # Fetch from remote
 jj git fetch
 jj git fetch --remote origin
 
 # Push bookmark to remote
-jj git push --bookmark <name>
-jj git push -b <name>  # short form
+jj git push --bookmark <n>
+jj git push -b <n>  # short form
 
 # Push current commit's bookmark
 jj git push
@@ -130,7 +137,7 @@ jj bookmark set feature-x && jj git push -b feature-x
 
 ### Handling Conflicts
 
-```bash
+```
 # Conflicts don't block operations - check for them
 jj log -r 'conflicts()'
 
@@ -143,7 +150,7 @@ jj status  # verify resolved
 
 ### Undo and Recovery
 
-```bash
+```
 # Show operation log
 jj op log
 
@@ -160,7 +167,7 @@ jj op restore <operation-id>
 
 When starting substantial new work (feature, bug fix, refactor), create a new commit first:
 
-```bash
+```
 # Start new work from main
 jj new main -m "feat: description of the work"
 
@@ -169,29 +176,53 @@ jj new -m "fix: description of the fix"
 ```
 
 This keeps changes isolated and makes it easier to:
-- Understand what changed for a specific piece of work
-- Review changes before merging
-- Revert or modify specific work without affecting other changes
+
+* Understand what changed for a specific piece of work
+* Review changes before merging
+* Revert or modify specific work without affecting other changes
 
 ### Making Changes
 
-```bash
-# Just edit files - they're automatically tracked
-# When ready to finalize the commit message:
-jj describe -m "feat: complete implementation"
+The cheapest way to get atomic commits is to create them as you go, not
+to split a sprawling working copy afterward. Between logical steps, run
+`jj new`:
 
-# Start next piece of work
-jj new -m "feat: next thing"
+```
+# start work with a description already in place
+jj new -m "refactor: extract auth helper"
+# ...edit files...
+
+# move on to the next logical step
+jj new -m "feat: use auth helper in login flow"
+# ...edit files...
+
+# and the next
+jj new -m "test: cover auth helper edge cases"
+```
+
+If the description needs updating later:
+
+```
+jj describe -m "refactor: extract auth helper from login module"
+```
+
+If two adjacent commits turn out to be one logical change after all:
+
+```
+jj squash -m "combined message"
 ```
 
 ### Cleaning Up Before Push
 
-```bash
+```
 # Squash fixup commits into their parents
 jj squash -r <fixup-commit>
 
 # Or use absorb to automatically distribute changes
 jj absorb
+# Note: absorb only moves hunks into ancestor commits that already
+# touch the same lines. It won't create new commits; if you have
+# mixed unrelated changes in @, split them first.
 
 # Rebase onto latest main
 jj git fetch
@@ -200,7 +231,7 @@ jj rebase -d main
 
 ### Creating a Pull Request
 
-```bash
+```
 # Ensure bookmark exists
 jj bookmark create my-feature
 
@@ -213,7 +244,7 @@ jj git push --bookmark my-feature
 
 ### Updating a PR After Review
 
-```bash
+```
 # Edit the commit that needs changes
 jj edit <commit>
 
@@ -231,20 +262,21 @@ jj git push -b my-feature
 
 ### Commit Messages
 
-- Use conventional commits: `feat:`, `fix:`, `chore:`, `refactor:`, `docs:`, `test:`
-- Describe the commit when the work is complete, not at the start
-- Use `jj describe` to update messages as work evolves
+* Use conventional commits: `feat:`, `fix:`, `chore:`, `refactor:`, `docs:`, `test:`
+* Describe the commit when the work is complete, not at the start
+* Use `jj describe` to update messages as work evolves
 
 ### History Hygiene
 
-- Use `jj squash` to combine WIP commits before pushing
-- Use `jj absorb` to fold review feedback into original commits
-- Keep commits atomic and focused
+* Use `jj squash` to combine WIP commits before pushing
+* Use `jj absorb` to fold review feedback into original commits
+* Keep commits atomic and focused
 
 ### Bookmark Naming
 
 When pushing to GitHub, use descriptive bookmark names:
-```bash
+
+```
 jj bookmark create fix/issue-123-auth-bug
 jj bookmark create feat/user-dashboard
 jj bookmark create claude/<feature>-<session-id>  # for Claude Code sessions
@@ -252,9 +284,9 @@ jj bookmark create claude/<feature>-<session-id>  # for Claude Code sessions
 
 ### Before Push Checklist
 
-```bash
+```
 # 1. Check for conflicts
-jj log -r 'conflict()'
+jj log -r 'conflicts()'
 
 # 2. Ensure clean status
 jj status
@@ -273,7 +305,7 @@ jj git push -b <bookmark>
 
 jj can coexist with git in the same repository:
 
-```bash
+```
 # Initialize jj in existing git repo
 jj git init --colocate
 
@@ -282,32 +314,99 @@ jj git init --colocate
 ```
 
 When colocated:
-- `jj git fetch` updates both jj and git refs
-- `jj git push` pushes via git
-- git commands still work if needed for edge cases
+
+* `jj git fetch` updates both jj and git refs
+* `jj git push` pushes via git
+* git commands still work if needed for edge cases
+
+## Avoiding Interactive Editors
+
+jj commands like `squash`, `describe`, `commit`, and `split` open an
+interactive editor by default. Since LLMs cannot drive TUIs, always use
+the non-interactive forms:
+
+* **Commit messages inline**: always pass `-m "message"` to `describe`,
+  `squash`, `commit`, `new`.
+* **Squash without editor**: `jj squash -m "message"` or
+  `jj squash --into <rev> -m "message"`.
+* **Squash specific paths only**: `jj squash --from <src> --into <dst> <paths>`
+  moves only the named files, no editor involved.
+* **Restore specific paths**: `jj restore --from <rev> <paths>` pulls paths
+  back to the state at `<rev>`, useful for peeling changes off a commit.
+
+### Splitting commits non-interactively
+
+`jj split` *can* be used non-interactively — don't avoid it, just use the
+right invocation:
+
+* **File-based split** (preferred): `jj split <path>...` moves the listed
+  paths into the first commit and leaves everything else in the second.
+  No editor opens. Use this whenever atomic boundaries align with files.
+* **Parallel split**: add `--parallel` if the two halves should be
+  siblings rather than stacked.
+* **Messages inline**: add `-m "first" -m "second"` to set both commit
+  descriptions without prompting.
+
+Example:
+
+```
+jj split -m "refactor: extract helper" -m "feat: use helper in X" \
+    src/helper.rs
+```
+
+### When file-based split isn't enough
+
+For hunk-level splits within a single file, prefer one of these patterns
+over trying to drive the interactive TUI:
+
+1. **Split before you mess up** — the best strategy. Between logical
+   steps, run `jj new -m "next thing"`. You end up with atomic commits
+   by construction and never need `split`.
+
+2. **Compose with `squash`/`restore`**:
+
+   ```
+   jj new              # empty change on top
+   # edit files to the desired state of part A
+   jj squash --from <original> --into @ <paths-for-A>
+   # the original commit now contains only part B
+   ```
+
+3. **Patch round-trip** (last resort, fully scriptable):
+
+   ```
+   jj diff -r <rev> --git > /tmp/full.patch
+   # split the patch into partial.patch and rest.patch
+   jj restore -r <rev>
+   jj new -r <rev>-
+   git apply /tmp/partial.patch && jj commit -m "part A"
+   git apply /tmp/rest.patch     && jj commit -m "part B"
+   ```
 
 ## Command Quick Reference
 
 | Action | Command |
-|--------|---------|
+| --- | --- |
 | Status | `jj st` |
 | Log | `jj log` |
 | Diff | `jj diff --git` |
 | Describe commit | `jj desc -m "message"` |
 | New commit | `jj new` |
 | Edit old commit | `jj edit <rev>` |
-| Squash into parent | `jj squash` |
+| Squash into parent | `jj squash -m <message>` |
+| Squash paths | `jj squash --from <src> --into <dst> <paths>` |
+| Split by file | `jj split <path>...` |
 | Rebase | `jj rebase -d <dest>` |
-| Create bookmark | `jj bookmark create <name>` |
+| Create bookmark | `jj bookmark create <n>` |
 | Fetch | `jj git fetch` |
-| Push | `jj git push -b <name>` |
+| Push | `jj git push -b <n>` |
 | Undo | `jj op undo` |
 
 ## Error Recovery
 
 If something goes wrong:
 
-```bash
+```
 # See what happened
 jj op log
 
