@@ -15,6 +15,6 @@ function jj-cstat -d "Compact the summary lines of jj --stat output read from st
     # every line that is not a summary line.
     string replace --regex --filter -- \
         '^.*?(\d+ files?) changed, (\d+) insertions?\(\+\), (\d+) deletions?\(-\)$' \
-        '$1, +$2, -$3' \
+        '[`$1, +$2, -$3`]' \
         (string split \n -- $input)
 end
