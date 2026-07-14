@@ -1,9 +1,9 @@
 # Environment Variables
-if test (uname) = Darwin
-    set -gx BAT_THEME "Catppuccin Mocha"
-else
-    set -gx BAT_THEME ansi
-end
+{{- if eq .distro "macos" }}
+set -gx BAT_THEME "Catppuccin Mocha"
+{{- else }}
+set -gx BAT_THEME ansi
+{{- end }}
 set -gx COLORTERM 24bit
 if type -q helix
     set -gx EDITOR helix
@@ -16,11 +16,11 @@ set -gx FZF_CTRL_T_COMMAND "$FZF_DEFAULT_COMMAND"
 set -gx GRAB_HOME ~/Work
 set -gx PASSAGE_AGE rage
 set -gx ZSTD_CLEVEL 19
-if test (uname) = Darwin
-    set -gx ZSTD_NBTHREADS (math (sysctl -n hw.logicalcpu) / 2)
-else
-    set -gx ZSTD_NBTHREADS (math (nproc) / 2)
-end
+{{- if eq .distro "macos" }}
+set -gx ZSTD_NBTHREADS (math (sysctl -n hw.logicalcpu) / 2)
+{{- else }}
+set -gx ZSTD_NBTHREADS (math (nproc) / 2)
+{{- end }}
 if test -f ~/.github_token
     set -gx GITHUB_TOKEN (cat ~/.github_token)
 end
@@ -36,9 +36,9 @@ fish_add_path $HOME/.poetry/bin
 
 # Configurations
 if status --is-interactive
-    if test (uname) = Darwin
-        ssh-add --apple-load-keychain 2>/dev/null
-    end
+{{- if eq .distro "macos" }}
+    ssh-add --apple-load-keychain 2>/dev/null
+{{- end }}
 
     if type -q fzf; and fzf --fish &>/dev/null
         fzf --fish | source
