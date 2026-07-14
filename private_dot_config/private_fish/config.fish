@@ -36,6 +36,10 @@ fish_add_path $HOME/.poetry/bin
 
 # Configurations
 if status --is-interactive
+    if test (uname) = Darwin
+        ssh-add --apple-load-keychain 2>/dev/null
+    end
+
     if type -q fzf; and fzf --fish &>/dev/null
         fzf --fish | source
     end
