@@ -14,6 +14,9 @@ end
 set -gx FZF_DEFAULT_COMMAND 'fd --type f --hidden --follow --exclude .git'
 set -gx FZF_CTRL_T_COMMAND "$FZF_DEFAULT_COMMAND"
 set -gx GRAB_HOME ~/Work
+if test -f ~/.openai-api-key
+    set -gx OPENAI_API_KEY (cat ~/.openai-api-key)
+end
 set -gx PASSAGE_AGE rage
 set -gx ZSTD_CLEVEL 19
 if test (uname) = Darwin
