@@ -120,7 +120,6 @@ install-core:
         anki-bin \
         ardour \
         asciinema \
-        atuin \
         audacity \
         b3sum \
         bacon \
@@ -308,8 +307,6 @@ install-core:
     omarchy-webapp-install "Google Calendar" https://calendar.google.com https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/google-calendar.png
     omarchy-webapp-install "Google Tasks" https://tasks.google.com/tasks/ https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/google-tasks.png
 
-    @echo "Installed all core tools."
-
     just _cleanup-omarchy
 {{- else if eq .distro "macos" }}
     cargo binstall -y --locked openring
@@ -317,7 +314,6 @@ install-core:
     brew install \
         aerc \
         asciinema \
-        atuin \
         b3sum \
         bat \
         blackhole-2ch \
@@ -410,9 +406,10 @@ install-core:
 
     # build bat themes
     bat cache --build
-
-    @echo "Installed all core tools."
 {{- end }}
+
+    curl --proto '=https' --tlsv1.2 -LsSf https://setup.atuin.sh | sh -s -- --non-interactive
+    @echo "Installed all core tools."
 
 {{- if eq .distro "macos" }}
 
