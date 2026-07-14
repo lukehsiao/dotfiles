@@ -73,6 +73,7 @@ alias rg="rg -S"
 if type -q gsort
     alias sort="gsort"
 end
+alias mup="MISE_MINIMUM_RELEASE_AGE=0 mise up"
 alias vi="nvim"
 alias vim="nvim"
 
