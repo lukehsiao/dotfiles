@@ -1,6 +1,6 @@
 themes {
   omarchy {
-    bg "{{ color0 }}"
+    bg "{{ selection }}"
     fg "{{ foreground }}"
     black "{{ background }}"
     red "{{ color1 }}"

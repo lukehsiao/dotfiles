@@ -127,7 +127,7 @@ Vendored third-party content is not covered by that license; it retains its upst
 | `dot_claude/skills/rust-best-practices/` | [apollographql/skills](https://github.com/apollographql/skills) | MIT |
 | `dot_claude/skills/wide-events-logging/` | [jonmumm/skills](https://github.com/jonmumm/skills) | none granted |
 | `dot_claude/skills/writing-documentation-with-diataxis/` | [sammcj/agentic-coding](https://github.com/sammcj/agentic-coding) | Apache-2.0 |
-| `dot_local/share/omarchy/` (modified scripts and hyprland config) | [basecamp/omarchy](https://github.com/basecamp/omarchy) | [MIT](LICENSES/omarchy-MIT.txt) |
+| `private_dot_config/hypr/` and `private_dot_config/omarchy/themed/` (config derived from Omarchy defaults) | [basecamp/omarchy](https://github.com/basecamp/omarchy) | [MIT](LICENSES/omarchy-MIT.txt) |
 
 "None granted" means the upstream repo publishes no license, so the default of all rights reserved applies; those copies are kept here with attribution only.
 The property-based-testing skill is CC-BY-SA-4.0, so that directory stays share-alike rather than Blue Oak.

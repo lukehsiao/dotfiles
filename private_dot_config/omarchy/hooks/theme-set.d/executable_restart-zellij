@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# Zellij only reloads its theme when the config file it watches changes, and
+# swapping the omarchy theme symlink target does not trip that watcher. Nudge
+# it by touching the config after every theme change.
+if pgrep -x zellij >/dev/null; then
+  touch "${XDG_CONFIG_HOME:-$HOME/.config}/zellij/config.kdl"
+fi
