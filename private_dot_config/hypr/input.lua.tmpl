@@ -1,0 +1,30 @@
+-- Personal input overrides, loaded after Omarchy's defaults.
+-- See https://wiki.hypr.land/Configuring/Basics/Variables/#input
+hl.config({
+  input = {
+    kb_layout = "us",
+    kb_options = "ctrl:nocaps,compose:ralt",
+
+    repeat_rate = 40,
+    repeat_delay = 600,
+
+    numlock_by_default = true,
+
+    {{ if eq .mousedpi "high" -}}
+    -- Tame a high-dpi mouse (default sensitivity: 0).
+    sensitivity = -0.9,
+    {{- else if eq .mousedpi "mid" -}}
+    -- Tame a mid-dpi mouse (default sensitivity: 0).
+    sensitivity = -0.7,
+    {{- end }}
+    accel_profile = "flat",
+
+    touchpad = {
+      scroll_factor = 0.4,
+    },
+  },
+})
+
+-- App-specific touchpad scroll speeds.
+o.window("(Alacritty|kitty|foot)", { scroll_touchpad = 1.5 })
+o.window("com.mitchellh.ghostty", { scroll_touchpad = 0.2 })

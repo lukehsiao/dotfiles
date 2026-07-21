@@ -29,7 +29,7 @@ _d2:
 
 # Install tailscale
 _tailscale:
-    omarchy-install-tailscale
+    omarchy-install-service-tailscale
 
 # Install dictd and offline dictionaries
 _install-dictd:
@@ -43,13 +43,12 @@ _cleanup-omarchy:
     omarchy-webapp-remove \
         Basecamp \
         Discord \
-        Figma \
         HEY \
         WhatsApp \
         X || true
 
     # Remove unused packages
-    yay -Rns obsidian typora rust || true
+    yay -Rns obsidian rust || true
 {{- end }}
 
 # Install Rust core tooling

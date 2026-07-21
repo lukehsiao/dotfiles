@@ -1,0 +1,8 @@
+{{- if eq .distro "omarchy" }}
+.config/hypr/bindings.conf
+.config/hypr/input.conf
+.config/hypr/looknfeel.conf
+.config/hypr/monitors.conf
+.config/waybar
+.config/waybar/**
+{{- end }}

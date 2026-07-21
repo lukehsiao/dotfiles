@@ -1,0 +1,16 @@
+-- See https://wiki.hypr.land/Configuring/Basics/Monitors/
+-- List current monitors and supported resolutions with: hyprctl monitors all
+
+{{ if eq .dpi "retina" -}}
+-- Optimized for retina-class 2x displays, like 13" 2.8K, 27" 5K, 32" 6K.
+hl.env("GDK_SCALE", "2")
+hl.monitor({ output = "", mode = "preferred", position = "auto", scale = "auto" })
+{{- else if eq .dpi "mid" }}
+-- Good compromise for 27" or 32" 4K monitors (but fractional!)
+hl.env("GDK_SCALE", "1.75")
+hl.monitor({ output = "", mode = "preferred", position = "auto", scale = 1.666667 })
+{{- else }}
+-- Straight 1x setup for low-resolution displays like 1080p or 1440p.
+hl.env("GDK_SCALE", "1")
+hl.monitor({ output = "", mode = "preferred", position = "auto", scale = 1 })
+{{- end }}
