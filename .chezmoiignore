@@ -18,11 +18,11 @@ Library
 .config/hypr
 .config/omarchy
 .config/uwsm
-.config/waybar
 .config/satty
 .config/zen
 .config/zellij/themes/omarchy.kdl
 .config/aerc/stylesets/omarchy
 .config/k9s/skins/omarchy.yaml
-.local/share/omarchy
+.config/mimeapps.list
+.local/state/omarchy
 {{- end }}

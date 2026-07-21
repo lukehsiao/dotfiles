@@ -1,0 +1,6 @@
+#!/bin/bash
+
+# Keep rustup and cargo-installed tools current alongside system updates.
+# mise updates are already part of the stock omarchy-update pipeline.
+rustup update
+cargo install-update --all --git --locked

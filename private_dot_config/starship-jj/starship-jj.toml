@@ -45,6 +45,13 @@ previous_message_symbol="⇣"
 [module.change]
 # fg = "magenta"
 
+# Style for the non-unique tail of change/commit ids. The default is Black,
+# which omarchy themes map to the terminal background, making the tail
+# invisible. BrightBlack is bound to omarchy's muted color in the terminal
+# palette, so it stays subtle but visible and tracks theme switches.
+[module.non_unique]
+color = "BrightBlack"
+
 [[module]]
 # Prints the amount of changes in the working copy.
 type = "Metrics"
