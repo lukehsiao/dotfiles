@@ -1,0 +1,8 @@
+modelRoles: 
+  smol: anthropic/claude-opus-4-8:xhigh
+  advisor: anthropic/claude-opus-4-8:xhigh
+  default: anthropic/claude-fable-5:xhigh
+symbolPreset: nerd
+theme: 
+  dark: titanium
+setupVersion: 1
