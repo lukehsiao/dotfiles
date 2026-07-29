@@ -101,6 +101,7 @@ cl = ["log", "-r", "trunk()..@-", "--reversed", "-T", "description ++ '\n---\n\n
 de = ["diffedit", "--tool=patch"]
 dl = ["log", "-r", "@ | ancestors(trunk()..(visible_heads() & mine()), 2) | trunk()", "-T", "builtin_log_detailed"]
 dla = ["log", "-r", "ancestors(@)", "-T", "builtin_log_detailed"]
+dt = ["diff", "--tool=difft"]
 fl = ["log", "--no-graph", "-T", '"Fixes: " ++ commit_id.shortest(12) ++ " (\"" ++ description.first_line() ++ "\")"']
 l = ["log", "-r", "@ | ancestors(trunk()..(visible_heads() & (mine() | bookmarks())), 2) | trunk()"]
 la = ["log", "-r", "ancestors(@)"]
