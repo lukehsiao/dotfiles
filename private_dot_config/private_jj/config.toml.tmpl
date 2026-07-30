@@ -103,7 +103,7 @@ dl = ["log", "-r", "@ | ancestors(trunk()..(visible_heads() & mine()), 2) | trun
 dla = ["log", "-r", "ancestors(@)", "-T", "builtin_log_detailed"]
 dt = ["diff", "--tool=difft"]
 fl = ["log", "--no-graph", "-T", '"Fixes: " ++ commit_id.shortest(12) ++ " (\"" ++ description.first_line() ++ "\")"']
-l = ["log", "-r", "@ | ancestors(trunk()..(visible_heads() & (mine() | bookmarks())), 2) | trunk()"]
+l = ["log", "-r", "@ | ancestors(trunk()..(visible_heads() & (mine() | bookmarks()) ~ (remote_bookmarks() ~ bookmarks())), 2) | trunk()"]
 la = ["log", "-r", "ancestors(@)"]
 lr = ["log", "-r", "@ | ancestors(remote_bookmarks().., 2) | trunk()"]
 n = ["new"]
