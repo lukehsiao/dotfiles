@@ -13,11 +13,13 @@ private-commits = "description(glob:'wip:*') | description(glob:'private:*') | d
 behavior = "own"
 backend = "ssh"
 key = "~/.ssh/id_ed25519.pub"
+backends.ssh.allowed-signers = "~/.ssh/allowed_signers"
 
 [ui]
 default-command = "status"
 editor = {{ if eq .distro "omarchy" }}"helix"{{ else }}"hx"{{ end }}
 should-sign-off = {{ if eq .distro "omarchy" }}true{{ else }}false{{ end }}
+show-cryptographic-signatures = true
 
 [colors]
 "diff added" = { fg = "blue" }
