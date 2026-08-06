@@ -9,6 +9,11 @@ auto-local-bookmark = false
 # Prevent pushing work in progress or anything explicitly labeled "private"
 private-commits = "description(glob:'wip:*') | description(glob:'private:*') | description(glob:'review:*')"
 
+[signing]
+behavior = "own"
+backend = "ssh"
+key = "~/.ssh/id_ed25519.pub"
+
 [ui]
 default-command = "status"
 editor = {{ if eq .distro "omarchy" }}"helix"{{ else }}"hx"{{ end }}
