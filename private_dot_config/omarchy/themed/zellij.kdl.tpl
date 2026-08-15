@@ -3,13 +3,15 @@ themes {
     bg "{{ selection }}"
     fg "{{ foreground }}"
     black "{{ background }}"
-    red "{{ color1 }}"
-    green "{{ color2 }}"
-    yellow "{{ color3 }}"
-    blue "{{ color4 }}"
-    magenta "{{ color5 }}"
-    cyan "{{ color6 }}"
+    red "{{ red }}"
+    green "{{ green }}"
+    yellow "{{ yellow }}"
+    blue "{{ blue }}"
+    magenta "{{ magenta }}"
+    cyan "{{ cyan }}"
     white "{{ foreground }}"
-    orange "{{ color3 }}"
+    // Intentionally yellow: themes without a true orange derive one, and
+    // yellow reads better than a derived orange in zellij's UI accents.
+    orange "{{ yellow }}"
   }
 }

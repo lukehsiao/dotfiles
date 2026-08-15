@@ -3,23 +3,23 @@
 
 default.fg={{ foreground }}
 
-error.fg={{ color1 }}
-warning.fg={{ color3 }}
-success.fg={{ color2 }}
+error.fg={{ red }}
+warning.fg={{ yellow }}
+success.fg={{ green }}
 
-tab.fg={{ color8 }}
+tab.fg={{ muted }}
 tab.bg={{ background }}
 tab.selected.fg={{ foreground }}
 tab.selected.bg={{ background }}
 tab.selected.bold=true
 
-border.fg={{ color8 }}
+border.fg={{ muted }}
 border.bold=true
 
 msglist_unread.bold=true
-msglist_flagged.fg={{ color3 }}
+msglist_flagged.fg={{ yellow }}
 msglist_flagged.bold=true
-msglist_result.fg={{ color4 }}
+msglist_result.fg={{ blue }}
 msglist_result.bold=true
 msglist_*.selected.bold=true
 msglist_*.selected.fg={{ background }}
@@ -44,15 +44,15 @@ completion_default.selected.fg={{ background }}
 completion_default.selected.bg={{ foreground }}
 
 [viewer]
-url.fg={{ color4 }}
+url.fg={{ blue }}
 url.underline=true
 header.bold=true
 signature.dim=true
 diff_meta.bold=true
-diff_chunk.fg={{ color4 }}
-diff_chunk_func.fg={{ color4 }}
+diff_chunk.fg={{ blue }}
+diff_chunk_func.fg={{ blue }}
 diff_chunk_func.bold=true
-diff_add.fg={{ color2 }}
-diff_del.fg={{ color1 }}
-quote_*.fg={{ color8 }}
+diff_add.fg={{ green }}
+diff_del.fg={{ red }}
+quote_*.fg={{ muted }}
 quote_1.fg={{ foreground }}
