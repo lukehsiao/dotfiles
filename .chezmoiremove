@@ -3,12 +3,15 @@
 # lingers on every machine that applied it.
 .config/ghostty/shaders/bettercrt.glsl
 
-# The ripgrep skill was vendored from ratacat/claude-skills, which publishes
-# no license, leaving the default of all rights reserved. Unmanaging a file
-# does not delete it, so without this the encumbered copy lingers on every
-# machine that applied it.
+# The ripgrep and just skills were vendored from repos (ratacat/claude-skills,
+# seckatie/katies-ai-skills) that publish no license for the skill prose,
+# leaving the default of all rights reserved. Unmanaging a file does not
+# delete it, so without this the encumbered copies linger on every machine
+# that applied them.
 .claude/skills/ripgrep
 .claude/skills/ripgrep/**
+.claude/skills/just
+.claude/skills/just/**
 
 {{- if eq .distro "omarchy" }}
 .config/hypr/bindings.conf
