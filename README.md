@@ -116,17 +116,16 @@ Vendored third-party content is not covered by that license; it retains its upst
 
 | Path | Upstream | License |
 | --- | --- | --- |
-| `dot_claude/skills/a-philosophy-of-software-design-skills/` | [markduan/a-philosophy-of-software-design-skills](https://github.com/markduan/a-philosophy-of-software-design-skills) | MIT per SKILL.md frontmatter; no LICENSE file upstream |
 | `dot_claude/skills/code-reviewer/` | [google-gemini/gemini-cli](https://github.com/google-gemini/gemini-cli) | Apache-2.0 |
 | `dot_claude/skills/hegel/` | [hegeldev/hegel-skill](https://github.com/hegeldev/hegel-skill) | MIT |
 | `dot_claude/skills/nullables/` | [lexler/skill-factory](https://github.com/lexler/skill-factory) | Apache-2.0 |
 | `dot_claude/skills/property-based-testing/` | [trailofbits/skills](https://github.com/trailofbits/skills) | CC-BY-SA-4.0 |
 | `dot_claude/skills/rust-best-practices/` | [apollographql/skills](https://github.com/apollographql/skills) | MIT |
+| `dot_claude/skills/software-design-philosophy/` | [wondelai/skills](https://github.com/wondelai/skills) | [MIT](dot_claude/skills/software-design-philosophy/LICENSE) |
 | `dot_claude/skills/writing-documentation-with-diataxis/` | [sammcj/agentic-coding](https://github.com/sammcj/agentic-coding) | Apache-2.0 |
 | `dot_local/bin/executable_edit-patch` | [Jujutsu Patch Edit by Katalin Rebhan](https://www.knifepoint.net/~kat/kb-jj-patchedit.html) | [MIT](LICENSES/edit-patch-MIT.txt) per SPDX header |
 | `dot_local/bin/executable_pass.tmpl` (the `passage` script) and `private_dot_config/private_fish/completions/pass.fish` | [FiloSottile/passage](https://github.com/FiloSottile/passage), a fork of [password-store](https://git.zx2c4.com/password-store/) whose original copyright headers it preserves | [GPL-2.0-or-later](LICENSES/passage-GPL-2.0.txt) per file headers |
 | `private_dot_config/ghostty/shaders/cursor_warp.glsl` | [sahaj-b/ghostty-cursor-shaders](https://github.com/sahaj-b/ghostty-cursor-shaders) | [MIT](LICENSES/ghostty-cursor-shaders-MIT.txt) |
 | `private_dot_config/hypr/`, `private_dot_config/omarchy/themed/`, and the `dip`/`fip`/`lip` fish functions (derived from Omarchy defaults) | [basecamp/omarchy](https://github.com/basecamp/omarchy) | [MIT](LICENSES/omarchy-MIT.txt) |
 
-The APOSD skill's MIT grant rests only on its SKILL.md frontmatter.
 The property-based-testing skill is CC-BY-SA-4.0, so that directory stays share-alike rather than Blue Oak.
