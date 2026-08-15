@@ -21,7 +21,7 @@
 [diff]
     colorMoved = default
     algorithm = histogram
-    mneumonicPrefix = true
+    mnemonicPrefix = true
     renames = true
 
 [pretty]
@@ -143,7 +143,7 @@
     wipe = !git add -A && git commit -qm 'WIPE SAVEPOINT' && git reset HEAD~1 --hard
     wip = !git add -u && git commit -m "WIP"
     wt = worktree
-    
+
 [credential "smtp://luke%40hsiao.dev@smtp.migadu.com%3a465"]
     helper = !pass migadu.com/{{ .email }}/git
 

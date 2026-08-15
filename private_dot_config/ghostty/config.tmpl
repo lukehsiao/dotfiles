@@ -1,4 +1,5 @@
 {{- if eq .distro "omarchy" -}}
+# Dynamic theme colors
 config-file = ?"~/.local/state/omarchy/current/theme/ghostty.conf"
 {{- else -}}
 theme = Catppuccin Mocha
@@ -54,8 +55,9 @@ cursor-style-blink = false
 # (all shell integration options must be passed together)
 shell-integration-features = no-cursor,ssh-env
 
-# Don't toggle fullscreen on Ctrl+Enter
-# Remove if/when https://github.com/basecamp/omarchy/pull/2432 merges
+# Ghostty fullscreens on Ctrl+Enter by default, shadowing the standard
+# Omarchy fullscreen toggle. Upstream declined to unbind it themselves.
+# Ref: https://github.com/basecamp/omarchy/pull/2432
 keybind = control+enter=unbind
 
 # Keyboard bindings
@@ -71,9 +73,8 @@ keybind = super+control+shift+alt+arrow_left=resize_split:left,100
 keybind = super+control+shift+alt+arrow_right=resize_split:right,100
 # Fix Ctrl+[ in helix
 keybind = ctrl+left_bracket=text:\x1b
-# For OMP
+# Send Alt+Backspace as ESC+DEL for OMP
 keybind = alt+backspace=text:\x1b\x7f
-keybind = shift+enter=text:\n
 {{- if eq .chezmoi.os "linux" }}
 
 # Fix general slowness on hyprland (https://github.com/ghostty-org/ghostty/discussions/3224)
