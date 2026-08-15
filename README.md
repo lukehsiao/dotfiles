@@ -130,5 +130,4 @@ Vendored third-party content is not covered by that license; it retains its upst
 | `private_dot_config/hypr/`, `private_dot_config/omarchy/themed/`, and the `dip`/`fip`/`lip` fish functions (derived from Omarchy defaults) | [basecamp/omarchy](https://github.com/basecamp/omarchy) | [MIT](LICENSES/omarchy-MIT.txt) |
 
 The just skill bundles CC0-1.0 `just` documentation, but its upstream repo publishes no license of its own; the APOSD skill's MIT grant rests only on its SKILL.md frontmatter.
-The jujutsu skill was formerly vendored from [factorial-io/skills](https://github.com/factorial-io/skills) ("internal use" only, no grant); it has since been rewritten from scratch against `jj help` output and is original Blue Oak content.
 The property-based-testing skill is CC-BY-SA-4.0, so that directory stays share-alike rather than Blue Oak.

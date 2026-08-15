@@ -3,15 +3,12 @@
 # lingers on every machine that applied it.
 .config/ghostty/shaders/bettercrt.glsl
 
-# Vendored skills with no redistribution license: ripgrep and wide-events
-# upstreams (ratacat/claude-skills, boristane/agent-skills) ship no license,
-# and factorial-io/skills is "internal use at Factorial" only. The jujutsu
-# skill was re-authored from jj's own help text; the deployed third-party
-# copies still need deleting on every machine that applied them.
+# The ripgrep skill was vendored from ratacat/claude-skills, which publishes
+# no license, leaving the default of all rights reserved. Unmanaging a file
+# does not delete it, so without this the encumbered copy lingers on every
+# machine that applied it.
 .claude/skills/ripgrep
 .claude/skills/ripgrep/**
-.claude/skills/wide-events-logging
-.claude/skills/wide-events-logging/**
 
 {{- if eq .distro "omarchy" }}
 .config/hypr/bindings.conf
