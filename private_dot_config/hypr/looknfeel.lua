@@ -1,8 +1,9 @@
 -- Change the default Omarchy look'n'feel.
 
--- Use round window corners.
+-- https://wiki.hypr.land/Configuring/Basics/Variables/#decoration
 hl.config({
   decoration = {
+    -- Use round window corners.
     rounding = 8,
   },
 })
