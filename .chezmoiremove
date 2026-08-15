@@ -1,3 +1,8 @@
+# Vendored CC-BY-NC-SA-3.0 shader superseded by our own shaders/crt.glsl.
+# Unmanaging a file does not delete it, so without this the encumbered copy
+# lingers on every machine that applied it.
+.config/ghostty/shaders/bettercrt.glsl
+
 {{- if eq .distro "omarchy" }}
 .config/hypr/bindings.conf
 .config/hypr/input.conf

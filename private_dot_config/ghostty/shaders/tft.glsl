@@ -1,23 +1,21 @@
-/** Size of TFT "pixels" */
-float resolution = 4.0;
+// TFT panel emulation: a dark one-pixel gap between square cells, like
+// the visible pixel grid of an early laptop LCD.
 
-/** Strength of effect */
-float strength = 1.0;
-
-void _scanline(inout vec3 color, vec2 uv)
-{
-    float scanline = step(1.2, mod(uv.y * iResolution.y, resolution));
-    float grille   = step(1.2, mod(uv.x * iResolution.x, resolution));
-    color *= max(1.0 - strength, scanline * grille);
-}
+// Edge length in pixels of one emulated LCD cell, gap included.
+const float CELL_SIZE = 4.0;
 
 void mainImage(out vec4 fragColor, in vec2 fragCoord)
 {
-    vec2 uv = fragCoord.xy / iResolution.xy;
-    vec3 color = texture(iChannel0, uv).rgb;
+    // No coordinate warping here, so fetch the exact texel and skip
+    // sampler normalization and filtering.
+    vec4 texel = texelFetch(iChannel0, ivec2(fragCoord), 0);
 
-    _scanline(color, uv);
+    // step() is zero on the first pixel of each cell, so lit.x * lit.y
+    // masks off one-pixel gridlines on both axes. Black gaps cost 44%
+    // of the light (7 of every 16 pixels), but compensating with a
+    // 1.78x gain would clip everything above 56% brightness.
+    vec2 lit = step(1.0, mod(fragCoord, CELL_SIZE));
 
-    fragColor.xyz = color;
-    fragColor.w   = 1.0;
+    // The mask only attenuates, so premultiplied alpha stays valid.
+    fragColor = vec4(texel.rgb * (lit.x * lit.y), texel.a);
 }

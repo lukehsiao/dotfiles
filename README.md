@@ -129,12 +129,8 @@ Vendored third-party content is not covered by that license; it retains its upst
 | `dot_claude/skills/writing-documentation-with-diataxis/` | [sammcj/agentic-coding](https://github.com/sammcj/agentic-coding) | Apache-2.0 |
 | `dot_local/bin/executable_edit-patch` | [Jujutsu Patch Edit by Katalin Rebhan](https://www.knifepoint.net/~kat/kb-jj-patchedit.html) | [MIT](LICENSES/edit-patch-MIT.txt) per SPDX header |
 | `dot_local/bin/executable_pass.tmpl` (the `passage` script) and `private_dot_config/private_fish/completions/pass.fish` | [FiloSottile/passage](https://github.com/FiloSottile/passage), a fork of [password-store](https://git.zx2c4.com/password-store/) whose original copyright headers it preserves | [GPL-2.0-or-later](LICENSES/passage-GPL-2.0.txt) per file headers |
-| `private_dot_config/ghostty/shaders/bettercrt.glsl` | [Shadertoy WsVSzV](https://www.shadertoy.com/view/WsVSzV), reworked as `retro-terminal.glsl` by furtidev, then modified by April Hall (arithefirst) in [0xhckr/ghostty-shaders](https://github.com/0xhckr/ghostty-shaders) (formerly `m-ahdal`) | CC-BY-NC-SA-3.0 by [Shadertoy's default](https://www.shadertoy.com/terms) |
 | `private_dot_config/ghostty/shaders/cursor_warp.glsl` | [sahaj-b/ghostty-cursor-shaders](https://github.com/sahaj-b/ghostty-cursor-shaders) | [MIT](LICENSES/ghostty-cursor-shaders-MIT.txt) |
-| `private_dot_config/ghostty/shaders/tft.glsl` | [0xhckr/ghostty-shaders](https://github.com/0xhckr/ghostty-shaders), contributed by Greger Olsson; no Shadertoy original recorded | none granted |
 | `private_dot_config/hypr/`, `private_dot_config/omarchy/themed/`, and the `dip`/`fip`/`lip` fish functions (derived from Omarchy defaults) | [basecamp/omarchy](https://github.com/basecamp/omarchy) | [MIT](LICENSES/omarchy-MIT.txt) |
 
 "None granted" means the upstream repo publishes no license, so the default of all rights reserved applies; those copies are kept here with attribution only.
 The property-based-testing skill is CC-BY-SA-4.0, so that directory stays share-alike rather than Blue Oak.
-Shaders published on Shadertoy carry [CC-BY-NC-SA-3.0 by default](https://www.shadertoy.com/terms) unless their author states otherwise, which is where `bettercrt.glsl` gets its terms and its bar on commercial redistribution.
-That default only reaches shaders actually published on Shadertoy, so `tft.glsl`, which records no Shadertoy original, gets no grant from it.
