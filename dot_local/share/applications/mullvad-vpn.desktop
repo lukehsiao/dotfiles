@@ -1,0 +1,15 @@
+# Overrides the packaged mullvad-vpn.desktop to work around clipped content.
+# Chromium's WaylandPerSurfaceScale folds GNOME's text-scaling-factor (set by
+# omarchy-display-text-size) into the window scale, but Mullvad's window is
+# fixed at 320x568 logical px, so the scaled-up UI gets cut off instead of
+# growing the window. Disabling the feature restores buffer-scale-only
+# rendering, which fits the fixed window.
+[Desktop Entry]
+Name=Mullvad VPN
+Exec="/opt/Mullvad VPN/mullvad-vpn" --disable-features=WaylandPerSurfaceScale %U
+Terminal=false
+Type=Application
+Icon=mullvad-vpn
+StartupWMClass=Mullvad VPN
+Comment=Mullvad VPN client
+Categories=Network;
