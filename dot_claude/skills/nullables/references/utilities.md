@@ -14,6 +14,7 @@ Wrappers hold an `OutputListener` and `emit(domainData)` at the moment of each w
 JavaScript/TypeScript:
 
 ```javascript
+// Adapted from OutputTracker by James Shore, Copyright 2020-2022 Titanium I.T. LLC. MIT License.
 import { EventEmitter } from "node:events";
 
 const EVENT = "output";
@@ -54,6 +55,7 @@ class OutputTracker {
 Java:
 
 ```java
+// Adapted from code Copyright 2022 Titanium I.T. LLC and Ted M. Young. MIT License.
 public class OutputListener<T> {
     private final List<OutputTracker<T>> listeners = new ArrayList<>();
 
@@ -121,6 +123,7 @@ Encapsulates the read-channel semantics: a single value repeats forever; a list 
 JavaScript/TypeScript:
 
 ```javascript
+// Adapted from code Copyright 2023 Titanium I.T. LLC. MIT License.
 export class ConfigurableResponses {
   // Array → different response each call, throws when exhausted.
   // Anything else → same response every call, never runs out.

@@ -16,6 +16,21 @@
 .claude/skills/a-philosophy-of-software-design-skills
 .claude/skills/a-philosophy-of-software-design-skills/**
 
+# The nullables skill was restructured in "chore(nullables): upgrade skill to
+# lexler rewrite", which renamed references/{architecture,building}/*.md into
+# flat references/*.md files and dropped links.md and test-patterns.md.
+# Unmanaging a file does not delete it, so without this the superseded copies
+# linger next to the current ones on every machine that applied the old
+# layout, where a glob of the skill directory still surfaces them. One of
+# them documents createNull() returning a bag of trackers, which contradicts
+# the rules in the current SKILL.md.
+.claude/skills/nullables/links.md
+.claude/skills/nullables/references/test-patterns.md
+.claude/skills/nullables/references/architecture
+.claude/skills/nullables/references/architecture/**
+.claude/skills/nullables/references/building
+.claude/skills/nullables/references/building/**
+
 {{- if eq .distro "omarchy" }}
 .config/hypr/bindings.conf
 .config/hypr/input.conf

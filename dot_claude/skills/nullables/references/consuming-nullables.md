@@ -117,7 +117,19 @@ async function postAsync({
 - The helper returns a bag; each test destructures what it needs, so the bag can grow without breaking existing tests.
 - Prefer helpers over `beforeEach` — setup stays visible at the call site.
 - Some duplication between similar tests is fine when it makes them easier to read.
-- `createTestInstance()` on a value object defaults any boundary-crosser it holds to the nulled version — `WwwConfig` above defaults its `log` to `Log.createNull()`.
+- `createTestInstance()` on a value object defaults any boundary-crosser it holds to the nulled version — `WwwConfig` above defaults its `log` to `Log.createNull()`. Write it beside the production constructor, defaulting every field to a safe self-naming value, and pass whatever the test actually cares about:
+
+  ```javascript
+  static createTestInstance({
+    currency = "BillingConfig test currency",
+    stripeKey = "BillingConfig test key",
+    log = Log.createNull(),                 // boundary-crosser defaults to nulled
+  } = {}) {
+    return new BillingConfig(currency, stripeKey, log);
+  }
+  ```
+
+  The name marks it test-only, so production callers keep using the real constructor and a forgotten required field can't quietly default to something plausible. Where test factories aren't allowed in production code, the same method goes in an Object Mother helper instead.
 
 ## Error paths
 
@@ -146,7 +158,6 @@ Method names vary by codebase. A real clock throws on advance calls — time tra
 Timeout tests combine a hanging dependency with time travel — act *without awaiting*, advance, then await:
 
 ```javascript
-const translationClient = TranslationClient.createNull([{ hang: true }]);
 const { responsePromise, clock } = post({ translationHang: true });   // non-awaiting helper variant
 
 await clock.advanceNulledClockUntilTimersExpireAsync();

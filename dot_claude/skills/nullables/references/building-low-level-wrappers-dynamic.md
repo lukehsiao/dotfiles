@@ -10,7 +10,7 @@ The bottom layer: a wrapper for one communication *technology* (HTTP, database d
 - Narrow integration tests first
 - Wire the nullability seam
 - Grow the stub by instrumentation
-- The response ladder
+- The response ladder (with multi-object chains)
 - Match real behavior where it counts
 - Output tracking
 - Behavior simulation
@@ -21,7 +21,7 @@ The bottom layer: a wrapper for one communication *technology* (HTTP, database d
 
 The stub cuts at code you **don't own** — the third-party library — never at your own class. Mocks mock code you own; Nullables stub only code you don't. That way your wrapper's real logic runs in every test, nulled or not, and a change to it is caught, not hidden.
 
-Go all the way down: wrap `System.currentTimeMillis` / `Date`, not a convenience layer above it; wrap the HTTP library, not your service client. One low-level wrapper per technology — every service client speaking HTTP reuses the same `HttpClient`. A single-purpose dependency may get one combined high+low wrapper; the stub still cuts at the third-party edge.
+Go all the way down: wrap `System.currentTimeMillis` / `Date`, not a convenience layer *you* wrote above it; wrap the HTTP library, not your own service client. One low-level wrapper per technology — every service client speaking HTTP reuses the same `HttpClient`. A single-purpose dependency may get one combined high+low wrapper; the stub still cuts at the third-party edge. A vendor SDK is itself a third-party edge, so stub the SDK object rather than reaching past it to the transport; descend to the transport only when several wrappers share it.
 
 Before building, search the codebase for an existing wrapper: `grep -r "createNull\|Stubbed" src/` and look for an `infrastructure/` directory. Building a duplicate wrapper for a technology is the expensive mistake here.
 
@@ -43,7 +43,7 @@ From callers' needs, not the third-party shape: generic protocol verbs, plain da
 
 ## Narrow integration tests first
 
-The wrapper abstracts a communication protocol, so test the protocol for real — against a real system the tests themselves start and stop (localhost server, temp directory, local database). The best tests are self-sufficient: nothing to launch by hand.
+The wrapper abstracts a communication protocol, so test the protocol for real — against a real system the tests themselves start and stop (localhost server, temp directory, local database). The best tests are self-sufficient: nothing to launch by hand. A hosted vendor API you can't run locally is the awkward case, and it breaks the rule above twice: a shared sandbox is not reserved for one machine, and a vendor test mode is not your production configuration. Keep a small suite against it anyway, marked separately so it stays out of the fast feedback loop, but treat it as a sample rather than a contract — it cannot catch a vendor change made between runs, so paranoic telemetry in the wrapper is what actually protects production. Where not even a sandbox exists, the stub rests on vendor documentation, so validate harder still and expect drift.
 
 **Explore before you TDD.** Most of the work is figuring out the third-party API. Write one growing test with `console.log` and no assertions: start the server, make a request, complete the exchange, dump what the server saw and what the client got. Then convert:
 
@@ -124,10 +124,12 @@ Grow `createNull()`'s configuration in this order, one test each:
 
 1. **Loud default** — unconfigured Nullable returns an unmistakably fake constant: `{ status: 503, body: "Nulled HttpClient default body" }`. Accidental reliance fails visibly.
 2. **Single configurable response** — `createNull({ status, headers, body })`.
-3. **Per-endpoint** — `createNull({ "/a": {...}, "/b": {...} })`; high-level wrappers usually talk to several endpoints.
+3. **Per-call key** — `createNull({ "/a": {...}, "/b": {...} })` for HTTP, since a wrapper usually talks to several endpoints. Key by whatever names the call in the technology's own terms: the URL path for HTTP, the SDK method (`paymentIntents.create`) for a vendor client, call order for a database driver, since SQL text is too brittle to key on. Order-keyed configuration needs no map — hand the list straight to `ConfigurableResponses` and let each call consume the next.
 4. **Partial configuration** — unspecified fields get per-field defaults (`501`, `{}`, `""`).
 5. **Repetition semantics** — a single configured response repeats forever; an array is consumed in order; exhaustion throws an informative error naming the endpoint. This is exactly `ConfigurableResponses` (see utilities.md) — use it rather than hand-rolling.
 6. **Hang** — `{ hang: true }`: never emit `end` / never resolve, so timeout and cancellation logic upstream can be tested.
+
+When the library is a chain of objects rather than a single call (a driver's `Pool → Client → result`), one stub class can implement the whole chain and return itself down it, which keeps your cursor and mapping loops above the seam. The worked example is under "The Thin Wrapper pattern" in [building-low-level-wrappers-static.md](building-low-level-wrappers-static.md); the technique is language-neutral even though that file's examples are Java.
 
 ## Match real behavior where it counts
 

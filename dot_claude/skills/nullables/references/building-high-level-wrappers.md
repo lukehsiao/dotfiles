@@ -1,6 +1,6 @@
 # Building High-Level Wrappers and Nullable App Code
 
-Giving `createNull()` to code you own: clients for one specific service (sitting on a low-level wrapper), and app code composing nullable dependencies. These need no stub and no integration tests — that machinery exists only at the bottom layer.
+Giving `createNull()` to code you own: clients for one specific service (sitting on a low-level wrapper), and app code composing nullable dependencies. These need no stub and no integration tests — that machinery exists only at the bottom layer. One exception: a combined high+low wrapper that calls a third-party library directly is a bottom-layer class wearing a domain interface, so it gets both, and the low-level wrapper files are its recipe.
 
 ## Contents
 
@@ -86,7 +86,7 @@ trackRequests() {
 }
 ```
 
-**5. Validate hard (paranoic telemetry).** External systems change and fail at will. Check status, parse the body, check its shape; throw one detailed, multi-line error on anything unexpected — the caller has the context to recover:
+**5. Validate hard (paranoic telemetry).** External systems change and fail at will. Check status, parse the body, check its shape; throw one detailed, multi-line error on anything unexpected — the caller has the context to recover. Throwing is only half the pattern: every failure path, hangs included, has to end in a logged error and an alert somewhere above, and each of those paths gets a test.
 
 ```javascript
 if (response.status !== 200) {
@@ -184,4 +184,4 @@ Walk this against the finished wrapper:
 - External responses are validated hard; every failure a caller must handle is one configuration argument (`{ error }`, `createNullXxxDown()`) reusing the telemetry path.
 - Output is tracked as domain data in the shared path.
 - The nulled instance itself is tested: default, configured responses, configured errors.
-- No stub and no integration tests at this layer — that machinery lives only at the bottom.
+- No stub and no integration tests at this layer, unless the wrapper calls a third-party library directly — that machinery lives at the bottom.

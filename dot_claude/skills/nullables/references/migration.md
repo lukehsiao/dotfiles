@@ -15,6 +15,8 @@ Substitute one double at a time; run tests after each swap.
 
 Order within a test: doubles that are only *configured* first, the ones you `verify()` against last.
 
+First, check that a seam exists. The steps below assume the dependency is passed in. Module-level interception (`jest.mock("stripe")`, stubbing a module export) is what teams reach for when it isn't: the class does `new Stripe(key)` internally, so there is nothing to substitute. Introduce the seam before converting anything — take the dependency as a constructor parameter, defaulted for now to its real factory (`constructor(stripeClient = StripeClient.create())`), and keep the existing mocks green through that step. The default is transitional scaffolding, not the end state: it lets you convert without touching every call site, and it comes out once the class has its own `create()` doing the production wiring, leaving the plain constructor as the test seam.
+
 1. Replace the double with a nulled real instance.
 2. Its `when().thenReturn()` configuration becomes `createNull(...)` arguments (Configurable Responses).
 3. Its event-emission setup becomes `simulateX()` calls (Behavior Simulation).

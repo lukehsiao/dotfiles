@@ -13,7 +13,7 @@ Logic (pure functions)   Infrastructure (Nullables)
           ↖  Value Objects  ↗
 ```
 
-- **Logic** — pure computation. No I/O, no side effects, no dependency on anything that has them. Tested directly; needs no Nullables at all. Prefer pure functions and immutable objects; give mutable state a getter or change event so tests can see it (easily-visible behavior). Never reach through a dependency into state two levels down — each object encapsulates its next level.
+- **Logic** — pure computation. No I/O, no side effects, no dependency on anything that has them. Tested directly; needs no Nullables at all. Prefer pure functions and immutable objects; give mutable state a getter or change event so tests can see it (easily-visible behavior). Never reach through a dependency into state two levels down — each object encapsulates its next level. Prefer libraries over external services when either could work, and wrap third-party logic code in code you own so breaking changes land in one file (testable libraries), with the exemptions listed under Fit and tradeoffs in SKILL.md.
 - **Infrastructure** — wrappers with `create()`/`createNull()`.
 - **Application** — thin coordination between the two. Tested with Nullables.
 

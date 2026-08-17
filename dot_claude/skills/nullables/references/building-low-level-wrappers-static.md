@@ -23,7 +23,7 @@ The bottom layer: a wrapper for one communication *technology* (HTTP, database d
 
 The stub cuts at code you **don't own** — the third-party library — never at your own class. Mocks mock code you own; Nullables stub only code you don't. That way your wrapper's real logic runs in every test, nulled or not, and a change to it is caught, not hidden.
 
-Go all the way down: wrap `System.currentTimeMillis()`, not a convenience layer above it; wrap `RestTemplate`, not your service client. One low-level wrapper per technology — every service client speaking HTTP reuses the same `JsonHttpClient`. A single-purpose dependency may get one combined high+low wrapper; the stub still cuts at the third-party edge.
+Go all the way down: wrap `System.currentTimeMillis()`, not a convenience layer *you* wrote above it; wrap `RestTemplate`, not your own service client. One low-level wrapper per technology — every service client speaking HTTP reuses the same `JsonHttpClient`. A single-purpose dependency may get one combined high+low wrapper; the stub still cuts at the third-party edge. A vendor SDK is itself a third-party edge, so stub the SDK object rather than reaching past it to the transport; descend to the transport only when several wrappers share it.
 
 Before building, search the codebase for an existing wrapper (`createNull`, `Stubbed`, an `adapter/` or `infrastructure/` package). Building a duplicate wrapper for a technology is the expensive mistake here.
 
@@ -112,7 +112,7 @@ public void post(String url, Object body)
 
 ## Narrow integration tests
 
-The wrapper abstracts a protocol, so test the protocol for real — against a real system the tests start and stop themselves: an embedded/localhost server for HTTP, H2 or a containerized database for JDBC, a temp directory for files. The best tests are self-sufficient — nothing to launch by hand.
+The wrapper abstracts a protocol, so test the protocol for real — against a real system the tests start and stop themselves: an embedded/localhost server for HTTP, H2 or a containerized database for JDBC, a temp directory for files. The best tests are self-sufficient — nothing to launch by hand. A hosted vendor API breaks that rule twice: a shared sandbox isn't reserved for one machine, and a vendor test mode isn't your production configuration. Keep a small suite against it anyway, marked separately so it stays out of the fast feedback loop, but treat it as a sample rather than a contract — it can't catch a vendor change made between runs, so paranoic telemetry in the wrapper is what protects production.
 
 Explore first (not TDD): most of the work is learning the third-party API. Use `println`/debugger in one growing test until the exchange works, then convert to assertions:
 
@@ -139,7 +139,7 @@ Grow `createNull()`'s configuration in this order, one test each:
 
 1. **Loud default** — an unconfigured Nullable returns unmistakably fake data (`"Nulled JsonHttpClient response"`, 42.0) so accidental reliance fails visibly.
 2. **Single configurable response**.
-3. **Per-endpoint** — a `Map<String, Object>` from endpoint to response.
+3. **Per-call key** — a `Map<String, Object>` from call to response. Key by whatever names the call in the technology's own terms: the endpoint for HTTP, the SDK method for a vendor client, call order for a database driver, since SQL text is too brittle to key on.
 4. **Partial configuration** — unspecified fields of a configured response get loud per-field defaults.
 5. **Repetition semantics** — a single value repeats forever; a `List` is consumed in order; exhaustion throws an informative error naming the endpoint:
 
