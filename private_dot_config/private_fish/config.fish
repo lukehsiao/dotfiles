@@ -1,4 +1,6 @@
 # Environment Variables
+# Default agent for the tmux layout functions (tdl, tds, tdlm, tsl)
+set -q AI_AGENT; or set -gx AI_AGENT omp
 if test (uname) = Darwin
     set -gx BAT_THEME "Catppuccin Mocha"
 else
@@ -83,6 +85,9 @@ end
 alias mup="MISE_MINIMUM_RELEASE_AGE=0 mise up"
 alias vi="nvim"
 alias vim="nvim"
+
+alias t="tmux attach || tmux new -s Work"
+alias i="tdl"
 
 alias ls="eza -lh --group-directories-first --icons=auto"
 alias lsa="ls -a"
