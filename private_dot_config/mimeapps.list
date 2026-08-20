@@ -55,6 +55,7 @@ application/x-extension-xht=zen.desktop
 x-scheme-handler/webcal=chromium.desktop
 x-scheme-handler/claude-cli=claude-code-url-handler.desktop
 x-scheme-handler/slack=slack.desktop
+x-scheme-handler/tel=chromium.desktop
 
 [Added Associations]
 x-scheme-handler/http=zen.desktop;
