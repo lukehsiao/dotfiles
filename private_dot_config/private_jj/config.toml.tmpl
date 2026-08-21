@@ -108,6 +108,12 @@ cl = ["log", "-r", "trunk()..@-", "--reversed", "-T", "description ++ '\n---\n\n
 de = ["diffedit", "--tool=patch"]
 dl = ["log", "-r", "@ | ancestors(trunk()..(visible_heads() & mine()), 2) | trunk()", "-T", "builtin_log_detailed"]
 dla = ["log", "-r", "ancestors(@)", "-T", "builtin_log_detailed"]
+# Compact diffstat against trunk(), e.g. [`2 files, +17, -6`]. Defaults to @-
+# because the squash workflow keeps @ as an empty commit to absorb work into.
+ds = ["util", "exec", "--", "bash", "-c", '''
+jj diff --stat --from "trunk()" --to "${1:-@-}" |
+    sed -nE 's/^([0-9]+ files?) changed, ([0-9]+) insertions?\(\+\), ([0-9]+) deletions?\(-\)$/[`\1, +\2, -\3`]/p'
+''', "ds"]
 dt = ["diff", "--tool=difft"]
 fl = ["log", "--no-graph", "-T", '"Fixes: " ++ commit_id.shortest(12) ++ " (\"" ++ description.first_line() ++ "\")"']
 l = ["log", "-r", "@ | ancestors(trunk()..(visible_heads() & (mine() | bookmarks()) ~ (remote_bookmarks() ~ bookmarks())), 2) | trunk()"]
