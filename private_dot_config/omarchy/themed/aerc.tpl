@@ -30,8 +30,8 @@ dirlist_*.selected.fg={{ background }}
 dirlist_*.selected.bg={{ foreground }}
 
 # Inverted statusline: always contrasts because foreground/background are
-# theme-designed to be readable against each other (matches the zellij and
-# helix omarchy themes for a consistent look).
+# theme-designed to be readable against each other (matches the helix
+# omarchy theme for a consistent look).
 statusline_default.fg={{ background }}
 statusline_default.bg={{ foreground }}
 statusline_error.bold=true

@@ -20,7 +20,6 @@ Library
 .config/uwsm
 .config/satty
 .config/zen
-.config/zellij/themes/omarchy.kdl
 .config/aerc/stylesets/omarchy
 .config/k9s/skins/omarchy.yaml
 .config/mimeapps.list
