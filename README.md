@@ -120,7 +120,7 @@ Vendored third-party content is not covered by that license; it retains its upst
 | `dot_claude/skills/hegel/` | [hegeldev/hegel-skill](https://github.com/hegeldev/hegel-skill) | MIT |
 | `dot_claude/skills/nullables/` | [lexler/skill-factory](https://github.com/lexler/skill-factory), with local modifications noted in its [credits.md](dot_claude/skills/nullables/credits.md) | Apache-2.0 |
 | `dot_claude/skills/property-based-testing/` | [trailofbits/skills](https://github.com/trailofbits/skills) | CC-BY-SA-4.0 |
-| `dot_claude/skills/rust-best-practices/` | [apollographql/skills](https://github.com/apollographql/skills) | MIT |
+| `dot_claude/skills/review-rust/` | [corrode/skills](https://github.com/corrode/skills) | None stated |
 | `dot_claude/skills/software-design-philosophy/` | [wondelai/skills](https://github.com/wondelai/skills) | [MIT](dot_claude/skills/software-design-philosophy/LICENSE) |
 | `dot_claude/skills/writing-documentation-with-diataxis/` | [sammcj/agentic-coding](https://github.com/sammcj/agentic-coding) | Apache-2.0 |
 | `dot_local/bin/executable_edit-patch` | [Jujutsu Patch Edit by Katalin Rebhan](https://www.knifepoint.net/~kat/kb-jj-patchedit.html) | [MIT](LICENSES/edit-patch-MIT.txt) per SPDX header |
