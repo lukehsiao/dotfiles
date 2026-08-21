@@ -1,7 +1,7 @@
 symbolPreset: nerd
 theme: 
   dark: titanium
-setupVersion: 1
+setupVersion: 2
 modelRoles: 
   smol: anthropic/claude-opus-5:xhigh
   tiny: anthropic/claude-sonnet-5:xhigh
@@ -11,3 +11,5 @@ dev:
   autoqaConsent: granted
 advisor: 
   enabled: true
+composer: 
+  shape: box
