@@ -39,6 +39,13 @@ fish_add_path $HOME/.local/bin
 fish_add_path $HOME/.cargo/bin
 fish_add_path $HOME/.poetry/bin
 
+# Non-interactive fish never reaches `mise activate` below, and fish does not
+# read /etc/profile.d, so mirror the shims entry omarchy sets in env-bootstrap.
+# On macOS nothing else provides it. --path is required: a plain --append lands
+# in fish_user_paths, which is itself prepended to PATH, putting mise ahead of
+# system binaries instead of behind them.
+fish_add_path --append --path $HOME/.local/share/mise/shims
+
 # Configurations
 if status --is-interactive
     if test (uname) = Darwin

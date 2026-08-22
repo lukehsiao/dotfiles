@@ -21,9 +21,28 @@ _rustup:
         echo "Rust is already installed."
     fi
 
-# Install d2
-_d2:
-    curl -fsSL https://d2lang.com/install.sh | sh -s --
+# Dev tools that ship prebuilt binaries and release faster than distro
+# packaging. Omarchy's own split is a pacman base plus mise for runtimes and
+# vendor CLIs, so anything the desktop or another package depends on stays in
+# pacman/brew. Shims are appended to PATH, not prepended, so a leftover system
+# copy would shadow the mise one. A tool whose distro package shipped shell
+# completions also needs a regenerating stub in fish/completions.
+_mise-tools:
+    mise use -g \
+        choose \
+        d2 \
+        git-cliff \
+        helm \
+        hyperfine \
+        k9s \
+        kubectl \
+        lychee \
+        oha \
+        typos \
+        typst \
+        watchexec \
+        zizmor \
+        zola
 
 {{- if eq .distro "omarchy" }}
 
@@ -73,7 +92,6 @@ _rust-core: _rustup
         cargo-nextest \
         cargo-semver-checks \
         cargo-update \
-        choose \
         dircnt \
         flamegraph \
         git-stats \
@@ -156,7 +174,6 @@ install-core:
         gimp \
         git \
         git-absorb \
-        git-cliff \
         git-delta \
         git-filter-repo \
         git-grab \
@@ -164,11 +181,9 @@ install-core:
         git-sizer \
         gping \
         helix \
-        helm \
         hexyl \
         hl \
         htop \
-        hyperfine \
         imagemagick \
         inkscape \
         ipp-usb \
@@ -176,23 +191,18 @@ install-core:
         jless \
         jujutsu \
         just \
-        k9s \
-        kubectl \
         less \
         libusb-compat \
-        lychee \
         magic-wormhole \
         marksman \
         mat2 \
         mergiraf \
-        mise \
         mold \
         mosh \
         mpv \
         neovim \
         ninja \
         numbat \
-        oha \
         onefetch \
         openring-rs-bin \
         oxipng \
@@ -236,9 +246,7 @@ install-core:
         tombi \
         tree \
         trippy \
-        typos \
         typos-lsp \
-        typst \
         units \
         unzip \
         usbutils \
@@ -246,7 +254,6 @@ install-core:
         vim \
         vl-convert \
         vscode-langservers-extracted \
-        watchexec \
         wget \
         wireshark-qt \
         wl-clipboard \
@@ -260,8 +267,6 @@ install-core:
         zathura \
         zathura-pdf-poppler \
         zen-browser-bin \
-        zizmor \
-        zola \
         zoxide \
         zstd
 
@@ -286,7 +291,7 @@ install-core:
     sudo systemctl enable sshd
 
     just _rust-core
-    just _d2
+    just _mise-tools
     just _install-dictd
     just _tailscale
 
@@ -330,7 +335,6 @@ install-core:
         ghostty \
         git \
         git-absorb \
-        git-cliff \
         git-delta \
         git-filter-repo \
         git-grab \
@@ -342,20 +346,17 @@ install-core:
         helix \
         hexyl \
         hl \
-        hyperfine \
         jaq \
         jj \
         jless \
         jq \
         keycastr \
         llvm \
-        lychee \
         mergiraf \
         mise \
         mosh \
         mpv \
         numbat \
-        oha \
         onefetch \
         oxipng \
         pandoc \
@@ -379,24 +380,19 @@ install-core:
         tealdeer \
         tectonic \
         tokei \
-        typos-cli \
         typos-lsp \
-        typst \
         vscode-langservers-extracted \
-        watchexec \
         lance0/tap/xfr \
         xh \
         xsv \
         yt-dlp \
-        zizmor \
-        zola \
         zoxide \
         zstd
 
     brew install --cask flameshot
 
     just _rust-core
-    just _d2
+    just _mise-tools
 
     # build bat themes
     bat cache --build
