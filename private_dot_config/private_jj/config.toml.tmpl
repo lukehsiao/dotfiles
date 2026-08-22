@@ -35,11 +35,11 @@ edit-args = ["$left", "$right"]
 [template-aliases]
 commit_template = '''
     concat(
-      "JJ: <type>(<scope>): (If applied, this commit will...) <subject> (Max 50 char)
+      "JJ: <type>(<scope>): (If applied, this commit will…) <subject> (Max 50 char)
 JJ: |<---- Try to limit to a max of 50 char ---->|
 
-JJ: Explain why this change is being made
-JJ: |<----- Try to limit each line to a maximum of 72 characters ----->|
+JJ: Explain why you made this change
+JJ: |<------- Try to limit each line to a max of 72 characters ------->|
 
 JJ: Provide links or keys to any relevant tickets, articles or other trailers
 JJ: Example: GitHub issue #23, BREAKING CHANGE: <description>, Ref: 5119ae, Signed-off-by: name <email>",
@@ -62,17 +62,17 @@ JJ:   revert:   for reverts, revert: <old subject>; state reverted hash in body
 JJ:   style:    formatting, missing semicolons, etc; no change in code behavior
 JJ:   test:     adding or refactoring tests; no production code change
 JJ:
-JJ: Scope refers to the file, directory, or system that is being modified.
+JJ: Scope refers to the file, directory, or system you are modifying.
 JJ:
-JJ: Follow the type(scope) with an '!' to indicate a breaking change.
+JJ: Follow the type(scope) with an '!' to mark a breaking change.
 JJ: Example: refactor(api)!: remove the accident-prone delete_all button
 JJ: --------------------
 JJ: Remember to
 JJ:    Use the imperative mood in the subject line
-JJ:    Do not end the subject line with a period
+JJ:    Do not end the subject line with a '.'
 JJ:    Separate subject from body with a blank line
 JJ:    Use the body to explain what and why vs. how
-JJ:    Can use multiple lines with '-' for bullet points in body
+JJ:    Can use '-' for bullet points in body
 JJ:    BREAKING CHANGE: to correlate with MAJOR
 JJ:
 JJ: See: https://www.conventionalcommits.org/en/v1.0.0/)"
