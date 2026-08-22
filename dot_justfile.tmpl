@@ -28,21 +28,97 @@ _rustup:
 # copy would shadow the mise one. A tool whose distro package shipped shell
 # completions also needs a regenerating stub in fish/completions.
 _mise-tools:
-    mise use -g \
-        choose \
-        d2 \
-        git-cliff \
-        helm \
-        hyperfine \
-        k9s \
-        kubectl \
-        lychee \
-        oha \
-        typos \
-        typst \
-        watchexec \
-        zizmor \
+    #!/usr/bin/env bash
+    set -o pipefail
+
+    tools=(
+        github:BLAKE3-team/BLAKE3
+        bottom
+        github:ifd3f/caligula
+        github:EmbarkStudios/cargo-deny
+        github:leptos-rs/cargo-leptos
+        github:taiki-e/cargo-llvm-cov
+        github:sourcefrog/cargo-mutants
+        github:nextest-rs/nextest
+        github:obi1kenobi/cargo-semver-checks
+        choose
+        github:blopker/codebook
+        croc
+        d2
+        delta
+        difftastic
+        dprint
+        duf
+        github:tummychow/git-absorb
+        git-cliff
+        github:wezm/git-grab
+        github:github/git-sizer
+        github:lukehsiao/git-stats
+        glow
+        gping
+        helm
+        hexyl
+        github:pamburus/hl
+        hyperfine
+        jaq
+        jj
+        jless
+        k9s
+        kubectl
+        github:bram209/leptosfmt
+        github:ltex-plus/ltex-ls-plus
+        lychee
+        marksman
+        oha
+        github:o2sh/onefetch
+        github:lukehsiao/openring-rs
+        oxipng
+        pandoc
+        github:sharkdp/pastel
+        github:pdfcpu/pdfcpu
+        github:mfontanini/presenterm
+        ruff
+        github:mstange/samply
+        sd
+        shellcheck
+        shfmt
+        github:RazrFalcon/svgcleaner
+        github:bensadeh/tailspin
+        tealdeer
+        github:tectonic-typesetting/tectonic
+        github:latex-lsp/texlab
+        tinymist
+        tombi
+        ty
+        typos
+        github:tekumara/typos-lsp
+        typst
+        github:rustwasm/wasm-bindgen
+        watchexec
+        xh
+        github:BurntSushi/xsv
+        zizmor
         zola
+    )
+
+    # One `mise use -g` for the whole list is faster, but it aborts on the first
+    # failure and writes nothing. Most of these resolve to third-party GitHub
+    # releases whose assets can move, so fall back to installing individually
+    # and report what broke rather than losing the entire set.
+    if ! mise use -g "${tools[@]}"; then
+        echo "Batch install failed; retrying individually" >&2
+        failed=()
+        for tool in "${tools[@]}"; do
+            mise use -g "$tool" || failed+=("$tool")
+        done
+        if [ ${#failed[@]} -gt 0 ]; then
+            echo >&2
+            echo "WARNING: ${#failed[@]} tool(s) could not be installed:" >&2
+            for tool in "${failed[@]}"; do
+                echo "  $tool" >&2
+            done
+        fi
+    fi
 
 {{- if eq .distro "omarchy" }}
 
@@ -84,18 +160,10 @@ _rust-core: _rustup
         bacon \
         cargo-audit \
         cargo-bloat \
-        cargo-llvm-cov \
-        cargo-deny \
         cargo-edit \
-        cargo-leptos \
-        cargo-mutants \
-        cargo-nextest \
-        cargo-semver-checks \
         cargo-update \
         dircnt \
         flamegraph \
-        git-stats \
-        leptosfmt \
         pgen \
         ren-find \
         rep-grep \
@@ -106,8 +174,7 @@ _rust-core: _rustup
         talk-timer \
         titlecase \
         toml-fmt \
-        typeracer \
-        wasm-bindgen-cli
+        typeracer
 
     cargo install --git https://github.com/lukehsiao/tool.git --locked
 
@@ -135,26 +202,18 @@ install-core:
         ardour \
         asciinema \
         audacity \
-        b3sum \
-        bacon \
         base-devel \
         bash-language-server \
         bc \
-        bottom \
-        caligula \
         ccid \
         clang-tools-extra \
         cmake \
-        codebook-lsp \
         coreutils \
         cppcheck \
-        croc \
         curl \
-        difftastic \
         dmidecode \
         dog \
         drawio \
-        duf \
         dust \
         ffmpeg \
         findutils \
@@ -162,25 +221,14 @@ install-core:
         gdb \
         ghostty \
         gimp \
-        git-absorb \
-        git-delta \
         git-filter-repo \
-        git-grab \
         git-lfs \
-        git-sizer \
-        gping \
         helix \
-        hexyl \
-        hl \
         inkscape \
         ipp-usb \
-        jaq \
-        jless \
-        jujutsu \
         just \
         libusb-compat \
         magic-wormhole \
-        marksman \
         mat2 \
         mergiraf \
         mold \
@@ -188,58 +236,33 @@ install-core:
         neovim \
         ninja \
         numbat \
-        onefetch \
-        openring-rs-bin \
-        oxipng \
-        pandoc \
         parallel \
         paru \
-        pastel \
         pcsclite \
         pcsc-tools \
-        pdfcpu-bin \
         pinentry \
         pipewire \
         pipewire-audio \
         podman \
         postgresql \
-        presenterm \
-        prettier \
         rage-encryption \
         rsync \
-        samply \
-        sccache \
-        sd \
-        shellcheck \
-        shfmt \
         slack-desktop-wayland \
         speedtest-cli \
         sqlite \
         sshx \
         strace \
-        svgcleaner \
-        tailspin \
         taplo-cli \
         tcpdump \
-        tealdeer \
-        tectonic \
-        tinymist \
         tokei \
-        tombi \
-        tree \
         trippy \
-        typos-lsp \
-        units \
         usbutils \
         valgrind \
-        vim \
         vl-convert \
         vscode-langservers-extracted \
         wget \
         wireshark-qt \
         xfr-bin \
-        xh \
-        xsv \
         xz \
         yaml-language-server \
         yubikey-manager \
@@ -287,22 +310,14 @@ install-core:
 
     just _cleanup-omarchy
 {{- else if eq .distro "macos" }}
-    cargo binstall -y --locked openring
-    
     brew install \
         aerc \
         asciinema \
-        b3sum \
         bat \
         blackhole-2ch \
-        bottom \
-        codebook-lsp \
         colima \
         coreutils \
-        croc \
-        difftastic \
         dua-cli \
-        duf \
         dust \
         eza \
         fastfetch \
@@ -312,21 +327,10 @@ install-core:
         fzf \
         ghostty \
         git \
-        git-absorb \
-        git-delta \
         git-filter-repo \
-        git-grab \
         git-lfs \
-        git-sizer \
-        glow \
-        gping \
         haimgel/tools/display_switch \
         helix \
-        hexyl \
-        hl \
-        jaq \
-        jj \
-        jless \
         jq \
         keycastr \
         llvm \
@@ -335,34 +339,17 @@ install-core:
         mosh \
         mpv \
         numbat \
-        onefetch \
-        oxipng \
-        pandoc \
-        pastel \
-        pdfcpu \
         postgresql \
-        presenterm \
-        prettier \
         rage \
         ripgrep \
         rsync \
-        ruff \
-        samply \
-        sd \
-        shellcheck \
-        shfmt \
         sqlite \
         sshx \
         starship \
         svgo \
-        tealdeer \
-        tectonic \
         tokei \
-        typos-lsp \
         vscode-langservers-extracted \
         lance0/tap/xfr \
-        xh \
-        xsv \
         yt-dlp \
         zoxide \
         zstd

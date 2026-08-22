@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# dprint pins plugin versions so formatting stays reproducible, which means
+# something has to bump them. -y keeps this unattended: it skips the checksum
+# confirmation that process plugins would otherwise prompt for.
+if command -v dprint >/dev/null; then
+  dprint config update --global -y
+fi

@@ -24,28 +24,33 @@ args = ["server"]
 command = "codebook-lsp"
 args = ["serve"]
 
+# valentjn/ltex-ls has been archived since 2023, so this is the maintained fork.
+# Named for the binary it actually runs rather than aliased to the old name.
+[language-server.ltex-ls-plus]
+command = "ltex-ls-plus"
+
 [[language]]
 name = "email"
 scope = "text.email"
 roots = []
 file-types = ["eml", "email"]
 rulers = [72]
-language-servers = [ "ltex-ls", "typos", "codebook" ]
+language-servers = [ "ltex-ls-plus", "typos", "codebook" ]
 text-width = 72
 
 [[language]]
 name = "markdown"
-language-servers = [ "marksman", "ltex-ls", "typos", "codebook" ]
+language-servers = [ "marksman", "ltex-ls-plus", "typos", "codebook" ]
 formatter = { command = "sed", args = ["s/[ \t]*$//"] }
 auto-format = true
 
 [[language]]
 name = "latex"
-language-servers = [ "texlab", "ltex-ls", "typos", "codebook" ]
+language-servers = [ "texlab", "ltex-ls-plus", "typos", "codebook" ]
 
 [[language]]
 name = "git-commit"
-language-servers = [ "ltex-ls", "typos", "codebook" ]
+language-servers = [ "ltex-ls-plus", "typos", "codebook" ]
 formatter = { command = "sed", args = ["s/[ \t]*$//"] }
 auto-format = true
 indent = { tab-width = 2, unit = "  " }

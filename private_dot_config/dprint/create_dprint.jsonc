@@ -1,0 +1,18 @@
+// Global dprint config, used when a directory has no dprint.json of its own.
+// Without this file dprint refuses to run, so a global CLI install needs one.
+// Only markdown and json plugins: TOML belongs to tombi and taplo, and the
+// other languages are handled by their own formatters.
+//
+// Pinned plugin versions are what dprint itself writes and what its docs show,
+// so that formatting output is reproducible. The post-update hook runs
+// `dprint config update` to bump them, and chezmoi writes this file only when
+// absent so those bumps are not reverted on the next apply.
+{
+  "plugins": [
+    "npm:@dprint/markdown@0.22.1",
+    "npm:@dprint/json@0.23.0"
+  ],
+  "excludes": [
+    "**/*-lock.json"
+  ]
+}
