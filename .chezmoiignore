@@ -1,5 +1,4 @@
 justfile
-migrate-to-mise.sh
 key.txt.age
 LICENSE.md
 LICENSES
