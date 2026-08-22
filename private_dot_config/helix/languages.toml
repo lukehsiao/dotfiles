@@ -29,18 +29,34 @@ args = ["serve"]
 [language-server.ltex-ls-plus]
 command = "ltex-ls-plus"
 
+# Style linting (write-good, proselint, alex) via the global ~/.config/vale
+# config. Relies on vale being on $PATH and `vale sync` having been run, so
+# installVale/syncOnStartup stay at their false defaults.
+[language-server.vale-ls]
+command = "vale-ls"
+
 [[language]]
 name = "email"
 scope = "text.email"
 roots = []
 file-types = ["eml", "email"]
 rulers = [72]
-language-servers = [ "ltex-ls-plus", "typos", "codebook" ]
+language-servers = [ "ltex-ls-plus", "typos", "codebook", "vale-ls" ]
 text-width = 72
 
 [[language]]
 name = "markdown"
-language-servers = [ "marksman", "ltex-ls-plus", "typos", "codebook" ]
+language-servers = [ "marksman", "ltex-ls-plus", "typos", "codebook", "vale-ls" ]
+formatter = { command = "sed", args = ["s/[ \t]*$//"] }
+auto-format = true
+
+# Helix has no built-in mdx language, so reuse the markdown grammar for it.
+[[language]]
+name = "mdx"
+scope = "source.mdx"
+file-types = ["mdx"]
+grammar = "markdown"
+language-servers = [ "ltex-ls-plus", "typos", "codebook", "vale-ls" ]
 formatter = { command = "sed", args = ["s/[ \t]*$//"] }
 auto-format = true
 
@@ -50,14 +66,14 @@ language-servers = [ "texlab", "ltex-ls-plus", "typos", "codebook" ]
 
 [[language]]
 name = "git-commit"
-language-servers = [ "ltex-ls-plus", "typos", "codebook" ]
+language-servers = [ "ltex-ls-plus", "typos", "codebook", "vale-ls" ]
 formatter = { command = "sed", args = ["s/[ \t]*$//"] }
 auto-format = true
 indent = { tab-width = 2, unit = "  " }
 
 [[language]]
 name = "jjdescription"
-language-servers = [ "typos", "codebook" ]
+language-servers = [ "typos", "codebook", "vale-ls" ]
 formatter = { command = "sed", args = ["s/[ \t]*$//"] }
 auto-format = true
 indent = { tab-width = 2, unit = "  " }
