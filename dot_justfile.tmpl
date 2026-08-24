@@ -65,11 +65,17 @@ _rust-core: _rustup
     # Install binstall first
     curl -L --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/cargo-bins/cargo-binstall/main/install-from-binstall-release.sh | bash
 
+    # b3sum, cargo-mutants, and xsv publish x86_64-only release binaries, so
+    # they live here instead of mise: binstall grabs whatever prebuilt runs
+    # (native quickinstall builds, Rosetta on arm64 macs) and falls back to a
+    # source build when nothing does.
     cargo binstall -y --locked \
+        b3sum \
         bacon \
         cargo-audit \
         cargo-bloat \
         cargo-edit \
+        cargo-mutants \
         cargo-update \
         dircnt \
         flamegraph \
@@ -83,7 +89,8 @@ _rust-core: _rustup
         talk-timer \
         titlecase \
         toml-fmt \
-        typeracer
+        typeracer \
+        xsv
 
     cargo install --git https://github.com/lukehsiao/tool.git --locked
 
