@@ -272,8 +272,6 @@ install-core:
     # build bat themes
     bat cache --build
 {{- end }}
-
-    curl --proto '=https' --tlsv1.2 -LsSf https://setup.atuin.sh | sh -s -- --non-interactive
     @echo "Installed all core tools."
 
 {{- if eq .distro "macos" }}

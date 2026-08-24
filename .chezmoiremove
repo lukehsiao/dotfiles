@@ -33,6 +33,15 @@
 .claude/skills/nullables/references/building
 .claude/skills/nullables/references/building/**
 
+# Atuin moved from the setup.atuin.sh curl installer to mise. That installer
+# put a copy in ~/.atuin/bin and we shipped a conf.d stub to source its PATH
+# entry, so both are now stale. Unmanaging a file does not delete it, so
+# without this the orphaned binary and PATH stub linger on every machine that
+# applied them, and the ~/.atuin/bin copy would shadow the mise-managed one.
+.config/fish/conf.d/atuin.env.fish
+.atuin
+.atuin/**
+
 {{- if eq .distro "omarchy" }}
 .config/hypr/bindings.conf
 .config/hypr/input.conf

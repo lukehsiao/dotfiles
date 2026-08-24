@@ -9,6 +9,7 @@
 # The restriction makes mise skip them on that platform instead of failing
 # the whole `mise install`, which matters in devcontainers on Apple Silicon.
 [tools]
+atuin = "latest"
 "github:BLAKE3-team/BLAKE3" = "latest"
 bottom = "latest"
 "github:ifd3f/caligula" = "latest"
