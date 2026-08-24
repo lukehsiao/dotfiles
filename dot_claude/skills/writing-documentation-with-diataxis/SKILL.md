@@ -196,4 +196,4 @@ When applying Diataxis:
 - Use the compass to resolve uncertainty
 - Cite which documentation type you're applying and why
 - If reviewing docs, be specific about what type it should be and how to improve it
-- Use British English spelling throughout
+- Use US English spelling throughout
