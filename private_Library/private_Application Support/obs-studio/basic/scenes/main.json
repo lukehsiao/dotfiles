@@ -1,7 +1,7 @@
 {
     "name": "main",
     "AuxAudioDevice1": {
-        "prev_ver": 536936450,
+        "prev_ver": 537001985,
         "name": "Mic/Aux",
         "uuid": "85275374-df68-419b-b792-92bcd3dcacf3",
         "id": "coreaudio_input_capture",
@@ -34,7 +34,7 @@
         },
         "filters": [
             {
-                "prev_ver": 536936450,
+                "prev_ver": 537001985,
                 "name": "Expander",
                 "uuid": "5e4212e7-61e1-4639-8252-f5eaabae4e2d",
                 "id": "expander_filter",
@@ -61,7 +61,7 @@
                 "private_settings": {}
             },
             {
-                "prev_ver": 536936450,
+                "prev_ver": 537001985,
                 "name": "Compressor",
                 "uuid": "ead61771-4bce-4007-b733-59766b3e91fd",
                 "id": "compressor_filter",
@@ -89,7 +89,7 @@
                 "private_settings": {}
             },
             {
-                "prev_ver": 536936450,
+                "prev_ver": 537001985,
                 "name": "Limiter",
                 "uuid": "e284fe16-c770-490e-af33-50ad648343b9",
                 "id": "limiter_filter",
@@ -118,7 +118,7 @@
     },
     "sources": [
         {
-            "prev_ver": 536936450,
+            "prev_ver": 537001985,
             "name": "macOS Screen Capture",
             "uuid": "670065f9-fba6-4e64-80d5-347819d900e8",
             "id": "screen_capture",
@@ -150,7 +150,7 @@
             "private_settings": {}
         },
         {
-            "prev_ver": 536936450,
+            "prev_ver": 537001985,
             "name": "Video Capture Device",
             "uuid": "f252f097-db77-4904-81ce-55f1e3c99a1f",
             "id": "macos-avcapture",
@@ -183,7 +183,7 @@
             "private_settings": {}
         },
         {
-            "prev_ver": 536936450,
+            "prev_ver": 537001985,
             "name": "name",
             "uuid": "bb97022a-63bb-4df9-badd-18a5f5a36f69",
             "id": "text_ft2_source",
@@ -218,7 +218,7 @@
             "private_settings": {}
         },
         {
-            "prev_ver": 536936450,
+            "prev_ver": 537001985,
             "name": "Scene",
             "uuid": "369b7ea6-089a-4523-bdfe-f53f259c28ae",
             "id": "scene",
