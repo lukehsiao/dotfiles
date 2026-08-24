@@ -1,3 +1,5 @@
+{{- /* chezmoi:modify-template */ -}}
+{{- $marker := "# Entries below this line are machine-local additions preserved by chezmoi." -}}
 luke@hsiao.dev namespaces="git" ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID6eC8Cwrr1Phm3HYPrmzSQcq9U1F7/mX1FWEd5NnT55
 luke@hsiao.dev namespaces="git" ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIHOr1YKvhEjC6FX1zUCM1cHMGEKuP4mh8xfIcjD6ela
 luke@hsiao.dev namespaces="git" ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJi1hDFzUGH3/jSYYeUvlDSNUxs4zc5QCoFeqLUQ/AST
@@ -6,3 +8,9 @@ luke@hsiao.dev namespaces="git" ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGXidfomwROQ
 noreply@anthropic.com namespaces="git" ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKy87HxSEheG8vEPhSs9u2KZCtVErAQfpmprtUJCZ2w7
 
 lhsiao@agrippaindustries.com namespaces="git" ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIE/2/iNUlRdSDlVH7rfEds+lzsWYOW3JhVzmBAfNymsy
+
+{{ $marker }}
+{{- $parts := splitList $marker .chezmoi.stdin }}
+{{- if gt (len $parts) 1 }}
+{{- last $parts | trimAll "\n" | printf "\n%s" }}
+{{- end }}
