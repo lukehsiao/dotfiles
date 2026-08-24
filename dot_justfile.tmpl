@@ -21,104 +21,13 @@ _rustup:
         echo "Rust is already installed."
     fi
 
-# Dev tools that ship prebuilt binaries and release faster than distro
-# packaging. Omarchy's own split is a pacman base plus mise for runtimes and
-# vendor CLIs, so anything the desktop or another package depends on stays in
-# pacman/brew. Shims are appended to PATH, not prepended, so a leftover system
-# copy would shadow the mise one. A tool whose distro package shipped shell
-# completions also needs a regenerating stub in fish/completions.
+# Install dev tools declared in the chezmoi-managed ~/.config/mise/config.toml.
+# The tool list lives there rather than here so devcontainers get the same
+# tools from a plain `mise install`, and so per-tool `os` restrictions can
+# skip tools that publish no linux/arm64 assets. `mise install` attempts every
+# tool and reports the failures at the end rather than aborting on the first.
 _mise-tools:
-    #!/usr/bin/env bash
-    set -o pipefail
-
-    tools=(
-        github:BLAKE3-team/BLAKE3
-        bottom
-        github:ifd3f/caligula
-        github:EmbarkStudios/cargo-deny
-        github:leptos-rs/cargo-leptos
-        github:taiki-e/cargo-llvm-cov
-        github:sourcefrog/cargo-mutants
-        github:nextest-rs/nextest
-        github:obi1kenobi/cargo-semver-checks
-        choose
-        github:blopker/codebook
-        croc
-        d2
-        delta
-        difftastic
-        dprint
-        duf
-        github:tummychow/git-absorb
-        git-cliff
-        github:wezm/git-grab
-        github:github/git-sizer
-        github:lukehsiao/git-stats
-        glow
-        gping
-        helm
-        hexyl
-        github:pamburus/hl
-        hyperfine
-        jaq
-        jj
-        jless
-        k9s
-        kubectl
-        github:bram209/leptosfmt
-        github:ltex-plus/ltex-ls-plus
-        lychee
-        marksman
-        oha
-        github:o2sh/onefetch
-        github:lukehsiao/openring-rs
-        oxipng
-        pandoc
-        github:sharkdp/pastel
-        github:pdfcpu/pdfcpu
-        github:mfontanini/presenterm
-        ruff
-        github:mstange/samply
-        sd
-        shellcheck
-        shfmt
-        github:RazrFalcon/svgcleaner
-        github:bensadeh/tailspin
-        tealdeer
-        github:tectonic-typesetting/tectonic
-        github:latex-lsp/texlab
-        tinymist
-        tombi
-        ty
-        typos
-        github:tekumara/typos-lsp
-        typst
-        github:rustwasm/wasm-bindgen
-        watchexec
-        xh
-        github:BurntSushi/xsv
-        zizmor
-        zola
-    )
-
-    # One `mise use -g` for the whole list is faster, but it aborts on the first
-    # failure and writes nothing. Most of these resolve to third-party GitHub
-    # releases whose assets can move, so fall back to installing individually
-    # and report what broke rather than losing the entire set.
-    if ! mise use -g "${tools[@]}"; then
-        echo "Batch install failed; retrying individually" >&2
-        failed=()
-        for tool in "${tools[@]}"; do
-            mise use -g "$tool" || failed+=("$tool")
-        done
-        if [ ${#failed[@]} -gt 0 ]; then
-            echo >&2
-            echo "WARNING: ${#failed[@]} tool(s) could not be installed:" >&2
-            for tool in "${failed[@]}"; do
-                echo "  $tool" >&2
-            done
-        fi
-    fi
+    mise install -y
 
 {{- if eq .distro "omarchy" }}
 
