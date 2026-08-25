@@ -116,6 +116,7 @@ Vendored third-party content is not covered by that license; it retains its upst
 
 | Path | Upstream | License |
 | --- | --- | --- |
+| `dot_claude/skills/37signals-way/` | [wondelai/skills](https://github.com/wondelai/skills) | [MIT](dot_claude/skills/37signals-way/LICENSE) |
 | `dot_claude/skills/code-reviewer/` | [google-gemini/gemini-cli](https://github.com/google-gemini/gemini-cli) | Apache-2.0 |
 | `dot_claude/skills/hegel/` | [hegeldev/hegel-skill](https://github.com/hegeldev/hegel-skill) | MIT |
 | `dot_claude/skills/nullables/` | [lexler/skill-factory](https://github.com/lexler/skill-factory), with local modifications noted in its [credits.md](dot_claude/skills/nullables/credits.md) | Apache-2.0 |
