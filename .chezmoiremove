@@ -38,9 +38,11 @@
 # entry, so both are now stale. Unmanaging a file does not delete it, so
 # without this the orphaned binary and PATH stub linger on every machine that
 # applied them, and the ~/.atuin/bin copy would shadow the mise-managed one.
+# Only bin is purged: atuin itself writes ~/.atuin/logs (its default since
+# 18.13), so removing all of ~/.atuin would flap on every apply.
 .config/fish/conf.d/atuin.env.fish
-.atuin
-.atuin/**
+.atuin/bin
+.atuin/bin/**
 
 {{- if eq .distro "omarchy" }}
 .config/hypr/bindings.conf
