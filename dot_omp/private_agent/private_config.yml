@@ -1,15 +1,15 @@
 symbolPreset: nerd
-theme: 
+theme:
   dark: titanium
 setupVersion: 2
-modelRoles: 
+modelRoles:
   smol: anthropic/claude-opus-5:xhigh
   tiny: anthropic/claude-sonnet-5:xhigh
-  advisor: anthropic/claude-opus-5:xhigh
+  advisor: openai-codex/gpt-5.6-sol:max
   default: anthropic/claude-fable-5:xhigh
-dev: 
+dev:
   autoqaConsent: granted
-advisor: 
+advisor:
   enabled: true
-composer: 
+composer:
   shape: box
