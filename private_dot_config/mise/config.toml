@@ -9,6 +9,18 @@
 # The restriction makes mise skip them on that platform instead of failing
 # the whole `mise install`, which matters in devcontainers on Apple Silicon.
 [tools]
+atuin = "latest"
+bottom = "latest"
+choose = "latest"
+codex = "latest"
+croc = "latest"
+d2 = "latest"
+delta = "latest"
+difftastic = "latest"
+dprint = "latest"
+duf = "latest"
+gh = "latest"
+git-cliff = "latest"
 "github:bensadeh/tailspin" = "latest"
 "github:blopker/codebook" = "latest"
 "github:bram209/leptosfmt" = { version = "latest", os = ["macos", "linux/x64"] }
@@ -37,16 +49,6 @@
 "github:tummychow/git-absorb" = "latest"
 "github:vale-cli/vale-ls" = "latest"
 "github:wezm/git-grab" = { version = "latest", os = ["macos", "linux/x64"] }
-atuin = "latest"
-bottom = "latest"
-choose = "latest"
-croc = "latest"
-d2 = "latest"
-delta = "latest"
-difftastic = "latest"
-dprint = "latest"
-duf = "latest"
-git-cliff = "latest"
 glow = "latest"
 gping = "latest"
 helm = "latest"
@@ -77,3 +79,6 @@ watchexec = "latest"
 xh = "latest"
 zizmor = "latest"
 zola = "latest"
+
+[settings.github]
+credential_command = "gh auth token | tail -n 1"
