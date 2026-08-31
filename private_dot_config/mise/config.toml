@@ -81,4 +81,4 @@ zizmor = "latest"
 zola = "latest"
 
 [settings.github]
-credential_command = "gh auth token | tail -n 1"
+credential_command = "head -n 1 ~/.github_token"
