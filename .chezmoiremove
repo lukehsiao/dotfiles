@@ -33,6 +33,10 @@
 .claude/skills/nullables/references/building
 .claude/skills/nullables/references/building/**
 
+# Jujutsu is natively supported by omp
+.claude/skills/jujutsu
+.claude/skills/jujutsu/**
+
 # Atuin moved from the setup.atuin.sh curl installer to mise. That installer
 # put a copy in ~/.atuin/bin and we shipped a conf.d stub to source its PATH
 # entry, so both are now stale. Unmanaging a file does not delete it, so
