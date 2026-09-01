@@ -21,7 +21,6 @@ difftastic = "latest"
 dprint = "latest"
 duf = "latest"
 gh = "latest"
-git-cliff = "latest"
 "github:bensadeh/tailspin" = "latest"
 "github:blopker/codebook" = "latest"
 "github:bram209/leptosfmt" = { version = "latest", os = ["macos", "linux/x64"] }
