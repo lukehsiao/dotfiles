@@ -1,5 +1,6 @@
 # Environment Variables
-# Default agent for the tmux layout functions (tdl, tds, tdlm, tsl)
+# Default agent for the herdr (hdl, hds, hdlm, hsl) and tmux (tdl, tds, tdlm,
+# tsl) layout functions
 set -q AI_AGENT; or set -gx AI_AGENT omp
 if test (uname) = Darwin
     set -gx BAT_THEME "Catppuccin Mocha"
@@ -94,6 +95,7 @@ alias vi="nvim"
 alias vim="nvim"
 
 alias t="tmux attach || tmux new -s Work"
+alias h="herdr"
 alias i="tdl"
 
 alias ls="eza -lh --group-directories-first --icons=auto"

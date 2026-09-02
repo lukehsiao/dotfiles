@@ -126,6 +126,6 @@ Vendored third-party content is not covered by that license; it retains its upst
 | `dot_local/bin/executable_edit-patch` | [Jujutsu Patch Edit by Katalin Rebhan](https://www.knifepoint.net/~kat/kb-jj-patchedit.html) | [MIT](LICENSES/edit-patch-MIT.txt) per SPDX header |
 | `dot_local/bin/executable_pass.tmpl` (the `passage` script) and `private_dot_config/private_fish/completions/pass.fish` | [FiloSottile/passage](https://github.com/FiloSottile/passage), a fork of [password-store](https://git.zx2c4.com/password-store/) whose original copyright headers it preserves | [GPL-2.0-or-later](LICENSES/passage-GPL-2.0.txt) per file headers |
 | `private_dot_config/ghostty/shaders/cursor_warp.glsl` | [sahaj-b/ghostty-cursor-shaders](https://github.com/sahaj-b/ghostty-cursor-shaders) | [MIT](LICENSES/ghostty-cursor-shaders-MIT.txt) |
-| `private_dot_config/hypr/`, `private_dot_config/omarchy/themed/`, and the `dip`/`fip`/`lip` fish functions (derived from Omarchy defaults) | [basecamp/omarchy](https://github.com/basecamp/omarchy) | [MIT](LICENSES/omarchy-MIT.txt) |
+| `private_dot_config/hypr/`, `private_dot_config/omarchy/themed/`, `private_dot_config/herdr/config.toml`, `private_dot_config/tmux/tmux.conf.tmpl`, and the `dip`/`fip`/`lip` and `hdl`/`hds`/`hdlm`/`hsl`/`tdl`/`tds`/`tdlm`/`tsl` fish functions (derived from Omarchy defaults) | [basecamp/omarchy](https://github.com/basecamp/omarchy) | [MIT](LICENSES/omarchy-MIT.txt) |
 
 The property-based-testing skill is CC-BY-SA-4.0, so that directory stays share-alike rather than Blue Oak.

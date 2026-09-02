@@ -47,6 +47,7 @@ history_filter = [
   '(^|\|)\s*head\b',
   '(--|\s)help\b',
   '\b-h\b',
+  "^herdr",
   "^hexyl",
   "^hx",
   "^jaq",
