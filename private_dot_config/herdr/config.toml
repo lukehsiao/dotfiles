@@ -1,5 +1,6 @@
 # Mirrors the Omarchy tmux config in config/tmux/tmux.conf
 # tmux session -> herdr workspace, tmux window -> herdr tab, tmux pane -> herdr pane
+onboarding = false
 
 [theme]
 # tmux ran on the terminal's own palette (bg=default, fg=default, ANSI blue accents)

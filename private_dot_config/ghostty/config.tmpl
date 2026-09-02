@@ -72,8 +72,12 @@ keybind = super+control+shift+alt+arrow_down=resize_split:down,100
 keybind = super+control+shift+alt+arrow_up=resize_split:up,100
 keybind = super+control+shift+alt+arrow_left=resize_split:left,100
 keybind = super+control+shift+alt+arrow_right=resize_split:right,100
-# Fix Ctrl+[ in helix
-keybind = ctrl+left_bracket=text:\x1b
+# Ghostty follows fixterms and encodes Ctrl+[ as CSI 91;5u, which helix ignores.
+# Send Esc as CSI 27;1u instead of a bare 0x1b. A lone 0x1b makes multiplexers
+# wait to see whether a longer sequence follows, 150ms in herdr whenever mouse
+# capture is on, and a complete CSI-u sequence skips that wait. tmux needs the
+# explicit ;1 because it parses extended keys as "number;modifiers".
+keybind = ctrl+left_bracket=csi:27;1u
 # Send Alt+Backspace as ESC+DEL for OMP
 keybind = alt+backspace=text:\x1b\x7f
 {{- if eq .chezmoi.os "linux" }}
