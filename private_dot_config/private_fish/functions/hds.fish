@@ -24,6 +24,6 @@ function hds --description 'Herdr dev square: editor, diff watch, terminal, agen
     set -l agent_pane (_herdr_split $terminal_pane right 0.5 $current_dir)
 
     herdr pane run $editor_pane "$EDITOR ." >/dev/null
-    herdr pane run $diff_pane 'hunk diff --watch' >/dev/null
+    herdr pane run $diff_pane "hunk diff 'trunk()..@' --watch" >/dev/null
     herdr pane run $agent_pane "$agent" >/dev/null
 end

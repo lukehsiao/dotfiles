@@ -25,7 +25,7 @@ function tds --description 'Tmux dev square: editor, diff watch, terminal, agent
 
     tmux send-keys -t $editor_pane -l "$EDITOR ."
     tmux send-keys -t $editor_pane C-m
-    tmux send-keys -t $diff_pane -l 'hunk diff --watch'
+    tmux send-keys -t $diff_pane -l "hunk diff 'trunk()..@' --watch"
     tmux send-keys -t $diff_pane C-m
     tmux send-keys -t $agent_pane -l "$agent"
     tmux send-keys -t $agent_pane C-m
