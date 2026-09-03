@@ -4,9 +4,5 @@
 theme = "catppuccin-mocha"
 
 {{ end -}}
-# hunk paints an opaque surface from its own theme, which only lines up with the
-# terminal when the two themes agree. Omarchy does not synchronize them: it
-# themes helix, btop and the rest, but has no hunk template. Letting the
-# terminal background through settles it on both machines, and added and removed
-# rows still get their tints.
 transparent_background = true
+wrap_lines = true
