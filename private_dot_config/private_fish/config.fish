@@ -1,7 +1,7 @@
 # Environment Variables
 # Default agent for the herdr (hdl, hds, hdlm, hsl) and tmux (tdl, tds, tdlm,
 # tsl) layout functions
-set -q AI_AGENT; or set -gx AI_AGENT omp
+set -q AI_AGENT; or set -gx AI_AGENT claude
 if test (uname) = Darwin
     set -gx BAT_THEME "Catppuccin Mocha"
 else
