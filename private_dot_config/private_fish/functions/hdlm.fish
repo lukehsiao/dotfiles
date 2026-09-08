@@ -1,7 +1,12 @@
 # Fish port of Omarchy's multi-project herdr layout ($OMARCHY_PATH/default/bash/fns/herdr)
 function hdlm --description 'One hdl tab per subdirectory of the current directory'
+    set -l usage "Usage: hdlm [agent] [second_agent] (no agent: your default agent)"
+    if contains -- "$argv[1]" -h --help
+        echo $usage
+        return 0
+    end
     if test (count $argv) -gt 2
-        echo "Usage: hdlm [agent] [second_agent]" >&2
+        echo $usage >&2
         return 1
     end
     if not set -q HERDR_PANE_ID
@@ -13,18 +18,23 @@ function hdlm --description 'One hdl tab per subdirectory of the current directo
 
     herdr workspace rename $HERDR_WORKSPACE_ID (path basename $base_dir) >/dev/null
 
+    # The pane's shell parses the queued command, so every piece is escaped:
+    # agent arguments may carry flags and spaces, directory names may carry
+    # quotes.
+    set -l hdl_command (string join ' ' (string escape -- hdl $argv))
+
     set -l first true
     for dir in $base_dir/*/
         set -l dirpath (path normalize $dir)
 
         if test $first = true
             # Reuse the current tab for the first project
-            herdr pane run $HERDR_PANE_ID "cd '$dirpath' && hdl $argv" >/dev/null
+            herdr pane run $HERDR_PANE_ID "cd "(string escape -- $dirpath)" && $hdl_command" >/dev/null
             set first false
         else
             set -l pane_id (herdr tab create --workspace $HERDR_WORKSPACE_ID --cwd $dirpath --no-focus |
                 jq -r '.result.root_pane.pane_id')
-            herdr pane run $pane_id "hdl $argv" >/dev/null
+            herdr pane run $pane_id $hdl_command >/dev/null
         end
     end
 end

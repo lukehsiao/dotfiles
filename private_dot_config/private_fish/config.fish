@@ -1,6 +1,10 @@
 # Environment Variables
-# Default agent for the herdr (hdl, hds, hdlm, hsl) and tmux (tdl, tds, tdlm, tsl) layout functions
-set -gx AI_AGENT claude
+# Agent the layout functions (hdl, tdl, and friends) launch when none is given
+# and omarchy-agent is absent, so macOS and devcontainers get a default too.
+# A plain global rather than an export: nothing outside fish reads it, and an
+# exported name invites collisions like the AI_AGENT that agent harnesses
+# export into their subprocesses.
+set -g default_agent claude
 if test (uname) = Darwin
     set -gx BAT_THEME "Catppuccin Mocha"
 else

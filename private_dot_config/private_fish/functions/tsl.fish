@@ -1,7 +1,12 @@
 # Fish port of Omarchy's tmux swarm layout ($OMARCHY_PATH/default/bash/fns/tmux)
 function tsl --description 'Tmux swarm layout: the same command tiled across N panes'
+    set -l usage "Usage: tsl <pane_count> [command] (no command: your default agent)"
+    if contains -- "$argv[1]" -h --help
+        echo $usage
+        return 0
+    end
     if not string match --quiet --regex '^[0-9]+$' -- "$argv[1]"
-        echo "Usage: tsl <pane_count> [command]" >&2
+        echo $usage >&2
         return 1
     end
     if not set -q TMUX
@@ -10,8 +15,7 @@ function tsl --description 'Tmux swarm layout: the same command tiled across N p
     end
 
     set -l count $argv[1]
-    set -l cmd $AI_AGENT
-    test -n "$argv[2]"; and set cmd $argv[2]
+    set -l cmd (_resolve_agent $argv[2]); or return 1
 
     set -l current_dir $PWD
 

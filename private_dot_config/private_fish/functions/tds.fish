@@ -1,7 +1,12 @@
 # Fish port of Omarchy's tmux dev square ($OMARCHY_PATH/default/bash/fns/tmux)
 function tds --description 'Tmux dev square: editor, diff watch, terminal, agent'
+    set -l usage "Usage: tds [agent] (no agent: your default agent)"
+    if contains -- "$argv[1]" -h --help
+        echo $usage
+        return 0
+    end
     if test (count $argv) -gt 1
-        echo "Usage: tds [agent]" >&2
+        echo $usage >&2
         return 1
     end
     if not set -q TMUX
@@ -9,8 +14,7 @@ function tds --description 'Tmux dev square: editor, diff watch, terminal, agent
         return 1
     end
 
-    set -l agent $AI_AGENT
-    test -n "$argv[1]"; and set agent $argv[1]
+    set -l agent (_resolve_agent $argv[1]); or return 1
 
     set -l current_dir $PWD
     set -l editor_pane $TMUX_PANE

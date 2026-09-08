@@ -1,7 +1,12 @@
 # Fish port of Omarchy's herdr dev layout ($OMARCHY_PATH/default/bash/fns/herdr)
 function hdl --description 'Herdr dev layout: editor, agent, terminal'
+    set -l usage "Usage: hdl [agent] [second_agent] (no agent: your default agent)"
+    if contains -- "$argv[1]" -h --help
+        echo $usage
+        return 0
+    end
     if test (count $argv) -gt 2
-        echo "Usage: hdl [agent] [second_agent]" >&2
+        echo $usage >&2
         return 1
     end
     if not set -q HERDR_PANE_ID
@@ -9,8 +14,7 @@ function hdl --description 'Herdr dev layout: editor, agent, terminal'
         return 1
     end
 
-    set -l agent $AI_AGENT
-    test -n "$argv[1]"; and set agent $argv[1]
+    set -l agent (_resolve_agent $argv[1]); or return 1
 
     set -l current_dir $PWD
 
