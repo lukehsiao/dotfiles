@@ -4,6 +4,10 @@
 Include ~/.orbstack/ssh/config
 
 {{ end -}}
+# Machine-local entries we deliberately do not version. Keep this above the
+# Host blocks: ssh takes the first value it sees for each keyword.
+Include ~/.ssh/config.local
+
 Host rsync
     HostName usw-s007.rsync.net
     User 57127
