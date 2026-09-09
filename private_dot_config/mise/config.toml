@@ -83,3 +83,6 @@ zola = "latest"
 
 [settings.github]
 credential_command = "head -n 1 ~/.github_token"
+
+[settings.upgrade]
+auto_prune = false
