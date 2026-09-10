@@ -53,6 +53,8 @@ Most commits need a body. The body is not a summary of what changed — the diff
 
 "This patch..." and "This change..." are fine as sentence subjects. Prefer them over subjectless constructions or passive voice.
 
+Ensure we do not exceed 72 chars unless there is a good exception (e.g., a URL or command output).
+
 ### Tone
 
 Be direct. State opinions without hedging. "This is the wrong approach" is better than "this might potentially not be ideal." Confidence is not the same as arrogance — acknowledge when something is a guess, when you haven't tested something, or when the motivation is partly selfish. "Kind of concerning that this test does NOT fail with the existing testing flow, but going to fix-forward rather than invest the time to figure out why" is correct voice.
@@ -63,7 +65,7 @@ Always run the message through the humanizer skill.
 
 ### Tested section
 
-For anything with non-trivial runtime behavior — Docker images, CI changes, deployed code — include a `Tested:` block with the actual commands run and what was verified. Use real terminal output when it's short and informative. Be honest when something wasn't tested: "NOT TESTED. A downside of GitHub Actions is that there's no way to test a new workflow on a branch before it hits main." is correct and acceptable.
+For anything with non-trivial runtime behavior — Docker images, CI changes, deployed code — include a `Tested:` block with the actual commands run and what was verified. Use real terminal output when it's short and informative. Be honest when something wasn't tested: "NOT TESTED. A downside of GitHub Actions is that there's no way to test a new workflow on a branch before it hits main." is correct and acceptable. Tested footer should have a hanging 2-space indent for prose, but 4-spaces for things that should be monospace (e.g., commands and their output).
 
 ### Trailers
 
@@ -98,6 +100,8 @@ Example:
 ```
 Assisted-by: Claude:claude-3-opus coccinelle sparse
 ```
+
+These trailers can exceed 72-chars.
 
 ### Special prefixes
 
