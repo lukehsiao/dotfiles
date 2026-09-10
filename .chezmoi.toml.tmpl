@@ -1,4 +1,4 @@
-{{- $distrochoices := list "omarchy" "macos" -}}
+{{- $distrochoices := list "omarchy" "macos" "ubuntu" -}}
 {{- $distro := promptChoiceOnce . "distro" "Which distro/environment" $distrochoices -}}
 
 {{- $email := promptStringOnce . "email" "Email address" -}}

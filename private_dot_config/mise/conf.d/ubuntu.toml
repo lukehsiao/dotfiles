@@ -1,0 +1,34 @@
+# Tools that brew and pacman provide on the desktop machines. This is a shared
+# server, so anything only one account wants lives in that account's home
+# instead of apt. Noble also lags (bat 0.24, eza 0.18, zoxide 0.9) or has no
+# package at all (helix, starship, fastfetch, dust, tokei, numbat, herdr,
+# chezmoi). The apt side is in `just install-core`.
+#
+# mise merges the fragments here into ~/.config/mise/config.toml, so this adds
+# to the shared tool list rather than replacing it. A fragment rather than
+# `os`-restricted entries in the shared config because mise's `os` key
+# separates linux from macos, not Ubuntu from Arch.
+[tools]
+bat = "latest"
+chezmoi = "latest"
+dua = "latest"
+dust = "latest"
+eza = "latest"
+fastfetch = "latest"
+fd = "latest"
+fzf = "latest"
+"github:str4d/rage" = "latest"
+git-lfs = "latest"
+helix = "latest"
+herdr = "latest"
+jq = "latest"
+just = "latest"
+# The vi/vim aliases and chezmoi's [merge] command both call nvim.
+neovim = "latest"
+numbat = "latest"
+ripgrep = "latest"
+starship = "latest"
+# tokei stopped attaching binaries to its releases, so this resolves to the
+# cargo backend and needs the rust toolchain from `just install-core`.
+tokei = "latest"
+zoxide = "latest"

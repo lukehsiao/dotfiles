@@ -8,12 +8,6 @@ README.md
 Library
 {{- end }}
 
-{{- if ne .chezmoi.os "linux" }}
-.config/systemd
-.local/share/applications
-.config/display-switch
-{{- end }}
-
 {{- if ne .distro "omarchy" }}
 .config/hypr
 .config/omarchy
@@ -23,5 +17,17 @@ Library
 .config/aerc/stylesets/omarchy
 .config/k9s/skins/omarchy.yaml
 .config/mimeapps.list
+.config/systemd
+.config/display-switch
+.local/share/applications
 .local/state/omarchy
+{{- end }}
+
+{{- if eq .distro "ubuntu" }}
+# None of this renders on a machine only ever reached over SSH.
+.config/ghostty
+.config/xdg-terminals.list
+.local/share/fonts
+{{- else }}
+.config/mise/conf.d
 {{- end }}

@@ -93,7 +93,7 @@ _rust-core: _rustup
 
     cargo install --git https://github.com/lukehsiao/tool.git --locked
 
-{{- if ne .distro "macos" }}
+{{- if eq .distro "omarchy" }}
     # For display-switching at the desktop via USB switch
     cargo install --git https://github.com/haimgel/display-switch --locked
 {{- end }}
@@ -277,6 +277,47 @@ install-core:
 
     just _rust-core
     just _mise-tools
+
+    # build bat themes
+    bat cache --build
+{{- else if eq .distro "ubuntu" }}
+    # Noble ships fish 3.7 and git 2.43. The other machines run fish 4, and
+    # 2.43 silently ignores the fetch.all in ~/.config/git/config, so both
+    # come from upstream PPAs.
+    sudo apt-get update
+    command -v add-apt-repository >/dev/null || sudo apt-get install -y software-properties-common
+    sudo add-apt-repository -y ppa:fish-shell/release-4
+    sudo add-apt-repository -y ppa:git-core/ppa
+
+    # clang and mold back the linker settings in ~/.cargo/config.toml, and
+    # pinentry-curses is what gpg-agent.conf calls.
+    sudo apt-get install -y --no-install-recommends \
+        build-essential \
+        clang \
+        ffmpeg \
+        fish \
+        git \
+        git-filter-repo \
+        libssl-dev \
+        mold \
+        mosh \
+        pinentry-curses \
+        pkg-config \
+        postgresql-client \
+        sqlite3 \
+        tmux \
+        tree \
+        zstd
+
+    # SSH starts the login shell recorded in /etc/passwd, so without this the
+    # fish config never loads. Writing the same shell twice is a no-op.
+    sudo chsh -s "$(command -v fish)" "$(id -un)"
+
+    just _rust-core
+    # tokei publishes no prebuilt binaries, so mise builds it through the cargo
+    # backend. Recipe lines inherit the PATH of the shell that ran just, which
+    # on a first run predates rustup.
+    PATH="$HOME/.cargo/bin:$PATH" just _mise-tools
 
     # build bat themes
     bat cache --build

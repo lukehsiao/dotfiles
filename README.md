@@ -17,7 +17,8 @@ This is my opinionated developer setup.
 This is not intended for general use; many things are hardcoded for me, specifically.
 
 Dotfiles are managed with [`chezmoi`](https://github.com/twpayne/chezmoi).
-On first run, `chezmoi init` prompts for a `distro` choice (`omarchy` or `macos`) that gates platform-specific files and templates.
+On first run, `chezmoi init` prompts for a `distro` choice (`omarchy`, `macos`, or `ubuntu`) that gates platform-specific files and templates.
+`ubuntu` is the headless variant. It follows the macOS side of every template and gets its tools from mise, so a shared machine stays uncluttered.
 
 ## Omarchy (Arch Linux)
 Install from a fresh [Omarchy](https://omarchy.org/) setup:
@@ -108,6 +109,34 @@ just setup-display-switch
 
 # Enable Slack/Chrome/Ghostty notifications in MacOS settings
 ```
+
+## Ubuntu (headless server)
+Install on a shared Ubuntu box that is only ever reached over SSH:
+
+```
+# Make an SSH key and add to GitHub
+ssh-keygen -t ed25519 -C "$(whoami)@$(hostname)"
+
+# Grab prereqs. mise installs into ~/.local, so none of this needs root.
+# conf.d/ubuntu.toml keeps these three after the apply overwrites the config
+# `mise use -g` writes. The installer only wires up fish, so bash needs the
+# shims by hand.
+curl https://mise.run | sh
+~/.local/bin/mise use -g chezmoi just github:str4d/rage
+eval "$(~/.local/bin/mise activate bash --shims)"
+
+chezmoi init git@github.com:lukehsiao/dotfiles.git
+# Awkwardly requires bootstrapping from a configured computer for passphrase...
+chezmoi apply
+
+just install-core  # needs the sudo password, and switches the login shell to fish
+
+atuin login
+
+# Log out and back in for fish to become the login shell
+```
+
+There is no yubikey on a remote server, so `pass`/`passage` and anything else behind `age-plugin-yubikey` will not work there.
 
 ## Licensing
 
