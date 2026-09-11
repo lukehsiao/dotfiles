@@ -8,9 +8,10 @@ luke@hsiao.dev namespaces="git" ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGXidfomwROQ
 noreply@anthropic.com namespaces="git" ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKy87HxSEheG8vEPhSs9u2KZCtVErAQfpmprtUJCZ2w7
 
 lhsiao@agrippaindustries.com namespaces="git" ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIE/2/iNUlRdSDlVH7rfEds+lzsWYOW3JhVzmBAfNymsy
+lhsiao@agrippaindustries.com namespaces="git" ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOIJeBmzjF0AuC8sE6wOuDPeq0DCFu1ssqxgiH95zNkc
 
 {{ $marker }}
 {{- $parts := splitList $marker .chezmoi.stdin }}
 {{- if gt (len $parts) 1 }}
 {{- last $parts | trimAll "\n" | printf "\n%s" }}
-{{- end }}
+{{- end -}}
