@@ -38,6 +38,7 @@ gh = "latest"
 "github:nextest-rs/nextest" = "latest"
 "github:o2sh/onefetch" = "latest"
 "github:obi1kenobi/cargo-semver-checks" = "latest"
+"github:pagefind/pagefind" = "latest"
 "github:pamburus/hl" = "latest"
 "github:pdfcpu/pdfcpu" = "latest"
 "github:RazrFalcon/svgcleaner" = { version = "latest", os = ["macos", "linux/x64"] }
