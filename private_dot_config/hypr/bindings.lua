@@ -27,3 +27,6 @@ o.bind("SUPER + SHIFT + E", "Email", { tui = "aerc" })
 
 hl.unbind("SUPER + CTRL + T")
 o.bind("SUPER + CTRL + T", "Activity", { tui = "btm" })
+
+o.bind("SUPER + F1", "Brightness down", "omarchy brightness display 5%-", { repeating = true })
+o.bind("SUPER + F2", "Brightness up", "omarchy brightness display +5%", { repeating = true })
