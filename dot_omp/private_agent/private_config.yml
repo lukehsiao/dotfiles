@@ -3,7 +3,7 @@ theme:
   dark: titanium
 setupVersion: 2
 modelRoles:
-  smol: anthropic/claude-opus-5:xhigh
+  smol: anthropic/claude-opus-5-5:xhigh
   tiny: anthropic/claude-sonnet-5:xhigh
   default: anthropic/claude-fable-5-1:xhigh
   advisor: openai-codex/gpt-6-astra:high
