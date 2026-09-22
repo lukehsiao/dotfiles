@@ -28,6 +28,10 @@ hl.monitor({
   sdr_eotf = "gamma22",
 })
 
+-- Chromium advertises HDR-capable surfaces, so auto-HDR flips the PA32QCV
+-- into HDR on every fullscreen, and the monitor blanks for ~5s to resync.
+hl.config({ render = { cm_auto_hdr = 0 } })
+
 -- Configure a specific monitor.
 -- hl.monitor({ output = "DP-2", mode = "2560x1440@144", position = "0x0", scale = 1 })
 
