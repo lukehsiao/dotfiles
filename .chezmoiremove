@@ -18,6 +18,11 @@
 .claude/skills/property-based-testing
 .claude/skills/property-based-testing/**
 
+# code-reviewer overlapped Claude Code's built-in code-review skill. The
+# skills directory is not exact_, so chezmoi will not prune it on its own.
+.claude/skills/code-reviewer
+.claude/skills/code-reviewer/**
+
 # The nullables skill was restructured in "chore(nullables): upgrade skill to
 # lexler rewrite", which renamed references/{architecture,building}/*.md into
 # flat references/*.md files and dropped links.md and test-patterns.md.
