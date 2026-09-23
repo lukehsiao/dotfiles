@@ -169,11 +169,3 @@ See [references/opinionated-software.md](references/opinionated-software.md) whe
 | Does the software have a clear opinion here? | Decisions deferred to users via preferences | Pick the best default; remove the setting |
 
 See [references/case-studies.md](references/case-studies.md) for end-to-end worked scenarios when you want a model to follow — adopting Shape Up, resisting feature creep, and replacing status meetings with hill charts.
-
-## Further Reading
-
-- [*"Getting Real"*](https://www.amazon.com/Getting-Real-Smarter-Successful-Application/dp/0578012812?tag=wondelai00-20) by Jason Fried & David Heinemeier Hansson
-- [*"Rework"*](https://www.amazon.com/Rework-Jason-Fried/dp/0307463745?tag=wondelai00-20) by Jason Fried & David Heinemeier Hansson
-- [*"Shape Up: Stop Running in Circles and Ship Work that Matters"*](https://www.amazon.com/Shape-Up-Circles-Ship-Work/dp/B09ZSY1MWP?tag=wondelai00-20) by Ryan Singer
-- [*"It Doesn't Have to Be Crazy at Work"*](https://www.amazon.com/Doesnt-Have-Crazy-Work/dp/0062874780?tag=wondelai00-20) by Jason Fried & David Heinemeier Hansson
-- [*"Remote: Office Not Required"*](https://www.amazon.com/Remote-Office-Required-Jason-Fried/dp/0804137501?tag=wondelai00-20) by Jason Fried & David Heinemeier Hansson
