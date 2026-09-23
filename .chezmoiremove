@@ -23,6 +23,12 @@
 .claude/skills/code-reviewer
 .claude/skills/code-reviewer/**
 
+# hegel-skill 2.0.0 dropped the per-language API references in favor of
+# reading the installed library's own docs and source. The skills directory
+# is not exact_, so chezmoi will not prune the old copies on its own.
+.claude/skills/hegel/references
+.claude/skills/hegel/references/**
+
 # The nullables skill was restructured in "chore(nullables): upgrade skill to
 # lexler rewrite", which renamed references/{architecture,building}/*.md into
 # flat references/*.md files and dropped links.md and test-patterns.md.
