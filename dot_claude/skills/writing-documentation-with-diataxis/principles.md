@@ -22,7 +22,7 @@ The tutorial must be:
 - **Logical** - the path must make sense
 - **Usefully complete** - encounters all key actions, concepts, and tools
 
-#### 2. Ruthlessly Minimise Explanation
+#### 2. Ruthlessly Minimize Explanation
 
 Explanation is the hardest temptation to resist. You want learners to *understand*, but explanation distracts from doing and blocks learning.
 
@@ -60,7 +60,7 @@ Each step should produce a comprehensible result. This:
 - Provides feedback that they're on track
 - Maintains engagement
 
-Even small results matter: "The file now exists", "The server is running", "Notice the colour changed".
+Even small results matter: "The file now exists", "The server is running", "Notice the color changed".
 
 #### 5. Maintain Narrative of Expectation
 
@@ -184,7 +184,7 @@ Focus on what users need to accomplish, not what the tool can do.
 
 **Right approach** (problem-focused):
 - "How to deploy with zero downtime"
-- "How to optimise database performance for high traffic"
+- "How to optimize database performance for high traffic"
 
 The guide should answer: "How do I accomplish [meaningful goal]?"
 
@@ -208,7 +208,7 @@ Ask yourself:
 - How long are you asking them to keep concerns open?
 - What will they reach for next?
 
-Minimise context switching:
+Minimize context switching:
 - Group operations by tool or location
 - Don't make them jump back and forth between files
 - Consider the pace and rhythm of their work

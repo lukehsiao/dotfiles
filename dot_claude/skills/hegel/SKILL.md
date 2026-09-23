@@ -203,7 +203,7 @@ Properties must be **evidence-based**. Find evidence in:
 - **Usage patterns**: If callers always assume a result is non-empty, assert that.
 - **Existing tests**: Unit tests often encode specific instances of general properties.
 
-Err on the side of creating more properties rather than fewer, and if they fail investigate whether the failure is legitimate behavior or not.
+Write a test for every property the evidence supports. When one fails, investigate whether the failure is a real bug or legitimate behavior.
 
 **Beware of properties that seem universal but aren't.** Read the docs carefully before asserting a property. Examples from real testing:
 - Grapheme-based string reverse is NOT an involution (`reverse(reverse("\n\r")) != "\n\r"` because `\r\n` is one grapheme cluster while `\n\r` is two).

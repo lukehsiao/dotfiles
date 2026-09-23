@@ -77,7 +77,7 @@ Apply the two questions above to determine which documentation type serves this 
 - Assume competence - they know what they want
 - Provide logical sequence that flows with human thinking
 - Address real-world complexity with conditionals ("If X, do Y")
-- **Seek flow** - anticipate their next move, minimise context switching
+- **Seek flow** - anticipate their next move, minimize context switching
 - Omit unnecessary detail - practical usability beats completeness
 - Focus on tasks, not tools
 - Name guides clearly: "How to [accomplish X]"
@@ -122,26 +122,14 @@ If content serves multiple needs, split it and link between documents.
 
 ## When Reviewing Existing Documentation
 
-Use this iterative workflow:
-
-**1. Choose a piece** - Any page, section, or paragraph
-
-**2. Challenge it** with these questions:
+Work piece by piece (a page, section, or paragraph), challenging each with these questions:
 - What user need does this serve?
 - Which documentation type should this be?
 - Does it serve that need well?
 - Is the language appropriate for this type?
 - Does any content belong in a different type?
 
-**3. Use the compass** if the type is unclear
-
-**4. Identify one improvement** that would help right now
-
-**5. Make that improvement** according to Diataxis principles
-
-**6. Repeat** with another piece
-
-Don't try to restructure everything at once. Structure emerges from improving individual pieces.
+Use the compass when the type is unclear. Improve individual pieces rather than imposing a new top-level structure up front; in Diataxis, structure emerges from those improvements.
 
 ## Key Principles
 
@@ -191,8 +179,6 @@ For more detailed guidance, refer to:
 ## Output Requirements
 
 When applying Diataxis:
-- Be direct and practical
-- Focus on serving user needs
 - Use the compass to resolve uncertainty
 - Cite which documentation type you're applying and why
 - If reviewing docs, be specific about what type it should be and how to improve it

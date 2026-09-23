@@ -18,7 +18,7 @@ These characteristics are independent of each other:
 
 Documentation can be accurate but incomplete, or complete but inconsistent. Each is a constraint you must meet through diligence and domain knowledge.
 
-**Diataxis cannot give you functional quality**. It requires technical skill and keeping documentation synchronised with the product.
+**Diataxis cannot give you functional quality**. It requires technical skill and keeping documentation synchronized with the product.
 
 However, Diataxis can **expose** lapses in functional quality:
 - Structuring reference to mirror code makes gaps obvious
@@ -35,7 +35,7 @@ These characteristics are interdependent - aspects of the same thing:
 - Anticipates the user
 - Feels beautiful (yes, this matters)
 
-You can't measure these with numbers, only recognise them through use. Like clothing that moves well with your body, good documentation feels right when you use it.
+You can't measure these with numbers, only recognize them through use. Like clothing that moves well with your body, good documentation feels right when you use it.
 
 Deep quality is **conditional on functional quality**. No one experiences documentation as beautiful if it's inaccurate or inconsistent. Lapses in functional quality tarnish the experience immediately.
 
@@ -159,7 +159,7 @@ Be clear about the limits:
 
 ### It Won't Make Your Documentation Accurate
 
-Accuracy requires domain knowledge and keeping docs synchronised with reality. Diataxis can help expose gaps, but can't fill them.
+Accuracy requires domain knowledge and keeping docs synchronized with reality. Diataxis can help expose gaps, but can't fill them.
 
 You need to:
 - Understand the product deeply
@@ -357,7 +357,7 @@ Provide what users actually need, not what feels complete.
 **For reference**:
 - Mirror the product structure exactly
 - Use automated generation where possible
-- Keep it synchronised with code
+- Keep it synchronized with code
 - Be consistent above all
 
 **For explanation**:

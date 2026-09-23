@@ -1,6 +1,6 @@
 ---
 name: review-rust
-description: Review Rust code, diffs, pull requests, and API designs for correctness, idiomatic style, maintainability, and type-driven design. Use when Codex is asked to audit Rust changes, review a Rust refactor, assess whether Rust code is idiomatic, or explain Rust-specific design and correctness concerns in existing code.
+description: Review Rust code, diffs, pull requests, and API designs for correctness, idiomatic style, maintainability, and type-driven design. Use when asked to audit Rust changes, review a Rust refactor, assess whether Rust code is idiomatic, or explain Rust-specific design and correctness concerns in existing code.
 ---
 
 # Review Rust

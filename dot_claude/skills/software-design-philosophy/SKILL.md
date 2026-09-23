@@ -1,6 +1,6 @@
 ---
 name: software-design-philosophy
-description: 'Manage software complexity through deep modules, information hiding, and strategic programming. Use when the user mentions "module design", "API too complex", "shallow class", "complexity budget", "strategic vs tactical", "deep module", "information leakage", "pass-through method", "this code is over-engineered", or "simplify this design". Also trigger when reviewing an interface for simplicity, evaluating whether an abstraction is pulling its weight, deciding whether a comment is worth writing, or choosing between general-purpose and special-purpose approaches. Covers deep vs shallow modules, red flags for complexity, and comments as design documentation. For code quality, see clean-code. For architecture boundaries, see clean-architecture.'
+description: 'Manage software complexity through deep modules, information hiding, and strategic programming. Use when the user mentions "module design", "API too complex", "shallow class", "complexity budget", "strategic vs tactical", "deep module", "information leakage", "pass-through method", "this code is over-engineered", or "simplify this design". Also trigger when reviewing an interface for simplicity, evaluating whether an abstraction is pulling its weight, deciding whether a comment is worth writing, or choosing between general-purpose and special-purpose approaches. Covers deep vs shallow modules, red flags for complexity, and comments as design documentation.'
 license: MIT
 metadata:
   author: wondelai
@@ -182,7 +182,3 @@ See [references/strategic-programming.md](references/strategic-programming.md) w
 For the complete methodology with detailed examples:
 
 - [*"A Philosophy of Software Design"*](https://www.amazon.com/Philosophy-Software-Design-2nd/dp/173210221X) by John Ousterhout (2nd edition)
-
-## About the Author
-
-**John Ousterhout** is the Bosack Lerner Professor of Computer Science at Stanford and the creator of the Tcl scripting language and Tk toolkit. He developed *A Philosophy of Software Design* from his Stanford CS 190 course, distilling decades of systems-building experience into principles that apply across languages and scales.

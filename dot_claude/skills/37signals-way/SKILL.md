@@ -1,6 +1,6 @@
 ---
 name: 37signals-way
-description: 'Build lean, opinionated products using the 37signals philosophy from "Getting Real", "Rework", and "Shape Up". Use when the user mentions "Getting Real", "Rework", "Shape Up", "37signals", "Basecamp method", "six-week cycles", "fixed time variable scope", "appetite vs estimates", "betting table", "breadboarding", "fat marker sketch", "build less", "underdo the competition", "opinionated software", "we have too many meetings", "how do we ship faster", or "stop overbuilding". Also trigger when cutting scope to ship sooner, running a small team, or avoiding long-term roadmaps. Covers shaping, betting, building, and the art of saying no. For MVP validation, see lean-startup. For design sprints, see design-sprint.'
+description: 'Build lean, opinionated products using the 37signals philosophy from "Getting Real", "Rework", and "Shape Up". Use when the user mentions "Getting Real", "Rework", "Shape Up", "37signals", "Basecamp method", "six-week cycles", "fixed time variable scope", "appetite vs estimates", "betting table", "breadboarding", "fat marker sketch", "build less", "underdo the competition", "opinionated software", "we have too many meetings", "how do we ship faster", or "stop overbuilding". Also trigger when cutting scope to ship sooner, running a small team, or avoiding long-term roadmaps. Covers shaping, betting, building, and the art of saying no.'
 license: MIT
 metadata:
   author: wondelai
@@ -15,15 +15,9 @@ A system for building profitable software without bloat, bureaucracy, or burnout
 
 **Build less.** The best products do fewer things exceptionally well — simplicity is the destination, not the starting point. Traditional development adds; the 37signals way subtracts: build half a product (not a half-assed product), say no by default, fix the time and flex the scope. Constraints are what make great work possible — six weeks, three people, and a shaped pitch force you to find the essential version.
 
-## Scoring
+## Assessing a Plan
 
-**Goal: 10/10.** Rate product plans, feature scopes, and team processes 0-10 against these principles. Report the current score and the specific changes needed to reach 10/10.
-
-- **9-10:** Fixed-time cycles, shaped pitches, small teams, no backlog, opinionated defaults, clear copy
-- **7-8:** Mostly shaped work and small teams, but some scope creep or process overhead
-- **5-6:** Some shaping happens, but backlogs persist, teams are too large, or preferences replace decisions
-- **3-4:** Heavy process (standups, sprints, story points) with occasional simplicity efforts
-- **0-2:** Feature factory: long-term roadmaps, large teams, estimation rituals, no shaping
+When asked to evaluate a product plan, feature scope, or team process, say where it departs from the principles below and what specific change would close each gap. The healthy end of the spectrum has fixed-time cycles, shaped pitches, small teams, no backlog, opinionated defaults, and clear copy; the far end is a feature factory with long-term roadmaps, large teams, estimation rituals, and no shaping.
 
 ### 1. Build Less, Underdo the Competition
 
@@ -183,7 +177,3 @@ See [references/case-studies.md](references/case-studies.md) for end-to-end work
 - [*"Shape Up: Stop Running in Circles and Ship Work that Matters"*](https://www.amazon.com/Shape-Up-Circles-Ship-Work/dp/B09ZSY1MWP?tag=wondelai00-20) by Ryan Singer
 - [*"It Doesn't Have to Be Crazy at Work"*](https://www.amazon.com/Doesnt-Have-Crazy-Work/dp/0062874780?tag=wondelai00-20) by Jason Fried & David Heinemeier Hansson
 - [*"Remote: Office Not Required"*](https://www.amazon.com/Remote-Office-Required-Jason-Fried/dp/0804137501?tag=wondelai00-20) by Jason Fried & David Heinemeier Hansson
-
-## About the Authors
-
-**Jason Fried** is co-founder and CEO of 37signals (Basecamp, HEY) and a leading advocate for calm companies and product simplicity. **David Heinemeier Hansson (DHH)** is 37signals co-founder and creator of Ruby on Rails, extracted from Basecamp's codebase; together they wrote *Getting Real*, *Rework*, *Remote*, and *It Doesn't Have to Be Crazy at Work*. **Ryan Singer** spent 15+ years shaping product at 37signals and codified the methodology in *Shape Up*.
