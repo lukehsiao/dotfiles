@@ -79,29 +79,25 @@ Inspired-by: <url>
 ```
 
 When AI tools contribute development, proper attribution helps track the evolving role of AI in the development process.
-Contributions should include an Assisted-by tag in the following format:
+Contributions should include an Assisted-by tag in the format from https://docs.kernel.org/process/coding-assistants.html:
 
 ```
-Assisted-by: AGENT_NAME:MODEL_VERSION [TOOL1] [TOOL2]
+Assisted-by: LLM [TOOL1] [TOOL2]
 ```
 
-Where:
+`LLM` is literal. Never name the agent or model.
 
-`AGENT_NAME` is the name of the AI tool or framework
-
-`MODEL_VERSION` is the specific model version used
-
-`[TOOL1] [TOOL2]` are optional specialized analysis tools used (e.g., `coccinelle`, `sparse`, `smatch`, `clang-tidy`)
+`[TOOL1] [TOOL2]` are optional specialized analysis tools used (e.g., `coccinelle`, `sparse`, `smatch`, `clang-tidy`), listed space-separated without the brackets.
 
 Basic development tools (git, gcc, make, editors) should not be listed.
 
 Example:
 
 ```
-Assisted-by: Claude:claude-3-opus coccinelle sparse
+Assisted-by: LLM coccinelle sparse
 ```
 
-These trailers can exceed 72-chars.
+AI agents must never add a Signed-off-by trailer. Only a human can certify the Developer Certificate of Origin, so the human submitter reviews the AI-generated changes and adds their own Signed-off-by.
 
 ### Special prefixes
 
