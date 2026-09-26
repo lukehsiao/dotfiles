@@ -18,6 +18,11 @@ local omarchy_monitor_scale = 1
 hl.env("GDK_SCALE", tostring(omarchy_gdk_scale))
 hl.monitor({ output = "", mode = "preferred", position = "auto", scale = omarchy_monitor_scale })
 
+-- The EDID reports a 630-nit peak, which Hyprland passes on to clients even
+-- in SDR. Chromium reads that as HDR headroom and tags its windows as PQ, and
+-- after any config reload Hyprland renders those windows at about half
+-- brightness. Capping the peak at 80 nits (the SDR white level Hyprland
+-- advertises) keeps Chromium on plain gamma 2.2.
 hl.monitor({
   output = "desc:ASUSTek COMPUTER INC PA32QCV",
   mode = "preferred",
@@ -26,6 +31,8 @@ hl.monitor({
   bitdepth = 10,
   cm = "dp3",
   sdr_eotf = "gamma22",
+  max_luminance = 80,
+  max_avg_luminance = 80,
 })
 
 -- Chromium advertises HDR-capable surfaces, so auto-HDR flips the PA32QCV
