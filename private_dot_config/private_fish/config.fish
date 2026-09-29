@@ -4,7 +4,7 @@
 # A plain global rather than an export: nothing outside fish reads it, and an
 # exported name invites collisions like the AI_AGENT that agent harnesses
 # export into their subprocesses.
-set -g default_agent claude
+set -g default_agent omp
 if test (uname) = Darwin
     set -gx BAT_THEME "Catppuccin Mocha"
 else
