@@ -114,6 +114,7 @@ history_filter = [
 
 enter_accept = true
 search_mode = "daemon-fuzzy"
+ctrl_n_shortcuts = true
 
 [sync]
 records = true
