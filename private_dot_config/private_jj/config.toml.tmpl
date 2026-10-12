@@ -104,14 +104,18 @@ concat(
 bookmark-advance-to = "@-"
 
 [aliases]
-cl = ["log", "-r", "trunk()..@-", "--reversed", "-T", "description ++ '\n---\n\n'", "--no-graph", "--no-pager"]
+# Commit descriptions from a base (default trunk()) up to @-, e.g. `jj cl lhsiao/thor-ci`.
+cl = ["util", "exec", "--", "bash", "-c", '''
+jj log -r "(${1:-trunk()})..@-" --reversed -T 'description ++ "\n---\n\n"' --no-graph --no-pager
+''', "cl"]
 de = ["diffedit", "--tool=patch"]
 dl = ["log", "-r", "@ | ancestors(trunk()..(visible_heads() & mine()), 2) | trunk()", "-T", "builtin_log_detailed"]
 dla = ["log", "-r", "ancestors(@)", "-T", "builtin_log_detailed"]
-# Compact diffstat against trunk(), e.g. [`2 files, +17, -6`]. Defaults to @-
-# because the squash workflow keeps @ as an empty commit to absorb work into.
+# Compact diffstat, e.g. [`2 files, +17, -6`]. Usage: `jj ds [base] [to]`.
+# base defaults to trunk(); to defaults to @- because the squash workflow
+# keeps @ as an empty commit to absorb work into.
 ds = ["util", "exec", "--", "bash", "-c", '''
-jj diff --stat --from "trunk()" --to "${1:-@-}" |
+jj diff --stat --from "${1:-trunk()}" --to "${2:-@-}" |
     sed -nE 's/^([0-9]+ files?) changed, ([0-9]+) insertions?\(\+\), ([0-9]+) deletions?\(-\)$/[`\1, +\2, -\3`]/p'
 ''', "ds"]
 dt = ["diff", "--tool=difft"]
