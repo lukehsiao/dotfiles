@@ -20,6 +20,7 @@ Library
 .config/systemd
 .config/display-switch
 .local/share/applications
+.local/state/flea
 .local/state/omarchy
 {{- end }}
 

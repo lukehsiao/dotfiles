@@ -1,0 +1,13 @@
+#!/bin/sh
+# flea stores favourites in the same file as volatile UI state (last path,
+# trash sweep time, column widths), so pin only the favourites and pass
+# everything else through. jq keeps flea's key order, which keeps
+# `chezmoi diff` quiet after flea rewrites the file. Empty stdin (no file yet)
+# is fine: flea fills in defaults for any missing keys.
+exec jq -n --arg home "$HOME" '
+  (input? // {})
+  | .places.favourites = [
+      {label: "Work", path: "\($home)/Work"},
+      {label: "tmp", path: "/tmp"}
+    ]
+'
