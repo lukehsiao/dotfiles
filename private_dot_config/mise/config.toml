@@ -12,8 +12,8 @@
 atuin = "latest"
 bottom = "latest"
 choose = "latest"
-claude = "latest"
-codex = "latest"
+claude = { version = "latest", auto_update = true }
+codex = { version = "latest", auto_update = true }
 croc = "latest"
 d2 = "latest"
 delta = "latest"
@@ -24,7 +24,7 @@ gh = "latest"
 "github:bensadeh/tailspin" = "latest"
 "github:blopker/codebook" = "latest"
 "github:bram209/leptosfmt" = { version = "latest", os = ["macos", "linux/x64"] }
-"github:can1357/oh-my-pi" = "latest"
+"github:can1357/oh-my-pi" = { version = "latest", auto_update = true }
 "github:EmbarkStudios/cargo-deny" = "latest"
 "github:github/git-sizer" = "latest"
 "github:ifd3f/caligula" = "latest"
