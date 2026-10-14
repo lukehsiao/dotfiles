@@ -27,9 +27,10 @@ Produce a rigorous, evidence-backed review of one pull request as a markdown rep
    - Repo-scoped `AGENTS.md`/contributing docs for every touched directory.
 2. **Isolate the checkout.**
    Never disturb the user's working copy.
-   - Fetch the refs first: `gh pr view <N> --json headRefName,headRefOid,baseRefOid,isCrossRepository`.
-   - jj, same-repo PR: `jj git fetch --remote origin --branch <headRefName>`, then `jj workspace add --name pr-<N> -r <headRefOid> /tmp/pr-<N>`.
-   - Fork PR (`isCrossRepository: true`) or no jj: `git fetch origin pull/<N>/head:pr-<N>`, then `git worktree add /tmp/pr-<N> pr-<N>`.
+   - Read the PR's refs first: `gh pr view <N> --json headRefName,headRefOid,baseRefOid,isCrossRepository,headRepository,headRepositoryOwner`.
+   - Same-repo PR: `jj git fetch --remote origin --branch <headRefName>`.
+   - Fork PR (`isCrossRepository: true`): the head is not a branch on origin, so add the fork as a remote first: `jj git remote add pr-<N> https://github.com/<headRepositoryOwner.login>/<headRepository.name>`, then `jj git fetch --remote pr-<N> --branch <headRefName>`.
+   - Either way, take the workspace from the fetched commit: `jj workspace add --name pr-<N> -r <headRefOid> /tmp/pr-<N>`.
    - Run every later command with `/tmp/pr-<N>` as the working directory.
    - Record `baseRefOid` and `headRefOid` in the report header.
 3. **Map the change before judging it.**
@@ -44,7 +45,7 @@ Produce a rigorous, evidence-backed review of one pull request as a markdown rep
    Mark unverified claims `[INFERENCE]`.
    Delete scaffolding afterwards; never commit to the PR workspace.
 6. **Write the report** (format below), then run the self-check.
-7. Leave the workspace in place; give the user its path and the cleanup command (`jj workspace forget pr-<N> && rm -rf /tmp/pr-<N>`, or `git worktree remove /tmp/pr-<N> && git branch -D pr-<N>`).
+7. Leave the workspace in place; give the user its path and the cleanup commands (`jj workspace forget pr-<N> && rm -rf /tmp/pr-<N>`, plus `jj git remote remove pr-<N>` for a fork PR).
 
 ## Review Lenses (priority order)
 
