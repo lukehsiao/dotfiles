@@ -6,7 +6,7 @@ Never add organizational comments that are simply section headers.
 These are just noise.
 Only add comments that provide useful context, communicate why, and clarify intention.
 Always comment with justification for magic numbers.
-Always run comments through the humanizer skill first; there should be no emdashes.
+Write comments to ASD-STE100 at about 80% strictness: short sentences, active voice, one idea per sentence, simple words over jargon, and no em dashes.
 Never add comments that are time-context dependent (e.g., referencing changes or code state that likely will not be there after we squash commits); comments should stand on their own.
 
 ## Version Control
@@ -14,7 +14,6 @@ Never add comments that are time-context dependent (e.g., referencing changes or
 - Always use `jj` (Jujutsu) instead of `git` for version control operations when available.
   - Use `jj` commands for log, diff, status, commit, rebase, etc.
   - Fall back to `git` only for operations that `jj` does not support (e.g., when `jj` is not installed).
-  - load the jujutsu skill as necessary for additional context
 
 Importantly, use the [squash workflow](https://steveklabnik.github.io/jujutsu-tutorial/real-world-workflows/the-squash-workflow.html).
 That is, we should always be sitting on a new commit, and squashing into the one we are editing.
@@ -61,7 +60,7 @@ Be direct. State opinions without hedging. "This is the wrong approach" is bette
 
 First person is fine and natural. Don't avoid it.
 
-Always run the message through the humanizer skill.
+Write the message to the same 80% ASD-STE100 standard as code comments.
 
 ### Tested section
 

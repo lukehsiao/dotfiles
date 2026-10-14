@@ -88,7 +88,7 @@ Rules:
   Everything else is non-blocking.
 - Evidence first: cite observed output, test runs, or code paths.
   Unverified = `[INFERENCE]`.
-- Plain direct prose, no emdashes, no filler (humanizer conventions).
+- Write to ASD-STE100 at about 80% strictness: short sentences, active voice, one idea per sentence, simple words over jargon, no em dashes, no filler.
 
 ## Report Skeleton
 
@@ -103,7 +103,7 @@ Rules:
 
 ## Summary
 
-<3-6 sentences: what the PR does, overall assessment, count of blocking issues, top risks.>
+<What the PR does, the overall assessment, the count of blocking issues, and the top risks. Enough to orient a reviewer who has not read the diff, and no more.>
 
 ## Comments
 
