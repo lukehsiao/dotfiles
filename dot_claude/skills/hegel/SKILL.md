@@ -5,11 +5,10 @@ description: >
   Java, and OCaml projects. Use this skill whenever the user asks to write
   tests, add test coverage, or improve testing for functions, modules, or
   libraries — especially when the code has properties like round-trips,
-  invariants, or contracts that hold across many inputs. Also triggers on:
-  "property-based tests", "PBT", "hegel", "fuzz", "generative tests",
-  "randomized testing", "test with random inputs", "shrinking", or when
-  existing tests use proptest, quickcheck, rapid, gopter, rapidcheck,
-  fast-check, jqwik, junit-quickcheck, qcheck, or crowbar.
+  invariants, or contracts that hold across many inputs. Also triggers on
+  hegel, property-based testing or PBT, and fuzzing or shrinking by name,
+  and when existing tests use proptest, quickcheck, rapid, gopter,
+  rapidcheck, fast-check, jqwik, junit-quickcheck, qcheck, or crowbar.
 ---
 
 # Hegel: property-based testing
@@ -25,10 +24,19 @@ Ground every property in evidence — documented contracts, names and signatures
 Short, specific guides in this skill's `techniques/` directory. Load one when you reach that stage, when you are stuck, or when a result surprises you:
 
 - `techniques/surfaces.md` — choosing what to test: the full public API, sibling entry points, every instantiation
-- `techniques/directions.md` — properties in the accept and the reject direction
+- `techniques/directions.md` — accept- and reject-direction properties; oracles that pin values, not just validity
 - `techniques/generators.md` — generators: full domains, hostile inputs, targeted subsets
 - `techniques/scale.md` — the scale probe for recursion and complexity bugs
 - `techniques/running.md` — case counts and run configuration
 - `techniques/triage.md` — investigating failures and reporting honestly
+- `techniques/adversarial-review.md` — before finishing, a subagent reviews the code for missing properties you cannot see
 
-Before stopping, re-check your surface list (from `techniques/surfaces.md`) against the library's public API index: every public module, and every sibling entry point and instantiation of a surface you tested, gets a test or a stated reason. Then check each tested surface against this whole menu — anything unchecked gets a stated reason — and review what you wrote against the `hegel-review` checklist.
+## Before you finish
+
+Three steps, each required; skipping one leaves the job undone.
+
+1. **Surface coverage.** Re-check your surface list (`techniques/surfaces.md`) against the library's public API index: every public module, and every sibling entry point and instantiation of a surface you tested, gets a test or a stated reason. Then check each tested surface against the technique menu above — anything unchecked gets a stated reason.
+
+2. **Adversarial review by a subagent.** Launch a *separate* subagent to find the properties you missed. Give it the implementation and the contract, but **not your tests** — a reviewer holding your tests inherits your blind spots, which is the whole point of using a fresh agent. Write what it returns as hegel properties, run them, and fix what they catch. `techniques/adversarial-review.md` has the brief.
+
+3. **Checklist.** Review what you wrote against the `hegel-review` checklist.

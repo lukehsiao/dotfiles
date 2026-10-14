@@ -1,6 +1,6 @@
 ---
 name: software-design-philosophy
-description: 'Manage software complexity through deep modules, information hiding, and strategic programming. Use when the user mentions "module design", "API too complex", "shallow class", "complexity budget", "strategic vs tactical", "deep module", "information leakage", "pass-through method", "this code is over-engineered", or "simplify this design". Also trigger when reviewing an interface for simplicity, evaluating whether an abstraction is pulling its weight, deciding whether a comment is worth writing, or choosing between general-purpose and special-purpose approaches. Covers deep vs shallow modules, red flags for complexity, and comments as design documentation.'
+description: 'Manage software complexity through deep modules, information hiding, and strategic programming. Use when the user reaches for its vocabulary: deep or shallow modules, information leakage, pass-through methods, complexity budget, strategic versus tactical programming. Also use when judging whether an interface is too complex or an abstraction is pulling its weight, deciding whether a comment is worth writing, or choosing between general-purpose and special-purpose designs. Covers deep vs shallow modules, red flags for complexity, and comments as design documentation.'
 license: MIT
 metadata:
   author: wondelai
