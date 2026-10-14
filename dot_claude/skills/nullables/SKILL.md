@@ -1,6 +1,6 @@
 ---
 name: nullables
-description: Nullables — testing technique alternative to using mocking libraries. Use when writing unit tests, when code touches external I/O or state (HTTP, databases, files, clock, random) anywhere in its dependency chain, when making a system testable, or when tests are slow or flaky. Also use when the user mentions "nullables", "createNull", "testing without mocks", "embedded stub", "output tracking", "sociable tests", or wants to remove or replace mocks, spies, and test doubles.
+description: 'Nullables: a testing technique that replaces mocking libraries. Use when unit-testing code that touches external I/O or state (HTTP, databases, files, clock, random) anywhere in its dependency chain, when making such a system testable, or when tests are slow or flaky. Also use when the user mentions nullables, createNull, embedded stubs, output tracking, or sociable tests, or wants to remove or replace mocks, spies, and test doubles.'
 ---
 
 # Nullables: Testing Without Mocks
