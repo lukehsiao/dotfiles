@@ -53,6 +53,7 @@ Most commits need a body. The body is not a summary of what changed — the diff
 "This patch..." and "This change..." are fine as sentence subjects. Prefer them over subjectless constructions or passive voice.
 
 Ensure we do not exceed 72 chars unless there is a good exception (e.g., a URL or command output).
+If going to 72 chars would break a `monospace` section into multiple lines, try to keep the monospace on a single line instead.
 
 ### Tone
 
