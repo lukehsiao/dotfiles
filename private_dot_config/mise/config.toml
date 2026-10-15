@@ -8,12 +8,17 @@
 # Tools carrying an `os` restriction publish no linux/arm64 release assets.
 # The restriction makes mise skip them on that platform instead of failing
 # the whole `mise install`, which matters in devcontainers on Apple Silicon.
+#
+# mise keeps the coding agents current through `auto_update`. They release
+# about once a day, and a new model can need a new client. mise's default
+# 24h `minimum_release_age` hides each release for a day, so the agents set
+# it to 0s. The 4h check interval matches Omarchy's agent declarations.
 [tools]
 atuin = "latest"
 bottom = "latest"
 choose = "latest"
-claude = { version = "latest", auto_update = true }
-codex = { version = "latest", auto_update = true }
+claude = { version = "latest", auto_update = "4h", minimum_release_age = "0s" }
+codex = { version = "latest", auto_update = "4h", minimum_release_age = "0s" }
 croc = "latest"
 d2 = "latest"
 delta = "latest"
@@ -24,7 +29,7 @@ gh = "latest"
 "github:bensadeh/tailspin" = "latest"
 "github:blopker/codebook" = "latest"
 "github:bram209/leptosfmt" = { version = "latest", os = ["macos", "linux/x64"] }
-"github:can1357/oh-my-pi" = { version = "latest", auto_update = true }
+"github:can1357/oh-my-pi" = { version = "latest", auto_update = "4h", minimum_release_age = "0s" }
 "github:EmbarkStudios/cargo-deny" = "latest"
 "github:github/git-sizer" = "latest"
 "github:ifd3f/caligula" = "latest"
