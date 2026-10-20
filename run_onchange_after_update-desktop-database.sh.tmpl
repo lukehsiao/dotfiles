@@ -1,0 +1,13 @@
+{{ if eq .distro "omarchy" -}}
+#!/bin/bash
+set -euo pipefail
+
+# GIO lists "Open With" handlers from mimeinfo.cache, not from the launchers
+# themselves, so a launcher's new MimeType entries stay invisible until the
+# cache is rebuilt. The hashes below make chezmoi rerun this script whenever a
+# managed launcher changes.
+{{- range (joinPath .chezmoi.sourceDir "dot_local/share/applications/*.desktop" | glob) }}
+# {{ base . }}: {{ include . | sha256sum }}
+{{- end }}
+update-desktop-database "$HOME/.local/share/applications"
+{{ end -}}
