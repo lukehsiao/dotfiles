@@ -32,7 +32,7 @@ Optional trailers.
 
 ### Format rules
 
-- **Type**: `feat`, `fix`, `docs`, `refactor`, `chore`, `style`, `test`, `perf`, `ci`, `build`
+- **Type**: `feat`, `fix`, `docs`, `refactor`, `chore`, `style`, `test`, `perf`, `ci`, `build`, `revert`
 - **Scope**: lowercase, specific and literal — a module, filename, or subsystem (e.g., `README`, `Justfile`, `n2k`, `docker`). Omit if too vague to add signal.
 - **Description**: lowercase imperative, no trailing period, ≤72 chars.
 
