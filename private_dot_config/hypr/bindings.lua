@@ -9,15 +9,24 @@ hl.unbind("SUPER + SHIFT + ALT + X") -- X Post
 hl.unbind("SUPER + SHIFT + ALT + G") -- WhatsApp
 hl.unbind("SUPER + SHIFT + CTRL + G") -- Google Messages
 hl.unbind("SUPER + SHIFT + ALT + E") -- HEY new email
-hl.unbind("SUPER + SHIFT + ALT + S") -- Google Maps
+hl.unbind("SUPER + SHIFT + S") -- Google Maps
 
 -- Point the AI, calendar, email, and activity keys at my tools instead of
 -- the Omarchy defaults (ChatGPT, Grok, HEY, btop).
-o.rebind("SUPER + SHIFT + A", "Claude", { webapp = "https://claude.ai/new" })
-o.rebind("SUPER + SHIFT + ALT + A", "Gemini", { webapp = "https://gemini.google.com/app" })
-o.rebind("SUPER + SHIFT + C", "Calendar", { webapp = "https://calendar.google.com" })
-o.rebind("SUPER + SHIFT + E", "Email", { tui = "aerc" })
-o.rebind("SUPER + CTRL + T", "Activity", { tui = "btm" })
+hl.unbind("SUPER + SHIFT + A")
+o.bind("SUPER + SHIFT + A", "Claude", { webapp = "https://claude.ai/new" })
+
+hl.unbind("SUPER + SHIFT + ALT + A")
+o.bind("SUPER + SHIFT + ALT + A", "Gemini", { webapp = "https://gemini.google.com/app" })
+
+hl.unbind("SUPER + SHIFT + C")
+o.bind("SUPER + SHIFT + C", "Calendar", { webapp = "https://calendar.google.com" })
+
+hl.unbind("SUPER + SHIFT + E")
+o.bind("SUPER + SHIFT + E", "Email", { tui = "aerc" })
+
+hl.unbind("SUPER + CTRL + T")
+o.bind("SUPER + CTRL + T", "Activity", { tui = "btm" })
 
 o.bind("SUPER + F1", "Brightness down", "omarchy brightness display 5%-", { repeating = true })
 o.bind("SUPER + F2", "Brightness up", "omarchy brightness display +5%", { repeating = true })

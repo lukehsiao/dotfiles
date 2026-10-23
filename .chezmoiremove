@@ -66,4 +66,10 @@
 .config/hypr/monitors.conf
 .config/waybar
 .config/waybar/**
+# Quattro writes a mise wrapper for oh-my-pi here (install/user/mise.sh,
+# migrations 1785617047 and 1785846769, skipped once preinstalls are removed).
+# It shadows the github:can1357/oh-my-pi pin wherever `mise activate` hasn't
+# run (Hyprland execs, scripts) and reruns `mise use -g` on every invocation,
+# rewriting mise's global config.
+.local/bin/omp
 {{- end }}

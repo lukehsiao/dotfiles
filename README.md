@@ -46,6 +46,7 @@ chezmoi init git@github.com:lukehsiao/dotfiles.git
 chezmoi apply
 
 just install-core
+just use-bbr  # optional
 
 atuin login
 

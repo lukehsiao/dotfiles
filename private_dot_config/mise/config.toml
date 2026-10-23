@@ -8,19 +8,28 @@
 # Tools carrying an `os` restriction publish no linux/arm64 release assets.
 # The restriction makes mise skip them on that platform instead of failing
 # the whole `mise install`, which matters in devcontainers on Apple Silicon.
+#
+# mise keeps the coding agents current through `auto_update`. They release
+# about once a day, and a new model can need a new client. mise's default
+# 24h `minimum_release_age` hides each release for a day, so the agents set
+# it to 0s. The 4h check interval matches Omarchy's agent declarations.
 [tools]
 atuin = "latest"
 bottom = "latest"
 choose = "latest"
+claude = { version = "latest", auto_update = "4h", minimum_release_age = "0s" }
+codex = { version = "latest", auto_update = "4h", minimum_release_age = "0s" }
 croc = "latest"
 d2 = "latest"
 delta = "latest"
 difftastic = "latest"
 dprint = "latest"
 duf = "latest"
+gh = "latest"
 "github:bensadeh/tailspin" = "latest"
 "github:blopker/codebook" = "latest"
 "github:bram209/leptosfmt" = { version = "latest", os = ["macos", "linux/x64"] }
+"github:can1357/oh-my-pi" = { version = "latest", auto_update = "4h", minimum_release_age = "0s" }
 "github:EmbarkStudios/cargo-deny" = "latest"
 "github:github/git-sizer" = "latest"
 "github:ifd3f/caligula" = "latest"
@@ -50,6 +59,7 @@ glow = "latest"
 gping = "latest"
 helm = "latest"
 hexyl = "latest"
+hunk = "latest"
 hyperfine = "latest"
 jaq = "latest"
 jj = "latest"
@@ -76,21 +86,6 @@ watchexec = "latest"
 xh = "latest"
 zizmor = "latest"
 zola = "latest"
-
-# mise keeps the coding agents current through `auto_update`. They release
-# about once a day, and a new model can need a new client. mise's default
-# 24h `minimum_release_age` hides each release for a day, so the agents set
-# it to 0s. Omarchy 4.5 declares these tools with the same policy in
-# /etc/mise/conf.d/omarchy-tools.toml, so they render only where that file
-# is absent. An entry here would outrank that declaration and drop its lazy
-# install.
-{{- if not (stat "/etc/mise/conf.d/omarchy-tools.toml") }}
-claude = { version = "latest", auto_update = "4h", minimum_release_age = "0s" }
-codex = { version = "latest", auto_update = "4h", minimum_release_age = "0s" }
-gh = "latest"
-"github:can1357/oh-my-pi" = { version = "latest", auto_update = "4h", minimum_release_age = "0s" }
-hunk = "latest"
-{{- end }}
 
 [settings.github]
 credential_command = "head -n 1 ~/.github_token"
