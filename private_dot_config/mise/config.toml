@@ -68,10 +68,16 @@ k9s = "latest"
 kubectl = "latest"
 lychee = "latest"
 marksman = "latest"
+mr-boxington = "latest"
 oha = "latest"
 oxipng = "latest"
 pandoc = "latest"
 ruff = "latest"
+# mr_boxington makes mise run cargo through mbx. The `stable` channel keeps
+# mise on the toolchain that `just _rustup` sets as default. That toolchain
+# also gets the wasm target and rust-analyzer from `just _rust-core` and is
+# updated by `rustup update`. A dated `latest` would need its own copies.
+rust = { version = "stable", mr_boxington = true }
 sd = "latest"
 shellcheck = "latest"
 shfmt = "latest"
@@ -86,6 +92,13 @@ watchexec = "latest"
 xh = "latest"
 zizmor = "latest"
 zola = "latest"
+
+[settings]
+# mise exports RUSTUP_TOOLCHAIN, and rustup ranks it above a project's
+# rust-toolchain.toml. Without this, the global `stable` overrides every
+# pinned project. Pinned projects then lose mbx wrapping, because the
+# mr_boxington option only applies to the global rust entry.
+idiomatic_version_file_enable_tools = ["rust"]
 
 [settings.github]
 credential_command = "head -n 1 ~/.github_token"
