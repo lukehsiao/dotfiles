@@ -127,5 +127,8 @@ n = ["new"]
 pbm = ["git", "push", "-b", "glob:lwh/*"]
 pbt = ["git", "push", "--tracked"]
 rba = ["rebase", "-s", "roots(mutable() & mine())", "-d", "trunk()"]
+# Add a Signed-off-by trailer to each revision, e.g. `jj so 'trunk()..@-'`.
+# The no-op editor keeps descriptions unchanged. jj skips the trailer if it is already present.
+so = ["--config", "ui.editor=\"true\"", "--config", "templates.commit_trailers=\"format_signed_off_by_trailer(self)\"", "describe"]
 wu = ["workspace", "update-stale"]
 xl = ["log", "--no-graph", "-T", '"Ref: " ++ coalesce(repo_path() ++ "@", "") ++ commit_id.shortest(12) ++ " (\"" ++ description.first_line() ++ "\")"']
