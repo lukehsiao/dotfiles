@@ -6,7 +6,7 @@ modelRoles:
   tiny: anthropic/claude-sonnet-5-5:xhigh
   default: anthropic/claude-opus-5-5:high
   advisor: openai-codex/gpt-6-astra:high
-  slow: anthropic/claude-fable-5-1:xhigh
+  slow: anthropic/claude-opus-5-5:medium
 enabledProviders:
   - claude
 dev:
@@ -15,3 +15,7 @@ advisor:
   enabled: true
 composer:
   shape: box
+task:
+  agentModelOverrides:
+    reviewer: anthropic/claude-opus-5-5:medium
+    security-reviewer: anthropic/claude-opus-5-5:medium
