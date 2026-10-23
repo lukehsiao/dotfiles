@@ -61,6 +61,7 @@ helm = "latest"
 hexyl = "latest"
 hunk = "latest"
 hyperfine = "latest"
+jactionlint = "latest"
 jaq = "latest"
 jj = "latest"
 jless = { version = "latest", os = ["macos", "linux/x64"] }
@@ -90,7 +91,6 @@ typst = "latest"
 vale = "latest"
 watchexec = "latest"
 xh = "latest"
-zizmor = "latest"
 zola = "latest"
 
 [settings]
