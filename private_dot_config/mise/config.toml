@@ -1,3 +1,4 @@
+wrappers = { cargo = { command = "mbx", env = { MBX_CARGO_SHIM_MODE = "1" } } }
 # Dev tools that ship prebuilt binaries and release faster than distro
 # packaging. Omarchy's own split is a pacman base plus mise for runtimes and
 # vendor CLIs, so anything the desktop or another package depends on stays in
@@ -96,8 +97,8 @@ zola = "latest"
 [settings]
 # mise exports RUSTUP_TOOLCHAIN, and rustup ranks it above a project's
 # rust-toolchain.toml. Without this, the global `stable` overrides every
-# pinned project. Pinned projects then lose mbx wrapping, because the
-# mr_boxington option only applies to the global rust entry.
+# pinned project. The global Cargo wrapper also runs these pinned
+# toolchains through mbx.
 idiomatic_version_file_enable_tools = ["rust"]
 
 [settings.github]
