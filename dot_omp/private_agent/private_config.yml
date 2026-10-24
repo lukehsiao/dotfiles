@@ -17,5 +17,5 @@ composer:
   shape: box
 task:
   agentModelOverrides:
-    reviewer: anthropic/claude-opus-5-5:medium
-    security-reviewer: anthropic/claude-opus-5-5:medium
+    reviewer: anthropic/claude-opus-5-5:high
+    security-reviewer: anthropic/claude-opus-5-5:high
