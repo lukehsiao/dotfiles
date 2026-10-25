@@ -62,6 +62,8 @@ A list of testing decisions that were made. Include:
 
 - A description of what makes a good test (only test external behavior, not implementation details)
 - Which modules will be tested
+- Which behaviors hold across many inputs (round-trips, invariants, agreement with a simpler model), to be tested as properties with the `hegel` skill
+- Which external I/O each tested module reaches, to be nulled at the third-party edge with the `nullables` skill instead of mocked
 - Prior art for the tests (i.e. similar types of tests in the codebase)
 
 ## Out of Scope

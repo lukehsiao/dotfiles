@@ -1,6 +1,6 @@
 ---
 name: review-rust
-description: Review Rust code, diffs, pull requests, and API designs for correctness, idiomatic style, maintainability, and type-driven design. Use when asked to audit Rust changes, review a Rust refactor, assess whether Rust code is idiomatic, or explain Rust-specific design and correctness concerns in existing code.
+description: Review Rust code, diffs, pull requests, and API designs for correctness, idiomatic style, maintainability, and type-driven design. Use when asked to audit Rust changes, review a Rust refactor, assess whether Rust code is idiomatic, or explain Rust-specific design and correctness concerns in existing code. Also use when writing or changing Rust code, so new code meets the same bar.
 ---
 
 # Review Rust
@@ -11,6 +11,16 @@ Review Rust with a bias toward correctness first, then API design,
 maintainability, and idiomatic style. Favor concrete findings tied to
 code locations and explain the Rust-specific principle behind each
 finding.
+
+## When writing Rust
+
+Hold new code to the same bar while you write it, not only after.
+Before you write non-trivial Rust, read `references/corrode-idioms.md`
+and `references/idiomatic-control-flow.md`. Also read
+`references/public-api-and-error-design.md` when you add public types or
+error types, and `references/async-and-concurrency.md` when you write
+async code. Then check the new code against the workflow below, and run
+the checks in step 6 before you call it done.
 
 ## Workflow
 

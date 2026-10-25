@@ -39,6 +39,7 @@ On top of whatever the repo documents, the Standards axis always carries the **s
 
 - **The repo overrides.** A documented repo standard always wins; where it endorses something the baseline would flag, suppress the smell.
 - **Always a judgement call.** Each smell is a labelled heuristic ("possible Feature Envy"), never a hard violation. Like any standard here, skip anything tooling already enforces.
+- **Rust follows `review-rust`.** When the diff touches Rust, add the `review-rust` skill (its `SKILL.md` and `references/corrode-idioms.md`) to the standards sources. Its idioms override the baseline: an exhaustive `match` on an enum is not a Repeated Switch, and an iterator or builder chain is not a Message Chain.
 
 Each smell reads *what it is* → *how to fix*; match it against the diff:
 

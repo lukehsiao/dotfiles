@@ -13,7 +13,9 @@ When exploring the codebase, read `GLOSSARY.md` (if it exists) so test names and
 
 Tests verify behavior through public interfaces, not implementation details. Code can change entirely; tests shouldn't. A good test reads like a specification: "user can checkout with valid cart" tells you exactly what capability exists, and it survives refactors because it doesn't care about internal structure.
 
-See [tests.md](tests.md) for examples and [mocking.md](mocking.md) for mocking guidelines.
+See [tests.md](tests.md) for examples. For test doubles at external edges, follow the `nullables` skill: stub only at the third-party edge, never your own code.
+
+When a behavior should hold across many inputs (a round-trip, an invariant, agreement with a simpler model, idempotence), write that cycle's red test as a property with the `hegel` skill. Use example tests for single worked cases.
 
 ## Seams: where tests go
 

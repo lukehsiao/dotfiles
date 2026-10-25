@@ -34,6 +34,7 @@ The examples here are Java; the pattern is not.
 - Follow the codebase's naming idiom for the two factories (`create`/`createNull` shown here), and keep both on the wrapper.
 - "Throw a detailed error" means the language's failure idiom — exceptions, returned errors, result types. The detail and the failing loudly are the point, not the mechanism.
 - Where classes can't nest, keep the stub invisible with the language's privacy unit — package-private, module-local, unexported.
+- In Rust, the seam is a private `enum` with a `Real` arm and a test-only `Stubbed` arm, not a trait. Each arm mirrors only the calls the wrapper makes, and the `Real` arm only forwards. No trait, generic, or `dyn` is involved. [rust.md](rust.md) has the full pattern.
 
 ## The Thin Wrapper pattern
 
