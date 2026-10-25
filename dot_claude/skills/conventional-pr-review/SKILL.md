@@ -23,7 +23,7 @@ Produce a rigorous, evidence-backed review of one pull request as a markdown rep
    - Rust code or API changes: `review-rust`.
    - Unit tests touching external I/O (network, fs, storage, clocks, browser APIs) or using mocks/spies: `nullables`.
    - Logic with invariants, parsers, serializers, state machines, merge/normalize functions, or property tests already present: `hegel` (and `hegel-review` when the PR adds property tests).
-   - Always apply `software-design-philosophy` lenses (depth, information leakage, pass-throughs, special-casing).
+   - Always apply `codebase-design` lenses (depth, leverage and locality, the deletion test, seam placement).
    - Repo-scoped `AGENTS.md`/contributing docs for every touched directory.
 2. **Isolate the checkout.**
    Never disturb the user's working copy.

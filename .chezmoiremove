@@ -48,6 +48,16 @@
 .claude/skills/jujutsu
 .claude/skills/jujutsu/**
 
+# The upstream codebase-design skill replaced software-design-philosophy as
+# the source of deep-module vocabulary. It also replaced the copies of that
+# vocabulary that improve-codebase-architecture carried as local files. The
+# skills directory is not exact_, so chezmoi will not prune these on its own.
+.claude/skills/software-design-philosophy
+.claude/skills/software-design-philosophy/**
+.claude/skills/improve-codebase-architecture/VOCABULARY.md
+.claude/skills/improve-codebase-architecture/DEEPENING.md
+.claude/skills/improve-codebase-architecture/DESIGN-IT-TWICE.md
+
 # Atuin moved from the setup.atuin.sh curl installer to mise. That installer
 # put a copy in ~/.atuin/bin and we shipped a conf.d stub to source its PATH
 # entry, so both are now stale. Unmanaging a file does not delete it, so

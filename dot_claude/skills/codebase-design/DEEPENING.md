@@ -1,6 +1,6 @@
 # Deepening
 
-How to deepen a cluster of shallow modules safely, given its dependencies. Assumes the vocabulary in [VOCABULARY.md](VOCABULARY.md): **module**, **interface**, **seam**, **adapter**.
+How to deepen a cluster of shallow modules safely, given its dependencies. Assumes the vocabulary in [SKILL.md](SKILL.md): **module**, **interface**, **seam**, **adapter**.
 
 ## Dependency categories
 
@@ -20,9 +20,9 @@ Your own services across a network boundary (microservices, internal APIs). Defi
 
 Recommendation shape: *"Define a port at the seam, implement an HTTP adapter for production and an in-memory adapter for testing, so the logic sits in one deep module even though it's deployed across a network."*
 
-### 4. True external (Nullable)
+### 4. True external (Mock)
 
-Third-party services (Stripe, Twilio, etc.) you don't control. Stub them at the third-party edge, following the `nullables` skill, so the deepened module's own request building and response parsing still run in tests.
+Third-party services (Stripe, Twilio, etc.) you don't control. The deepened module takes the external dependency as an injected port; tests provide a mock adapter.
 
 ## Seam discipline
 
