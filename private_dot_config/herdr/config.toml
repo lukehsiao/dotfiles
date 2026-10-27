@@ -75,6 +75,10 @@ next_workspace = ["prefix+shift+n", "alt+down"]
 [ui]
 accent = "blue"
 
+# The default dots draw blocked, working, and done as the same filled dot,
+# so only color separates them. Symbols give each state its own shape.
+status_indicators = "symbols"
+
 # tmux drew single-line dividers between adjacent panes and no outer frame
 pane_gaps = false
 pane_outer_borders = false
