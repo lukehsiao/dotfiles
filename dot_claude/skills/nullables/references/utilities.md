@@ -352,9 +352,31 @@ impl<T: Clone> ConfigurableResponses<T> {
 }
 
 #[cfg(any(test, feature = "test-util"))]
+impl<T> ConfigurableResponses<T> {
+    /// Translate every answer and keep repeat or sequence as it was. A
+    /// wrapper uses this to turn its own configuration into the terms of
+    /// the dependency it wraps.
+    pub fn map<U>(self, f: impl FnMut(T) -> U) -> ConfigurableResponses<U> {
+        match self {
+            Self::Repeat(response) => ConfigurableResponses::Repeat({ f }(response)),
+            Self::Sequence(responses) => {
+                ConfigurableResponses::Sequence(responses.into_iter().map(f).collect())
+            }
+        }
+    }
+}
+
+#[cfg(any(test, feature = "test-util"))]
 impl<T> From<T> for ConfigurableResponses<T> {
     fn from(response: T) -> Self {
         Self::Repeat(response)
+    }
+}
+
+#[cfg(any(test, feature = "test-util"))]
+impl<T, const N: usize> From<[T; N]> for ConfigurableResponses<T> {
+    fn from(responses: [T; N]) -> Self {
+        Self::Sequence(responses.into())
     }
 }
 
@@ -414,6 +436,21 @@ mod tests {
         let mut responses = ConfigurableResponses::<i32>::from(vec![1, 2]);
         assert_eq!([responses.next("x"), responses.next("x")], [1, 2]);
         responses.next("the test stub");
+    }
+
+    #[test]
+    fn an_array_is_a_sequence() {
+        let mut responses = ConfigurableResponses::<i32>::from([1, 2]);
+        assert_eq!([responses.next("x"), responses.next("x")], [1, 2]);
+    }
+
+    #[test]
+    fn mapping_keeps_repeat_and_sequence() {
+        let mut repeat = ConfigurableResponses::from(2).map(|n| n * 10);
+        assert_eq!([repeat.next("r"), repeat.next("r")], [20, 20]);
+        let mut sequence = ConfigurableResponses::<i32>::from([1, 2]).map(|n| n * 10);
+        assert_eq!([sequence.next("s"), sequence.next("s")], [10, 20]);
+        assert!(matches!(sequence, ConfigurableResponses::Sequence(ref r) if r.is_empty()));
     }
 }
 ```
