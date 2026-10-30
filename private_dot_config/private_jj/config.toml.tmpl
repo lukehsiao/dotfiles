@@ -103,6 +103,10 @@ concat(
 [revsets]
 bookmark-advance-to = "@-"
 
+[revset-aliases]
+# Empty, undescribed working copies of other workspaces. They add noise to log views.
+"idle_wcs()" = '(working_copies() ~ @) & empty() & description(exact:"")'
+
 [aliases]
 # Commit descriptions from a base (default trunk()) up to @-, e.g. `jj cl lhsiao/thor-ci`.
 cl = ["util", "exec", "--", "bash", "-c", '''
@@ -120,7 +124,7 @@ jj diff --stat --from "${1:-trunk()}" --to "${2:-@-}" |
 ''', "ds"]
 dt = ["diff", "--tool=difft"]
 fl = ["log", "--no-graph", "-T", '"Fixes: " ++ commit_id.shortest(12) ++ " (\"" ++ description.first_line() ++ "\")"']
-l = ["log", "-r", "@ | ancestors(trunk()..(visible_heads() & (mine() | bookmarks()) ~ (remote_bookmarks() ~ bookmarks())), 2) | trunk()"]
+l = ["log", "-r", "(@ | ancestors(trunk()..(visible_heads() & (mine() | bookmarks()) ~ (remote_bookmarks() ~ bookmarks())), 2) | trunk()) ~ idle_wcs()"]
 la = ["log", "-r", "ancestors(@)"]
 lr = ["log", "-r", "@ | ancestors(remote_bookmarks().., 2) | trunk()"]
 n = ["new"]
