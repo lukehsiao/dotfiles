@@ -126,6 +126,8 @@ dt = ["diff", "--tool=difft"]
 fl = ["log", "--no-graph", "-T", '"Fixes: " ++ commit_id.shortest(12) ++ " (\"" ++ description.first_line() ++ "\")"']
 l = ["log", "-r", "(@ | ancestors(trunk()..(visible_heads() & (mine() | bookmarks()) ~ (remote_bookmarks() ~ bookmarks())), 2) | trunk()) ~ idle_wcs()"]
 la = ["log", "-r", "ancestors(@)"]
+# Like `l`, but also shows idle workspace working copies. Use it to find stale workspaces.
+ll = ["log", "-r", "@ | ancestors(trunk()..(visible_heads() & (mine() | bookmarks()) ~ (remote_bookmarks() ~ bookmarks())), 2) | trunk()"]
 lr = ["log", "-r", "@ | ancestors(remote_bookmarks().., 2) | trunk()"]
 n = ["new"]
 pbm = ["git", "push", "-b", "glob:lwh/*"]
