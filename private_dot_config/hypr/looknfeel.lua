@@ -15,3 +15,8 @@ o.window({ tag = "floating-window" }, { size = { "(monitor_w*0.55)", "(monitor_h
 
 -- Float btm like the other system TUIs (Omarchy only tags btop).
 o.window("org.omarchy.btm", { tag = "+floating-window" })
+
+-- Opt another application in to Omarchy's standard transparency.
+-- Find its class with: hyprctl clients
+-- o.transparent_window("my-app")
+-- o.transparent_window("my-app", "0.9 0.85") -- Custom active/inactive opacity.

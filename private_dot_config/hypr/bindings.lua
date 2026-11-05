@@ -13,20 +13,11 @@ hl.unbind("SUPER + SHIFT + S") -- Google Maps
 
 -- Point the AI, calendar, email, and activity keys at my tools instead of
 -- the Omarchy defaults (ChatGPT, Grok, HEY, btop).
-hl.unbind("SUPER + SHIFT + A")
-o.bind("SUPER + SHIFT + A", "Claude", { webapp = "https://claude.ai/new" })
-
-hl.unbind("SUPER + SHIFT + ALT + A")
-o.bind("SUPER + SHIFT + ALT + A", "Gemini", { webapp = "https://gemini.google.com/app" })
-
-hl.unbind("SUPER + SHIFT + C")
-o.bind("SUPER + SHIFT + C", "Calendar", { webapp = "https://calendar.google.com" })
-
-hl.unbind("SUPER + SHIFT + E")
-o.bind("SUPER + SHIFT + E", "Email", { tui = "aerc" })
-
-hl.unbind("SUPER + CTRL + T")
-o.bind("SUPER + CTRL + T", "Activity", { tui = "btm" })
+o.rebind("SUPER + SHIFT + A", "Claude", { webapp = "https://claude.ai/new" })
+o.rebind("SUPER + SHIFT + ALT + A", "Gemini", { webapp = "https://gemini.google.com/app" })
+o.rebind("SUPER + SHIFT + C", "Calendar", { webapp = "https://calendar.google.com" })
+o.rebind("SUPER + SHIFT + E", "Email", { tui = "aerc" })
+o.rebind("SUPER + CTRL + T", "Activity", { tui = "btm" })
 
 -- flea --default: begin. Written by `flea --default`; `flea --default off` removes the block whole.
 hl.unbind("SUPER + SHIFT + F")

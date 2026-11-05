@@ -12,7 +12,6 @@ Library
 .config/hypr
 .config/omarchy
 .config/uwsm
-.config/satty
 .config/zen
 .config/aerc/stylesets/omarchy
 .config/k9s/skins/omarchy.yaml
