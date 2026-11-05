@@ -17,7 +17,7 @@ o.rebind("SUPER + SHIFT + A", "Claude", { webapp = "https://claude.ai/new" })
 o.rebind("SUPER + SHIFT + ALT + A", "Gemini", { webapp = "https://gemini.google.com/app" })
 o.rebind("SUPER + SHIFT + C", "Calendar", { webapp = "https://calendar.google.com" })
 o.rebind("SUPER + SHIFT + E", "Email", { tui = "aerc" })
-o.rebind("SUPER + CTRL + T", "Activity", { tui = "btm" })
+o.rebind("SUPER + SHIFT + T", "Activity", { tui = "btm" })
 
 -- flea --default: begin. Written by `flea --default`; `flea --default off` removes the block whole.
 hl.unbind("SUPER + SHIFT + F")
