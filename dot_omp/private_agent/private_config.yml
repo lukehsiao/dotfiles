@@ -1,7 +1,7 @@
 symbolPreset: nerd
 theme:
   dark: titanium
-setupVersion: 2
+setupVersion: 3
 modelRoles:
   tiny: anthropic/claude-sonnet-5-5:xhigh
   default: anthropic/claude-opus-5-5:high
@@ -19,3 +19,5 @@ task:
   agentModelOverrides:
     reviewer: anthropic/claude-opus-5-5:high
     security-reviewer: anthropic/claude-opus-5-5:high
+update:
+  auto: true
