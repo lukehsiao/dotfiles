@@ -21,12 +21,10 @@ editor = {{ if eq .distro "omarchy" }}"helix"{{ else }}"hx"{{ end }}
 should-sign-off = {{ if eq .distro "omarchy" }}true{{ else }}false{{ end }}
 show-cryptographic-signatures = true
 
+# Keep jj's default diff styling, but use blue instead of green for additions.
 [colors]
 "diff added" = { fg = "blue" }
-"diff added token" = { fg = "bright blue" }
-"diff removed" = { fg = "red" }
-"diff removed token" = { fg = "bright red" }
-"diff token" = { underline = false }
+"diff copied" = { fg = "blue" }
 
 [merge-tools.patch]
 program = "edit-patch"
