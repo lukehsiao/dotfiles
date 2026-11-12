@@ -47,9 +47,12 @@ Produce a rigorous, evidence-backed review of one pull request as a markdown rep
    Use the repo's documented task runner (for example `just` recipes named in `AGENTS.md`) on changed packages.
    Record exact commands and pass/fail.
    A failing gate is a finding; an unrun gate is stated with its reason.
-5. **Probe suspected bugs.**
+   When the diff touches code the repo benchmarks, run those benches at base and at head, and record both numbers.
+5. **Probe suspected bugs and slowdowns.**
    For every claimed correctness issue, build a tight, red-capable loop in the PR workspace and minimize it, following Phases 1 and 2 of `diagnosing-bugs`.
-   When no loop is reachable, mark the claim `[INFERENCE]` and continue; this replaces the Phase 1 instruction to stop and ask the user.
+   For every claimed performance issue, measure it: reuse the step 4 bench numbers when they cover the path, or else build a tight micro-benchmark or timed run that shows the cost grow with input size or differ from base.
+   Quote the numbers in the comment.
+   When no loop is reachable, mark the claim `[UNVERIFIED]` and continue; this replaces the Phase 1 instruction to stop and ask the user.
    When the bug has no correct seam for a regression test (as `diagnosing-bugs` Phase 5 defines it), report that as a design finding.
    Delete scaffolding afterwards; never commit to the PR workspace.
 6. **Write the report** (format below), then run the self-check.
@@ -62,15 +65,18 @@ Produce a rigorous, evidence-backed review of one pull request as a markdown rep
    Quote the requirement in the comment.
    When neither the PR body nor a linked issue states requirements, skip this lens without asking the user, and record `Spec: none` in the report header.
 3. Contracts: public API/type changes, every caller migrated, backwards compatibility of stored formats, config defaults.
-4. Design: in `codebase-design` terms, shallow modules that fail the deletion test, lost locality, hypothetical seams with one adapter, and tests that reach past the interface; plus dead code.
+4. Design: in `codebase-design` terms, interfaces the change widens or leaks (new ordering constraints, config, or error modes a caller must now know), shallow modules that fail the deletion test, lost locality, hypothetical seams with one adapter, and tests that reach past the interface; plus dead code.
+   Ask whether a smaller, more boring shape meets the same spec: existing code or dependencies reused, one convention where the PR adds a second.
    Then the `code-review` smell baseline: name the smell and quote the hunk.
-   Every smell is `non-blocking`.
-5. Tests: do they catch plausible consumer-visible bugs?
+   Every smell is `non-blocking`; a widened or leaky public interface follows the blocking rule below.
+5. Performance: algorithmic complexity on inputs that grow, I/O or queries inside loops, blocking calls on async or hot paths, unbounded buffers, caches, and queues, avoidable allocation and copying on hot paths, and lock scope.
+   Weigh each cost against how hot the path is.
+6. Tests: do they catch plausible consumer-visible bugs?
    Judge them against the good test and the anti-patterns in `tdd`.
    Flag missing boundary/transition tests.
    Suggest Nullables over mocks, and property tests where an invariant exists.
-6. Accessibility/UX (web), performance, security as applicable.
-7. Docs, changelog/changeset, comments (why not what; no time-relative comments).
+7. Accessibility/UX (web) and security as applicable.
+8. Docs, changelog/changeset, comments (why not what; no time-relative comments).
 
 ## Comment Format
 
@@ -100,10 +106,10 @@ Rules:
   Repeat needed context instead.
 - Include a code sketch whenever it clarifies a suggestion or demonstrates an issue: a failing input, a reproduction, or the proposed shape.
   Keep it minimal and in the file's language.
-- Blocking = incorrect behavior, data loss, contract break, failing gate, a missing or wrong spec requirement, or a design choice expensive to undo later.
+- Blocking = incorrect behavior, data loss, contract break, failing gate, a missing or wrong spec requirement, a measured regression on a hot path, or a design choice expensive to undo later.
   Everything else is non-blocking.
-- Evidence first: cite observed output, test runs, or code paths.
-  Unverified = `[INFERENCE]`.
+- Evidence first: cite observed output, test runs, bench numbers, or code paths.
+  Mark every claim you did not observe `[UNVERIFIED]`.
 - Write to ASD-STE100 at about 80% strictness: short sentences, active voice, one idea per sentence, simple words over jargon, no em dashes, no filler.
 
 ## Report Skeleton
@@ -133,6 +139,6 @@ Rules:
 - [ ] Every anchor line verified against head.
 - [ ] No comment references another comment.
 - [ ] Every comment paragraph is on a single line, with no hard wraps.
-- [ ] Every correctness claim reproduced or marked `[INFERENCE]`.
+- [ ] Every correctness claim reproduced and every performance claim measured, or marked `[UNVERIFIED]`.
 - [ ] Gates recorded with real output.
 - [ ] Throwaway probes removed from the workspace.
