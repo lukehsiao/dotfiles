@@ -50,8 +50,8 @@ Produce a rigorous, evidence-backed review of one pull request as a markdown rep
    When the diff touches code the repo benchmarks, run those benches at base and at head, and record both numbers.
 5. **Probe suspected bugs and slowdowns.**
    For every claimed correctness issue, build a tight, red-capable loop in the PR workspace and minimize it, following Phases 1 and 2 of `diagnosing-bugs`.
-   For every claimed performance issue, measure it: reuse the step 4 bench numbers when they cover the path, or else build a tight micro-benchmark or timed run that shows the cost grow with input size or differ from base.
-   Quote the numbers in the comment.
+   For every claimed performance issue, measure it on representative input: reuse the step 4 bench numbers when they cover the path, or else build a tight micro-benchmark or timed run that shows the cost grow with input size or differ from base.
+   Repeat each measurement, and quote the numbers and their spread in the comment.
    When no loop is reachable, mark the claim `[UNVERIFIED]` and continue; this replaces the Phase 1 instruction to stop and ask the user.
    When the bug has no correct seam for a regression test (as `diagnosing-bugs` Phase 5 defines it), report that as a design finding.
    Delete scaffolding afterwards; never commit to the PR workspace.
@@ -106,7 +106,7 @@ Rules:
   Repeat needed context instead.
 - Include a code sketch whenever it clarifies a suggestion or demonstrates an issue: a failing input, a reproduction, or the proposed shape.
   Keep it minimal and in the file's language.
-- Blocking = incorrect behavior, data loss, contract break, failing gate, a missing or wrong spec requirement, a measured regression on a hot path, or a design choice expensive to undo later.
+- Blocking = incorrect behavior, data loss, contract break, failing gate, a missing or wrong spec requirement, a broken performance budget, a repeatable and material regression on a hot path that the PR's correctness gains do not justify, or a design choice expensive to undo later.
   Everything else is non-blocking.
 - Evidence first: cite observed output, test runs, bench numbers, or code paths.
   Mark every claim you did not observe `[UNVERIFIED]`.
