@@ -139,7 +139,9 @@ pbm = ["git", "push", "-b", "glob:lwh/*"]
 pbt = ["git", "push", "--tracked"]
 # Abandon orphans. Preview them with `jj log -r 'orphans()'`.
 prune = ["abandon", "orphans()"]
-rba = ["rebase", "-s", "roots(mutable() & mine())", "-d", "trunk()"]
+# Rebase all my stacks onto trunk, including bookmarked stacks that a teammate's
+# untracked branch makes immutable. Those need `jj rba --ignore-immutable`.
+rba = ["rebase", "-s", "roots(mine() & (mutable() | trunk()..bookmarks()))", "-d", "trunk()"]
 # Add a Signed-off-by trailer to each revision, e.g. `jj so 'trunk()..@-'`.
 # The no-op editor keeps descriptions unchanged. jj skips the trailer if it is already present.
 so = ["--config", "ui.editor=\"true\"", "--config", "templates.commit_trailers=\"format_signed_off_by_trailer(self)\"", "describe"]
