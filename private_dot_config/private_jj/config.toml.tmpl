@@ -104,6 +104,9 @@ bookmark-advance-to = "@-"
 [revset-aliases]
 # Empty, undescribed working copies of other workspaces. They add noise to log views.
 "idle_wcs()" = '(working_copies() ~ @) & empty() & description(exact:"")'
+# Mutable commits by others that none of my work depends on.
+# Deleted remote branches can leave these behind with no bookmark.
+"orphans()" = 'mutable() ~ ::(bookmarks() | remote_bookmarks() | working_copies() | mine())'
 
 [aliases]
 # Commit descriptions from a base (default trunk()) up to @-, e.g. `jj cl lhsiao/thor-ci`.
@@ -111,7 +114,7 @@ cl = ["util", "exec", "--", "bash", "-c", '''
 jj log -r "(${1:-trunk()})..@-" --reversed -T 'description ++ "\n---\n\n"' --no-graph --no-pager
 ''', "cl"]
 de = ["diffedit", "--tool=patch"]
-dl = ["log", "-r", "@ | ancestors(trunk()..(visible_heads() & mine()), 2) | trunk()", "-T", "builtin_log_detailed"]
+dl = ["log", "-r", "@ | ancestors(immutable_heads().. | trunk()..bookmarks(), 2) | trunk()", "-T", "builtin_log_detailed"]
 dla = ["log", "-r", "ancestors(@)", "-T", "builtin_log_detailed"]
 # Compact diffstat, e.g. [`2 files, +17, -6`]. Usage: `jj ds [base] [to]`.
 # base defaults to trunk(); to defaults to @- because the squash workflow
@@ -122,14 +125,20 @@ jj diff --stat --from "${1:-trunk()}" --to "${2:-@-}" |
 ''', "ds"]
 dt = ["diff", "--tool=difft"]
 fl = ["log", "--no-graph", "-T", '"Fixes: " ++ commit_id.shortest(12) ++ " (\"" ++ description.first_line() ++ "\")"']
-l = ["log", "-r", "(@ | ancestors(trunk()..(visible_heads() & (mine() | bookmarks()) ~ (remote_bookmarks() ~ bookmarks())), 2) | trunk()) ~ idle_wcs()"]
+# Show all mutable work and the stacks under local bookmarks.
+# A colleague's untracked branch on top of a stack makes the stack immutable.
+# The `trunk()..bookmarks()` term keeps such a stack visible.
+# Orphans show on purpose. Use `jj prune` to remove them.
+l = ["log", "-r", "(@ | ancestors(immutable_heads().. | trunk()..bookmarks(), 2) | trunk()) ~ idle_wcs()"]
 la = ["log", "-r", "ancestors(@)"]
 # Like `l`, but also shows idle workspace working copies. Use it to find stale workspaces.
-ll = ["log", "-r", "@ | ancestors(trunk()..(visible_heads() & (mine() | bookmarks()) ~ (remote_bookmarks() ~ bookmarks())), 2) | trunk()"]
+ll = ["log", "-r", "@ | ancestors(immutable_heads().. | trunk()..bookmarks(), 2) | trunk()"]
 lr = ["log", "-r", "@ | ancestors(remote_bookmarks().., 2) | trunk()"]
 n = ["new"]
 pbm = ["git", "push", "-b", "glob:lwh/*"]
 pbt = ["git", "push", "--tracked"]
+# Abandon orphans. Preview them with `jj log -r 'orphans()'`.
+prune = ["abandon", "orphans()"]
 rba = ["rebase", "-s", "roots(mutable() & mine())", "-d", "trunk()"]
 # Add a Signed-off-by trailer to each revision, e.g. `jj so 'trunk()..@-'`.
 # The no-op editor keeps descriptions unchanged. jj skips the trailer if it is already present.
