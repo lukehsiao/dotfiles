@@ -104,9 +104,12 @@ bookmark-advance-to = "@-"
 [revset-aliases]
 # Empty, undescribed working copies of other workspaces. They add noise to log views.
 "idle_wcs()" = '(working_copies() ~ @) & empty() & description(exact:"")'
-# Mutable commits by others that none of my work depends on.
+# Mutable commits that no ref or clean commit of mine depends on.
 # Deleted remote branches can leave these behind with no bookmark.
-"orphans()" = 'mutable() ~ ::(bookmarks() | remote_bookmarks() | working_copies() | mine())'
+# My own commits are orphans only when in conflict. Rebasing a stack
+# that was squash-merged upstream leaves it in conflict and dead.
+# Conflicts carry to descendants, so a clean head of mine keeps its stack.
+"orphans()" = 'mutable() ~ ::(bookmarks() | remote_bookmarks() | working_copies() | (mine() ~ conflicts()))'
 
 [aliases]
 # Commit descriptions from a base (default trunk()) up to @-, e.g. `jj cl lhsiao/thor-ci`.
