@@ -3,10 +3,10 @@ theme:
   dark: titanium
 setupVersion: 3
 modelRoles:
-  tiny: anthropic/claude-sonnet-5-5:xhigh
-  default: anthropic/claude-opus-5-5:high
+  tiny: google-vertex/gemini-4-hydrogen
+  default: google-vertex/gemini-4-neon
   advisor: openai-codex/gpt-6-astra:high
-  slow: anthropic/claude-opus-5-5:high
+  slow: google-vertex/gemini-4-neon
 enabledProviders:
   - claude
 dev:
@@ -17,7 +17,7 @@ composer:
   shape: box
 task:
   agentModelOverrides:
-    reviewer: anthropic/claude-opus-5-5:high
-    security-reviewer: anthropic/claude-opus-5-5:high
+    reviewer: google-vertex/gemini-4-neon
+    security-reviewer: google-vertex/gemini-4-neon
 update:
   auto: true
