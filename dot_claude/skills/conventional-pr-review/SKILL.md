@@ -42,7 +42,8 @@ Produce a rigorous, evidence-backed review of one pull request as a markdown rep
 3. **Map the change before judging it.**
    Read the PR metadata (`gh pr view <N>`), the spec (the PR body plus each issue in `gh pr view <N> --json closingIssuesReferences`), the full diff (`gh pr diff <N>`, or `jj diff --from 'fork_point(<baseRefOid> | <headRefOid>)' --to <headRefOid>` to match GitHub's merge-base diff), every changed file in full at head, and the immediate callers and callees of changed symbols (LSP references when available, otherwise grep).
    For large PRs, delegate parallel per-area slices to subagents.
-   Hand each the full comment format below, the spec, and the companion skills chosen in step 1, which each subagent loads itself.
+   Hand each the full comment format below, the spec, the design pass questions from step 6, and the companion skills chosen in step 1, which each subagent loads itself.
+   Each subagent returns its slice's Design pass rows; merge them, then check locality across slices, since a rule split across two slices is invisible to both.
 4. **Run the gates.**
    Use the repo's documented task runner (for example `just` recipes named in `AGENTS.md`) on changed packages.
    Record exact commands and pass/fail.
@@ -55,8 +56,21 @@ Produce a rigorous, evidence-backed review of one pull request as a markdown rep
    When no loop is reachable, mark the claim `[UNVERIFIED]` and continue; this replaces the Phase 1 instruction to stop and ask the user.
    When the bug has no correct seam for a regression test (as `diagnosing-bugs` Phase 5 defines it), report that as a design finding.
    Delete scaffolding afterwards; never commit to the PR workspace.
-6. **Write the report** (format below), then run the self-check.
-7. Leave the workspace in place; give the user its path and the cleanup commands (`jj workspace forget pr-<N> && rm -rf /tmp/pr-<N>`, plus `jj git remote remove pr-<N>` for a fork PR).
+6. **Run the design pass.**
+   List every module the diff adds or widens: a function, type, process step, route, or CLI flag.
+   For each module, answer every question below in `codebase-design` terms, and record each answer in the report's Design pass table as `clean` or the anchor of the comment it produced:
+   - Interface: what must a caller now know that it did not know before? Look for an ordering rule, a config flag, an error mode, or a meaning carried by `None`, a sentinel, or a boolean.
+   - Depth: does the module pass the deletion test, or is it a pass-through?
+   - Locality: does one rule now live at more than one site? Name every site.
+   - Seam: how many adapters sit at each new seam? One adapter means a hypothetical seam.
+   - Invalid states: which inputs can a caller combine that mean nothing?
+   - Shape: does a smaller, more boring shape meet the same spec, such as existing code reused or one convention where the PR adds a second?
+
+   Then go back over every correctness and contract finding and find its **root cause**.
+   When a design choice produced the finding, the comment names that choice as the root cause and gives the **symptom** as its evidence.
+   The pass is done when every module has an answer to every question.
+7. **Write the report** (format below), then run the self-check.
+8. Leave the workspace in place; give the user its path and the cleanup commands (`jj workspace forget pr-<N> && rm -rf /tmp/pr-<N>`, plus `jj git remote remove pr-<N>` for a fork PR).
 
 ## Review Lenses (priority order)
 
@@ -65,8 +79,7 @@ Produce a rigorous, evidence-backed review of one pull request as a markdown rep
    Quote the requirement in the comment.
    When neither the PR body nor a linked issue states requirements, skip this lens without asking the user, and record `Spec: none` in the report header.
 3. Contracts: public API/type changes, every caller migrated, backwards compatibility of stored formats, config defaults.
-4. Design: in `codebase-design` terms, interfaces the change widens or leaks (new ordering constraints, config, or error modes a caller must now know), shallow modules that fail the deletion test, lost locality, hypothetical seams with one adapter, and tests that reach past the interface; plus dead code.
-   Ask whether a smaller, more boring shape meets the same spec: existing code or dependencies reused, one convention where the PR adds a second.
+4. Design: the findings of the design pass (step 6), tests that reach past the interface, and dead code.
    Then the `code-review` smell baseline: name the smell and quote the hunk.
    Every smell is `non-blocking`; a widened or leaky public interface follows the blocking rule below.
 5. Performance: algorithmic complexity on inputs that grow, I/O or queries inside loops, blocking calls on async or hot paths, unbounded buffers, caches, and queues, avoidable allocation and copying on hot paths, and lock scope.
@@ -121,12 +134,18 @@ Rules:
 - Base: <sha> · Head: <sha>
 - Workspace: <path>
 - Spec: <PR body and linked issues that state requirements, or `none`>
-- Skills applied: <list, one-clause reason each>
+- Skills applied: <list, each with the comment anchors or report section it produced, or `no finding`>
 - Gates: <command> → <result> (one bullet each)
 
 ## Summary
 
 <What the PR does, the overall assessment, the count of blocking issues, and the top risks. Enough to orient a reviewer who has not read the diff, and no more.>
+
+## Design pass
+
+| Module | Interface | Depth | Locality | Seam | Invalid states | Shape |
+| --- | --- | --- | --- | --- | --- | --- |
+| <path:symbol> | <`clean` or comment anchor> | ... | ... | ... | ... | ... |
 
 ## Comments
 
@@ -140,5 +159,8 @@ Rules:
 - [ ] No comment references another comment.
 - [ ] Every comment paragraph is on a single line, with no hard wraps.
 - [ ] Every correctness claim reproduced and every performance claim measured, or marked `[UNVERIFIED]`.
+- [ ] The Design pass table has a row for every module the diff adds or widens, and no blank cell.
+- [ ] Every correctness and contract comment that a design choice caused names that choice as its root cause.
+- [ ] Every skill under Skills applied names the output it produced, or `no finding`.
 - [ ] Gates recorded with real output.
 - [ ] Throwaway probes removed from the workspace.
