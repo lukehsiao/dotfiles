@@ -5,7 +5,7 @@ setupVersion: 3
 modelRoles:
   tiny: google-vertex/gemini-4-hydrogen
   default: google-vertex/gemini-4-neon
-  advisor: openai-codex/gpt-6-astra:high
+  advisor: openai-codex/gpt-6.2-astra:high
   slow: google-vertex/gemini-4-neon
 enabledProviders:
   - claude
