@@ -53,7 +53,7 @@ Produce a rigorous, evidence-backed review of one pull request as a markdown rep
    For every claimed correctness issue, build a tight, red-capable loop in the PR workspace and minimize it, following Phases 1 and 2 of `diagnosing-bugs`.
    For every claimed performance issue, measure it on representative input: reuse the step 4 bench numbers when they cover the path, or else build a tight micro-benchmark or timed run that shows the cost grow with input size or differ from base.
    Repeat each measurement, and quote the numbers and their spread in the comment.
-   When no loop is reachable, mark the claim `[UNVERIFIED]` and continue; this replaces the Phase 1 instruction to stop and ask the user.
+   When no loop is reachable, prefix the unverified statement with `[UNVERIFIED]` and continue; this replaces the Phase 1 instruction to stop and ask the user.
    When the bug has no correct seam for a regression test (as `diagnosing-bugs` Phase 5 defines it), report that as a design finding.
    Delete scaffolding afterwards; never commit to the PR workspace.
 6. **Run the design pass.**
@@ -122,7 +122,7 @@ Rules:
 - Blocking = incorrect behavior, data loss, contract break, failing gate, a missing or wrong spec requirement, a broken performance budget, a repeatable and material regression on a hot path that the PR's correctness gains do not justify, or a design choice expensive to undo later.
   Everything else is non-blocking.
 - Evidence first: cite observed output, test runs, bench numbers, or code paths.
-  Mark every claim you did not observe `[UNVERIFIED]`.
+  Prefix every claim you did not observe with `[UNVERIFIED]` directly before the unverified statement so the reader sees the caveat upfront.
 - Write to ASD-STE100 at about 80% strictness: short sentences, active voice, one idea per sentence, simple words over jargon, no em dashes, no filler.
 
 ## Report Skeleton
@@ -158,7 +158,7 @@ Rules:
 - [ ] Every anchor line verified against head.
 - [ ] No comment references another comment.
 - [ ] Every comment paragraph is on a single line, with no hard wraps.
-- [ ] Every correctness claim reproduced and every performance claim measured, or marked `[UNVERIFIED]`.
+- [ ] Every correctness claim reproduced and every performance claim measured, or prefixed with `[UNVERIFIED]` before the unverified statement.
 - [ ] The Design pass table has a row for every module the diff adds or widens, and no blank cell.
 - [ ] Every correctness and contract comment that a design choice caused names that choice as its root cause.
 - [ ] Every skill under Skills applied names the output it produced, or `no finding`.
